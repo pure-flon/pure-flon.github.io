@@ -1,0 +1,41 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F4F9FF"/>
+      <stop offset="100%" stop-color="#DDEBFA"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1E4E86"/>
+      <stop offset="100%" stop-color="#2A7CB5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="28" fill="url(#bg2)"/>
+  <rect x="40" y="34" width="1120" height="64" rx="16" fill="#103861"/>
+  <rect x="78" y="55" width="190" height="22" rx="11" fill="#6BB6F0"/>
+  <rect x="780" y="54" width="110" height="24" rx="12" fill="#1C5A95" stroke="#6BB6F0"/>
+  <rect x="900" y="54" width="110" height="24" rx="12" fill="#1C5A95" stroke="#6BB6F0"/>
+  <rect x="1020" y="54" width="110" height="24" rx="12" fill="#43A4DD"/>
+
+  <rect x="70" y="130" width="1060" height="220" rx="20" fill="url(#bar)"/>
+  <rect x="102" y="168" width="420" height="28" rx="14" fill="#BDE3FF"/>
+  <rect x="102" y="214" width="560" height="22" rx="11" fill="#9FD2F7"/>
+  <rect x="102" y="248" width="510" height="22" rx="11" fill="#9FD2F7"/>
+  <rect x="102" y="294" width="180" height="36" rx="18" fill="#F1F7FF"/>
+  <rect x="296" y="294" width="180" height="36" rx="18" fill="#FFCC73"/>
+
+  <rect x="70" y="382" width="330" height="150" rx="18" fill="#FFFFFF" stroke="#B8D4EE"/>
+  <rect x="435" y="382" width="330" height="150" rx="18" fill="#FFFFFF" stroke="#B8D4EE"/>
+  <rect x="800" y="382" width="330" height="150" rx="18" fill="#FFFFFF" stroke="#B8D4EE"/>
+  <rect x="100" y="420" width="160" height="16" rx="8" fill="#2F6FA5"/>
+  <rect x="465" y="420" width="160" height="16" rx="8" fill="#2F6FA5"/>
+  <rect x="830" y="420" width="160" height="16" rx="8" fill="#2F6FA5"/>
+  <rect x="100" y="452" width="240" height="12" rx="6" fill="#AFCDE8"/>
+  <rect x="465" y="452" width="240" height="12" rx="6" fill="#AFCDE8"/>
+  <rect x="830" y="452" width="240" height="12" rx="6" fill="#AFCDE8"/>
+
+  <rect x="70" y="560" width="1060" height="150" rx="18" fill="#FFFFFF" stroke="#B8D4EE"/>
+  <rect x="102" y="596" width="220" height="20" rx="10" fill="#245E97"/>
+  <rect x="102" y="632" width="470" height="14" rx="7" fill="#AFCDE8"/>
+  <rect x="590" y="632" width="470" height="14" rx="7" fill="#AFCDE8"/>
+  <text x="1030" y="695" text-anchor="end" fill="#4A6F93" font-size="18" font-family="Arial">Main Page Wire Preview</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="medicalBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="medicalTube" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#06d6a0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#medicalBg)"/>
+  
+  <!-- Medical cross background -->
+  <path d="M180 50 L220 50 L220 90 L260 90 L260 130 L220 130 L220 170 L180 170 L180 130 L140 130 L140 90 L180 90 Z" 
+        fill="rgba(16, 185, 129, 0.1)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="2"/>
+  
+  <!-- PTFE Tubes -->
+  <ellipse cx="200" cy="180" rx="120" ry="8" fill="url(#medicalTube)" opacity="0.8"/>
+  <ellipse cx="200" cy="195" rx="100" ry="6" fill="url(#medicalTube)" opacity="0.6"/>
+  <ellipse cx="200" cy="210" rx="80" ry="5" fill="url(#medicalTube)" opacity="0.4"/>
+  
+  <!-- Curved tubes -->
+  <path d="M100 160 Q200 140 300 160" stroke="url(#medicalTube)" stroke-width="8" fill="none" opacity="0.9"/>
+  <path d="M120 175 Q200 155 280 175" stroke="url(#medicalTube)" stroke-width="6" fill="none" opacity="0.7"/>
+  
+  <!-- Medical symbols -->
+  <circle cx="80" cy="80" r="20" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
+  <path d="M75 80 L85 80 M80 75 L80 85" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+  
+  <circle cx="320" cy="80" r="20" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
+  <path d="M315 80 L325 80 M320 75 L320 85" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- FDA approval badge -->
+  <rect x="20" y="230" width="60" height="30" rx="5" fill="#1e5cb3" stroke="white" stroke-width="2"/>
+  <text x="50" y="248" font-family="Arial, sans-serif" font-size="10" font-weight="bold" 
+        fill="white" text-anchor="middle">FDA</text>
+  <text x="50" y="258" font-family="Arial, sans-serif" font-size="6" 
+        fill="rgba(255,255,255,0.9)" text-anchor="middle">APPROVED</text>
+  
+  <!-- Title -->
+  <text x="200" y="40" font-family="Arial, sans-serif" font-size="18" font-weight="bold" 
+        fill="#1e5cb3" text-anchor="middle">의료용 PTFE 튜브</text>
+</svg>

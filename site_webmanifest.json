@@ -1,0 +1,348 @@
+{
+  "name": "Pure-Flon - 프리미엄 산업용 PTFE 튜브 전문 제조업체",
+  "short_name": "Pure-Flon",
+  "description": "동아시아 시장을 선도하는 프리미엄 산업용 PTFE 튜브 제조업체. 의료용, 반도체용, 화학용 고품질 PTFE 튜브와 전문 엔지니어링 솔루션을 제공합니다.",
+  "id": "/?utm_source=pwa",
+  "start_url": "/?utm_source=pwa&utm_medium=standalone",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#1e5cb3",
+  "categories": [
+    "business",
+    "manufacturing", 
+    "industrial",
+    "engineering",
+    "materials",
+    "productivity"
+  ],
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-32x32.png", 
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180", 
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/icons/icon-256x256.png",
+      "sizes": "256x256", 
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png", 
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icons/icon-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "견적 요청",
+      "short_name": "견적",
+      "description": "PTFE 튜브 맞춤 견적을 빠르게 요청하세요", 
+      "url": "/quote/request.html?utm_source=pwa_shortcut",
+      "icons": [
+        {
+          "src": "/images/shortcuts/quote-icon-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "의료용 제품",
+      "short_name": "의료용",
+      "description": "FDA 승인 의료용 PTFE 튜브 카탈로그",
+      "url": "/products/medical.html?utm_source=pwa_shortcut",
+      "icons": [
+        {
+          "src": "/images/shortcuts/medical-icon-96.png", 
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "반도체용 제품", 
+      "short_name": "반도체",
+      "description": "초고순도 반도체용 PTFE 튜브 라인업",
+      "url": "/products/semiconductor.html?utm_source=pwa_shortcut",
+      "icons": [
+        {
+          "src": "/images/shortcuts/semiconductor-icon-96.png",
+          "sizes": "96x96", 
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "화학용 제품",
+      "short_name": "화학",
+      "description": "내화학성 화학용 PTFE 튜브 솔루션",
+      "url": "/products/chemical.html?utm_source=pwa_shortcut",
+      "icons": [
+        {
+          "src": "/images/shortcuts/chemical-icon-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "고객 포털",
+      "short_name": "포털", 
+      "description": "주문 현황 및 기술 지원 포털",
+      "url": "/customer/dashboard.html?utm_source=pwa_shortcut",
+      "icons": [
+        {
+          "src": "/images/shortcuts/portal-icon-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  
+  "screenshots": [
+    {
+      "src": "/images/screenshots/desktop-home-wide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Pure-Flon 홈페이지 - 데스크톱 뷰"
+    },
+    {
+      "src": "/images/screenshots/desktop-products-wide.png", 
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PTFE 제품 카탈로그 - 데스크톱 뷰"
+    },
+    {
+      "src": "/images/screenshots/desktop-quote-wide.png",
+      "sizes": "1920x1080", 
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "견적 요청 시스템 - 데스크톱 뷰"
+    },
+    {
+      "src": "/images/screenshots/mobile-home-narrow.png",
+      "sizes": "390x844",
+      "type": "image/png", 
+      "form_factor": "narrow",
+      "label": "Pure-Flon 홈페이지 - 모바일 뷰"
+    },
+    {
+      "src": "/images/screenshots/mobile-products-narrow.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow", 
+      "label": "제품 카탈로그 - 모바일 뷰"
+    },
+    {
+      "src": "/images/screenshots/mobile-quote-narrow.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "견적 요청 - 모바일 뷰"
+    }
+  ],
+  
+  "protocol_handlers": [
+    {
+      "protocol": "mailto",
+      "url": "/contact.html?email=%s"
+    },
+    {
+      "protocol": "tel", 
+      "url": "/contact.html?phone=%s"
+    }
+  ],
+  
+  "file_handlers": [
+    {
+      "action": "/quote/upload",
+      "accept": {
+        "application/pdf": [".pdf"],
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+        "text/csv": [".csv"],
+        "image/*": [".jpg", ".jpeg", ".png", ".webp"]
+      }
+    }
+  ],
+  
+  "share_target": {
+    "action": "/quote/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text", 
+      "url": "url",
+      "files": [
+        {
+          "name": "specifications",
+          "accept": ["application/pdf", "image/*", ".xlsx", ".csv"]
+        }
+      ]
+    }
+  },
+  
+  "launch_handler": {
+    "client_mode": ["navigate-new", "navigate-existing"],
+    "route_to": "/"
+  },
+  
+  "edge_side_panel": {
+    "preferred_width": 420
+  },
+  
+  "handle_links": "preferred",
+  
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://pure-flon.com/",
+      "id": "com.pureflon.webapp"
+    },
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.pureflon.android",
+      "id": "com.pureflon.android"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/pure-flon/id123456789",
+      "id": "123456789"
+    }
+  ],
+  
+  "prefer_related_applications": false,
+  
+  "note_taking": {
+    "new_note_url": "/customer/notes/new"
+  },
+  
+  "permissions": [
+    "notifications",
+    "background-sync", 
+    "persistent-storage"
+  ],
+  
+  "features": [
+    "Cross Platform",
+    "Low Latency inking",
+    "Document Editing",
+    "3D Product Configurator"
+  ],
+  
+  "widgets": [
+    {
+      "name": "Quick Quote",
+      "short_name": "견적",
+      "description": "빠른 견적 요청 위젯",
+      "tag": "quick-quote",
+      "template": "quote-widget",
+      "ms_ac_template": "quote-adaptive-card.json",
+      "data": "/api/widgets/quote-data",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "/images/widgets/quote-widget-312x208.png",
+          "sizes": "312x208",
+          "label": "빠른 견적 위젯"
+        }
+      ],
+      "icons": [
+        {
+          "src": "/images/widgets/quote-widget-icon-64.png", 
+          "sizes": "64x64"
+        }
+      ],
+      "auth": false,
+      "update": 900000
+    },
+    {
+      "name": "Order Status",
+      "short_name": "주문현황", 
+      "description": "주문 진행 상황 추적 위젯",
+      "tag": "order-status",
+      "template": "order-widget",
+      "data": "/api/widgets/order-status",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "/images/widgets/order-widget-312x208.png",
+          "sizes": "312x208",
+          "label": "주문 현황 위젯"
+        }
+      ],
+      "icons": [
+        {
+          "src": "/images/widgets/order-widget-icon-64.png",
+          "sizes": "64x64"
+        }
+      ], 
+      "auth": true,
+      "update": 300000
+    }
+  ],
+  
+  "capture_links": "new-client",
+  
+  "version": "3.0.0",
+  "version_name": "Platinum Edition",
+  
+  "developer": {
+    "name": "Pure-Flon Engineering Team",
+    "url": "https://pure-flon.com/company/about.html"
+  },
+  
+  "manifest_version": 3,
+  
+  "gcm_sender_id": "103953800507",
+  
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": "/",
+    "update_via_cache": "none"
+  }
+}

@@ -1,0 +1,251 @@
+# 파일명: .gitignore
+# Pure-Flon PTFE 튜브 B2B 웹사이트 Git 무시 파일
+# 업데이트: 2025-07-31 v3.1.0
+# 목적: 보안 강화, 불필요한 파일 제외, 깔끔한 저장소 유지
+
+# ===== 환경 파일 =====
+# 절대 커밋하면 안 되는 환경 변수들
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+.env.*.local
+
+# API 키와 시크릿
+*.key
+*.pem
+*.cert
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# ===== 의존성 디렉토리 =====
+node_modules/
+bower_components/
+jspm_packages/
+vendor/
+
+# ===== 빌드 결과물 =====
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.vite/
+.vercel/
+*.min.js
+*.min.css
+
+# ===== 로그 파일 =====
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===== OS 시스템 파일 =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ===== IDE 및 에디터 파일 =====
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Vim
+*.swp
+*.swo
+*.swn
+*.vim
+.netrwhist
+tags
+
+# Emacs
+*~
+\#*\#
+.\#*
+.emacs.desktop
+.emacs.desktop.lock
+
+# ===== 테스트 커버리지 =====
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+jest-results/
+cypress/videos/
+cypress/screenshots/
+
+# ===== 번들 분석 =====
+stats.html
+bundle-stats.json
+webpack-stats.json
+
+# ===== 타입스크립트 =====
+*.tsbuildinfo
+*.d.ts.map
+
+# ===== 패키지 매니저 =====
+# npm
+package-lock.json.backup
+
+# yarn
+.yarn/
+.yarnrc.yml
+.pnp.*
+yarn.lock.backup
+
+# pnpm
+pnpm-lock.yaml.backup
+
+# ===== 백업 및 임시 파일 =====
+*.bak
+*.backup
+*.tmp
+*.temp
+*.orig
+*.rej
+.tmp/
+tmp/
+temp/
+
+# ===== 데이터베이스 =====
+*.sqlite
+*.sqlite3
+*.db
+database.json
+db.json
+
+# ===== 문서 =====
+# 개인 메모나 임시 문서
+TODO.md
+NOTES.md
+PRIVATE.md
+drafts/
+
+# ===== 미디어 파일 (선택적) =====
+# 큰 미디어 파일은 Git LFS 사용 권장
+# *.mp4
+# *.mov
+# *.avi
+# *.zip
+# *.rar
+# *.7z
+
+# ===== 보안 감사 =====
+audit/
+security/
+vulnerabilities/
+
+# ===== 배포 관련 =====
+.serverless/
+.terraform/
+*.tfstate
+*.tfstate.*
+ansible/*.retry
+docker-compose.override.yml
+
+# ===== 프로젝트 특정 파일 =====
+# 고객 데이터
+customer-data/
+private-documents/
+contracts/
+
+# 가격 정보
+pricing-data/
+confidential/
+
+# 내부 문서
+internal-docs/
+meeting-notes/
+
+# ===== 정적 사이트 생성기 =====
+.gatsby/
+.gridsome/
+.hugo_build.lock
+
+# ===== 성능 프로파일링 =====
+*.heapsnapshot
+*.cpuprofile
+chrome-profiler-events.json
+
+# ===== E2E 테스트 =====
+playwright-report/
+playwright/.cache/
+
+# ===== 캐시 디렉토리 =====
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# ===== 기타 =====
+# 로컬 설정
+local-config/
+.local/
+
+# 실험적 기능
+experimental/
+sandbox/
+
+# 개인 스크립트
+personal-scripts/
+my-scripts/
+
+# ===== IMPORTANT: 보안 체크리스트 =====
+# 다음 파일들이 절대 커밋되지 않도록 주의:
+# - API 키, 비밀번호, 토큰
+# - 개인정보 (이메일, 전화번호, 주소)
+# - 내부 서버 정보
+# - 데이터베이스 접속 정보
+# - 고객 데이터
+# - 가격 정책
+# - 계약서 및 법적 문서
+
+# End of .gitignore

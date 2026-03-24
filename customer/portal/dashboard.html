@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<!-- 
+파일명: customer/portal/dashboard.html
+업데이트: 2025-01-22
+버전: v2.0.0 (완전한 B2B 고객 포털 대시보드)
+-->
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pure-Flon 고객 포털 대시보드 - 견적 관리, 주문 내역, 기술 문서 다운로드">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>고객 포털 대시보드 | Pure-Flon</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="../../css/main.css" as="style">
+    <link rel="preload" href="../../css/customer-portal.css" as="style">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/customer-portal.css">
+</head>
+<body class="portal-page">
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">메인 콘텐츠로 건너뛰기</a>
+    
+    <!-- Portal Header -->
+    <header class="portal-header" role="banner">
+        <div class="portal-header__container">
+            <div class="portal-header__logo">
+                <a href="../../" aria-label="Pure-Flon 홈페이지">
+                    <img src="../../images/logo.svg" alt="Pure-Flon" width="160" height="36">
+                </a>
+            </div>
+            
+            <div class="portal-header__title">
+                <h1>고객 포털</h1>
+            </div>
+            
+            <div class="portal-header__actions">
+                <div class="user-menu">
+                    <button class="user-menu__toggle" aria-expanded="false" aria-haspopup="true">
+                        <span class="user-avatar">👤</span>
+                        <span class="user-name" id="user-display-name">사용자</span>
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                            <path d="M6 8L10 4H2L6 8Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <ul class="user-menu__dropdown">
+                        <li><a href="profile.html">프로필 관리</a></li>
+                        <li><a href="../../">메인 사이트</a></li>
+                        <li><button onclick="logout()" class="logout-btn">로그아웃</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="portal-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="portal-sidebar" role="navigation" aria-label="포털 메뉴">
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link active" aria-current="page">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">대시보드</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quotes.html" class="nav-link">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">견적 내역</span>
+                            <span class="nav-badge" id="quotes-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="orders.html" class="nav-link">
+                            <span class="nav-icon">📦</span>
+                            <span class="nav-text">주문 내역</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html" class="nav-link">
+                            <span class="nav-icon">📚</span>
+                            <span class="nav-text">문서함</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="support.html" class="nav-link">
+                            <span class="nav-icon">🛠️</span>
+                            <span class="nav-text">기술 지원</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html" class="nav-link">
+                            <span class="nav-icon">👤</span>
+                            <span class="nav-text">프로필</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="portal-main" role="main">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h2 id="welcome-title">안녕하세요, <span id="customer-name">고객님</span>!</h2>
+                    <p class="welcome-subtitle">Pure-Flon 고객 포털에 오신 것을 환영합니다</p>
+                    <div class="welcome-date">
+                        마지막 로그인: <span id="last-login-date">2025-01-22 14:30</span>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <a href="../../quote/request.html" class="quick-action quick-action--primary">
+                        <span class="action-icon">➕</span>
+                        <span class="action-text">새 견적 요청</span>
+                    </a>
+                    <a href="support.html" class="quick-action">
+                        <span class="action-icon">💬</span>
+                        <span class="action-text">기술 지원</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>진행 중인 견적</h3>
+                            <span class="stat-icon">📋</span>
+                        </div>
+                        <div class="stat-value">
+                            <span class="stat-number" id="pending-quotes">3</span>
+                            <span class="stat-unit">건</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change stat-change--positive">+2</span>
+                            <span class="stat-period">이번 달</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>완료된 주문</h3>
+                            <span class="stat-icon">✅</span>
+                        </div>
+                        <div class="stat-value">
+                            <span class="stat-number" id="completed-orders">12</span>
+                            <span class="stat-unit">건</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change stat-change--positive">+4</span>
+                            <span class="stat-period">이번 달</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>이번 달 구매액</h3>
+                            <span class="stat-icon">💰</span>
+                        </div>
+                        <div class="stat-value">
+                            <span class="stat-number" id="monthly-spending">₩2,450,000</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change stat-change--positive">+15%</span>
+                            <span class="stat-period">전월 대비</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>고객 등급</h3>
+                            <span class="stat-icon">⭐</span>
+                        </div>
+                        <div class="stat-value">
+                            <span class="stat-badge stat-badge--gold" id="customer-tier">골드</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-benefit">10% 할인 혜택</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h3>최근 활동</h3>
+                    <a href="quotes.html" class="section-link">전체 보기</a>
+                </div>
+                
+                <div class="activity-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-icon--quote">📋</div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>견적 요청 QUO-250122-001</h4>
+                                <span class="timeline-date">2시간 전</span>
+                            </div>
+                            <p class="timeline-description">반도체용 PTFE 튜브 견적이 요청되었습니다</p>
+                            <div class="timeline-status">
+                                <span class="status-badge status-badge--pending">검토 중</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-icon--order">📦</div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>주문 ORD-250120-045</h4>
+                                <span class="timeline-date">1일 전</span>
+                            </div>
+                            <p class="timeline-description">의료용 PTFE 튜브가 배송 준비 중입니다</p>
+                            <div class="timeline-status">
+                                <span class="status-badge status-badge--shipping">배송 준비</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-icon--document">📚</div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>기술 문서 다운로드</h4>
+                                <span class="timeline-date">3일 전</span>
+                            </div>
+                            <p class="timeline-description">FDA 인증서 및 기술 사양서를 다운로드했습니다</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-icon--support">🛠️</div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>기술 지원 요청</h4>
+                                <span class="timeline-date">5일 전</span>
+                            </div>
+                            <p class="timeline-description">설치 관련 문의가 해결되었습니다</p>
+                            <div class="timeline-status">
+                                <span class="status-badge status-badge--resolved">해결됨</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links Grid -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h3>빠른 링크</h3>
+                </div>
+                
+                <div class="quick-links-grid">
+                    <a href="../../quote/request.html" class="quick-link-card">
+                        <div class="quick-link-icon">➕</div>
+                        <div class="quick-link-content">
+                            <h4>새 견적 요청</h4>
+                            <p>새로운 PTFE 튜브 견적을 요청하세요</p>
+                        </div>
+                    </a>
+                    
+                    <a href="quotes.html" class="quick-link-card">
+                        <div class="quick-link-icon">📋</div>
+                        <div class="quick-link-content">
+                            <h4>견적 관리</h4>
+                            <p>진행 중인 견적의 상태를 확인하세요</p>
+                        </div>
+                    </a>
+                    
+                    <a href="orders.html" class="quick-link-card">
+                        <div class="quick-link-icon">📦</div>
+                        <div class="quick-link-content">
+                            <h4>주문 추적</h4>
+                            <p>주문 상태와 배송 정보를 확인하세요</p>
+                        </div>
+                    </a>
+                    
+                    <a href="documents.html" class="quick-link-card">
+                        <div class="quick-link-icon">📄</div>
+                        <div class="quick-link-content">
+                            <h4>인증서 다운로드</h4>
+                            <p>FDA, ISO 등 인증서를 다운로드하세요</p>
+                        </div>
+                    </a>
+                    
+                    <a href="support.html" class="quick-link-card">
+                        <div class="quick-link-icon">💬</div>
+                        <div class="quick-link-content">
+                            <h4>기술 지원</h4>
+                            <p>전문가와 1:1 기술 상담을 받으세요</p>
+                        </div>
+                    </a>
+                    
+                    <a href="../../products/medical.html" class="quick-link-card">
+                        <div class="quick-link-icon">🔍</div>
+                        <div class="quick-link-content">
+                            <h4>제품 카탈로그</h4>
+                            <p>전체 PTFE 제품 라인업을 확인하세요</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Account Status -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h3>계정 상태</h3>
+                </div>
+                
+                <div class="account-status-grid">
+                    <div class="status-card">
+                        <div class="status-header">
+                            <h4>결제 상태</h4>
+                            <span class="status-indicator status-indicator--good">양호</span>
+                        </div>
+                        <div class="status-content">
+                            <p>미결제 금액: <strong>₩0</strong></p>
+                            <p>신용 한도: <strong>₩50,000,000</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="status-card">
+                        <div class="status-header">
+                            <h4>배송 주소</h4>
+                            <a href="profile.html" class="edit-link">수정</a>
+                        </div>
+                        <div class="status-content">
+                            <p id="shipping-address">서울특별시 강남구 테헤란로 123</p>
+                            <p>기본 배송지로 설정됨</p>
+                        </div>
+                    </div>
+                    
+                    <div class="status-card">
+                        <div class="status-header">
+                            <h4>알림 설정</h4>
+                            <a href="profile.html" class="edit-link">설정</a>
+                        </div>
+                        <div class="status-content">
+                            <p>✅ 견적 완료 알림</p>
+                            <p>✅ 배송 상태 알림</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Toggle (for responsive) -->
+    <button class="mobile-menu-toggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/modules/CustomerPortal.js"></script>
+    <script>
+        // 고객 포털 대시보드 시스템
+        class PortalDashboard {
+            constructor() {
+                this.supabase = window.supabase?.createClient(
+                    window.SUPABASE_URL,
+                    window.SUPABASE_ANON_KEY
+                );
+                this.currentUser = null;
+                this.init();
+            }
+
+            async init() {
+                await this.checkAuthentication();
+                this.setupEventListeners();
+                await this.loadDashboardData();
+                console.log('📊 포털 대시보드 초기화 완료');
+            }
+
+            async checkAuthentication() {
+                // 세션 확인
+                const session = sessionStorage.getItem('customer_session');
+                
+                if (!session) {
+                    // 로그인 페이지로 리다이렉트
+                    window.location.href = '../login.html?returnUrl=' + encodeURIComponent(window.location.pathname);
+                    return;
+                }
+
+                try {
+                    this.currentUser = JSON.parse(session);
+                    this.updateUserDisplay();
+                } catch (error) {
+                    console.error('세션 파싱 실패:', error);
+                    this.logout();
+                }
+            }
+
+            setupEventListeners() {
+                // 사용자 메뉴 토글
+                const userMenuToggle = document.querySelector('.user-menu__toggle');
+                const userMenuDropdown = document.querySelector('.user-menu__dropdown');
+
+                if (userMenuToggle && userMenuDropdown) {
+                    userMenuToggle.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const isExpanded = userMenuToggle.getAttribute('aria-expanded') === 'true';
+                        userMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                        userMenuDropdown.style.display = isExpanded ? 'none' : 'block';
+                    });
+
+                    // 외부 클릭 시 메뉴 닫기
+                    document.addEventListener('click', () => {
+                        userMenuToggle.setAttribute('aria-expanded', 'false');
+                        userMenuDropdown.style.display = 'none';
+                    });
+                }
+
+                // 모바일 메뉴 토글
+                const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+                const sidebar = document.querySelector('.portal-sidebar');
+
+                if (mobileMenuToggle && sidebar) {
+                    mobileMenuToggle.addEventListener('click', () => {
+                        sidebar.classList.toggle('show');
+                    });
+                }
+
+                // 사이드바 외부 클릭 시 닫기 (모바일)
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                            sidebar.classList.remove('show');
+                        }
+                    }
+                });
+
+                // 윈도우 리사이즈 핸들러
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        sidebar.classList.remove('show');
+                    }
+                });
+            }
+
+            updateUserDisplay() {
+                if (this.currentUser) {
+                    // 이메일에서 이름 추출 (실제로는 DB에서 가져와야 함)
+                    const userName = this.currentUser.email.split('@')[0];
+                    document.getElementById('user-display-name').textContent = userName;
+                    document.getElementById('customer-name').textContent = userName + '님';
+                }
+            }
+
+            async loadDashboardData() {
+                try {
+                    // 실제 구현 시에는 API에서 데이터를 가져옴
+                    await this.loadQuotesData();
+                    await this.loadOrdersData();
+                    await this.loadActivityData();
+                    
+                } catch (error) {
+                    console.error('대시보드 데이터 로딩 실패:', error);
+                    this.showErrorMessage('데이터를 불러오는 중 오류가 발생했습니다.');
+                }
+            }
+
+            async loadQuotesData() {
+                // 시뮬레이션 데이터 (실제로는 API 호출)
+                const mockData = {
+                    pendingQuotes: 3,
+                    monthlyChange: '+2'
+                };
+
+                document.getElementById('pending-quotes').textContent = mockData.pendingQuotes;
+                
+                // 견적 배지 업데이트
+                const quotesBadge = document.getElementById('quotes-badge');
+                if (quotesBadge) {
+                    quotesBadge.textContent = mockData.pendingQuotes;
+                    quotesBadge.style.display = mockData.pendingQuotes > 0 ? 'block' : 'none';
+                }
+            }
+
+            async loadOrdersData() {
+                // 시뮬레이션 데이터
+                const mockData = {
+                    completedOrders: 12,
+                    monthlySpending: '₩2,450,000',
+                    customerTier: 'gold'
+                };
+
+                document.getElementById('completed-orders').textContent = mockData.completedOrders;
+                document.getElementById('monthly-spending').textContent = mockData.monthlySpending;
+                
+                const tierElement = document.getElementById('customer-tier');
+                tierElement.textContent = mockData.customerTier === 'gold' ? '골드' : 
+                                         mockData.customerTier === 'silver' ? '실버' : '브론즈';
+            }
+
+            async loadActivityData() {
+                // 실제로는 API에서 최근 활동 데이터를 가져옴
+                console.log('활동 데이터 로딩 완료');
+            }
+
+            showErrorMessage(message) {
+                // 에러 메시지 표시 (토스트 알림 또는 모달)
+                const notification = document.createElement('div');
+                notification.className = 'notification notification--error';
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000);
+            }
+
+            logout() {
+                // 세션 정리
+                sessionStorage.removeItem('customer_session');
+                localStorage.removeItem('customer_preferences');
+                
+                // 로그인 페이지로 리다이렉트
+                window.location.href = '../login.html';
+            }
+        }
+
+        // 전역 로그아웃 함수
+        function logout() {
+            if (window.PureFlonPortal) {
+                window.PureFlonPortal.logout();
+            }
+        }
+
+        // 페이지 로드 시 대시보드 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            window.PureFlonPortal = new PortalDashboard();
+        });
+
+        // 페이지 가시성 변경 시 데이터 새로고침
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden && window.PureFlonPortal) {
+                // 페이지가 다시 보일 때 데이터 새로고침
+                setTimeout(() => {
+                    window.PureFlonPortal.loadDashboardData();
+                }, 1000);
+            }
+        });
+
+        // 주기적 데이터 업데이트 (5분마다)
+        setInterval(() => {
+            if (window.PureFlonPortal && document.visibilityState === 'visible') {
+                window.PureFlonPortal.loadDashboardData();
+            }
+        }, 300000); // 5분
+    </script>
+</body>
+</html>

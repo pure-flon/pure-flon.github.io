@@ -1,0 +1,69 @@
+{
+  "name": "pure-flon-website",
+  "version": "3.1.0",
+  "description": "Pure-Flon PTFE 튜브 제조업체 B2B 웹사이트 - 동아시아 시장 선도 기업",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "python -m http.server 8000",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "test": "vitest",
+    "lighthouse": "lighthouse http://localhost:8000 --output html --output-path ./lighthouse-report.html",
+    "deploy": "npm run build && vercel --prod"
+  },
+  "dependencies": {
+    "three": "^0.165.0",
+    "gsap": "^3.12.5",
+    "swiper": "^11.1.5"
+  },
+  "devDependencies": {
+    "vite": "^5.3.5",
+    "@vitejs/plugin-legacy": "^5.4.1",
+    "eslint": "^9.8.0",
+    "prettier": "^3.3.3",
+    "lighthouse": "^12.1.0",
+    "vitest": "^2.0.5",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40"
+  },
+  "keywords": [
+    "PTFE",
+    "튜브",
+    "테프론",
+    "의료용",
+    "반도체용",
+    "화학용",
+    "B2B",
+    "제조업",
+    "동아시아",
+    "Pure-Flon"
+  ],
+  "author": {
+    "name": "Pure-Flon Co., Ltd.",
+    "email": "dev@pure-flon.com",
+    "url": "https://pure-flon.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pure-flon/website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pure-flon/website/issues"
+  },
+  "homepage": "https://pure-flon.com",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

@@ -1,0 +1,123 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tubeGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e5cb3;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2d7dd2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e5cb3;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tubeGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tubeGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <fegaussianblur stdDeviation="3" result="coloredBlur"/>
+      <femerge> 
+        <femergenode in="coloredBlur"/>
+        <femergenode in="SourceGraphic"/> 
+      </femerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#heroBg)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(30, 92, 179, 0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="url(#grid)" opacity="0.5"/>
+  
+  <!-- Main PTFE Tubes Display -->
+  
+  <!-- Large horizontal tubes -->
+  <ellipse cx="300" cy="200" rx="250" ry="20" fill="url(#tubeGradient1)" opacity="0.9" filter="url(#glow)"/>
+  <ellipse cx="300" cy="220" rx="220" ry="16" fill="url(#tubeGradient2)" opacity="0.8" filter="url(#glow)"/>
+  <ellipse cx="300" cy="240" rx="190" ry="12" fill="url(#tubeGradient3)" opacity="0.7" filter="url(#glow)"/>
+  
+  <!-- Curved tubes for dimension -->
+  <path d="M100 150 Q300 120 500 150" stroke="url(#tubeGradient1)" stroke-width="24" fill="none" opacity="0.8"/>
+  <path d="M120 170 Q300 140 480 170" stroke="url(#tubeGradient2)" stroke-width="20" fill="none" opacity="0.7"/>
+  <path d="M140 190 Q300 160 460 190" stroke="url(#tubeGradient3)" stroke-width="16" fill="none" opacity="0.6"/>
+  
+  <!-- Vertical connection tubes -->
+  <ellipse cx="150" cy="200" rx="8" ry="80" fill="url(#tubeGradient1)" opacity="0.7"/>
+  <ellipse cx="450" cy="200" rx="8" ry="80" fill="url(#tubeGradient2)" opacity="0.7"/>
+  
+  <!-- Application icons -->
+  
+  <!-- Medical -->
+  <g transform="translate(80, 80)">
+    <circle cx="0" cy="0" r="25" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
+    <path d="-8 0 L8 0 M0 -8 L0 8" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+    <text x="0" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
+          fill="#10b981" text-anchor="middle">의료용</text>
+  </g>
+  
+  <!-- Semiconductor -->
+  <g transform="translate(300, 60)">
+    <rect x="-20" y="-15" width="40" height="30" rx="4" fill="rgba(124, 58, 237, 0.2)" 
+          stroke="#7c3aed" stroke-width="2"/>
+    <rect x="-8" y="-6" width="16" height="12" rx="2" fill="#7c3aed"/>
+    <text x="0" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
+          fill="#7c3aed" text-anchor="middle">반도체용</text>
+  </g>
+  
+  <!-- Chemical -->
+  <g transform="translate(520, 80)">
+    <circle cx="0" cy="0" r="25" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2"/>
+    <path d="-12 -8 L-6 -8 L-6 0 L0 0 L0 8 L6 8 L6 16 L12 16" 
+          stroke="#f59e0b" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="0" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
+          fill="#f59e0b" text-anchor="middle">화학용</text>
+  </g>
+  
+  <!-- Quality indicators -->
+  <g transform="translate(100, 320)">
+    <rect x="0" y="0" width="120" height="40" rx="8" fill="#1e5cb3" stroke="white" stroke-width="2"/>
+    <text x="60" y="18" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
+          fill="white" text-anchor="middle">ISO 9001</text>
+    <text x="60" y="32" font-family="Arial, sans-serif" font-size="9" 
+          fill="rgba(255,255,255,0.9)" text-anchor="middle">품질 인증</text>
+  </g>
+  
+  <g transform="translate(240, 320)">
+    <rect x="0" y="0" width="120" height="40" rx="8" fill="#10b981" stroke="white" stroke-width="2"/>
+    <text x="60" y="18" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
+          fill="white" text-anchor="middle">FDA 승인</text>
+    <text x="60" y="32" font-family="Arial, sans-serif" font-size="9" 
+          fill="rgba(255,255,255,0.9)" text-anchor="middle">생체 적합성</text>
+  </g>
+  
+  <g transform="translate(380, 320)">
+    <rect x="0" y="0" width="120" height="40" rx="8" fill="#f59e0b" stroke="white" stroke-width="2"/>
+    <text x="60" y="18" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
+          fill="white" text-anchor="middle">25년 경험</text>
+    <text x="60" y="32" font-family="Arial, sans-serif" font-size="9" 
+          fill="rgba(255,255,255,0.9)" text-anchor="middle">기술 노하우</text>
+  </g>
+  
+  <!-- Floating particles/molecules -->
+  <g opacity="0.3">
+    <circle cx="70" cy="200" r="3" fill="#1e5cb3"/>
+    <circle cx="530" cy="180" r="2" fill="#10b981"/>
+    <circle cx="450" cy="120" r="2.5" fill="#f59e0b"/>
+    <circle cx="150" cy="300" r="2" fill="#7c3aed"/>
+    <circle cx="350" cy="300" r="3" fill="#ef4444"/>
+  </g>
+  
+  <!-- Title overlay -->
+  <text x="300" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" 
+        fill="#1e5cb3" text-anchor="middle">Pure-Flon PTFE 튜브 솔루션</text>
+</svg>

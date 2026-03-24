@@ -1,0 +1,31 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="deliveryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Truck body -->
+  <rect x="8" y="24" width="32" height="20" rx="4" fill="url(#deliveryGradient)" stroke="white" stroke-width="2"/>
+  
+  <!-- Truck cabin -->
+  <rect x="40" y="28" width="12" height="16" rx="2" fill="url(#deliveryGradient)" stroke="white" stroke-width="2"/>
+  
+  <!-- Truck wheels -->
+  <circle cx="16" cy="48" r="6" fill="#374151" stroke="white" stroke-width="2"/>
+  <circle cx="16" cy="48" r="3" fill="white"/>
+  <circle cx="44" cy="48" r="6" fill="#374151" stroke="white" stroke-width="2"/>
+  <circle cx="44" cy="48" r="3" fill="white"/>
+  
+  <!-- Speed lines -->
+  <path d="M4 20 L12 20 M2 16 L10 16 M6 12 L14 12" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Package -->
+  <rect x="18" y="30" width="8" height="8" rx="1" fill="white" stroke="#1e5cb3" stroke-width="1"/>
+  <path d="M20 32 L24 32 M22 30 L22 36" stroke="#1e5cb3" stroke-width="1"/>
+  
+  <!-- Clock (24시간) -->
+  <circle cx="54" cy="18" r="6" fill="#10b981" stroke="white" stroke-width="2"/>
+  <path d="M54 14 L54 18 L57 18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pure-Flon 고객 포털 - 견적 관리, 주문 현황, 기술 문서 다운로드 등 B2B 전용 서비스">
+    <meta name="keywords" content="Pure-Flon 포털, B2B 대시보드, 견적 관리, 주문 현황">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>고객 포털 대시보드 | Pure-Flon</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="../css/main.css" as="style">
+    <link rel="preload" href="../css/customer-portal.css" as="style">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/customer-portal.css">
+    
+    <!-- Real-time Updates -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="portal-page">
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">메인 콘텐츠로 건너뛰기</a>
+    
+    <!-- Portal Header -->
+    <header class="portal-header" role="banner">
+        <div class="portal-header__container">
+            <div class="portal-header__brand">
+                <a href="../" aria-label="Pure-Flon 홈페이지">
+                    <img src="../images/logo.svg" alt="Pure-Flon" width="160" height="36">
+                </a>
+                <span class="portal-badge">고객 포털</span>
+            </div>
+            
+            <nav class="portal-nav" aria-label="포털 메뉴">
+                <ul class="portal-nav__list">
+                    <li><a href="dashboard.html" class="portal-nav__link portal-nav__link--active">대시보드</a></li>
+                    <li><a href="quotes.html" class="portal-nav__link">견적 관리</a></li>
+                    <li><a href="orders.html" class="portal-nav__link">주문 현황</a></li>
+                    <li><a href="documents.html" class="portal-nav__link">문서함</a></li>
+                    <li><a href="support.html" class="portal-nav__link">기술 지원</a></li>
+                </ul>
+            </nav>
+            
+            <div class="portal-header__user">
+                <div class="notification-bell">
+                    <button class="notification-btn" aria-label="알림" data-count="3">
+                        🔔
+                    </button>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h3>알림</h3>
+                            <button class="mark-all-read">모두 읽음</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item notification-item--unread">
+                                <div class="notification-content">
+                                    <p class="notification-title">견적서 Q-2025-0128 승인됨</p>
+                                    <p class="notification-time">2시간 전</p>
+                                </div>
+                            </div>
+                            <div class="notification-item notification-item--unread">
+                                <div class="notification-content">
+                                    <p class="notification-title">신제품 카탈로그 업데이트</p>
+                                    <p class="notification-time">1일 전</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="user-menu">
+                    <button class="user-menu__toggle" aria-expanded="false">
+                        <div class="user-avatar">
+                            <span>김</span>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">김담당</span>
+                            <span class="user-company">삼성전자</span>
+                        </div>
+                        <span class="user-menu__arrow">▼</span>
+                    </button>
+                    
+                    <div class="user-menu__dropdown">
+                        <a href="profile.html" class="user-menu__item">프로필 설정</a>
+                        <a href="preferences.html" class="user-menu__item">환경 설정</a>
+                        <hr class="user-menu__divider">
+                        <a href="logout.html" class="user-menu__item">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portal Sidebar -->
+    <aside class="portal-sidebar">
+        <nav class="sidebar-nav" aria-label="사이드바 메뉴">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">빠른 액세스</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="../quote/request.html" class="sidebar-link">
+                            <span class="sidebar-icon">📝</span>
+                            <span class="sidebar-text">새 견적 요청</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="quotes.html" class="sidebar-link">
+                            <span class="sidebar-icon">📋</span>
+                            <span class="sidebar-text">견적 현황</span>
+                            <span class="sidebar-badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html" class="sidebar-link">
+                            <span class="sidebar-icon">📦</span>
+                            <span class="sidebar-text">주문 현황</span>
+                            <span class="sidebar-badge">2</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">리소스</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="documents.html" class="sidebar-link">
+                            <span class="sidebar-icon">📁</span>
+                            <span class="sidebar-text">기술 문서</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../downloads/" class="sidebar-link">
+                            <span class="sidebar-icon">⬇️</span>
+                            <span class="sidebar-text">카탈로그</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="support.html" class="sidebar-link">
+                            <span class="sidebar-icon">🎧</span>
+                            <span class="sidebar-text">기술 지원</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="quick-contact">
+                <h4>긴급 문의</h4>
+                <p class="contact-phone">📞 02-1234-5678</p>
+                <p class="contact-email">📧 support@pure-flon.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="portal-main">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-content">
+                <h1 class="welcome-title">
+                    안녕하세요, <span class="highlight">김담당</span>님 👋
+                </h1>
+                <p class="welcome-description">
+                    삼성전자 고객 포털에 오신 것을 환영합니다. 
+                    최신 견적 현황과 주문 정보를 확인하세요.
+                </p>
+                <div class="welcome-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">진행 중인 견적</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">진행 중인 주문</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">완료된 프로젝트</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="welcome-actions">
+                <a href="../quote/request.html" class="btn btn--primary btn--large">
+                    🚀 새 견적 요청
+                </a>
+                <a href="quotes.html" class="btn btn--secondary">
+                    📋 견적 현황 보기
+                </a>
+            </div>
+        </section>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Recent Quotes -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">최근 견적 요청</h2>
+                    <a href="quotes.html" class="card-action">전체 보기</a>
+                </div>
+                
+                <div class="card-content">
+                    <div class="quote-list">
+                        <div class="quote-item">
+                            <div class="quote-info">
+                                <h3 class="quote-number">Q-2025-0128</h3>
+                                <p class="quote-product">의료용 PTFE 튜브</p>
+                                <p class="quote-specs">ID: 8mm, OD: 10mm, L: 500mm</p>
+                                <p class="quote-date">2025-01-28</p>
+                            </div>
+                            <div class="quote-status">
+                                <span class="status-badge status-badge--approved">승인됨</span>
+                                <div class="quote-actions">
+                                    <button class="btn-icon" title="견적서 다운로드">📄</button>
+                                    <button class="btn-icon" title="주문하기">🛒</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quote-item">
+                            <div class="quote-info">
+                                <h3 class="quote-number">Q-2025-0125</h3>
+                                <p class="quote-product">반도체용 PTFE 튜브</p>
+                                <p class="quote-specs">ID: 12mm, OD: 16mm, L: 1000mm</p>
+                                <p class="quote-date">2025-01-25</p>
+                            </div>
+                            <div class="quote-status">
+                                <span class="status-badge status-badge--pending">검토 중</span>
+                                <div class="quote-actions">
+                                    <button class="btn-icon" title="상세 보기">👁️</button>
+                                    <button class="btn-icon" title="수정하기">✏️</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quote-item">
+                            <div class="quote-info">
+                                <h3 class="quote-number">Q-2025-0122</h3>
+                                <p class="quote-product">화학용 PTFE 튜브</p>
+                                <p class="quote-specs">ID: 6mm, OD: 8mm, L: 2000mm</p>
+                                <p class="quote-date">2025-01-22</p>
+                            </div>
+                            <div class="quote-status">
+                                <span class="status-badge status-badge--draft">초안</span>
+                                <div class="quote-actions">
+                                    <button class="btn-icon" title="계속 작성">✏️</button>
+                                    <button class="btn-icon" title="삭제">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Status -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">주문 현황</h2>
+                    <a href="orders.html" class="card-action">전체 보기</a>
+                </div>
+                
+                <div class="card-content">
+                    <div class="order-list">
+                        <div class="order-item">
+                            <div class="order-info">
+                                <h3 class="order-number">PO-2025-0015</h3>
+                                <p class="order-product">의료용 PTFE 튜브 x 500개</p>
+                                <p class="order-date">주문일: 2025-01-20</p>
+                                <p class="order-delivery">예상 납기: 2025-02-10</p>
+                            </div>
+                            <div class="order-status">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="status-text">제조 중 (60%)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <h3 class="order-number">PO-2025-0012</h3>
+                                <p class="order-product">반도체용 PTFE 튜브 x 200개</p>
+                                <p class="order-date">주문일: 2025-01-15</p>
+                                <p class="order-delivery">예상 납기: 2025-02-05</p>
+                            </div>
+                            <div class="order-status">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                                <span class="status-text">품질 검사 중 (90%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats -->
+            <section class="dashboard-card dashboard-card--stats">
+                <div class="card-header">
+                    <h2 class="card-title">월간 통계</h2>
+                    <select class="period-selector">
+                        <option value="2025-01">2025년 1월</option>
+                        <option value="2024-12">2024년 12월</option>
+                        <option value="2024-11">2024년 11월</option>
+                    </select>
+                </div>
+                
+                <div class="card-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📝</div>
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">견적 요청</div>
+                            <div class="stat-change stat-change--up">+25%</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">승인된 견적</div>
+                            <div class="stat-change stat-change--up">+20%</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">완료된 주문</div>
+                            <div class="stat-change stat-change--up">+33%</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-value">₩2.4M</div>
+                            <div class="stat-label">주문 금액</div>
+                            <div class="stat-change stat-change--up">+15%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Documents -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">최근 다운로드 문서</h2>
+                    <a href="documents.html" class="card-action">문서함 가기</a>
+                </div>
+                
+                <div class="card-content">
+                    <div class="document-list">
+                        <div class="document-item">
+                            <div class="document-icon">📄</div>
+                            <div class="document-info">
+                                <h3 class="document-name">의료용 PTFE 데이터시트</h3>
+                                <p class="document-meta">PDF • 2.4MB • 2025-01-25</p>
+                            </div>
+                            <button class="btn-download" title="다운로드">⬇️</button>
+                        </div>
+                        
+                        <div class="document-item">
+                            <div class="document-icon">📋</div>
+                            <div class="document-info">
+                                <h3 class="document-name">화학 호환성 차트</h3>
+                                <p class="document-meta">PDF • 1.8MB • 2025-01-20</p>
+                            </div>
+                            <button class="btn-download" title="다운로드">⬇️</button>
+                        </div>
+                        
+                        <div class="document-item">
+                            <div class="document-icon">🏆</div>
+                            <div class="document-info">
+                                <h3 class="document-name">FDA 인증서</h3>
+                                <p class="document-meta">PDF • 0.8MB • 2025-01-18</p>
+                            </div>
+                            <button class="btn-download" title="다운로드">⬇️</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Tickets -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">기술 지원 요청</h2>
+                    <a href="support.html" class="card-action">새 요청</a>
+                </div>
+                
+                <div class="card-content">
+                    <div class="support-list">
+                        <div class="support-item">
+                            <div class="support-info">
+                                <h3 class="support-title">PTFE 튜브 설치 방법 문의</h3>
+                                <p class="support-meta">티켓 #SP-2025-0125 • 2025-01-25</p>
+                            </div>
+                            <span class="status-badge status-badge--resolved">해결됨</span>
+                        </div>
+                        
+                        <div class="support-item">
+                            <div class="support-info">
+                                <h3 class="support-title">고온 환경에서의 성능 문의</h3>
+                                <p class="support-meta">티켓 #SP-2025-0128 • 2025-01-28</p>
+                            </div>
+                            <span class="status-badge status-badge--open">진행 중</span>
+                        </div>
+                    </div>
+                    
+                    <div class="support-actions">
+                        <a href="support.html" class="btn btn--outline btn--small">
+                            새 지원 요청
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News & Updates -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">소식 및 업데이트</h2>
+                </div>
+                
+                <div class="card-content">
+                    <div class="news-list">
+                        <div class="news-item">
+                            <div class="news-badge">신제품</div>
+                            <div class="news-content">
+                                <h3 class="news-title">초고순도 PTFE 튜브 출시</h3>
+                                <p class="news-description">반도체 공정용 초고순도 PTFE 튜브가 새롭게 출시되었습니다.</p>
+                                <p class="news-date">2025-01-26</p>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                            <div class="news-badge">업데이트</div>
+                            <div class="news-content">
+                                <h3 class="news-title">고객 포털 기능 개선</h3>
+                                <p class="news-description">실시간 주문 추적 기능이 추가되었습니다.</p>
+                                <p class="news-date">2025-01-22</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/customer-portal.js"></script>
+    
+    <script>
+        // Initialize customer portal
+        document.addEventListener('DOMContentLoaded', function() {
+            new CustomerPortal();
+        });
+    </script>
+</body>
+</html>

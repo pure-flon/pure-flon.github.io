@@ -1,0 +1,450 @@
+# Pure-Flon PTFE 튜브 웹사이트 robots.txt
+# 📁 파일 위치: /robots.txt
+# 🔧 버전: v3.0.0 (2025년 최신 SEO 표준)
+# 📝 설명: 검색엔진 크롤링 최적화 및 보안 강화
+# 업데이트: 2025-07-28
+# 
+# 🎯 주요 기능:
+# - 견적 시스템 경로 최적화
+# - 크롤러별 맞춤 설정
+# - API 보안 강화
+# - 다국어 사이트 지원
+# - 성능 최적화
+
+# ================================
+# 기본 크롤러 설정 (모든 봇)
+# ================================
+
+User-agent: *
+
+# ✅ 허용되는 주요 페이지들
+Allow: /
+Allow: /index.html
+Allow: /favicon.ico
+Allow: /apple-touch-icon.png
+Allow: /site.webmanifest
+Allow: /.well-known/
+
+# ✅ 다국어 지원 페이지들
+Allow: /ko/
+Allow: /en/
+Allow: /ja/
+Allow: /zh-tw/
+Allow: /zh-cn/
+
+# ✅ 제품 관련 페이지들
+Allow: /products/
+Allow: /products/medical.html
+Allow: /products/semiconductor.html
+Allow: /products/chemical.html
+Allow: /products/food.html
+Allow: /products/custom.html
+
+# ✅ 견적 시스템 (SEO 최적화)
+Allow: /quote/
+Allow: /quote/request.html
+Allow: /quote/configurator.html
+Allow: /quote/track.html
+Allow: /quote/bulk-order.html
+
+# ✅ 회사 정보 페이지들
+Allow: /company/
+Allow: /company/about.html
+Allow: /company/quality.html
+Allow: /company/manufacturing.html
+Allow: /company/certifications.html
+Allow: /company/careers.html
+Allow: /company/news.html
+
+# ✅ 고객 지원 페이지들
+Allow: /support/
+Allow: /support/technical-support.html
+Allow: /support/installation.html
+Allow: /support/maintenance.html
+Allow: /support/troubleshooting.html
+Allow: /support/downloads.html
+Allow: /support/contact.html
+
+# ✅ 정적 리소스들
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+Allow: /icons/
+
+# ❌ 차단할 관리자 및 시스템 디렉토리
+Disallow: /admin/
+Disallow: /administrator/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /private/
+Disallow: /confidential/
+Disallow: /internal/
+Disallow: /system/
+Disallow: /config/
+Disallow: /backup/
+Disallow: /logs/
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /cache/
+
+# ❌ API 보안 (민감한 엔드포인트)
+Disallow: /api/admin/
+Disallow: /api/private/
+Disallow: /api/internal/
+Disallow: /api/auth/
+Disallow: /api/users/
+Disallow: /api/payments/
+Disallow: /api/analytics/
+Disallow: /api/logs/
+
+# ❌ 견적 시스템 보안 경로
+Disallow: /quote/drafts/
+Disallow: /quote/internal/
+Disallow: /quote/admin/
+Disallow: /customer/private/
+Disallow: /customer/data/
+Disallow: /customer/profiles/
+
+# ❌ 개발 및 테스트 환경
+Disallow: /dev/
+Disallow: /development/
+Disallow: /test/
+Disallow: /testing/
+Disallow: /staging/
+Disallow: /beta/
+Disallow: /preview/
+
+# ❌ 데이터베이스 및 백업 파일
+Disallow: /database/
+Disallow: /db/
+Disallow: /sql/
+Disallow: *.sql$
+Disallow: *.bak$
+Disallow: *.backup$
+Disallow: *.log$
+Disallow: *.tmp$
+
+# ❌ 중복 컨텐츠 방지
+Disallow: /search?
+Disallow: /*?print=*
+Disallow: /*?lang=*&*
+Disallow: /*?ref=*
+Disallow: /*?utm_*
+Disallow: /*?sort=*
+Disallow: /*?filter=*
+Disallow: /*?page=*
+Disallow: /*?search=*
+
+# ❌ 프라이버시 보호
+Disallow: /customer/
+Disallow: /my-account/
+Disallow: /profile/
+Disallow: /dashboard/
+Disallow: /account/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+
+# ❌ 결제 및 체크아웃 페이지
+Disallow: /checkout/
+Disallow: /payment/
+Disallow: /billing/
+Disallow: /invoice/
+Disallow: /receipt/
+
+# ❌ 파일 타입별 차단
+Disallow: *.pdf$
+Disallow: *.doc$
+Disallow: *.docx$
+Disallow: *.xls$
+Disallow: *.xlsx$
+Disallow: *.ppt$
+Disallow: *.pptx$
+Disallow: *.zip$
+Disallow: *.rar$
+Disallow: *.exe$
+
+# ================================
+# Google 봇 특별 설정
+# ================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Google 이미지 봇
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /products/images/
+Allow: /company/images/
+Disallow: /images/private/
+Disallow: /images/internal/
+
+# Google 비디오 봇
+User-agent: Googlebot-Video
+Allow: /videos/
+Allow: /media/
+Disallow: /videos/private/
+
+# Google 뉴스 봇
+User-agent: Googlebot-News
+Allow: /company/news.html
+Allow: /company/press/
+Allow: /blog/
+
+# ================================
+# Bing 봇 설정
+# ================================
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: msnbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: BingPreview
+Allow: /
+Crawl-delay: 3
+
+# ================================
+# 네이버 봇 설정 (한국 시장 중요)
+# ================================
+
+User-agent: NaverBot
+Allow: /
+Allow: /ko/
+Crawl-delay: 1
+
+User-agent: Yeti
+Allow: /
+Allow: /ko/
+Crawl-delay: 1
+
+# ================================
+# 기타 주요 검색엔진 봇들
+# ================================
+
+# Yandex (러시아)
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 3
+
+# Baidu (중국)
+User-agent: Baiduspider
+Allow: /
+Allow: /zh-cn/
+Allow: /zh-tw/
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# ================================
+# 소셜 미디어 크롤러
+# ================================
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+Allow: /images/og/
+Allow: /images/social/
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+Allow: /images/og/
+Allow: /images/social/
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+Allow: /company/
+Allow: /company/about.html
+Allow: /company/careers.html
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /
+Allow: /images/og/
+
+# Telegram
+User-agent: TelegramBot
+Allow: /
+Allow: /images/og/
+
+# ================================
+# 악성 봇 차단
+# ================================
+
+# SEO 스크래핑 봇들
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MajesticSEO
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: linkdexbot
+Disallow: /
+
+# 스팸 봇들
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: EmailSiphon
+Disallow: /
+
+User-agent: WebBandit
+Disallow: /
+
+User-agent: EmailWolf
+Disallow: /
+
+User-agent: ExtractorPro
+Disallow: /
+
+User-agent: CherryPicker
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: NetMechanic
+Disallow: /
+
+User-agent: URLy.Warning
+Disallow: /
+
+User-agent: Wget
+Disallow: /
+
+User-agent: WebZip
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebSauger
+Disallow: /
+
+User-agent: WebRipper
+Disallow: /
+
+User-agent: NetAnts
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: MIIxpc
+Disallow: /
+
+User-agent: Telesoft
+Disallow: /
+
+User-agent: Website.eXtractor
+Disallow: /
+
+User-agent: moget
+Disallow: /
+
+User-agent: franklin
+Disallow: /
+
+User-agent: Getleft
+Disallow: /
+
+# ================================
+# 사이트맵 위치 (매우 중요!)
+# ================================
+
+# XML 사이트맵들
+Sitemap: https://pure-flon.com/sitemap.xml
+Sitemap: https://pure-flon.com/sitemap-products.xml
+Sitemap: https://pure-flon.com/sitemap-images.xml
+Sitemap: https://pure-flon.com/sitemap-news.xml
+
+# 다국어 사이트맵들
+Sitemap: https://pure-flon.com/sitemap-ko.xml
+Sitemap: https://pure-flon.com/sitemap-en.xml
+Sitemap: https://pure-flon.com/sitemap-ja.xml
+Sitemap: https://pure-flon.com/sitemap-zh.xml
+
+# ================================
+# 추가 메타데이터
+# ================================
+
+# 웹사이트 정보
+# Host: pure-flon.com
+# Contact: seo@pure-flon.com
+# Company: Pure-Flon PTFE Manufacturing
+# Industry: Industrial Manufacturing, PTFE Tubing
+# Target Markets: Medical, Semiconductor, Chemical, Food
+# Languages: Korean, English, Japanese, Chinese
+# Last Updated: 2025-07-28
+
+# ================================
+# 크롤링 최적화 팁
+# ================================
+
+# 1. 이 robots.txt는 다음을 최적화합니다:
+#    - 견적 시스템의 SEO 친화적 경로 허용
+#    - 중요한 제품 페이지들의 완전 개방
+#    - 보안이 필요한 영역의 엄격한 차단
+#    - 크롤러별 맞춤형 설정으로 효율성 증대
+
+# 2. 정기 업데이트 권장사항:
+#    - 새로운 제품/서비스 페이지 추가 시 Allow 항목 업데이트
+#    - 새로운 악성 봇 발견 시 차단 목록 업데이트  
+#    - 사이트맵 변경 시 Sitemap 경로 업데이트
+#    - 분기별 크롤링 성능 검토 및 최적화
+
+# 3. 모니터링 도구:
+#    - Google Search Console에서 크롤링 오류 확인
+#    - Bing Webmaster Tools에서 인덱싱 상태 점검
+#    - 네이버 서치어드바이저에서 한국 시장 최적화
+
+# ================================
+# 🎉 Pure-Flon robots.txt v3.0 완성!
+# 
+# ✅ 주요 개선사항:
+# - 견적 시스템 경로 최적화
+# - 다국어 사이트 지원 강화  
+# - API 보안 대폭 강화
+# - 크롤러별 맞춤 설정
+# - 악성 봇 차단 목록 확대
+# - 소셜 미디어 크롤러 지원
+# - 사이트맵 구조 체계화
+# - 성능 최적화 (Crawl-delay)
+# 
+# Pure-Flon이 검색엔진에서 
+# 최고의 가시성을 확보하세요! 🚀
+# ================================

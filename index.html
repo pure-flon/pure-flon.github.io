@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pure-Flon | PTFE 산업 솔루션</title>
+  <meta
+    name="description"
+    content="Pure-Flon 메인 페이지. PTFE 산업 솔루션, 운영 스택(Vercel/ngrok), 자동화 플로우를 명확히 보여주는 B2B 소개 페이지."
+  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://pure-flon.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pure-Flon | PTFE 산업 솔루션" />
+  <meta property="og:description" content="PTFE 전문 제조 소개, 운영 스택, 자동화 플로우를 한 화면에 정리한 메인 페이지" />
+  <meta property="og:url" content="https://pure-flon.com/" />
+  <meta property="og:image" content="https://pure-flon.com/images/landing/main-preview.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/landing-v2.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Pure-Flon 홈">
+        <img src="/images/logo.svg" alt="Pure-Flon logo" />
+        <span>Industrial PTFE Systems</span>
+      </a>
+      <nav class="nav-links" aria-label="주요 메뉴">
+        <a href="#stack">운영 스택</a>
+        <a href="#flow">자동화 플로우</a>
+        <a href="#mainpage">메인 페이지</a>
+        <a class="cta" href="mailto:contact@pure-flon.com">문의</a>
+      </nav>
+      <a class="btn secondary mobile-only" href="mailto:contact@pure-flon.com">문의</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <span class="kicker">B2B Manufacturing Interface</span>
+          <h1>Pure-Flon 메인 페이지를 운영형 구조로 재정렬했습니다.</h1>
+          <p>
+            제품 소개만 나열하지 않고, 실제 운영 흐름이 보이도록 구성했습니다.
+            핵심 화면은 Hero, 운영 스택, 자동화 플로우, 메인 페이지 설계 요약으로 단순화했습니다.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#mainpage">메인 페이지 구조 보기</a>
+            <a class="btn secondary" href="#flow">자동화 플로우 보기</a>
+          </div>
+        </div>
+        <article class="hero-card" aria-label="프로세스 비주얼">
+          <img src="/images/landing/hero-system.svg" alt="Pure-Flon 프로세스 비주얼" />
+        </article>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="container">
+        <h2>현재 운영 스택</h2>
+        <p class="section-intro">
+          외부 공개/내부 점검 경로를 분리해 운영합니다. 공개 사이트는 Vercel, 현장 점검 공유는 ngrok 임시 채널을 사용합니다.
+        </p>
+        <div class="stack-grid">
+          <article class="stack-card">
+            <div class="stack-label">Hosting</div>
+            <div class="stack-title">Vercel</div>
+            <div class="stack-sub">정식 배포 및 글로벌 접근 경로</div>
+          </article>
+          <article class="stack-card">
+            <div class="stack-label">Temporary Share</div>
+            <div class="stack-title">ngrok</div>
+            <div class="stack-sub">로컬 점검용 임시 외부 노출</div>
+          </article>
+          <article class="stack-card">
+            <div class="stack-label">Source Control</div>
+            <div class="stack-title">GitHub</div>
+            <div class="stack-sub">버전 이력 및 검토 관리</div>
+          </article>
+          <article class="stack-card">
+            <div class="stack-label">Build</div>
+            <div class="stack-title">Vite</div>
+            <div class="stack-sub">정적 리소스 번들 및 로컬 개발</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="section">
+      <div class="container">
+        <h2>자동화 플로우</h2>
+        <p class="section-intro">
+          코드 변경부터 배포 검증까지 단일 동선으로 유지합니다.
+        </p>
+        <div class="flow" role="img" aria-label="Pure-Flon 배포 자동화 플로우">
+          <div class="flow-row">
+            <div class="flow-step">
+              <strong>1. Source Update</strong>
+              <p>HTML/CSS/이미지 자산을 수정하고 구조 점검</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <strong>2. Local QA</strong>
+              <p>링크/레이아웃/콘솔 에러 확인</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <strong>3. Deploy</strong>
+              <p>Vercel 배포 후 핵심 경로 스모크 테스트</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <strong>4. Temporary Share</strong>
+              <p>필요 시 ngrok로 내부/외부 검토 링크 발급</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mainpage" class="section">
+      <div class="container preview-wrap">
+        <article class="preview-card">
+          <h2>메인 페이지 노출 원칙</h2>
+          <ul>
+            <li>이미지는 최소 개수만 유지하고 모두 로컬 자산으로 제공</li>
+            <li>깨진 이미지 링크를 제거하고 SVG 플레이스홀더로 즉시 대체</li>
+            <li>운영 흐름(스택/자동화)을 첫 화면에서 바로 이해 가능하게 구성</li>
+            <li>기술 설명은 짧고 명확하게, CTA는 1차 문의로 단순화</li>
+          </ul>
+          <p style="margin-top:14px;"><span class="badge">Professional B2B Layout</span></p>
+        </article>
+        <article class="preview-card" aria-label="메인 페이지 프리뷰">
+          <h3>메인 페이지 구조 프리뷰</h3>
+          <img src="/images/landing/main-preview.svg" alt="메인 페이지 구조 프리뷰" />
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Pure-Flon. All rights reserved.</span>
+      <span>Public Site: pure-flon.com / Deploy: Vercel / QA Share: ngrok</span>
+    </div>
+  </footer>
+</body>
+</html>

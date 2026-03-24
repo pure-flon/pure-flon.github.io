@@ -1,0 +1,321 @@
+# Pure-Flon Website - GitHub Actions Workflow
+# 자동 빌드, 테스트, 배포를 위한 CI/CD 파이프라인
+
+name: 🚀 Deploy Pure-Flon Website
+
+on:
+  # main 브랜치에 push될 때 실행
+  push:
+    branches: [ main ]
+  
+  # Pull Request가 main에 생성될 때 실행
+  pull_request:
+    branches: [ main ]
+  
+  # 수동 실행 가능
+  workflow_dispatch:
+
+# 동시 실행 방지
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # 코드 품질 검사
+  quality-check:
+    name: 🔍 Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🧹 HTML Validation
+        run: npm run validate
+        continue-on-error: true
+        
+      - name: 📏 CSS Linting
+        run: |
+          npx stylelint "css/**/*.css" --config-basedir .
+        continue-on-error: true
+        
+      - name: 🔎 JavaScript Linting
+        run: |
+          npx eslint js/**/*.js --fix-dry-run
+        continue-on-error: true
+
+  # 성능 테스트
+  lighthouse-test:
+    name: 🚨 Lighthouse Performance Test
+    runs-on: ubuntu-latest
+    needs: quality-check
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🏃‍♂️ Start local server
+        run: |
+          npm run dev &
+          sleep 10
+        
+      - name: 🚨 Run Lighthouse
+        run: |
+          npm run lighthouse
+        continue-on-error: true
+        
+      - name: 📊 Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.html
+          retention-days: 30
+
+  # 보안 검사
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 🔍 Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          
+      - name: 📤 Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # 빌드 테스트
+  build-test:
+    name: 🏗️ Build Test
+    runs-on: ubuntu-latest
+    needs: [quality-check]
+    
+    strategy:
+      matrix:
+        node-version: [18, 20]
+        
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🏗️ Build project
+        run: npm run build
+        
+      - name: 📊 Check build size
+        run: |
+          echo "📦 Build size analysis:"
+          du -sh dist/
+          find dist/ -name "*.css" -exec echo "CSS: {}" \; -exec wc -c {} \;
+          find dist/ -name "*.js" -exec echo "JS: {}" \; -exec wc -c {} \;
+          
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files-node-${{ matrix.node-version }}
+          path: dist/
+          retention-days: 7
+
+  # Vercel 프리뷰 배포 (PR용)
+  deploy-preview:
+    name: 🔍 Deploy Preview
+    runs-on: ubuntu-latest
+    needs: [build-test]
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 🚀 Deploy to Vercel (Preview)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          
+      - name: 💬 Comment PR with preview URL
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🔍 Preview deployment')
+            );
+            
+            const body = `🔍 **Preview deployment ready!**
+            
+            ✅ Build successful
+            🌐 Preview URL: Available in Vercel dashboard
+            📊 Lighthouse report: Check the artifacts
+            
+            This preview will be automatically updated on new commits.`;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
+
+  # 프로덕션 배포 (main 브랜치)
+  deploy-production:
+    name: 🚀 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build-test, security-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    environment:
+      name: production
+      url: https://pure-flon.com
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 🚀 Deploy to Vercel (Production)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+          
+      - name: 🧪 Post-deployment smoke test
+        run: |
+          echo "🧪 Running smoke tests..."
+          
+          # 메인 페이지 테스트
+          curl -f https://pure-flon.com/ > /dev/null || exit 1
+          echo "✅ Main page OK"
+          
+          # 제품 페이지들 테스트
+          curl -f https://pure-flon.com/products/medical.html > /dev/null || exit 1
+          echo "✅ Medical page OK"
+          
+          curl -f https://pure-flon.com/products/semiconductor.html > /dev/null || exit 1
+          echo "✅ Semiconductor page OK"
+          
+          curl -f https://pure-flon.com/products/chemical.html > /dev/null || exit 1
+          echo "✅ Chemical page OK"
+          
+          # sitemap.xml 테스트
+          curl -f https://pure-flon.com/sitemap.xml > /dev/null || exit 1
+          echo "✅ Sitemap OK"
+          
+          echo "🎉 All smoke tests passed!"
+          
+      - name: 📢 Notify deployment success
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const { sha } = context;
+            
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state: 'success',
+              target_url: 'https://pure-flon.com',
+              description: '🚀 Successfully deployed to production',
+              context: 'deployment/production'
+            });
+
+  # 배포 실패 시 알림
+  notify-failure:
+    name: 📢 Notify on Failure
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: failure()
+    
+    steps:
+      - name: 🚨 Create issue on deployment failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const { sha, workflow, run_number } = context;
+            
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title: `🚨 Deployment Failed - Workflow #${run_number}`,
+              body: `## Deployment Failure Report
+              
+              **Workflow:** ${workflow}
+              **Run Number:** ${run_number}
+              **Commit:** ${sha}
+              **Time:** ${new Date().toISOString()}
+              
+              The production deployment has failed. Please check the workflow logs and take necessary action.
+              
+              ### Quick Actions:
+              - [ ] Check workflow logs
+              - [ ] Verify Vercel configuration
+              - [ ] Test locally
+              - [ ] Fix issues and re-deploy
+              
+              **Logs:** [View Workflow Run](https://github.com/${owner}/${repo}/actions/runs/${context.runId})`,
+              labels: ['bug', 'deployment', 'urgent']
+            });
+
+# 환경 변수 및 시크릿 설정 가이드:
+#
+# GitHub 저장소 → Settings → Secrets and variables → Actions에서 다음 설정:
+#
+# VERCEL_TOKEN: Vercel 계정 → Settings → Tokens에서 생성
+# VERCEL_ORG_ID: Vercel 프로젝트 → Settings → General에서 확인
+# VERCEL_PROJECT_ID: Vercel 프로젝트 → Settings → General에서 확인
