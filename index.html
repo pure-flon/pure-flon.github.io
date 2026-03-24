@@ -3,152 +3,341 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pure-Flon | PTFE 산업 솔루션</title>
-  <meta
-    name="description"
-    content="Pure-Flon 메인 페이지. PTFE 산업 솔루션, 운영 스택(Vercel/ngrok), 자동화 플로우를 명확히 보여주는 B2B 소개 페이지."
-  />
+  <title>Pure-Flon</title>
+  <meta name="description" content="Pure-Flon - Digital systems laboratory building resilient, autonomous infrastructure for the modern web." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://pure-flon.com/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Pure-Flon | PTFE 산업 솔루션" />
-  <meta property="og:description" content="PTFE 전문 제조 소개, 운영 스택, 자동화 플로우를 한 화면에 정리한 메인 페이지" />
+  <meta property="og:title" content="Pure-Flon" />
+  <meta property="og:description" content="Digital systems laboratory building resilient, autonomous infrastructure." />
   <meta property="og:url" content="https://pure-flon.com/" />
-  <meta property="og:image" content="https://pure-flon.com/images/landing/main-preview.svg" />
+  <meta property="og:site_name" content="Pure-Flon" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
 
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pure-Flon" />
+  <meta name="twitter:description" content="Digital systems laboratory building resilient, autonomous infrastructure." />
+
+  <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans KR', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            surface: {
+              DEFAULT: '#0a0a0f',
+              card: '#12121a',
+              hover: '#1a1a26',
+              border: '#1e1e2e',
+            },
+            accent: {
+              DEFAULT: '#6366f1',
+              dim: '#4f46e5',
+              glow: 'rgba(99, 102, 241, 0.15)',
+            },
+            muted: '#64748b',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0a0a0f;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-  <link rel="stylesheet" href="/css/landing-v2.css" />
+    /* Ambient background grid */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Subtle radial glow */
+    .bg-glow {
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Card animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+
+    /* Pulse dot */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+    .pulse-dot {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.08);
+    }
+
+    /* Stat counter animation */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Divider line glow */
+    .divider-glow {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0f; }
+    ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 3px; }
+  </style>
 </head>
-<body>
-  <header class="header">
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="Pure-Flon 홈">
-        <img src="/images/logo.svg" alt="Pure-Flon logo" />
-        <span>Industrial PTFE Systems</span>
-      </a>
-      <nav class="nav-links" aria-label="주요 메뉴">
-        <a href="#stack">운영 스택</a>
-        <a href="#flow">자동화 플로우</a>
-        <a href="#mainpage">메인 페이지</a>
-        <a class="cta" href="mailto:contact@pure-flon.com">문의</a>
-      </nav>
-      <a class="btn secondary mobile-only" href="mailto:contact@pure-flon.com">문의</a>
-    </div>
-  </header>
+<body class="min-h-screen">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-wrap">
-        <div>
-          <span class="kicker">B2B Manufacturing Interface</span>
-          <h1>Pure-Flon 메인 페이지를 운영형 구조로 재정렬했습니다.</h1>
-          <p>
-            제품 소개만 나열하지 않고, 실제 운영 흐름이 보이도록 구성했습니다.
-            핵심 화면은 Hero, 운영 스택, 자동화 플로우, 메인 페이지 설계 요약으로 단순화했습니다.
+  <div class="relative z-10">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-surface/80 border-b border-surface-border">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
+            <div class="w-3 h-3 rounded-sm bg-accent"></div>
+          </div>
+          <span class="text-lg font-semibold tracking-tight text-white">Pure-Flon</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+            Operational
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="pt-32 pb-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <section class="text-center mb-20">
+          <div class="animate-in delay-1">
+            <p class="text-sm font-medium text-accent tracking-widest uppercase mb-4">Digital Systems Lab</p>
+          </div>
+          <h1 class="animate-in delay-2 text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+            Building Resilient<br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-400">Autonomous Systems</span>
+          </h1>
+          <p class="animate-in delay-3 text-lg text-muted max-w-xl mx-auto leading-relaxed">
+            Precision-engineered digital infrastructure.<br class="hidden sm:block" />
+            <span class="text-slate-400">정밀하게 설계된 자율 시스템 연구소.</span>
           </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#mainpage">메인 페이지 구조 보기</a>
-            <a class="btn secondary" href="#flow">자동화 플로우 보기</a>
+        </section>
+
+        <!-- Status Cards -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <!-- Card 1 -->
+          <div class="animate-in delay-2 card-hover rounded-xl border border-surface-border bg-surface-card p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-medium text-muted uppercase tracking-wider">Systems</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+            </div>
+            <p class="text-3xl font-bold text-white mb-1">7</p>
+            <p class="text-sm text-muted">Active Modules</p>
           </div>
-        </div>
-        <article class="hero-card" aria-label="프로세스 비주얼">
-          <img src="/images/landing/hero-system.svg" alt="Pure-Flon 프로세스 비주얼" />
-        </article>
-      </div>
-    </section>
 
-    <section id="stack" class="section">
-      <div class="container">
-        <h2>현재 운영 스택</h2>
-        <p class="section-intro">
-          외부 공개/내부 점검 경로를 분리해 운영합니다. 공개 사이트는 Vercel, 현장 점검 공유는 ngrok 임시 채널을 사용합니다.
-        </p>
-        <div class="stack-grid">
-          <article class="stack-card">
-            <div class="stack-label">Hosting</div>
-            <div class="stack-title">Vercel</div>
-            <div class="stack-sub">정식 배포 및 글로벌 접근 경로</div>
-          </article>
-          <article class="stack-card">
-            <div class="stack-label">Temporary Share</div>
-            <div class="stack-title">ngrok</div>
-            <div class="stack-sub">로컬 점검용 임시 외부 노출</div>
-          </article>
-          <article class="stack-card">
-            <div class="stack-label">Source Control</div>
-            <div class="stack-title">GitHub</div>
-            <div class="stack-sub">버전 이력 및 검토 관리</div>
-          </article>
-          <article class="stack-card">
-            <div class="stack-label">Build</div>
-            <div class="stack-title">Vite</div>
-            <div class="stack-sub">정적 리소스 번들 및 로컬 개발</div>
-          </article>
-        </div>
-      </div>
-    </section>
+          <!-- Card 2 -->
+          <div class="animate-in delay-3 card-hover rounded-xl border border-surface-border bg-surface-card p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-medium text-muted uppercase tracking-wider">Uptime</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+            </div>
+            <p class="text-3xl font-bold text-white mb-1">99.9<span class="text-lg text-muted">%</span></p>
+            <p class="text-sm text-muted">Last 90 Days</p>
+          </div>
 
-    <section id="flow" class="section">
-      <div class="container">
-        <h2>자동화 플로우</h2>
-        <p class="section-intro">
-          코드 변경부터 배포 검증까지 단일 동선으로 유지합니다.
-        </p>
-        <div class="flow" role="img" aria-label="Pure-Flon 배포 자동화 플로우">
-          <div class="flow-row">
-            <div class="flow-step">
-              <strong>1. Source Update</strong>
-              <p>HTML/CSS/이미지 자산을 수정하고 구조 점검</p>
+          <!-- Card 3 -->
+          <div class="animate-in delay-4 card-hover rounded-xl border border-surface-border bg-surface-card p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-medium text-muted uppercase tracking-wider">Pipelines</span>
+              <span class="w-2 h-2 rounded-full bg-blue-400 pulse-dot"></span>
             </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <strong>2. Local QA</strong>
-              <p>링크/레이아웃/콘솔 에러 확인</p>
+            <p class="text-3xl font-bold text-white mb-1">24/7</p>
+            <p class="text-sm text-muted">Continuous Operation</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="animate-in delay-5 card-hover rounded-xl border border-surface-border bg-surface-card p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-medium text-muted uppercase tracking-wider">Iterations</span>
+              <span class="w-2 h-2 rounded-full bg-purple-400 pulse-dot"></span>
             </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <strong>3. Deploy</strong>
-              <p>Vercel 배포 후 핵심 경로 스모크 테스트</p>
+            <p class="text-3xl font-bold text-white mb-1">S16<span class="text-lg text-muted">v2</span></p>
+            <p class="text-sm text-muted">Current Generation</p>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider-glow mb-16"></div>
+
+        <!-- Abstract Info Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div class="animate-in delay-2 rounded-xl border border-surface-border bg-surface-card p-8">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
             </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <strong>4. Temporary Share</strong>
-              <p>필요 시 ngrok로 내부/외부 검토 링크 발급</p>
+            <h3 class="text-white font-semibold text-lg mb-2">Infrastructure</h3>
+            <p class="text-sm text-muted leading-relaxed">
+              Self-healing distributed systems designed for fault tolerance and zero-downtime operation.
+            </p>
+            <p class="text-sm text-slate-500 mt-2 leading-relaxed">
+              장애 허용과 무중단 운영을 위한 자가 복구 분산 시스템.
+            </p>
+          </div>
+
+          <div class="animate-in delay-3 rounded-xl border border-surface-border bg-surface-card p-8">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-5">
+              <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+              </svg>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Research</h3>
+            <p class="text-sm text-muted leading-relaxed">
+              Iterative experimentation loops with automated validation gates and reproducible pipelines.
+            </p>
+            <p class="text-sm text-slate-500 mt-2 leading-relaxed">
+              자동화된 검증 게이트와 재현 가능한 파이프라인 기반의 반복 실험 루프.
+            </p>
+          </div>
+
+          <div class="animate-in delay-4 rounded-xl border border-surface-border bg-surface-card p-8">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-5">
+              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Governance</h3>
+            <p class="text-sm text-muted leading-relaxed">
+              Multi-layer safety architecture with circuit breakers, audit trails, and automated compliance.
+            </p>
+            <p class="text-sm text-slate-500 mt-2 leading-relaxed">
+              서킷 브레이커, 감사 추적, 자동 컴플라이언스를 갖춘 다층 안전 아키텍처.
+            </p>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider-glow mb-16"></div>
+
+        <!-- Bottom Status Bar -->
+        <section class="animate-in delay-4">
+          <div class="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
+            <div class="px-6 py-4 border-b border-surface-border flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="text-xs font-medium text-muted uppercase tracking-wider">System Status</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-surface-border">
+              <div class="px-6 py-5 text-center">
+                <p class="text-xs text-muted mb-1">Core Engine</p>
+                <p class="text-sm font-medium text-emerald-400">Nominal</p>
+              </div>
+              <div class="px-6 py-5 text-center">
+                <p class="text-xs text-muted mb-1">Data Pipeline</p>
+                <p class="text-sm font-medium text-emerald-400">Healthy</p>
+              </div>
+              <div class="px-6 py-5 text-center">
+                <p class="text-xs text-muted mb-1">Monitoring</p>
+                <p class="text-sm font-medium text-emerald-400">Active</p>
+              </div>
+              <div class="px-6 py-5 text-center">
+                <p class="text-xs text-muted mb-1">Last Deploy</p>
+                <p class="text-sm font-medium text-slate-300" id="deploy-date">2026-03-24</p>
+              </div>
             </div>
           </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-surface-border py-10 px-6">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2 text-sm text-muted">
+          <div class="w-5 h-5 rounded bg-accent/20 flex items-center justify-center">
+            <div class="w-2 h-2 rounded-sm bg-accent"></div>
+          </div>
+          <span class="text-slate-400 font-medium">Pure-Flon</span>
+          <span class="text-surface-border">|</span>
+          <span>Digital Systems Lab</span>
         </div>
+        <p class="text-xs text-slate-600">&copy; 2026 Pure-Flon. All rights reserved.</p>
       </div>
-    </section>
+    </footer>
+  </div>
 
-    <section id="mainpage" class="section">
-      <div class="container preview-wrap">
-        <article class="preview-card">
-          <h2>메인 페이지 노출 원칙</h2>
-          <ul>
-            <li>이미지는 최소 개수만 유지하고 모두 로컬 자산으로 제공</li>
-            <li>깨진 이미지 링크를 제거하고 SVG 플레이스홀더로 즉시 대체</li>
-            <li>운영 흐름(스택/자동화)을 첫 화면에서 바로 이해 가능하게 구성</li>
-            <li>기술 설명은 짧고 명확하게, CTA는 1차 문의로 단순화</li>
-          </ul>
-          <p style="margin-top:14px;"><span class="badge">Professional B2B Layout</span></p>
-        </article>
-        <article class="preview-card" aria-label="메인 페이지 프리뷰">
-          <h3>메인 페이지 구조 프리뷰</h3>
-          <img src="/images/landing/main-preview.svg" alt="메인 페이지 구조 프리뷰" />
-        </article>
-      </div>
-    </section>
-  </main>
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-  <footer class="footer">
-    <div class="container">
-      <span>© 2026 Pure-Flon. All rights reserved.</span>
-      <span>Public Site: pure-flon.com / Deploy: Vercel / QA Share: ngrok</span>
-    </div>
-  </footer>
+    document.querySelectorAll('.animate-in').forEach((el) => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
