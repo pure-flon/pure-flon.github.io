@@ -25,6 +25,10 @@ Allow: /apple-touch-icon.png
 Allow: /site.webmanifest
 Allow: /.well-known/
 
+# ✅ 게임 섹션
+Allow: /games/
+Allow: /games/twenty-questions/
+
 # ✅ 다국어 지원 페이지들
 Allow: /ko/
 Allow: /en/

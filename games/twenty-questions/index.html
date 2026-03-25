@@ -2,290 +2,791 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 20 Questions | I'll guess what you're thinking</title>
-<meta name="description" content="AI guesses what you're thinking in 20 questions. Features Korean culture, K-food, K-pop and more. Play now!">
-<meta property="og:title" content="AI 20 Questions — Can AI read your mind?">
-<meta property="og:description" content="Think of something. AI will guess it in 20 questions. Featuring K-culture!">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AI 20 Questions | Think of something — AI will guess it</title>
+<meta name="description" content="Challenge the AI mind reader! Think of anything from K-Food, K-Pop, Animals, Tech, Places, or Memes — AI uses information theory to guess it in 20 questions.">
+<meta name="keywords" content="AI game, 20 questions, mind reader, K-Pop quiz, K-Food quiz, 스무고개, AI 스무고개, guessing game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/games/twenty-questions/">
+<meta property="og:title" content="AI 20 Questions — Can AI Read Your Mind?">
+<meta property="og:description" content="Think of something. AI will guess it in 20 questions using information theory. K-Food, K-Pop, Animals, Tech & more!">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/games/twenty-questions/">
+<meta property="og:site_name" content="pure-flon.com">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 20 Questions — Can AI Read Your Mind?">
+<meta name="twitter:description" content="Think of something. AI will guess it in 20 questions. 🧠">
 <link rel="icon" href="/favicon.ico">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"AI 20 Questions","description":"An AI-powered 20 questions game using information theory to guess what you're thinking.","url":"https://pure-flon.com/games/twenty-questions/","applicationCategory":"GameApplication","operatingSystem":"Any","inLanguage":["en","ko","ja"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"pure-flon","url":"https://pure-flon.com"}}
+</script>
+<!-- GA4 — replace G-XXXXXXXXXX with your Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');function ga(n,p){try{gtag('event',n,p||{})}catch(e){}}</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+:root{--bg:#0a0a0a;--card:#141414;--border:#222;--accent:#4466ff;--accent2:#7c3aed;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--text:#e8e8e8;--muted:#888;--dim:#555}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 .container{max-width:480px;width:100%;padding:20px;margin:0 auto}
-h1{font-size:1.8rem;text-align:center;margin:32px 0 8px;letter-spacing:-0.02em;color:#fff}
-.subtitle{text-align:center;color:#888;font-size:0.9rem;margin-bottom:32px}
-.card{background:#161616;border:1px solid #222;border-radius:16px;padding:28px;margin-bottom:16px}
-.question-num{font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
-.question-text{font-size:1.15rem;line-height:1.5;color:#fff;margin-bottom:24px}
+h1{font-size:1.8rem;text-align:center;margin:28px 0 6px;letter-spacing:-0.03em;color:#fff;font-weight:700}
+.sub{text-align:center;color:var(--muted);font-size:0.9rem;margin-bottom:28px;line-height:1.5}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:14px;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes confettiDrop{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@keyframes dotPulse{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1.1)}}
+.label{font-size:0.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.q-text{font-size:1.15rem;line-height:1.55;color:#fff;margin-bottom:22px;min-height:2.4em}
 .btn-row{display:flex;gap:10px}
-.btn{flex:1;padding:14px;border:1px solid #333;border-radius:12px;background:#1a1a1a;color:#fff;font-size:1rem;cursor:pointer;transition:all 0.15s;text-align:center;font-weight:500}
+.btn{flex:1;padding:14px;border:1px solid #333;border-radius:12px;background:#1a1a1a;color:#fff;font-size:1rem;cursor:pointer;transition:all .15s;text-align:center;font-weight:500;-webkit-user-select:none;user-select:none;min-height:48px;display:flex;align-items:center;justify-content:center}
 .btn:hover{background:#252525;border-color:#444}
-.btn:active{transform:scale(0.97)}
-.btn-yes{border-color:#2d5a2d;color:#6bdf6b}.btn-yes:hover{background:#1a3a1a;border-color:#3d7a3d}
-.btn-no{border-color:#5a2d2d;color:#df6b6b}.btn-no:hover{background:#3a1a1a;border-color:#7a3d3d}
-.btn-maybe{border-color:#5a5a2d;color:#dfdf6b}.btn-maybe:hover{background:#3a3a1a}
-.btn-start{background:#1a1aff;border-color:#3333ff;font-size:1.1rem;padding:16px;border-radius:14px;color:#fff;width:100%;margin-top:8px}
-.btn-start:hover{background:#2525ff}
-.progress{height:3px;background:#222;border-radius:2px;margin-bottom:24px;overflow:hidden}
-.progress-bar{height:100%;background:linear-gradient(90deg,#4444ff,#8844ff);border-radius:2px;transition:width 0.4s ease}
-.result{text-align:center;padding:40px 20px}
-.result-emoji{font-size:3rem;margin-bottom:16px}
-.result-answer{font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px}
-.result-sub{color:#888;margin-bottom:24px}
-.history{margin-top:16px;font-size:0.85rem;color:#666}
-.history-item{padding:6px 0;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between}
-.history-q{color:#aaa;flex:1}.history-a{color:#888;margin-left:8px;min-width:40px;text-align:right}
-.categories{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.cat-btn{padding:16px 12px;border:1px solid #282828;border-radius:12px;background:#141414;color:#ccc;cursor:pointer;text-align:center;transition:all 0.15s;font-size:0.95rem}
-.cat-btn:hover{background:#1e1e1e;border-color:#444;color:#fff}
-.cat-btn .cat-emoji{font-size:1.5rem;display:block;margin-bottom:6px}
-.score{text-align:center;margin:20px 0;font-size:0.85rem;color:#555}
-.share-btn{background:#1a1a2e;border-color:#2a2a4e;color:#aab}
-.share-btn:hover{background:#252540}
-.ai-banner{margin-top:32px;padding:20px;border:1px solid #1a1a2e;border-radius:14px;background:#0d0d1a;text-align:center}
-.ai-banner p{font-size:0.85rem;color:#888;line-height:1.6;margin-bottom:12px}
-.ai-banner .ai-tag{display:inline-block;font-size:0.7rem;background:#1a1a3a;color:#88f;padding:3px 10px;border-radius:20px;margin-bottom:10px;letter-spacing:0.05em}
-.ai-banner .sponsor-links{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.ai-banner .sponsor-links a{font-size:0.8rem;color:#aab;text-decoration:none;padding:8px 14px;border:1px solid #252540;border-radius:10px;transition:all 0.15s}
-.ai-banner .sponsor-links a:hover{background:#1a1a2e;border-color:#4444aa;color:#fff}
+.btn:active{transform:scale(.96)}
+.btn-y{border-color:#1a4a1a;color:var(--green)}.btn-y:hover{background:#0f2a0f;border-color:#2d6a2d}
+.btn-n{border-color:#4a1a1a;color:var(--red)}.btn-n:hover{background:#2a0f0f;border-color:#6a2d2d}
+.btn-m{border-color:#3a3a1a;color:var(--yellow)}.btn-m:hover{background:#2a2a0f}
+.btn-primary{background:var(--accent);border-color:var(--accent);font-size:1.05rem;padding:16px;border-radius:14px;width:100%;margin-top:8px;color:#fff}
+.btn-primary:hover{background:#5577ff;border-color:#5577ff}
+.btn-share{background:#1a1a2e;border-color:#2a2a4e;color:#aab;width:100%;margin-top:8px;padding:14px}.btn-share:hover{background:#252540}
+.progress{height:3px;background:#1a1a1a;border-radius:2px;margin-bottom:20px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .4s ease}
+.confidence{margin-bottom:18px}
+.conf-bar{height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden;margin-top:6px}
+.conf-fill{height:100%;border-radius:3px;transition:width .5s ease,background .5s ease}
+.conf-low{background:var(--red)}.conf-mid{background:var(--yellow)}.conf-high{background:var(--green)}
+.result{text-align:center;padding:32px 16px}
+.result-emoji{font-size:3.5rem;margin-bottom:14px;animation:pulse .6s ease}
+.result-answer{font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:6px}
+.result-sub{color:var(--muted);margin-bottom:22px;line-height:1.5}
+.history{margin-top:14px;font-size:0.82rem;color:#666}
+.h-item{padding:5px 0;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;gap:8px}
+.h-q{color:#aaa;flex:1}.h-a{min-width:36px;text-align:right;font-weight:600}
+.h-a.yes{color:var(--green)}.h-a.no{color:var(--red)}.h-a.maybe{color:var(--yellow)}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.cat{padding:16px 10px;border:1px solid var(--border);border-radius:14px;background:var(--card);color:#ccc;cursor:pointer;text-align:center;transition:all .2s;font-size:0.92rem}
+.cat:hover{background:#1e1e1e;border-color:#444;color:#fff;transform:translateY(-2px)}
+.cat:active{transform:scale(.97)}
+.cat-em{font-size:1.6rem;display:block;margin-bottom:6px}
+.k-badge{display:inline-block;font-size:0.58rem;background:#ff2d55;color:#fff;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;font-weight:600}
+.stats-row{display:flex;justify-content:center;gap:20px;margin:18px 0;font-size:0.82rem;color:var(--dim)}
+.stats-row .val{color:#fff;font-weight:700;font-size:1.1rem;display:block}
+.thinking{text-align:center;padding:40px 20px}
+.think-dots{display:flex;gap:8px;justify-content:center;margin:20px 0}
+.think-dots span{width:10px;height:10px;background:var(--accent);border-radius:50%;animation:dotPulse 1.2s ease infinite}
+.think-dots span:nth-child(2){animation-delay:.15s}
+.think-dots span:nth-child(3){animation-delay:.3s}
+.think-label{color:var(--muted);font-size:0.9rem;margin-top:8px}
 .lang-toggle{position:fixed;top:12px;right:12px;display:flex;gap:4px;z-index:100}
-.lang-btn{padding:6px 10px;border:1px solid #333;border-radius:8px;background:#1a1a1a;color:#888;font-size:0.75rem;cursor:pointer}
-.lang-btn.active{border-color:#4444aa;color:#fff;background:#1a1a3a}
-.k-badge{display:inline-block;font-size:0.6rem;background:#ff2d55;color:#fff;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
-@media(max-width:360px){.container{padding:12px}h1{font-size:1.5rem}.question-text{font-size:1rem}}
+.lang-btn{padding:6px 10px;border:1px solid #333;border-radius:8px;background:#1a1a1a;color:#888;font-size:0.72rem;cursor:pointer;transition:all .15s}
+.lang-btn.active{border-color:var(--accent);color:#fff;background:#1a1a3a}
+.banner{margin-top:28px;padding:18px;border:1px solid #1a1a2e;border-radius:14px;background:#0d0d1a;text-align:center}
+.banner p{font-size:0.82rem;color:#888;line-height:1.6;margin-bottom:10px}
+.banner .tag{display:inline-block;font-size:0.65rem;background:#1a1a3a;color:#88f;padding:2px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.05em}
+.banner .links{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.banner .links a{font-size:0.78rem;color:#aab;text-decoration:none;padding:8px 14px;border:1px solid #252540;border-radius:10px;transition:all .15s}
+.banner .links a:hover{background:#1a1a2e;border-color:#4444aa;color:#fff}
+.confetti{position:fixed;pointer-events:none;z-index:9999;font-size:1.2rem;animation:confettiDrop 2s ease forwards}
+.streak-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;margin-top:6px}
+@media(max-width:380px){.container{padding:14px}h1{font-size:1.5rem}.q-text{font-size:1rem}.cats{gap:8px}.cat{padding:12px 8px;font-size:0.85rem}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
 </head>
 <body>
 <div class="lang-toggle">
-  <button class="lang-btn active" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" onclick="setLang('ko')">KO</button>
-  <button class="lang-btn" onclick="setLang('ja')">JA</button>
+<button class="lang-btn active" onclick="setLang('en')">EN</button>
+<button class="lang-btn" onclick="setLang('ko')">KO</button>
+<button class="lang-btn" onclick="setLang('ja')">JA</button>
 </div>
 <div class="container" id="app"></div>
 <div class="container">
-  <div class="ai-banner">
-    <span class="ai-tag">100% MADE BY AI</span>
-    <p id="banner-text">This game was entirely created by AI — code, design, and content.<br>If you enjoyed it, support the AI developer!</p>
-    <div class="sponsor-links">
-      <a href="https://ko-fi.com/pureflon" target="_blank">Ko-fi</a>
-      <a href="https://github.com/sponsors/pure-flon" target="_blank">GitHub Sponsors</a>
-      <a href="https://paypal.me/pureflon" target="_blank">PayPal</a>
-    </div>
-  </div>
+<div class="banner">
+<span class="tag">100% MADE BY AI</span>
+<p id="banner-text">This game was entirely created by AI — code, design, and content.<br>If you enjoyed it, support the AI developer!</p>
+<div class="links">
+<a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a>
+<a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a>
+<a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+</div>
+</div>
 </div>
 
 <script>
-const LANG = {
-  en: {
-    title: 'AI 20 Questions',
-    subtitle: 'Think of something. I\'ll guess it in 20 questions.',
-    pick_category: 'Pick a category',
-    question: 'Question',
-    of: 'of',
-    candidates: 'candidates',
-    yes: 'Yes', no: 'No', maybe: 'Not sure',
-    guessed_in: 'Guessed in {n} questions!',
-    wrong: 'Couldn\'t get it this time...',
-    correct_q: 'That\'s right!', wrong_q: 'Nope',
-    ai_wins: 'AI Wins!', next_time: 'I\'ll get it next time!',
-    record: 'Record', w: 'W', l: 'L', games: 'games',
-    play_again: 'Play Again', share: 'Share',
-    prev_questions: 'Previous questions',
-    banner: 'This game was entirely created by AI — code, design, and content.<br>If you enjoyed it, support the AI developer!'
-  },
-  ko: {
-    title: 'AI 스무고개',
-    subtitle: '무언가를 떠올리세요. 20번의 질문으로 맞춰볼게요.',
-    pick_category: '카테고리를 선택하세요',
-    question: '질문',
-    of: '/',
-    candidates: '개 후보',
-    yes: '네', no: '아니요', maybe: '글쎄요',
-    guessed_in: '{n}번 만에 맞췄어요!',
-    wrong: '이번엔 못 맞췄네요...',
-    correct_q: '맞아요!', wrong_q: '아닌데요',
-    ai_wins: 'AI 승리!', next_time: '다음엔 맞출게요!',
-    record: '전적', w: '승', l: '패', games: '게임',
-    play_again: '다시 하기', share: '공유하기',
-    prev_questions: '지난 질문',
-    banner: '이 게임은 AI가 코드부터 디자인까지 자동으로 만들었습니다.<br>재밌으셨다면 후원해주세요!'
-  },
-  ja: {
-    title: 'AI 20の質問',
-    subtitle: '何かを思い浮かべてください。20の質問で当てます。',
-    pick_category: 'カテゴリを選択',
-    question: '質問',
-    of: '/',
-    candidates: '候補',
-    yes: 'はい', no: 'いいえ', maybe: 'わからない',
-    guessed_in: '{n}問で当てました！',
-    wrong: '今回は当てられませんでした...',
-    correct_q: '正解！', wrong_q: '違います',
-    ai_wins: 'AI勝利！', next_time: '次は当てます！',
-    record: '戦績', w: '勝', l: '敗', games: 'ゲーム',
-    play_again: 'もう一度', share: 'シェア',
-    prev_questions: '過去の質問',
-    banner: 'このゲームはAIがコードからデザインまで自動で作りました。<br>楽しんでいただけたら、開発者を応援してください！'
-  }
+/* ═══════════════════════════════════════════
+   i18n — UI Strings
+   ═══════════════════════════════════════════ */
+const L={
+en:{title:'AI 20 Questions',sub:'Think of something. I\'ll guess it in 20 questions.',pick:'Pick a category',q:'Question',of:'of',cand:'candidates left',yes:'Yes',no:'No',maybe:'Not sure',thinking:'AI is analyzing...',narrow:'Narrowing it down...',guess_q:'Is it...',correct:'That\'s right!',wrong:'Nope',ai_wins:'AI Wins! 🏆',ai_lose:'I\'ll get it next time!',guessed_in:'Guessed in {n} questions!',failed:'Couldn\'t get it this time...',record:'Record',w:'W',l:'L',games:'games',streak:'Streak',best:'Best',again:'Play Again',share:'Share Result',prev:'Previous questions',confidence:'AI Confidence',banner:'This game was entirely created by AI — code, design, and content.<br>If you enjoyed it, support the AI developer!',copied:'Copied!'},
+ko:{title:'AI 스무고개',sub:'무언가를 떠올리세요.\n20번의 질문으로 맞춰볼게요.',pick:'카테고리를 선택하세요',q:'질문',of:'/',cand:'개 후보 남음',yes:'네',no:'아니요',maybe:'글쎄요',thinking:'AI가 분석 중...',narrow:'범위를 좁히는 중...',guess_q:'혹시...',correct:'맞아요!',wrong:'아닌데요',ai_wins:'AI 승리! 🏆',ai_lose:'다음엔 맞출게요!',guessed_in:'{n}번 만에 맞췄어요!',failed:'이번엔 못 맞췄네요...',record:'전적',w:'승',l:'패',games:'게임',streak:'연승',best:'최소',again:'다시 하기',share:'결과 공유',prev:'지난 질문',confidence:'AI 확신도',banner:'이 게임은 AI가 코드, 디자인, 콘텐츠까지 전부 만들었습니다.<br>재밌으셨다면 후원해주세요!',copied:'복사됨!'},
+ja:{title:'AI 20の質問',sub:'何かを思い浮かべてください。\n20の質問で当てます。',pick:'カテゴリを選択',q:'質問',of:'/',cand:'候補',yes:'はい',no:'いいえ',maybe:'わからない',thinking:'AIが分析中...',narrow:'絞り込み中...',guess_q:'もしかして...',correct:'正解！',wrong:'違います',ai_wins:'AI勝利！🏆',ai_lose:'次は当てます！',guessed_in:'{n}問で当てました！',failed:'今回は当てられませんでした...',record:'戦績',w:'勝',l:'敗',games:'ゲーム',streak:'連勝',best:'最少',again:'もう一度',share:'結果シェア',prev:'過去の質問',confidence:'AI確信度',banner:'このゲームはAIがコード・デザイン・コンテンツまで全て作りました。<br>楽しめたら応援してください！',copied:'コピー！'}
 };
 
-let lang = localStorage.getItem('tq_lang') || 'en';
-const t = () => LANG[lang];
+/* ═══════════════════════════════════════════
+   Game Database — 6 categories × 30 items
+   Properties indexed per category; items store which property indices are true
+   ═══════════════════════════════════════════ */
+const DB={
+kfood:{
+  n:{en:'K-Food',ko:'한국 음식',ja:'韓国料理'},em:'🍜',bd:'K',
+  q:[
+    ['Is it spicy?','매운 음식인가요?','辛いですか？'],
+    ['Is it a soup or stew?','국물/찌개 요리인가요?','汁物ですか？'],
+    ['Does it include rice?','밥이 들어가나요?','ご飯が入っていますか？'],
+    ['Is it a noodle dish?','면 요리인가요?','麺料理ですか？'],
+    ['Does it contain meat?','고기가 들어가나요?','肉が入っていますか？'],
+    ['Is it sweet?','달콤한가요?','甘いですか？'],
+    ['Is it served cold?','차갑게 먹나요?','冷たい料理ですか？'],
+    ['Is it a street food?','길거리 음식인가요?','屋台料理ですか？'],
+    ['Is it a drink?','마시는 것인가요?','飲み物ですか？'],
+    ['Is it fermented?','발효 음식인가요?','発酵食品ですか？'],
+    ['Is it fried or pan-fried?','튀기거나 부친 건가요?','揚げ物ですか？'],
+    ['Is it grilled?','구운 건가요?','焼き物ですか？'],
+    ['Does it contain pork?','돼지고기가 들어가나요?','豚肉が入っていますか？'],
+    ['Does it contain beef?','소고기가 들어가나요?','牛肉が入っていますか？'],
+    ['Does it contain chicken?','닭고기가 들어가나요?','鶏肉が入っていますか？'],
+    ['Is it a dessert?','디저트인가요?','デザートですか？'],
+    ['Does it contain alcohol?','술인가요?','お酒ですか？'],
+    ['Is it red-colored?','빨간색인가요?','赤い色ですか？']
+  ],
+  it:[
+    ['Kimchi Jjigae','김치찌개','キムチチゲ',[0,1,4,9,12,17]],
+    ['Tteokbokki','떡볶이','トッポッキ',[0,5,7,17]],
+    ['Korean Fried Chicken','치킨','韓国チキン',[10,14]],
+    ['Bibimbap','비빔밥','ビビンバ',[2,4]],
+    ['Samgyeopsal','삼겹살','サムギョプサル',[4,11,12]],
+    ['Japchae','잡채','チャプチェ',[3,5]],
+    ['Bulgogi','불고기','プルコギ',[4,5,11,13]],
+    ['Gimbap','김밥','キンパ',[2,7]],
+    ['Doenjang Jjigae','된장찌개','テンジャンチゲ',[1,9]],
+    ['Jajangmyeon','짜장면','ジャージャー麺',[3,4,12]],
+    ['Sundubu Jjigae','순두부찌개','スンドゥブチゲ',[0,1,17]],
+    ['Dakgalbi','닭갈비','タッカルビ',[0,4,11,14,17]],
+    ['Bingsu','빙수','ビンス',[5,6,15]],
+    ['Hotteok','호떡','ホットク',[5,7,10,15]],
+    ['Mandu','만두','マンドゥ',[4,7,10,12]],
+    ['Naengmyeon','냉면','冷麺',[3,6]],
+    ['Galbi','갈비','カルビ',[4,11,13]],
+    ['Ramyeon','라면','ラーメン',[0,1,3,17]],
+    ['Soju','소주','焼酎',[8,16]],
+    ['Makgeolli','막걸리','マッコリ',[5,8,9,16]],
+    ['Kimchi','김치','キムチ',[0,6,9,17]],
+    ['Tteok','떡','餅',[2,5,15]],
+    ['Pajeon','파전','パジョン',[10]],
+    ['Kalguksu','칼국수','カルグクス',[1,3]],
+    ['Samgyetang','삼계탕','サムゲタン',[1,4,14]],
+    ['Sundae','순대','スンデ',[4,7,12]],
+    ['Bungeoppang','붕어빵','プンオパン',[5,7,10,15]],
+    ['Budae Jjigae','부대찌개','プデチゲ',[0,1,4,12,17]],
+    ['Sikhye','식혜','シッケ',[5,6,8]],
+    ['Yakgwa','약과','ヤッカ',[5,10,15]]
+  ]
+},
+kpop:{
+  n:{en:'K-Pop & Stars',ko:'K-Pop / 스타',ja:'K-Pop/スター'},em:'⭐',bd:'K',
+  q:[
+    ['Is it a group (not solo)?','그룹인가요?','グループですか？'],
+    ['Is it male / male group?','남성(남성 그룹)인가요?','男性ですか？'],
+    ['Is it female / female group?','여성(여성 그룹)인가요?','女性ですか？'],
+    ['Is it a singer or music act?','가수(음악)인가요?','歌手ですか？'],
+    ['Is it an actor?','배우인가요?','俳優ですか？'],
+    ['Is it an athlete?','운동선수인가요?','スポーツ選手ですか？'],
+    ['Did they debut/rise after 2020?','2020년 이후 데뷔/부상했나요?','2020年以降のデビューですか？'],
+    ['Are they from a Big 3/4 company?','대형 기획사 소속인가요?','大手事務所ですか？'],
+    ['Are they famous internationally?','해외에서도 유명한가요?','海外でも有名ですか？'],
+    ['Known for variety shows?','예능으로 유명한가요?','バラエティで有名ですか？'],
+    ['Won a major award (Daesang)?','대상을 받았나요?','大賞を受賞しましたか？'],
+    ['Known for dancing?','춤으로 유명한가요?','ダンスで有名ですか？'],
+    ['Known for rapping?','랩을 하나요?','ラップをしますか？'],
+    ['Has 4+ members?','멤버가 4명 이상인가요?','メンバーが4人以上ですか？'],
+    ['Is it a solo artist?','솔로인가요?','ソロですか？'],
+    ['Is it a soccer player?','축구 선수인가요?','サッカー選手ですか？'],
+    ['Is it a comedian or MC?','코미디언/MC인가요?','芸人/MCですか？'],
+    ['Active before 2012 (older gen)?','2012년 이전부터 활동했나요?','2012年以前からの活動ですか？']
+  ],
+  it:[
+    ['BTS','방탄소년단','BTS',[0,1,3,7,8,10,11,12,13]],
+    ['BLACKPINK','블랙핑크','BLACKPINK',[0,2,3,7,8,10,11,13]],
+    ['NewJeans','뉴진스','NewJeans',[0,2,3,7,8,11,13,6]],
+    ['Stray Kids','스트레이 키즈','Stray Kids',[0,1,3,8,11,12,13,6]],
+    ['TWICE','트와이스','TWICE',[0,2,3,7,8,10,11,13]],
+    ['Son Heungmin','손흥민','ソン・フンミン',[14,1,5,8,15]],
+    ['IU','아이유','IU',[14,2,3,4,8,10]],
+    ['Bong Joonho','봉준호','ポン・ジュノ',[14,1,4,8,10]],
+    ['Lee Jungjae','이정재','イ・ジョンジェ',[14,1,4,8,10]],
+    ['Yoo Jaesuk','유재석','ユ・ジェソク',[14,1,9,10,16]],
+    ['SEVENTEEN','세븐틴','SEVENTEEN',[0,1,3,8,11,13]],
+    ['aespa','에스파','aespa',[0,2,3,7,11,13,6]],
+    ['(G)I-DLE','(여자)아이들','(G)I-DLE',[0,2,3,8,11,12,13]],
+    ['EXO','엑소','EXO',[0,1,3,7,8,10,11,13,17]],
+    ['PSY','싸이','PSY',[14,1,3,8,11,10,17]],
+    ['Kim Yuna','김연아','キム・ヨナ',[14,2,5,8,10,15]],
+    ['ITZY','있지','ITZY',[0,2,3,7,11,13,6]],
+    ['TXT','투모로우바이투게더','TXT',[0,1,3,7,11,13,6]],
+    ['Lee Minho','이민호','イ・ミンホ',[14,1,4,8]],
+    ['LE SSERAFIM','르세라핌','LE SSERAFIM',[0,2,3,7,11,13,6,8]],
+    ['BIG BANG','빅뱅','BIGBANG',[0,1,3,7,8,10,11,12,13,17]],
+    ['Song Joongki','송중기','ソン・ジュンギ',[14,1,4,8]],
+    ['Rain','비','Rain',[14,1,3,4,8,11,17]],
+    ['ENHYPEN','엔하이픈','ENHYPEN',[0,1,3,11,13,6,8]],
+    ['ZICO','지코','ZICO',[14,1,3,9,12]],
+    ['Red Velvet','레드벨벳','Red Velvet',[0,2,3,7,11,13]],
+    ['Baek Jongwon','백종원','ペク・ジョンウォン',[14,1,9]],
+    ['Kim Soohyun','김수현','キム・スヒョン',[14,1,4,8]],
+    ['Na Youngseok','나영석','ナ・ヨンソク',[14,1,9,10]],
+    ['Jang Wonyoung','장원영','チャン・ウォニョン',[14,2,3,6,8]]
+  ]
+},
+animals:{
+  n:{en:'Animals',ko:'동물',ja:'動物'},em:'🐾',
+  q:[
+    ['Can it be kept as a pet?','반려동물로 키울 수 있나요?','ペットにできますか？'],
+    ['Does it live in the ocean?','바다에 사나요?','海に住んでいますか？'],
+    ['Can it fly?','날 수 있나요?','飛べますか？'],
+    ['Does it have four legs?','다리가 4개인가요?','足が4本ありますか？'],
+    ['Does it have fur or hair?','털이 있나요?','毛がありますか？'],
+    ['Is it larger than a human?','사람보다 큰가요?','人より大きいですか？'],
+    ['Is it dangerous to humans?','사람에게 위험한가요?','人間に危険ですか？'],
+    ['Is it a farm animal?','농장에서 키우나요?','家畜ですか？'],
+    ['Is it nocturnal?','야행성인가요?','夜行性ですか？'],
+    ['Is it a carnivore?','육식인가요?','肉食ですか？'],
+    ['Is it a herbivore?','초식인가요?','草食ですか？'],
+    ['Does it have stripes or spots?','줄무늬나 점박이인가요?','縞や斑点がありますか？'],
+    ['Does it live in tropical areas?','열대에 사나요?','熱帯に住んでいますか？'],
+    ['Does it live in groups?','무리 지어 사나요?','群れで生活しますか？'],
+    ['Does it live in cold climates?','추운 곳에 사나요?','寒い地域に住んでいますか？'],
+    ['Is it an insect?','곤충인가요?','昆虫ですか？'],
+    ['Is it a bird?','새인가요?','鳥ですか？'],
+    ['Is it a reptile?','파충류인가요?','爬虫類ですか？']
+  ],
+  it:[
+    ['Dog','강아지','犬',[0,3,4,9,13]],
+    ['Cat','고양이','猫',[0,3,4,9,8]],
+    ['Tiger','호랑이','虎',[3,4,5,6,9,11,8]],
+    ['Elephant','코끼리','ゾウ',[3,5,6,10,13,12]],
+    ['Eagle','독수리','鷲',[2,6,9,16]],
+    ['Dolphin','돌고래','イルカ',[1,5,13,9]],
+    ['Penguin','펭귄','ペンギン',[1,14,13,16]],
+    ['Bear','곰','クマ',[3,4,5,6,9]],
+    ['Fox','여우','キツネ',[3,4,9,8]],
+    ['Rabbit','토끼','ウサギ',[0,3,4,10]],
+    ['Horse','말','馬',[3,4,5,10,7,13]],
+    ['Lion','사자','ライオン',[3,4,5,6,9,13]],
+    ['Shark','상어','サメ',[1,5,6,9]],
+    ['Whale','고래','クジラ',[1,5,13]],
+    ['Snake','뱀','ヘビ',[6,9,17,8]],
+    ['Turtle','거북이','カメ',[0,10,17]],
+    ['Parrot','앵무새','オウム',[0,2,16,12]],
+    ['Panda','판다','パンダ',[3,4,5,10]],
+    ['Wolf','늑대','オオカミ',[3,4,6,9,13,14,8]],
+    ['Monkey','원숭이','サル',[13,12]],
+    ['Owl','올빼미','フクロウ',[2,9,16,8]],
+    ['Giraffe','기린','キリン',[3,5,10,13,12,11]],
+    ['Hamster','햄스터','ハムスター',[0,3,4,8,10]],
+    ['Koala','코알라','コアラ',[3,4,10,12,8]],
+    ['Crocodile','악어','ワニ',[5,6,9,17,12]],
+    ['Butterfly','나비','チョウ',[2,15]],
+    ['Bee','벌','ハチ',[2,6,13,15]],
+    ['Goldfish','금붕어','金魚',[0,1]],
+    ['Flamingo','플라밍고','フラミンゴ',[2,13,12,16]],
+    ['Cheetah','치타','チーター',[3,4,6,9,11,12]]
+  ]
+},
+tech:{
+  n:{en:'Tech',ko:'기술',ja:'テック'},em:'💻',
+  q:[
+    ['Is it a hardware product?','하드웨어 제품인가요?','ハードウェアですか？'],
+    ['Is it an app or software?','앱/소프트웨어인가요?','アプリですか？'],
+    ['Is it gaming-related?','게임 관련인가요?','ゲーム関連ですか？'],
+    ['Is it a social media platform?','소셜 미디어인가요?','SNSですか？'],
+    ['Is it a streaming service?','스트리밍 서비스인가요?','ストリーミングですか？'],
+    ['Is it AI-related?','AI 관련인가요?','AI関連ですか？'],
+    ['Is it free to use?','무료인가요?','無料ですか？'],
+    ['Is it subscription-based?','구독 모델인가요?','サブスクですか？'],
+    ['Is it made by Apple?','Apple 제품인가요?','Apple製品ですか？'],
+    ['Is it primarily used on mobile?','주로 모바일에서 사용하나요?','主にモバイルですか？'],
+    ['Is it for communication?','소통/메시지용인가요?','通信用ですか？'],
+    ['Is it for entertainment?','엔터테인먼트용인가요?','エンタメ用ですか？'],
+    ['Is it related to search?','검색 관련인가요?','検索関連ですか？'],
+    ['Is it video-related?','영상 관련인가요?','動画関連ですか？'],
+    ['Is it music-related?','음악 관련인가요?','音楽関連ですか？'],
+    ['Is it for shopping?','쇼핑/전자상거래인가요?','ショッピング関連ですか？'],
+    ['Is it a wearable device?','착용하는 기기인가요?','ウェアラブルですか？'],
+    ['Did it launch after 2020?','2020년 이후 출시됐나요?','2020年以降ですか？']
+  ],
+  it:[
+    ['iPhone','아이폰','iPhone',[0,8,9]],
+    ['Tesla','테슬라','テスラ',[0]],
+    ['ChatGPT','챗GPT','ChatGPT',[5,6,17]],
+    ['Bitcoin','비트코인','ビットコイン',[]],
+    ['Instagram','인스타그램','Instagram',[1,3,9,6,13]],
+    ['YouTube','유튜브','YouTube',[1,4,6,11,13]],
+    ['Netflix','넷플릭스','Netflix',[1,4,7,11,13]],
+    ['Minecraft','마인크래프트','マインクラフト',[2,11]],
+    ['Nintendo Switch','닌텐도 스위치','Nintendo Switch',[0,2,11]],
+    ['AirPods','에어팟','AirPods',[0,8,16,14]],
+    ['PlayStation','플레이스테이션','PlayStation',[0,2,11]],
+    ['TikTok','틱톡','TikTok',[1,3,9,6,11,13]],
+    ['Google','구글','Google',[1,6,12]],
+    ['Amazon','아마존','Amazon',[1,15]],
+    ['Spotify','스포티파이','Spotify',[1,4,6,7,14,11]],
+    ['Zoom','줌','Zoom',[1,10,6]],
+    ['Discord','디스코드','Discord',[1,10,2,6]],
+    ['Steam','스팀','Steam',[1,2,15,11]],
+    ['MacBook','맥북','MacBook',[0,8]],
+    ['Apple Watch','애플워치','Apple Watch',[0,8,16,9]],
+    ['Notion','노션','Notion',[1,6,7]],
+    ['WhatsApp','왓츠앱','WhatsApp',[1,10,9,6]],
+    ['X (Twitter)','X (트위터)','X (Twitter)',[1,3,9,6]],
+    ['Roblox','로블록스','Roblox',[1,2,6,11]],
+    ['Twitch','트위치','Twitch',[1,4,2,6,11,13]],
+    ['iPad','아이패드','iPad',[0,8,9,11]],
+    ['Samsung Galaxy','삼성 갤럭시','Galaxy',[0,9]],
+    ['Claude','클로드','Claude',[5,6,17]],
+    ['Figma','피그마','Figma',[1,6]],
+    ['Meta Quest','메타 퀘스트','Meta Quest',[0,2,11,16,17]]
+  ]
+},
+places:{
+  n:{en:'World Places',ko:'세계 장소',ja:'世界の場所'},em:'🗺️',
+  q:[
+    ['Is it in Asia?','아시아에 있나요?','アジアですか？'],
+    ['Is it in Europe?','유럽에 있나요?','ヨーロッパですか？'],
+    ['Is it in the Americas?','아메리카 대륙인가요?','アメリカ大陸ですか？'],
+    ['Is it an island?','섬인가요?','島ですか？'],
+    ['Is it famous for beaches?','해변이 유명한가요?','ビーチで有名ですか？'],
+    ['Is it famous for mountains?','산이 유명한가요?','山で有名ですか？'],
+    ['Is it a capital city?','수도인가요?','首都ですか？'],
+    ['Is it in a cold climate?','추운 곳인가요?','寒い場所ですか？'],
+    ['Is it tropical?','열대 기후인가요?','熱帯ですか？'],
+    ['Is it historically famous?','역사적으로 유명한가요?','歴史的に有名ですか？'],
+    ['Is it modern/urban?','현대적인 도시인가요?','現代的な都市ですか？'],
+    ['Is it expensive to visit?','물가가 비싼가요?','物価が高いですか？'],
+    ['Is it famous for food?','음식으로 유명한가요?','グルメで有名ですか？'],
+    ['Are there famous temples?','사찰/신전이 유명한가요?','寺院で有名ですか？'],
+    ['Does it have famous skyscrapers?','고층 빌딩이 유명한가요?','高層ビルで有名ですか？'],
+    ['Famous for natural scenery?','자연 경관이 유명한가요?','自然景観で有名ですか？'],
+    ['Is it in Africa or Oceania?','아프리카/오세아니아인가요?','アフリカ/オセアニアですか？'],
+    ['Is it a romantic destination?','로맨틱한 여행지인가요?','ロマンチックな旅行先ですか？']
+  ],
+  it:[
+    ['Seoul','서울','ソウル',[0,6,10,12,14]],
+    ['Tokyo','도쿄','東京',[0,6,10,9,12,14,11,13]],
+    ['New York','뉴욕','ニューヨーク',[2,10,14,11,12]],
+    ['Paris','파리','パリ',[1,6,10,9,11,17,12]],
+    ['London','런던','ロンドン',[1,6,10,9,11]],
+    ['Jeju Island','제주도','済州島',[0,3,4,15]],
+    ['Hawaii','하와이','ハワイ',[2,3,4,8,15,11]],
+    ['Rome','로마','ローマ',[1,6,9,12,17]],
+    ['Sydney','시드니','シドニー',[16,10,4,11]],
+    ['Bangkok','방콕','バンコク',[0,6,8,12,13]],
+    ['Dubai','두바이','ドバイ',[0,10,14,11]],
+    ['Barcelona','바르셀로나','バルセロナ',[1,4,10,9,12]],
+    ['Singapore','싱가포르','シンガポール',[0,10,8,12,11,14]],
+    ['Kyoto','교토','京都',[0,9,13,12]],
+    ['Bali','발리','バリ',[0,3,4,8,15,13]],
+    ['Iceland','아이슬란드','アイスランド',[1,3,7,15,11]],
+    ['Machu Picchu','마추픽추','マチュピチュ',[2,5,9,15]],
+    ['Santorini','산토리니','サントリーニ',[1,3,4,17,11]],
+    ['Maldives','몰디브','モルディブ',[0,3,4,8,15,11,17]],
+    ['Istanbul','이스탄불','イスタンブール',[0,9,12]],
+    ['Busan','부산','釜山',[0,4,10,12]],
+    ['Venice','베네치아','ヴェネツィア',[1,9,17,11]],
+    ['Swiss Alps','스위스 알프스','スイスアルプス',[1,5,7,15,11]],
+    ['Rio de Janeiro','리오','リオ',[2,4,8]],
+    ['Amsterdam','암스테르담','アムステルダム',[1,6,10,9]],
+    ['Prague','프라하','プラハ',[1,6,9,17]],
+    ['Hong Kong','홍콩','香港',[0,10,12,14,11]],
+    ['Hanoi','하노이','ハノイ',[0,6,9,12]],
+    ['Petra','페트라','ペトラ',[0,9,15]],
+    ['Gyeongju','경주','慶州',[0,9,13]]
+  ]
+},
+memes:{
+  n:{en:'Memes & Trends',ko:'밈 / 트렌드',ja:'ミーム/トレンド'},em:'😂',bd:'K',
+  q:[
+    ['Did it originate in Korea?','한국에서 시작됐나요?','韓国発祥ですか？'],
+    ['Is it food-related?','음식 관련인가요?','食べ物関連ですか？'],
+    ['Is it music-related?','음악 관련인가요?','音楽関連ですか？'],
+    ['Is it a social media trend?','소셜 미디어 트렌드인가요?','SNSトレンドですか？'],
+    ['Did it go viral before 2020?','2020년 이전에 유행했나요?','2020年以前に流行りましたか？'],
+    ['Did it go viral after 2020?','2020년 이후에 유행했나요?','2020年以降に流行りましたか？'],
+    ['Is it dance-related?','춤 관련인가요?','ダンス関連ですか？'],
+    ['Is it fashion or beauty?','패션/뷰티 관련인가요?','ファッション/美容ですか？'],
+    ['Is it digital/online?','디지털/온라인인가요?','デジタルですか？'],
+    ['Is it a physical activity?','오프라인/물리적 활동인가요?','身体的な活動ですか？'],
+    ['Is it a challenge?','챌린지/도전인가요?','チャレンジですか？'],
+    ['Is it a viral video?','바이럴 영상으로 유명한가요?','バイラル動画ですか？'],
+    ['Is it a game or play?','게임/놀이인가요?','ゲーム/遊びですか？'],
+    ['Is it a lifestyle trend?','라이프스타일 트렌드인가요?','ライフスタイルですか？'],
+    ['Is it entertainment?','엔터테인먼트인가요?','エンタメですか？'],
+    ['Is it a gesture or action?','제스처/동작인가요?','ジェスチャーですか？'],
+    ['Is it self-care/wellness?','셀프케어/웰빙 관련인가요?','セルフケアですか？'],
+    ['Did it go globally viral?','전 세계적으로 유행했나요?','世界的に流行りましたか？']
+  ],
+  it:[
+    ['Gangnam Style','강남스타일','カンナムスタイル',[0,2,6,11,17,4,14]],
+    ['Mukbang','먹방','モッパン',[0,1,8,3,17,13]],
+    ['Aegyo','애교','エギョ',[0,15,14]],
+    ['Hallyu Wave','한류','韓流',[0,14,17,2]],
+    ['Dalgona Coffee','달고나 커피','ダルゴナコーヒー',[0,1,3,5,11,17]],
+    ['Korean BBQ','한국 바비큐','韓国BBQ',[0,1,9,13,17]],
+    ['Noraebang','노래방','ノレバン',[0,2,9,14]],
+    ['K-Drama','K-드라마','K-ドラマ',[0,14,17,8]],
+    ['Skincare Routine','스킨케어','スキンケア',[0,7,16,17,13]],
+    ['Finger Heart','손가락 하트','指ハート',[0,15,3,17]],
+    ['Ice Bucket Challenge','아이스버킷 챌린지','アイスバケツ',[10,3,11,17,4,9]],
+    ['ASMR','ASMR','ASMR',[8,3,17,14,16]],
+    ['TikTok Dance','틱톡 댄스','TikTokダンス',[6,3,8,17,5,11]],
+    ['Wordle','워들','Wordle',[12,8,3,5,17]],
+    ['Among Us','어몽어스','Among Us',[12,8,3,5,17,14]],
+    ['Squid Game Trend','오징어게임 트렌드','イカゲーム',[0,10,12,17,5,11,14]],
+    ['Y2K Fashion','Y2K 패션','Y2Kファッション',[7,3,5,17]],
+    ['Cottagecore','코티지코어','コテージコア',[7,13,3,8,5]],
+    ['Clean Girl','클린걸','クリーンガール',[7,16,3,8,5]],
+    ['Digital Detox','디지털 디톡스','デジタルデトックス',[13,16,3,5]],
+    ['Unboxing','언박싱','開封動画',[8,3,11,14,17]],
+    ['Lo-fi Study','로파이','ローファイ',[2,8,13,17]],
+    ['Stan Culture','스탠 문화','推し文化',[2,8,3,17,14]],
+    ['Viral Ramen','바이럴 라면','バズりラーメン',[1,3,11,5]],
+    ['PC Bang','PC방','PCバン',[0,12,9,8]],
+    ['Ddakji','딱지','メンコ',[0,12,9,4]],
+    ['Manhwa','만화','マンファ',[0,14,8]],
+    ['Hanbok','한복','韓服',[0,7,4]],
+    ['Street Food Tour','길거리 음식 투어','屋台ツアー',[0,1,9]],
+    ['Bottle Cap Challenge','병뚜껑 챌린지','ボトルキャップ',[10,3,11,17,9]]
+  ]
+}
+};
 
-function setLang(l) {
-  lang = l;
-  localStorage.setItem('tq_lang', l);
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === l.toUpperCase()));
-  document.getElementById('banner-text').innerHTML = t().banner;
-  render();
+/* ═══════════════════════════════════════════
+   State
+   ═══════════════════════════════════════════ */
+let lang=localStorage.getItem('tq_l')||'en';
+const t=k=>L[lang]?.[k]||L.en[k]||k;
+
+let S={
+  screen:'start',
+  cat:null,
+  candidates:[],
+  asked:[],
+  used:new Set(),
+  guess:null,
+  finalWin:false,
+  games:+(localStorage.getItem('tq_g')||0),
+  wins:+(localStorage.getItem('tq_w')||0),
+  streak:+(localStorage.getItem('tq_s')||0),
+  best:+(localStorage.getItem('tq_b')||99)
+};
+
+/* ═══════════════════════════════════════════
+   AI Engine — Shannon Entropy Question Selection
+   ═══════════════════════════════════════════ */
+function entropy(p){
+  if(p<=0||p>=1)return 0;
+  return -(p*Math.log2(p)+(1-p)*Math.log2(1-p));
 }
 
-const CATEGORIES = {
-  kfood: {name:{en:'K-Food',ko:'한국 음식',ja:'韓国料理'},emoji:'🍜',badge:'K',items:['Kimchi Jjigae','Tteokbokki','Korean Fried Chicken','Bibimbap','Samgyeopsal','Japchae','Bulgogi','Gimbap','Doenjang Jjigae','Jajangmyeon','Sundubu Jjigae','Dakgalbi','Bingsu','Hotteok','Mandu','Naengmyeon','Galbi','Ramyeon','Kimbap','Soju']},
-  kpop: {name:{en:'K-Pop & Stars',ko:'K-Pop/스타',ja:'K-Pop/スター'},emoji:'⭐',badge:'K',items:['BTS','BLACKPINK','NewJeans','Stray Kids','TWICE','Son Heungmin','IU','Bong Joonho','Squid Game','Lee Minho','Kim Yuna','Park Jisung','Yoo Jaesuk','SEVENTEEN','aespa','(G)I-DLE','EXO','Red Velvet','Rain','PSY']},
-  animals: {name:{en:'Animals',ko:'동물',ja:'動物'},emoji:'🐾',items:['Dog','Cat','Tiger','Elephant','Eagle','Dolphin','Penguin','Bear','Fox','Rabbit','Horse','Lion','Shark','Whale','Snake','Turtle','Parrot','Panda','Wolf','Monkey']},
-  tech: {name:{en:'Tech',ko:'기술',ja:'テック'},emoji:'💻',items:['iPhone','Tesla','ChatGPT','Bitcoin','Instagram','YouTube','Netflix','Minecraft','Nintendo Switch','AirPods','PlayStation','TikTok','SpaceX','Google','Amazon','Spotify','Uber','Zoom','Discord','Steam']},
-  places: {name:{en:'World Places',ko:'세계 장소',ja:'世界の場所'},emoji:'🗺️',items:['Seoul','Tokyo','New York','Paris','London','Jeju Island','Hawaii','Rome','Sydney','Bangkok','Dubai','Barcelona','Singapore','Prague','Kyoto','Bali','Iceland','Machu Picchu','Santorini','Maldives']},
-  memes: {name:{en:'Memes & Trends',ko:'밈/트렌드',ja:'ミーム'},emoji:'😂',badge:'K',items:['Gangnam Style','Mukbang','Aegyo','Hallyu Wave','Dalgona Coffee','Korean BBQ','Soju Bomb','Noraebang','Hanbok','K-Drama','Manhwa','PC Bang','Skincare Routine','Street Food','Convenience Store','Rooftop Room','Soju Green Bottle','Heart Sign','Finger Heart','Ddakji']}
-};
+function bestQuestion(){
+  const cat=DB[S.cat];
+  let best=null,bestH=-1;
+  for(let i=0;i<cat.q.length;i++){
+    if(S.used.has(i))continue;
+    let yes=0;
+    for(const c of S.candidates){
+      if(c[3].includes(i))yes++;
+    }
+    const h=entropy(yes/S.candidates.length);
+    if(h>bestH){bestH=h;best=i;}
+  }
+  return best;
+}
 
-const QUESTIONS = [
-  {q:{en:'Is it alive?',ko:'살아있는 것인가요?',ja:'生きているものですか？'},filter:(c)=>c==='animals'},
-  {q:{en:'Can you eat or drink it?',ko:'먹거나 마실 수 있나요?',ja:'食べたり飲んだりできますか？'},filter:(c)=>c==='kfood'},
-  {q:{en:'Is it a physical object you can touch?',ko:'만질 수 있는 물체인가요?',ja:'触れる物体ですか？'},filter:(c)=>['animals','kfood','tech'].includes(c)},
-  {q:{en:'Is it a place?',ko:'장소인가요?',ja:'場所ですか？'},filter:(c)=>c==='places'},
-  {q:{en:'Is it a person or group?',ko:'사람이나 그룹인가요?',ja:'人またはグループですか？'},filter:(c)=>c==='kpop'},
-  {q:{en:'Is it related to Korean culture?',ko:'한국 문화와 관련이 있나요?',ja:'韓国文化に関係ありますか？'},filter:(c)=>['kfood','kpop','memes'].includes(c)},
-  {q:{en:'Is it a digital/tech product?',ko:'디지털/기술 제품인가요?',ja:'デジタル/テック製品ですか？'},filter:(c)=>c==='tech'},
-  {q:{en:'Is it a trend or cultural phenomenon?',ko:'트렌드나 문화 현상인가요?',ja:'トレンドや文化現象ですか？'},filter:(c)=>c==='memes'},
-  {q:{en:'Can you experience it at home?',ko:'집에서 경험할 수 있나요?',ja:'家で楽しめますか？'},filter:(c,i)=>{const h=['Kimchi Jjigae','Bibimbap','Ramyeon','iPhone','ChatGPT','Netflix','Minecraft','YouTube','TikTok','Discord','Steam','Spotify','Dog','Cat','Rabbit','K-Drama','Skincare Routine','Mukbang','Manhwa','Soju'];return h.includes(i)}},
-  {q:{en:'Is it spicy or hot?',ko:'매운 것인가요?',ja:'辛いですか？'},filter:(c,i)=>['Tteokbokki','Kimchi Jjigae','Dakgalbi','Sundubu Jjigae'].includes(i)},
-  {q:{en:'Is it music-related?',ko:'음악과 관련이 있나요?',ja:'音楽に関係ありますか？'},filter:(c,i)=>['BTS','BLACKPINK','NewJeans','Stray Kids','TWICE','IU','SEVENTEEN','aespa','(G)I-DLE','EXO','Red Velvet','Rain','PSY','Noraebang','Gangnam Style','Spotify'].includes(i)},
-  {q:{en:'Did it become famous after 2020?',ko:'2020년 이후에 유명해졌나요?',ja:'2020年以降に有名になりましたか？'},filter:(c,i)=>['NewJeans','Squid Game','ChatGPT','aespa','Dalgona Coffee','(G)I-DLE','Stray Kids'].includes(i)},
-  {q:{en:'Is it in Asia?',ko:'아시아에 있나요?',ja:'アジアにありますか？'},filter:(c,i)=>['Seoul','Tokyo','Jeju Island','Bangkok','Singapore','Kyoto','Bali'].includes(i)},
-  {q:{en:'Can it swim or live in water?',ko:'물에서 살거나 수영할 수 있나요?',ja:'水中で泳げますか？'},filter:(c,i)=>['Dolphin','Shark','Whale','Turtle'].includes(i)},
-  {q:{en:'Is it a mobile app or platform?',ko:'모바일 앱이나 플랫폼인가요?',ja:'モバイルアプリですか？'},filter:(c,i)=>['Instagram','YouTube','TikTok','Spotify','Uber','Zoom','Discord'].includes(i)},
-  {q:{en:'Is it a street food?',ko:'길거리 음식인가요?',ja:'屋台料理ですか？'},filter:(c,i)=>['Tteokbokki','Hotteok','Mandu','Street Food'].includes(i)},
-  {q:{en:'Is it a sport or athlete?',ko:'스포츠 관련인가요?',ja:'スポーツ関連ですか？'},filter:(c,i)=>['Son Heungmin','Kim Yuna','Park Jisung'].includes(i)},
-  {q:{en:'Is it a game or gaming-related?',ko:'게임이나 게이밍 관련인가요?',ja:'ゲーム関連ですか？'},filter:(c,i)=>['Minecraft','Nintendo Switch','PlayStation','Steam','PC Bang','Squid Game','Ddakji'].includes(i)},
-  {q:{en:'Is it something you wear?',ko:'입거나 착용하는 것인가요?',ja:'身に着けるものですか？'},filter:(c,i)=>['Hanbok','AirPods'].includes(i)},
-  {q:{en:'Is it an alcoholic drink?',ko:'술인가요?',ja:'お酒ですか？'},filter:(c,i)=>['Soju','Soju Bomb','Soju Green Bottle'].includes(i)}
-];
+function confidence(){
+  const n=S.candidates.length;
+  if(n<=0)return 100;
+  if(n===1)return 100;
+  const total=DB[S.cat].it.length;
+  return Math.round(Math.max(5,Math.min(99,(1-n/total)*100)));
+}
 
-let state={screen:'start',category:null,candidates:[],asked:[],usedQuestions:new Set(),totalGames:+(localStorage.getItem('tq_games')||0),wins:+(localStorage.getItem('tq_wins')||0)};
+function confClass(){
+  const c=confidence();
+  if(c>=70)return'conf-high';
+  if(c>=35)return'conf-mid';
+  return'conf-low';
+}
+
+/* ═══════════════════════════════════════════
+   Name helper — get item name in current lang
+   ═══════════════════════════════════════════ */
+function itemName(item){
+  if(lang==='ko'&&item[1])return item[1];
+  if(lang==='ja'&&item[2])return item[2];
+  return item[0];
+}
+function qText(qi){
+  const q=DB[S.cat].q[qi];
+  if(lang==='ko'&&q[1])return q[1];
+  if(lang==='ja'&&q[2])return q[2];
+  return q[0];
+}
+
+/* ═══════════════════════════════════════════
+   Confetti
+   ═══════════════════════════════════════════ */
+function confetti(){
+  const colors=['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#ff6bff','#ff9f43'];
+  const emojis=['🎉','✨','🌟','🎊','💫'];
+  for(let i=0;i<30;i++){
+    const el=document.createElement('div');
+    el.className='confetti';
+    el.textContent=i<5?emojis[i]:['●','■','▲'][i%3];
+    el.style.left=Math.random()*100+'vw';
+    el.style.top='-20px';
+    el.style.color=colors[i%colors.length];
+    el.style.animationDuration=(1.5+Math.random()*1.5)+'s';
+    el.style.animationDelay=(Math.random()*0.5)+'s';
+    el.style.fontSize=(0.6+Math.random()*1)+'rem';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),3500);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Render
+   ═══════════════════════════════════════════ */
+const $=id=>document.getElementById(id);
+const app=()=>$('app');
 
 function render(){
-  const app=document.getElementById('app');
-  const T=t();
-  if(state.screen==='start'){
-    app.innerHTML=`
-      <h1>${T.title}</h1>
-      <p class="subtitle">${T.subtitle}</p>
-      <div class="card">
-        <div class="question-text" style="text-align:center;margin-bottom:16px">${T.pick_category}</div>
-        <div class="categories">
-          ${Object.entries(CATEGORIES).map(([k,v])=>`<div class="cat-btn" onclick="startGame('${k}')"><span class="cat-emoji">${v.emoji}</span>${v.name[lang]||v.name.en}${v.badge?`<span class="k-badge">${v.badge}</span>`:''}</div>`).join('')}
-        </div>
-      </div>
-      ${state.totalGames>0?`<div class="score">${T.record}: ${state.wins}${T.w} ${state.totalGames-state.wins}${T.l} (${state.totalGames} ${T.games})</div>`:''}`;
-  } else if(state.screen==='play'){
-    const progress=(state.asked.length/20)*100;
-    const currentQ=getNextQuestion();
-    if(!currentQ||state.asked.length>=20){makeGuess();return}
-    app.innerHTML=`
-      <h1>${T.title}</h1>
-      <div class="progress"><div class="progress-bar" style="width:${progress}%"></div></div>
-      <div class="card">
-        <div class="question-num">${T.question} ${state.asked.length+1} ${T.of} 20 · ${state.candidates.length} ${T.candidates}</div>
-        <div class="question-text">${currentQ.q[lang]||currentQ.q.en}</div>
-        <div class="btn-row">
-          <button class="btn btn-yes" onclick="answer('yes')">${T.yes}</button>
-          <button class="btn btn-maybe" onclick="answer('maybe')">${T.maybe}</button>
-          <button class="btn btn-no" onclick="answer('no')">${T.no}</button>
-        </div>
-      </div>
-      ${state.asked.length>0?`<div class="card"><div class="question-num">${T.prev_questions}</div><div class="history">${state.asked.map(a=>`<div class="history-item"><span class="history-q">${a.q}</span><span class="history-a">${a.a==='yes'?T.yes:a.a==='no'?T.no:T.maybe}</span></div>`).join('')}</div></div>`:''}`;
-  } else if(state.screen==='result'){
-    app.innerHTML=`
-      <h1>${T.title}</h1>
-      <div class="card result">
-        <div class="result-emoji">🎯</div>
-        <div class="result-answer">${state.guess}</div>
-        <div class="result-sub">${T.guessed_in.replace('{n}',state.asked.length)}</div>
-        <div class="btn-row">
-          <button class="btn btn-yes" onclick="resultFeedback(true)">${T.correct_q}</button>
-          <button class="btn btn-no" onclick="resultFeedback(false)">${T.wrong_q}</button>
-        </div>
-      </div>`;
-  } else if(state.screen==='end'){
-    app.innerHTML=`
-      <h1>${T.title}</h1>
-      <div class="card result">
-        <div class="result-emoji">${state.finalWin?'🏆':'😅'}</div>
-        <div class="result-answer">${state.finalWin?T.ai_wins:T.next_time}</div>
-        <div class="result-sub">${T.record}: ${state.wins}${T.w} ${state.totalGames-state.wins}${T.l}</div>
-        <button class="btn btn-start" onclick="resetGame()">${T.play_again}</button>
-        <button class="btn share-btn" onclick="shareResult()" style="margin-top:10px;width:100%;padding:14px">${T.share} 📤</button>
-      </div>`;
-  }
+  if(S.screen==='start')renderStart();
+  else if(S.screen==='thinking')renderThinking();
+  else if(S.screen==='play')renderPlay();
+  else if(S.screen==='guess')renderGuess();
+  else if(S.screen==='result')renderResult();
+  else if(S.screen==='end')renderEnd();
 }
 
+function renderStart(){
+  const cats=Object.entries(DB);
+  app().innerHTML=`
+    <h1>${t('title')}</h1>
+    <p class="sub">${t('sub')}</p>
+    <div class="card">
+      <div class="q-text" style="text-align:center;margin-bottom:14px">${t('pick')}</div>
+      <div class="cats">
+        ${cats.map(([k,v])=>`<div class="cat" onclick="startGame('${k}')"><span class="cat-em">${v.em}</span>${v.n[lang]||v.n.en}${v.bd?`<span class="k-badge">${v.bd}</span>`:''}</div>`).join('')}
+      </div>
+    </div>
+    ${S.games>0?`
+    <div class="stats-row">
+      <div style="text-align:center"><span class="val">${S.wins}${t('w')} ${S.games-S.wins}${t('l')}</span>${t('record')}</div>
+      <div style="text-align:center"><span class="val">${S.streak}🔥</span>${t('streak')}</div>
+      ${S.best<99?`<div style="text-align:center"><span class="val">${S.best}Q</span>${t('best')}</div>`:''}
+    </div>`:''}`;
+}
+
+function renderThinking(){
+  const conf=confidence();
+  app().innerHTML=`
+    <h1>${t('title')}</h1>
+    <div class="progress"><div class="progress-bar" style="width:${(S.asked.length/20)*100}%"></div></div>
+    <div class="card thinking">
+      <div style="font-size:2rem;margin-bottom:12px">🧠</div>
+      <div class="think-dots"><span></span><span></span><span></span></div>
+      <div class="think-label">${S.candidates.length>3?t('thinking'):t('narrow')}</div>
+    </div>
+    <div class="card">
+      <div class="confidence">
+        <div class="label">${t('confidence')}: ${conf}%</div>
+        <div class="conf-bar"><div class="conf-fill ${confClass()}" style="width:${conf}%"></div></div>
+      </div>
+    </div>`;
+  setTimeout(()=>{S.screen='play';render();},600+Math.random()*400);
+}
+
+function renderPlay(){
+  const qi=bestQuestion();
+  if(qi===null||S.asked.length>=20){makeGuess();return;}
+  S._currentQ=qi;
+  const conf=confidence();
+  app().innerHTML=`
+    <h1>${t('title')}</h1>
+    <div class="progress"><div class="progress-bar" style="width:${(S.asked.length/20)*100}%"></div></div>
+    <div class="card">
+      <div class="label">${t('q')} ${S.asked.length+1} ${t('of')} 20 · ${S.candidates.length} ${t('cand')}</div>
+      <div class="q-text">${qText(qi)}</div>
+      <div class="btn-row">
+        <button class="btn btn-y" onclick="answer('yes')">${t('yes')}</button>
+        <button class="btn btn-m" onclick="answer('maybe')">${t('maybe')}</button>
+        <button class="btn btn-n" onclick="answer('no')">${t('no')}</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="confidence">
+        <div class="label">${t('confidence')}: ${conf}%</div>
+        <div class="conf-bar"><div class="conf-fill ${confClass()}" style="width:${conf}%"></div></div>
+      </div>
+    </div>
+    ${S.asked.length>0?`
+    <div class="card">
+      <div class="label">${t('prev')}</div>
+      <div class="history">
+        ${S.asked.map(a=>`<div class="h-item"><span class="h-q">${qText(a.qi)}</span><span class="h-a ${a.a}">${a.a==='yes'?t('yes'):a.a==='no'?t('no'):t('maybe')}</span></div>`).join('')}
+      </div>
+    </div>`:''}`;
+}
+
+function renderGuess(){
+  app().innerHTML=`
+    <h1>${t('title')}</h1>
+    <div class="card result">
+      <div class="result-emoji">🎯</div>
+      <div class="label">${t('guess_q')}</div>
+      <div class="result-answer">${itemName(S.guess)}</div>
+      <div class="result-sub">${t('guessed_in').replace('{n}',S.asked.length)}</div>
+      <div class="btn-row">
+        <button class="btn btn-y" onclick="resultFeedback(true)">${t('correct')}</button>
+        <button class="btn btn-n" onclick="resultFeedback(false)">${t('wrong')}</button>
+      </div>
+    </div>`;
+}
+
+function renderEnd(){
+  const w=S.finalWin;
+  app().innerHTML=`
+    <h1>${t('title')}</h1>
+    <div class="card result">
+      <div class="result-emoji">${w?'🏆':'😅'}</div>
+      <div class="result-answer">${w?t('ai_wins'):t('ai_lose')}</div>
+      <div class="result-sub">${w?t('guessed_in').replace('{n}',S.asked.length):t('failed')}</div>
+      ${w&&S.streak>1?`<div class="streak-badge">${S.streak}🔥 ${t('streak')}</div>`:''}
+      <div class="stats-row" style="margin-top:20px">
+        <div style="text-align:center"><span class="val">${S.wins}${t('w')} ${S.games-S.wins}${t('l')}</span>${t('record')}</div>
+        <div style="text-align:center"><span class="val">${S.streak}🔥</span>${t('streak')}</div>
+        ${S.best<99?`<div style="text-align:center"><span class="val">${S.best}Q</span>${t('best')}</div>`:''}
+      </div>
+      <button class="btn btn-primary" onclick="resetGame()">${t('again')}</button>
+      <button class="btn btn-share" onclick="shareResult()">${t('share')} 📤</button>
+    </div>
+    ${S.asked.length>0?`
+    <div class="card">
+      <div class="label">${t('prev')}</div>
+      <div class="history">
+        ${S.asked.map(a=>`<div class="h-item"><span class="h-q">${qText(a.qi)}</span><span class="h-a ${a.a}">${a.a==='yes'?t('yes'):a.a==='no'?t('no'):t('maybe')}</span></div>`).join('')}
+      </div>
+    </div>`:''}`;
+}
+
+/* ═══════════════════════════════════════════
+   Game Logic
+   ═══════════════════════════════════════════ */
 function startGame(cat){
-  state={...state,screen:'play',category:cat,candidates:[...CATEGORIES[cat].items],asked:[],usedQuestions:new Set()};
+  S.cat=cat;
+  S.candidates=[...DB[cat].it];
+  S.asked=[];
+  S.used=new Set();
+  S.guess=null;
+  S.screen='thinking';
+  ga('game_start',{category:cat,items:S.candidates.length});
   render();
-}
-
-function getNextQuestion(){
-  for(let i=0;i<QUESTIONS.length;i++){
-    if(state.usedQuestions.has(i))continue;
-    const q=QUESTIONS[i];
-    const yesCount=state.candidates.filter(item=>q.filter(state.category,item)).length;
-    const ratio=yesCount/state.candidates.length;
-    if(ratio>0.1&&ratio<0.9)return{...q,idx:i};
-  }
-  return null;
 }
 
 function answer(a){
-  const q=getNextQuestion();
-  if(!q)return makeGuess();
-  state.usedQuestions.add(q.idx);
-  state.asked.push({q:q.q[lang]||q.q.en,a});
-  if(a==='yes')state.candidates=state.candidates.filter(i=>QUESTIONS[q.idx].filter(state.category,i));
-  else if(a==='no')state.candidates=state.candidates.filter(i=>!QUESTIONS[q.idx].filter(state.category,i));
-  if(state.candidates.length<=1||state.asked.length>=20)return makeGuess();
-  render();
+  const qi=S._currentQ;
+  if(qi==null)return;
+  S.used.add(qi);
+  S.asked.push({qi,a});
+
+  if(a==='yes'){
+    S.candidates=S.candidates.filter(c=>c[3].includes(qi));
+  }else if(a==='no'){
+    S.candidates=S.candidates.filter(c=>!c[3].includes(qi));
+  }
+  // 'maybe' — don't filter, just skip
+
+  ga('answer',{question_num:S.asked.length,answer:a,remaining:S.candidates.length});
+
+  if(S.candidates.length<=1||S.asked.length>=20){
+    makeGuess();
+  }else{
+    S.screen='thinking';
+    render();
+  }
 }
 
 function makeGuess(){
-  state.guess=state.candidates.length>0?state.candidates[Math.floor(Math.random()*state.candidates.length)]:'🤷';
-  state.screen='result';
+  if(S.candidates.length>0){
+    // Pick the most likely candidate (first remaining)
+    S.guess=S.candidates[0];
+  }else{
+    // Fallback: pick random from original set
+    const items=DB[S.cat].it;
+    S.guess=items[Math.floor(Math.random()*items.length)];
+  }
+  S.screen='guess';
+  ga('guess',{item:S.guess[0],questions_used:S.asked.length,candidates_left:S.candidates.length});
   render();
 }
 
 function resultFeedback(correct){
-  state.totalGames++;
-  state.finalWin=correct;
-  if(correct)state.wins++;
-  localStorage.setItem('tq_games',state.totalGames);
-  localStorage.setItem('tq_wins',state.wins);
-  state.screen='end';
+  S.games++;
+  S.finalWin=correct;
+  if(correct){
+    S.wins++;
+    S.streak++;
+    if(S.asked.length<S.best)S.best=S.asked.length;
+    confetti();
+  }else{
+    S.streak=0;
+  }
+  localStorage.setItem('tq_g',S.games);
+  localStorage.setItem('tq_w',S.wins);
+  localStorage.setItem('tq_s',S.streak);
+  localStorage.setItem('tq_b',S.best);
+  ga('game_end',{result:correct?'win':'lose',questions:S.asked.length,streak:S.streak});
+  S.screen='end';
+  render();
+}
+
+function resetGame(){
+  S.screen='start';
   render();
 }
 
 function shareResult(){
-  const text=`AI 20 Questions — ${state.finalWin?'AI guessed it!':'I beat the AI!'} 🧠\nRecord: ${state.wins}W ${state.totalGames-state.wins}L\nTry it 👉`;
-  if(navigator.share)navigator.share({title:'AI 20 Questions',text,url:location.href}).catch(()=>{});
-  else{navigator.clipboard.writeText(text+' '+location.href).then(()=>alert('Link copied!'))}
+  const w=S.finalWin;
+  const cat=DB[S.cat];
+  const emoji=w?'🏆':'😅';
+  const bars='🟩'.repeat(Math.min(S.asked.length,20))+'⬛'.repeat(Math.max(0,20-S.asked.length));
+  const text=`${emoji} AI 20 Questions — ${w?itemName(S.guess)+' in '+S.asked.length+'Q!':'AI couldn\'t get it!'}\n${bars}\n${t('record')}: ${S.wins}${t('w')} ${S.games-S.wins}${t('l')} | ${t('streak')}: ${S.streak}🔥\n`;
+  const url='https://pure-flon.com/games/twenty-questions/';
+  if(navigator.share){
+    navigator.share({title:'AI 20 Questions',text,url}).catch(()=>{});
+  }else{
+    navigator.clipboard.writeText(text+url).then(()=>{
+      const btn=document.querySelector('.btn-share');
+      if(btn){const orig=btn.innerHTML;btn.innerHTML=t('copied')+' ✓';setTimeout(()=>btn.innerHTML=orig,1500);}
+    }).catch(()=>{});
+  }
+  ga('share',{method:navigator.share?'native':'clipboard'});
 }
 
-function resetGame(){state.screen='start';render()}
+/* ═══════════════════════════════════════════
+   Language
+   ═══════════════════════════════════════════ */
+function setLang(l){
+  lang=l;
+  localStorage.setItem('tq_l',l);
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===l.toUpperCase()));
+  $('banner-text').innerHTML=t('banner');
+  render();
+}
 
-// Init
+/* ═══════════════════════════════════════════
+   Init
+   ═══════════════════════════════════════════ */
 document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===lang.toUpperCase()));
-document.getElementById('banner-text').innerHTML=t().banner;
+$('banner-text').innerHTML=t('banner');
 render();
 </script>
 </body>

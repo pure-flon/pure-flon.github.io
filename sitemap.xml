@@ -232,6 +232,17 @@
         <priority>0.2</priority>
     </url>
 
+    <!-- Games Section -->
+    <url>
+        <loc>https://pure-flon.com/games/twenty-questions/</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/games/twenty-questions/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/games/twenty-questions/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/games/twenty-questions/"/>
+    </url>
+
     <!-- 블로그/뉴스 섹션 (향후 추가) -->
     <url>
         <loc>https://pure-flon.com/news/</loc>
