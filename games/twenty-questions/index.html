@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 20 Questions | I'll guess what you're thinking</title>
+<meta name="description" content="AI guesses what you're thinking in 20 questions. Features Korean culture, K-food, K-pop and more. Play now!">
+<meta property="og:title" content="AI 20 Questions — Can AI read your mind?">
+<meta property="og:description" content="Think of something. AI will guess it in 20 questions. Featuring K-culture!">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.container{max-width:480px;width:100%;padding:20px;margin:0 auto}
+h1{font-size:1.8rem;text-align:center;margin:32px 0 8px;letter-spacing:-0.02em;color:#fff}
+.subtitle{text-align:center;color:#888;font-size:0.9rem;margin-bottom:32px}
+.card{background:#161616;border:1px solid #222;border-radius:16px;padding:28px;margin-bottom:16px}
+.question-num{font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
+.question-text{font-size:1.15rem;line-height:1.5;color:#fff;margin-bottom:24px}
+.btn-row{display:flex;gap:10px}
+.btn{flex:1;padding:14px;border:1px solid #333;border-radius:12px;background:#1a1a1a;color:#fff;font-size:1rem;cursor:pointer;transition:all 0.15s;text-align:center;font-weight:500}
+.btn:hover{background:#252525;border-color:#444}
+.btn:active{transform:scale(0.97)}
+.btn-yes{border-color:#2d5a2d;color:#6bdf6b}.btn-yes:hover{background:#1a3a1a;border-color:#3d7a3d}
+.btn-no{border-color:#5a2d2d;color:#df6b6b}.btn-no:hover{background:#3a1a1a;border-color:#7a3d3d}
+.btn-maybe{border-color:#5a5a2d;color:#dfdf6b}.btn-maybe:hover{background:#3a3a1a}
+.btn-start{background:#1a1aff;border-color:#3333ff;font-size:1.1rem;padding:16px;border-radius:14px;color:#fff;width:100%;margin-top:8px}
+.btn-start:hover{background:#2525ff}
+.progress{height:3px;background:#222;border-radius:2px;margin-bottom:24px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,#4444ff,#8844ff);border-radius:2px;transition:width 0.4s ease}
+.result{text-align:center;padding:40px 20px}
+.result-emoji{font-size:3rem;margin-bottom:16px}
+.result-answer{font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px}
+.result-sub{color:#888;margin-bottom:24px}
+.history{margin-top:16px;font-size:0.85rem;color:#666}
+.history-item{padding:6px 0;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between}
+.history-q{color:#aaa;flex:1}.history-a{color:#888;margin-left:8px;min-width:40px;text-align:right}
+.categories{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.cat-btn{padding:16px 12px;border:1px solid #282828;border-radius:12px;background:#141414;color:#ccc;cursor:pointer;text-align:center;transition:all 0.15s;font-size:0.95rem}
+.cat-btn:hover{background:#1e1e1e;border-color:#444;color:#fff}
+.cat-btn .cat-emoji{font-size:1.5rem;display:block;margin-bottom:6px}
+.score{text-align:center;margin:20px 0;font-size:0.85rem;color:#555}
+.share-btn{background:#1a1a2e;border-color:#2a2a4e;color:#aab}
+.share-btn:hover{background:#252540}
+.ai-banner{margin-top:32px;padding:20px;border:1px solid #1a1a2e;border-radius:14px;background:#0d0d1a;text-align:center}
+.ai-banner p{font-size:0.85rem;color:#888;line-height:1.6;margin-bottom:12px}
+.ai-banner .ai-tag{display:inline-block;font-size:0.7rem;background:#1a1a3a;color:#88f;padding:3px 10px;border-radius:20px;margin-bottom:10px;letter-spacing:0.05em}
+.ai-banner .sponsor-links{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.ai-banner .sponsor-links a{font-size:0.8rem;color:#aab;text-decoration:none;padding:8px 14px;border:1px solid #252540;border-radius:10px;transition:all 0.15s}
+.ai-banner .sponsor-links a:hover{background:#1a1a2e;border-color:#4444aa;color:#fff}
+.lang-toggle{position:fixed;top:12px;right:12px;display:flex;gap:4px;z-index:100}
+.lang-btn{padding:6px 10px;border:1px solid #333;border-radius:8px;background:#1a1a1a;color:#888;font-size:0.75rem;cursor:pointer}
+.lang-btn.active{border-color:#4444aa;color:#fff;background:#1a1a3a}
+.k-badge{display:inline-block;font-size:0.6rem;background:#ff2d55;color:#fff;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
+@media(max-width:360px){.container{padding:12px}h1{font-size:1.5rem}.question-text{font-size:1rem}}
+</style>
+</head>
+<body>
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('ko')">KO</button>
+  <button class="lang-btn" onclick="setLang('ja')">JA</button>
+</div>
+<div class="container" id="app"></div>
+<div class="container">
+  <div class="ai-banner">
+    <span class="ai-tag">100% MADE BY AI</span>
+    <p id="banner-text">This game was entirely created by AI — code, design, and content.<br>If you enjoyed it, support the AI developer!</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" target="_blank">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" target="_blank">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" target="_blank">PayPal</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const LANG = {
+  en: {
+    title: 'AI 20 Questions',
+    subtitle: 'Think of something. I\'ll guess it in 20 questions.',
+    pick_category: 'Pick a category',
+    question: 'Question',
+    of: 'of',
+    candidates: 'candidates',
+    yes: 'Yes', no: 'No', maybe: 'Not sure',
+    guessed_in: 'Guessed in {n} questions!',
+    wrong: 'Couldn\'t get it this time...',
+    correct_q: 'That\'s right!', wrong_q: 'Nope',
+    ai_wins: 'AI Wins!', next_time: 'I\'ll get it next time!',
+    record: 'Record', w: 'W', l: 'L', games: 'games',
+    play_again: 'Play Again', share: 'Share',
+    prev_questions: 'Previous questions',
+    banner: 'This game was entirely created by AI — code, design, and content.<br>If you enjoyed it, support the AI developer!'
+  },
+  ko: {
+    title: 'AI 스무고개',
+    subtitle: '무언가를 떠올리세요. 20번의 질문으로 맞춰볼게요.',
+    pick_category: '카테고리를 선택하세요',
+    question: '질문',
+    of: '/',
+    candidates: '개 후보',
+    yes: '네', no: '아니요', maybe: '글쎄요',
+    guessed_in: '{n}번 만에 맞췄어요!',
+    wrong: '이번엔 못 맞췄네요...',
+    correct_q: '맞아요!', wrong_q: '아닌데요',
+    ai_wins: 'AI 승리!', next_time: '다음엔 맞출게요!',
+    record: '전적', w: '승', l: '패', games: '게임',
+    play_again: '다시 하기', share: '공유하기',
+    prev_questions: '지난 질문',
+    banner: '이 게임은 AI가 코드부터 디자인까지 자동으로 만들었습니다.<br>재밌으셨다면 후원해주세요!'
+  },
+  ja: {
+    title: 'AI 20の質問',
+    subtitle: '何かを思い浮かべてください。20の質問で当てます。',
+    pick_category: 'カテゴリを選択',
+    question: '質問',
+    of: '/',
+    candidates: '候補',
+    yes: 'はい', no: 'いいえ', maybe: 'わからない',
+    guessed_in: '{n}問で当てました！',
+    wrong: '今回は当てられませんでした...',
+    correct_q: '正解！', wrong_q: '違います',
+    ai_wins: 'AI勝利！', next_time: '次は当てます！',
+    record: '戦績', w: '勝', l: '敗', games: 'ゲーム',
+    play_again: 'もう一度', share: 'シェア',
+    prev_questions: '過去の質問',
+    banner: 'このゲームはAIがコードからデザインまで自動で作りました。<br>楽しんでいただけたら、開発者を応援してください！'
+  }
+};
+
+let lang = localStorage.getItem('tq_lang') || 'en';
+const t = () => LANG[lang];
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('tq_lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === l.toUpperCase()));
+  document.getElementById('banner-text').innerHTML = t().banner;
+  render();
+}
+
+const CATEGORIES = {
+  kfood: {name:{en:'K-Food',ko:'한국 음식',ja:'韓国料理'},emoji:'🍜',badge:'K',items:['Kimchi Jjigae','Tteokbokki','Korean Fried Chicken','Bibimbap','Samgyeopsal','Japchae','Bulgogi','Gimbap','Doenjang Jjigae','Jajangmyeon','Sundubu Jjigae','Dakgalbi','Bingsu','Hotteok','Mandu','Naengmyeon','Galbi','Ramyeon','Kimbap','Soju']},
+  kpop: {name:{en:'K-Pop & Stars',ko:'K-Pop/스타',ja:'K-Pop/スター'},emoji:'⭐',badge:'K',items:['BTS','BLACKPINK','NewJeans','Stray Kids','TWICE','Son Heungmin','IU','Bong Joonho','Squid Game','Lee Minho','Kim Yuna','Park Jisung','Yoo Jaesuk','SEVENTEEN','aespa','(G)I-DLE','EXO','Red Velvet','Rain','PSY']},
+  animals: {name:{en:'Animals',ko:'동물',ja:'動物'},emoji:'🐾',items:['Dog','Cat','Tiger','Elephant','Eagle','Dolphin','Penguin','Bear','Fox','Rabbit','Horse','Lion','Shark','Whale','Snake','Turtle','Parrot','Panda','Wolf','Monkey']},
+  tech: {name:{en:'Tech',ko:'기술',ja:'テック'},emoji:'💻',items:['iPhone','Tesla','ChatGPT','Bitcoin','Instagram','YouTube','Netflix','Minecraft','Nintendo Switch','AirPods','PlayStation','TikTok','SpaceX','Google','Amazon','Spotify','Uber','Zoom','Discord','Steam']},
+  places: {name:{en:'World Places',ko:'세계 장소',ja:'世界の場所'},emoji:'🗺️',items:['Seoul','Tokyo','New York','Paris','London','Jeju Island','Hawaii','Rome','Sydney','Bangkok','Dubai','Barcelona','Singapore','Prague','Kyoto','Bali','Iceland','Machu Picchu','Santorini','Maldives']},
+  memes: {name:{en:'Memes & Trends',ko:'밈/트렌드',ja:'ミーム'},emoji:'😂',badge:'K',items:['Gangnam Style','Mukbang','Aegyo','Hallyu Wave','Dalgona Coffee','Korean BBQ','Soju Bomb','Noraebang','Hanbok','K-Drama','Manhwa','PC Bang','Skincare Routine','Street Food','Convenience Store','Rooftop Room','Soju Green Bottle','Heart Sign','Finger Heart','Ddakji']}
+};
+
+const QUESTIONS = [
+  {q:{en:'Is it alive?',ko:'살아있는 것인가요?',ja:'生きているものですか？'},filter:(c)=>c==='animals'},
+  {q:{en:'Can you eat or drink it?',ko:'먹거나 마실 수 있나요?',ja:'食べたり飲んだりできますか？'},filter:(c)=>c==='kfood'},
+  {q:{en:'Is it a physical object you can touch?',ko:'만질 수 있는 물체인가요?',ja:'触れる物体ですか？'},filter:(c)=>['animals','kfood','tech'].includes(c)},
+  {q:{en:'Is it a place?',ko:'장소인가요?',ja:'場所ですか？'},filter:(c)=>c==='places'},
+  {q:{en:'Is it a person or group?',ko:'사람이나 그룹인가요?',ja:'人またはグループですか？'},filter:(c)=>c==='kpop'},
+  {q:{en:'Is it related to Korean culture?',ko:'한국 문화와 관련이 있나요?',ja:'韓国文化に関係ありますか？'},filter:(c)=>['kfood','kpop','memes'].includes(c)},
+  {q:{en:'Is it a digital/tech product?',ko:'디지털/기술 제품인가요?',ja:'デジタル/テック製品ですか？'},filter:(c)=>c==='tech'},
+  {q:{en:'Is it a trend or cultural phenomenon?',ko:'트렌드나 문화 현상인가요?',ja:'トレンドや文化現象ですか？'},filter:(c)=>c==='memes'},
+  {q:{en:'Can you experience it at home?',ko:'집에서 경험할 수 있나요?',ja:'家で楽しめますか？'},filter:(c,i)=>{const h=['Kimchi Jjigae','Bibimbap','Ramyeon','iPhone','ChatGPT','Netflix','Minecraft','YouTube','TikTok','Discord','Steam','Spotify','Dog','Cat','Rabbit','K-Drama','Skincare Routine','Mukbang','Manhwa','Soju'];return h.includes(i)}},
+  {q:{en:'Is it spicy or hot?',ko:'매운 것인가요?',ja:'辛いですか？'},filter:(c,i)=>['Tteokbokki','Kimchi Jjigae','Dakgalbi','Sundubu Jjigae'].includes(i)},
+  {q:{en:'Is it music-related?',ko:'음악과 관련이 있나요?',ja:'音楽に関係ありますか？'},filter:(c,i)=>['BTS','BLACKPINK','NewJeans','Stray Kids','TWICE','IU','SEVENTEEN','aespa','(G)I-DLE','EXO','Red Velvet','Rain','PSY','Noraebang','Gangnam Style','Spotify'].includes(i)},
+  {q:{en:'Did it become famous after 2020?',ko:'2020년 이후에 유명해졌나요?',ja:'2020年以降に有名になりましたか？'},filter:(c,i)=>['NewJeans','Squid Game','ChatGPT','aespa','Dalgona Coffee','(G)I-DLE','Stray Kids'].includes(i)},
+  {q:{en:'Is it in Asia?',ko:'아시아에 있나요?',ja:'アジアにありますか？'},filter:(c,i)=>['Seoul','Tokyo','Jeju Island','Bangkok','Singapore','Kyoto','Bali'].includes(i)},
+  {q:{en:'Can it swim or live in water?',ko:'물에서 살거나 수영할 수 있나요?',ja:'水中で泳げますか？'},filter:(c,i)=>['Dolphin','Shark','Whale','Turtle'].includes(i)},
+  {q:{en:'Is it a mobile app or platform?',ko:'모바일 앱이나 플랫폼인가요?',ja:'モバイルアプリですか？'},filter:(c,i)=>['Instagram','YouTube','TikTok','Spotify','Uber','Zoom','Discord'].includes(i)},
+  {q:{en:'Is it a street food?',ko:'길거리 음식인가요?',ja:'屋台料理ですか？'},filter:(c,i)=>['Tteokbokki','Hotteok','Mandu','Street Food'].includes(i)},
+  {q:{en:'Is it a sport or athlete?',ko:'스포츠 관련인가요?',ja:'スポーツ関連ですか？'},filter:(c,i)=>['Son Heungmin','Kim Yuna','Park Jisung'].includes(i)},
+  {q:{en:'Is it a game or gaming-related?',ko:'게임이나 게이밍 관련인가요?',ja:'ゲーム関連ですか？'},filter:(c,i)=>['Minecraft','Nintendo Switch','PlayStation','Steam','PC Bang','Squid Game','Ddakji'].includes(i)},
+  {q:{en:'Is it something you wear?',ko:'입거나 착용하는 것인가요?',ja:'身に着けるものですか？'},filter:(c,i)=>['Hanbok','AirPods'].includes(i)},
+  {q:{en:'Is it an alcoholic drink?',ko:'술인가요?',ja:'お酒ですか？'},filter:(c,i)=>['Soju','Soju Bomb','Soju Green Bottle'].includes(i)}
+];
+
+let state={screen:'start',category:null,candidates:[],asked:[],usedQuestions:new Set(),totalGames:+(localStorage.getItem('tq_games')||0),wins:+(localStorage.getItem('tq_wins')||0)};
+
+function render(){
+  const app=document.getElementById('app');
+  const T=t();
+  if(state.screen==='start'){
+    app.innerHTML=`
+      <h1>${T.title}</h1>
+      <p class="subtitle">${T.subtitle}</p>
+      <div class="card">
+        <div class="question-text" style="text-align:center;margin-bottom:16px">${T.pick_category}</div>
+        <div class="categories">
+          ${Object.entries(CATEGORIES).map(([k,v])=>`<div class="cat-btn" onclick="startGame('${k}')"><span class="cat-emoji">${v.emoji}</span>${v.name[lang]||v.name.en}${v.badge?`<span class="k-badge">${v.badge}</span>`:''}</div>`).join('')}
+        </div>
+      </div>
+      ${state.totalGames>0?`<div class="score">${T.record}: ${state.wins}${T.w} ${state.totalGames-state.wins}${T.l} (${state.totalGames} ${T.games})</div>`:''}`;
+  } else if(state.screen==='play'){
+    const progress=(state.asked.length/20)*100;
+    const currentQ=getNextQuestion();
+    if(!currentQ||state.asked.length>=20){makeGuess();return}
+    app.innerHTML=`
+      <h1>${T.title}</h1>
+      <div class="progress"><div class="progress-bar" style="width:${progress}%"></div></div>
+      <div class="card">
+        <div class="question-num">${T.question} ${state.asked.length+1} ${T.of} 20 · ${state.candidates.length} ${T.candidates}</div>
+        <div class="question-text">${currentQ.q[lang]||currentQ.q.en}</div>
+        <div class="btn-row">
+          <button class="btn btn-yes" onclick="answer('yes')">${T.yes}</button>
+          <button class="btn btn-maybe" onclick="answer('maybe')">${T.maybe}</button>
+          <button class="btn btn-no" onclick="answer('no')">${T.no}</button>
+        </div>
+      </div>
+      ${state.asked.length>0?`<div class="card"><div class="question-num">${T.prev_questions}</div><div class="history">${state.asked.map(a=>`<div class="history-item"><span class="history-q">${a.q}</span><span class="history-a">${a.a==='yes'?T.yes:a.a==='no'?T.no:T.maybe}</span></div>`).join('')}</div></div>`:''}`;
+  } else if(state.screen==='result'){
+    app.innerHTML=`
+      <h1>${T.title}</h1>
+      <div class="card result">
+        <div class="result-emoji">🎯</div>
+        <div class="result-answer">${state.guess}</div>
+        <div class="result-sub">${T.guessed_in.replace('{n}',state.asked.length)}</div>
+        <div class="btn-row">
+          <button class="btn btn-yes" onclick="resultFeedback(true)">${T.correct_q}</button>
+          <button class="btn btn-no" onclick="resultFeedback(false)">${T.wrong_q}</button>
+        </div>
+      </div>`;
+  } else if(state.screen==='end'){
+    app.innerHTML=`
+      <h1>${T.title}</h1>
+      <div class="card result">
+        <div class="result-emoji">${state.finalWin?'🏆':'😅'}</div>
+        <div class="result-answer">${state.finalWin?T.ai_wins:T.next_time}</div>
+        <div class="result-sub">${T.record}: ${state.wins}${T.w} ${state.totalGames-state.wins}${T.l}</div>
+        <button class="btn btn-start" onclick="resetGame()">${T.play_again}</button>
+        <button class="btn share-btn" onclick="shareResult()" style="margin-top:10px;width:100%;padding:14px">${T.share} 📤</button>
+      </div>`;
+  }
+}
+
+function startGame(cat){
+  state={...state,screen:'play',category:cat,candidates:[...CATEGORIES[cat].items],asked:[],usedQuestions:new Set()};
+  render();
+}
+
+function getNextQuestion(){
+  for(let i=0;i<QUESTIONS.length;i++){
+    if(state.usedQuestions.has(i))continue;
+    const q=QUESTIONS[i];
+    const yesCount=state.candidates.filter(item=>q.filter(state.category,item)).length;
+    const ratio=yesCount/state.candidates.length;
+    if(ratio>0.1&&ratio<0.9)return{...q,idx:i};
+  }
+  return null;
+}
+
+function answer(a){
+  const q=getNextQuestion();
+  if(!q)return makeGuess();
+  state.usedQuestions.add(q.idx);
+  state.asked.push({q:q.q[lang]||q.q.en,a});
+  if(a==='yes')state.candidates=state.candidates.filter(i=>QUESTIONS[q.idx].filter(state.category,i));
+  else if(a==='no')state.candidates=state.candidates.filter(i=>!QUESTIONS[q.idx].filter(state.category,i));
+  if(state.candidates.length<=1||state.asked.length>=20)return makeGuess();
+  render();
+}
+
+function makeGuess(){
+  state.guess=state.candidates.length>0?state.candidates[Math.floor(Math.random()*state.candidates.length)]:'🤷';
+  state.screen='result';
+  render();
+}
+
+function resultFeedback(correct){
+  state.totalGames++;
+  state.finalWin=correct;
+  if(correct)state.wins++;
+  localStorage.setItem('tq_games',state.totalGames);
+  localStorage.setItem('tq_wins',state.wins);
+  state.screen='end';
+  render();
+}
+
+function shareResult(){
+  const text=`AI 20 Questions — ${state.finalWin?'AI guessed it!':'I beat the AI!'} 🧠\nRecord: ${state.wins}W ${state.totalGames-state.wins}L\nTry it 👉`;
+  if(navigator.share)navigator.share({title:'AI 20 Questions',text,url:location.href}).catch(()=>{});
+  else{navigator.clipboard.writeText(text+' '+location.href).then(()=>alert('Link copied!'))}
+}
+
+function resetGame(){state.screen='start';render()}
+
+// Init
+document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===lang.toUpperCase()));
+document.getElementById('banner-text').innerHTML=t().banner;
+render();
+</script>
+</body>
+</html>
