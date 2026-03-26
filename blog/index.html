@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pure-flon blog | AI, Dev Tips, Korean Culture & More</title>
+<meta name="description" content="Explore articles on AI, development tips, Korean culture, tools, and games. Written by pure-flon.">
+<meta name="keywords" content="AI blog, development tips, Korean culture, programming, games, information theory, Korean food">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/blog/">
+
+<!-- Verification -->
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="pure-flon blog | AI, Dev Tips, Korean Culture & More">
+<meta property="og:description" content="Explore articles on AI, development tips, Korean culture, tools, and games.">
+<meta property="og:url" content="https://pure-flon.com/blog/">
+<meta property="og:site_name" content="pure-flon">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ko_KR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="pure-flon blog">
+<meta name="twitter:description" content="AI, Dev Tips, Korean Culture & More">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "pure-flon blog",
+  "description": "Articles on AI, development tips, Korean culture, tools, and games.",
+  "url": "https://pure-flon.com/blog/",
+  "author": {
+    "@type": "Person",
+    "name": "pure-flon",
+    "url": "https://pure-flon.com"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "How AI Guesses What You're Thinking in Just 4 Questions",
+      "url": "https://pure-flon.com/blog/how-ai-guesses-in-4-questions/",
+      "datePublished": "2026-03-26",
+      "description": "Learn how Shannon entropy and information theory power an AI that can guess what you're thinking in just 4 questions."
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Top 10 Korean Foods Foreigners Love (And Where to Start)",
+      "url": "https://pure-flon.com/blog/top-10-korean-foods-foreigners-love/",
+      "datePublished": "2026-03-26",
+      "description": "Discover the 10 most popular Korean dishes loved by people worldwide, with tips on where to start your K-food journey."
+    }
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --card-hover: #1a1a1a;
+  --accent: #4466ff;
+  --accent-light: #6688ff;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --text-muted: #555;
+  --border: #222;
+  --tag-bg: #1a1a2e;
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent-light); }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  padding: 60px 0 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+header h1 span { color: var(--accent); }
+
+header .subtitle {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: inline-flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Categories */
+.categories {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.cat-pill {
+  padding: 4px 14px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  background: var(--tag-bg);
+  color: var(--accent-light);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cat-pill:hover, .cat-pill.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* Post list */
+.posts {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: all 0.25s;
+  display: block;
+}
+
+.post-card:hover {
+  background: var(--card-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(68, 102, 255, 0.08);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.post-date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.post-tag {
+  font-size: 0.72rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--tag-bg);
+  color: var(--accent-light);
+  border: 1px solid rgba(68, 102, 255, 0.2);
+}
+
+.post-card h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+  line-height: 1.35;
+}
+
+.post-card .preview {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.sponsor-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.sponsor-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+
+.sponsor-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+footer .copy {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 12px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header { padding: 40px 0 28px; }
+  header h1 { font-size: 1.8rem; }
+  .post-card { padding: 20px; }
+  .post-card h2 { font-size: 1.15rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>pure-flon <span>blog</span></h1>
+    <p class="subtitle" data-en="AI, Dev Tips, Korean Culture & More" data-ko="AI, 개발 팁, 한국 문화 등">AI, Dev Tips, Korean Culture & More</p>
+
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en')">EN</button>
+      <button onclick="setLang('ko')">KO</button>
+    </div>
+
+    <div class="categories">
+      <span class="cat-pill active" onclick="filterCat('all')">All</span>
+      <span class="cat-pill" data-cat="ai" onclick="filterCat('ai')">AI</span>
+      <span class="cat-pill" data-cat="dev" onclick="filterCat('dev')">Dev</span>
+      <span class="cat-pill" data-cat="korean-culture" onclick="filterCat('korean-culture')">Korean Culture</span>
+      <span class="cat-pill" data-cat="tools" onclick="filterCat('tools')">Tools</span>
+      <span class="cat-pill" data-cat="games" onclick="filterCat('games')">Games</span>
+    </div>
+  </header>
+
+  <section class="posts">
+
+    <!-- Post 1 -->
+    <a class="post-card" href="/blog/how-ai-guesses-in-4-questions/" data-cats="ai,games">
+      <div class="post-meta">
+        <span class="post-date">2026-03-26</span>
+        <span class="post-tag">AI</span>
+        <span class="post-tag">Games</span>
+      </div>
+      <h2 data-en="How AI Guesses What You're Thinking in Just 4 Questions" data-ko="AI가 4문제 만에 생각을 맞추는 비밀">How AI Guesses What You're Thinking in Just 4 Questions</h2>
+      <p class="preview" data-en="Learn how Shannon entropy and information theory power an AI that can read your mind in 4 questions. Interactive examples inside." data-ko="섀넌 엔트로피와 정보이론이 어떻게 AI를 4문제 만에 당신의 생각을 맞추게 하는지 알아보세요. 인터랙티브 예제 포함.">Learn how Shannon entropy and information theory power an AI that can read your mind in 4 questions. Interactive examples inside.</p>
+    </a>
+
+    <!-- Post 2 -->
+    <a class="post-card" href="/blog/top-10-korean-foods-foreigners-love/" data-cats="korean-culture">
+      <div class="post-meta">
+        <span class="post-date">2026-03-26</span>
+        <span class="post-tag">Korean Culture</span>
+      </div>
+      <h2 data-en="Top 10 Korean Foods Foreigners Love (And Where to Start)" data-ko="외국인이 가장 좋아하는 한국 음식 TOP 10">Top 10 Korean Foods Foreigners Love (And Where to Start)</h2>
+      <p class="preview" data-en="Discover the most popular Korean dishes loved worldwide. From crispy fried chicken to sizzling bibimbap — your K-food starter guide." data-ko="전 세계인이 사랑하는 한국 음식 TOP 10. 바삭한 치킨부터 비빔밥까지, K-푸드 입문 가이드.">Discover the most popular Korean dishes loved worldwide. From crispy fried chicken to sizzling bibimbap — your K-food starter guide.</p>
+    </a>
+
+  </section>
+
+  <footer>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+    </div>
+    <a href="/" style="color:var(--text-muted);font-size:0.85rem;">pure-flon.com</a>
+    <p class="copy">&copy; 2026 pure-flon. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-toggle button:${lang === 'en' ? 'first' : 'last'}-child`).classList.add('active');
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+}
+
+function filterCat(cat) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  if (cat === 'all') {
+    document.querySelector('.cat-pill').classList.add('active');
+  } else {
+    document.querySelector(`.cat-pill[data-cat="${cat}"]`).classList.add('active');
+  }
+
+  document.querySelectorAll('.post-card').forEach(card => {
+    const cats = card.getAttribute('data-cats');
+    card.style.display = (cat === 'all' || cats.includes(cat)) ? 'block' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>

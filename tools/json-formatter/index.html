@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Formatter & Validator - Free Online Tool | pure-flon</title>
+<meta name="description" content="Free online JSON formatter, validator, and beautifier. Paste your JSON to format, minify, validate with syntax highlighting and error detection. No sign-up required.">
+<meta name="keywords" content="json formatter, json validator, json beautifier, json minifier, json pretty print, format json online, validate json, json lint, json checker, json viewer">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/json-formatter/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:title" content="JSON Formatter & Validator - Free Online Tool">
+<meta property="og:description" content="Format, validate, and beautify JSON instantly. Syntax highlighting, error detection, and one-click copy.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/tools/json-formatter/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSON Formatter & Validator - Free Online Tool">
+<meta name="twitter:description" content="Format, validate, and beautify JSON instantly. Syntax highlighting, error detection, and one-click copy.">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Formatter & Validator",
+  "description": "Free online JSON formatter, validator, and beautifier with syntax highlighting and error detection.",
+  "url": "https://pure-flon.com/tools/json-formatter/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "pure-flon",
+    "url": "https://pure-flon.com"
+  }
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --border: #2a2a2a;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --accent: #4fc3f7;
+  --accent-hover: #81d4fa;
+  --error: #ef5350;
+  --success: #66bb6a;
+  --json-string: #ce9178;
+  --json-number: #b5cea8;
+  --json-bool: #569cd6;
+  --json-null: #569cd6;
+  --json-key: #9cdcfe;
+  --json-bracket: #d4d4d4;
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* AI Banner */
+.ai-banner {
+  background: linear-gradient(90deg, #1a1a2e, #16213e);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.ai-banner span { color: var(--accent); font-weight: 600; }
+.ai-banner a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color 0.2s;
+}
+.ai-banner a:hover { color: var(--accent-hover); }
+.sponsor-links { margin-top: 4px; }
+
+/* Nav */
+nav {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--text); }
+nav .sep { color: var(--border); }
+nav .current { color: var(--text); font-weight: 600; }
+
+/* Main */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary {
+  background: var(--accent);
+  color: #0a0a0a;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.btn.primary:hover { background: var(--accent-hover); }
+
+/* Status */
+.status {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.status.valid {
+  display: flex;
+  background: rgba(102, 187, 106, 0.1);
+  border: 1px solid rgba(102, 187, 106, 0.3);
+  color: var(--success);
+}
+.status.invalid {
+  display: flex;
+  background: rgba(239, 83, 80, 0.1);
+  border: 1px solid rgba(239, 83, 80, 0.3);
+  color: var(--error);
+}
+
+/* Editor area */
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .editor-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 22px; }
+}
+
+.editor-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.panel-header .info {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+textarea {
+  width: 100%;
+  min-height: 500px;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  tab-size: 2;
+}
+textarea::placeholder { color: #555; }
+
+/* Output with syntax highlighting */
+.output-wrap {
+  position: relative;
+  flex: 1;
+  overflow: auto;
+}
+
+.output-container {
+  display: flex;
+  min-height: 500px;
+}
+
+.line-numbers {
+  padding: 16px 0;
+  text-align: right;
+  user-select: none;
+  color: #444;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  min-width: 40px;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.line-numbers div {
+  padding: 0 8px;
+}
+.line-numbers div.error-line {
+  background: rgba(239, 83, 80, 0.15);
+  color: var(--error);
+}
+
+.output-code {
+  padding: 16px;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+  flex: 1;
+  color: var(--text);
+}
+
+/* Syntax colors */
+.output-code .str { color: var(--json-string); }
+.output-code .num { color: var(--json-number); }
+.output-code .bool { color: var(--json-bool); }
+.output-code .null { color: var(--json-null); }
+.output-code .key { color: var(--json-key); }
+.output-code .brace { color: var(--json-bracket); }
+.output-code .error-line-content {
+  background: rgba(239, 83, 80, 0.1);
+  display: inline-block;
+  width: 100%;
+}
+
+/* Stats bar */
+.stats-bar {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+}
+.stats-bar span { white-space: nowrap; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Info section */
+.info-section {
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.info-section h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.info-section p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 12px;
+  max-width: 700px;
+}
+.info-section ul {
+  color: var(--text-dim);
+  font-size: 14px;
+  padding-left: 20px;
+}
+.info-section li { margin-bottom: 6px; }
+
+/* Footer */
+footer {
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Sample button */
+.sample-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.sample-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px;
+  z-index: 50;
+  min-width: 180px;
+}
+.sample-menu.show { display: block; }
+.sample-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.sample-menu button:hover { background: rgba(79, 195, 247, 0.1); }
+</style>
+</head>
+<body>
+
+<!-- AI Banner -->
+<div class="ai-banner">
+  <div><span>100% MADE BY AI</span> &mdash; Free developer tools by pure-flon</div>
+  <div class="sponsor-links">
+    Support:
+    <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a> |
+    <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a> |
+    <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="/">Home</a>
+  <span class="sep">/</span>
+  <a href="/tools/">Tools</a>
+  <span class="sep">/</span>
+  <span class="current">JSON Formatter</span>
+</nav>
+
+<!-- Main -->
+<div class="container">
+  <h1>JSON Formatter & Validator</h1>
+  <p class="subtitle">Paste your JSON to format, validate, and beautify instantly. Works offline, no data sent to any server.</p>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn primary" onclick="formatJSON()" title="Ctrl+Enter">Format / Beautify</button>
+    <button class="btn" onclick="minifyJSON()">Minify</button>
+    <button class="btn" onclick="validateJSON()">Validate</button>
+    <button class="btn" onclick="copyOutput()">Copy Output</button>
+    <button class="btn" onclick="clearAll()">Clear</button>
+    <div class="sample-dropdown">
+      <button class="btn" onclick="toggleSampleMenu()">Sample JSON</button>
+      <div class="sample-menu" id="sampleMenu">
+        <button onclick="loadSample('simple')">Simple Object</button>
+        <button onclick="loadSample('nested')">Nested Array</button>
+        <button onclick="loadSample('api')">API Response</button>
+        <button onclick="loadSample('config')">Config File</button>
+      </div>
+    </div>
+    <label class="btn" style="gap:8px;">
+      Indent:
+      <select id="indentSize" onchange="formatJSON()" style="background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:2px 4px;font-size:13px;">
+        <option value="2" selected>2 spaces</option>
+        <option value="4">4 spaces</option>
+        <option value="tab">Tab</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Status -->
+  <div class="status" id="status"></div>
+
+  <!-- Editor -->
+  <div class="editor-grid">
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span>Input</span>
+        <span class="info" id="inputInfo">0 characters</span>
+      </div>
+      <textarea id="input" placeholder='Paste your JSON here...
+
+Example:
+{
+  "name": "pure-flon",
+  "tools": ["json-formatter", "pomodoro"],
+  "version": 1.0,
+  "free": true
+}' spellcheck="false"></textarea>
+    </div>
+
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span>Output</span>
+        <span class="info" id="outputInfo"></span>
+      </div>
+      <div class="output-wrap">
+        <div class="output-container">
+          <div class="line-numbers" id="lineNumbers"></div>
+          <div class="output-code" id="output"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar" id="statsBar" style="display:none;">
+    <span id="statKeys"></span>
+    <span id="statDepth"></span>
+    <span id="statSize"></span>
+    <span id="statArrays"></span>
+  </div>
+
+  <!-- Info section for SEO -->
+  <div class="info-section">
+    <h2>About This JSON Formatter</h2>
+    <p>
+      A fast, free, and privacy-focused JSON formatter and validator that runs entirely in your browser.
+      No data is ever sent to a server. Bookmark this tool for quick access whenever you need to format
+      or debug JSON.
+    </p>
+    <ul>
+      <li><strong>Format / Beautify:</strong> Parses and pretty-prints your JSON with customizable indentation.</li>
+      <li><strong>Minify:</strong> Compresses JSON by removing all whitespace for compact storage or transmission.</li>
+      <li><strong>Validate:</strong> Checks your JSON for syntax errors and highlights the exact line and column.</li>
+      <li><strong>Syntax Highlighting:</strong> Color-coded strings, numbers, booleans, nulls, and keys.</li>
+      <li><strong>Stats:</strong> Shows key count, nesting depth, arrays, and byte size at a glance.</li>
+      <li><strong>Keyboard shortcut:</strong> Press <kbd>Ctrl+Enter</kbd> (or <kbd>Cmd+Enter</kbd>) to format instantly.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 <a href="/">pure-flon.com</a> &middot;
+  <a href="/tools/">All Tools</a> &middot;
+  <a href="https://github.com/pure-flon" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const inputEl = document.getElementById('input');
+const outputEl = document.getElementById('output');
+const lineNumsEl = document.getElementById('lineNumbers');
+const statusEl = document.getElementById('status');
+const statsBar = document.getElementById('statsBar');
+
+// Keyboard shortcut
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    formatJSON();
+  }
+});
+
+// Auto-update input info
+inputEl.addEventListener('input', function() {
+  document.getElementById('inputInfo').textContent = this.value.length.toLocaleString() + ' characters';
+});
+
+// Tab support in textarea
+inputEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const start = this.selectionStart;
+    const end = this.selectionEnd;
+    this.value = this.value.substring(0, start) + '  ' + this.value.substring(end);
+    this.selectionStart = this.selectionEnd = start + 2;
+  }
+});
+
+function getIndent() {
+  const val = document.getElementById('indentSize').value;
+  return val === 'tab' ? '\t' : parseInt(val);
+}
+
+function formatJSON() {
+  const raw = inputEl.value.trim();
+  if (!raw) { showStatus('', ''); clearOutput(); return; }
+
+  try {
+    const parsed = JSON.parse(raw);
+    const formatted = JSON.stringify(parsed, null, getIndent());
+    renderOutput(formatted);
+    showStatus('valid', 'Valid JSON');
+    showStats(parsed, formatted);
+  } catch (e) {
+    handleError(raw, e);
+  }
+}
+
+function minifyJSON() {
+  const raw = inputEl.value.trim();
+  if (!raw) return;
+
+  try {
+    const parsed = JSON.parse(raw);
+    const minified = JSON.stringify(parsed);
+    renderOutput(minified);
+    showStatus('valid', 'Minified: ' + minified.length.toLocaleString() + ' characters');
+    showStats(parsed, minified);
+  } catch (e) {
+    handleError(raw, e);
+  }
+}
+
+function validateJSON() {
+  const raw = inputEl.value.trim();
+  if (!raw) { showStatus('', ''); return; }
+
+  try {
+    JSON.parse(raw);
+    showStatus('valid', 'Valid JSON - no errors found');
+  } catch (e) {
+    handleError(raw, e);
+  }
+}
+
+function handleError(raw, e) {
+  const msg = e.message;
+  const posMatch = msg.match(/position\s+(\d+)/i);
+  let errorLine = -1;
+  let errorCol = -1;
+
+  if (posMatch) {
+    const pos = parseInt(posMatch[1]);
+    const before = raw.substring(0, pos);
+    const lines = before.split('\n');
+    errorLine = lines.length;
+    errorCol = lines[lines.length - 1].length + 1;
+  }
+
+  const lines = raw.split('\n');
+  renderOutputRaw(lines, errorLine);
+
+  let statusMsg = 'Error: ' + msg;
+  if (errorLine > 0) {
+    statusMsg += ' (line ' + errorLine + ', column ' + errorCol + ')';
+  }
+  showStatus('invalid', statusMsg);
+  statsBar.style.display = 'none';
+}
+
+function renderOutput(formatted) {
+  const lines = formatted.split('\n');
+  let lineNumsHTML = '';
+  let codeHTML = '';
+
+  for (let i = 0; i < lines.length; i++) {
+    lineNumsHTML += '<div>' + (i + 1) + '</div>';
+    codeHTML += highlightLine(escapeHTML(lines[i])) + '\n';
+  }
+
+  lineNumsEl.innerHTML = lineNumsHTML;
+  outputEl.innerHTML = codeHTML;
+  document.getElementById('outputInfo').textContent = lines.length + ' lines';
+}
+
+function renderOutputRaw(lines, errorLine) {
+  let lineNumsHTML = '';
+  let codeHTML = '';
+
+  for (let i = 0; i < lines.length; i++) {
+    const isError = (i + 1) === errorLine;
+    lineNumsHTML += '<div' + (isError ? ' class="error-line"' : '') + '>' + (i + 1) + '</div>';
+    const escaped = escapeHTML(lines[i]);
+    if (isError) {
+      codeHTML += '<span class="error-line-content">' + escaped + '</span>\n';
+    } else {
+      codeHTML += escaped + '\n';
+    }
+  }
+
+  lineNumsEl.innerHTML = lineNumsHTML;
+  outputEl.innerHTML = codeHTML;
+  document.getElementById('outputInfo').textContent = lines.length + ' lines';
+}
+
+function highlightLine(line) {
+  // Key: "key":
+  line = line.replace(/^(\s*)(&quot;[^&]*?&quot;)(\s*:\s*)/g, '$1<span class="key">$2</span>$3');
+  // String values
+  line = line.replace(/:\s*(&quot;[^&]*?&quot;)/g, function(match, val) {
+    return ': <span class="str">' + val + '</span>';
+  });
+  // Standalone strings in arrays
+  line = line.replace(/^(\s*)(&quot;[^&]*?&quot;)(,?)$/g, function(match, indent, val, comma) {
+    if (match.includes('<span')) return match;
+    return indent + '<span class="str">' + val + '</span>' + comma;
+  });
+  // Numbers
+  line = line.replace(/:\s*(-?\d+\.?\d*([eE][+-]?\d+)?)/g, ': <span class="num">$1</span>');
+  line = line.replace(/^(\s*)(-?\d+\.?\d*([eE][+-]?\d+)?)(,?)$/gm, '$1<span class="num">$2</span>$4');
+  // Booleans
+  line = line.replace(/:\s*(true|false)/g, ': <span class="bool">$1</span>');
+  line = line.replace(/^(\s*)(true|false)(,?)$/gm, '$1<span class="bool">$2</span>$3');
+  // Null
+  line = line.replace(/:\s*(null)/g, ': <span class="null">$1</span>');
+  line = line.replace(/^(\s*)(null)(,?)$/gm, '$1<span class="null">$2</span>$3');
+  // Braces/brackets
+  line = line.replace(/([{}[\]])/g, '<span class="brace">$1</span>');
+  return line;
+}
+
+function escapeHTML(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function showStatus(type, msg) {
+  statusEl.className = 'status';
+  if (!type) { statusEl.style.display = 'none'; return; }
+  statusEl.className = 'status ' + type;
+  statusEl.innerHTML = (type === 'valid' ? '&#10003; ' : '&#10007; ') + msg;
+  statusEl.style.display = 'flex';
+}
+
+function showStats(parsed, formatted) {
+  const stats = analyzeJSON(parsed);
+  document.getElementById('statKeys').textContent = 'Keys: ' + stats.keys;
+  document.getElementById('statDepth').textContent = 'Max depth: ' + stats.depth;
+  document.getElementById('statSize').textContent = 'Size: ' + formatBytes(new Blob([formatted]).size);
+  document.getElementById('statArrays').textContent = 'Arrays: ' + stats.arrays + ' | Objects: ' + stats.objects;
+  statsBar.style.display = 'flex';
+}
+
+function analyzeJSON(obj, depth) {
+  depth = depth || 0;
+  let stats = { keys: 0, depth: depth, arrays: 0, objects: 0 };
+
+  if (Array.isArray(obj)) {
+    stats.arrays = 1;
+    obj.forEach(function(item) {
+      const sub = analyzeJSON(item, depth + 1);
+      stats.keys += sub.keys;
+      stats.depth = Math.max(stats.depth, sub.depth);
+      stats.arrays += sub.arrays;
+      stats.objects += sub.objects;
+    });
+  } else if (obj !== null && typeof obj === 'object') {
+    stats.objects = 1;
+    const keys = Object.keys(obj);
+    stats.keys = keys.length;
+    keys.forEach(function(k) {
+      const sub = analyzeJSON(obj[k], depth + 1);
+      stats.keys += sub.keys;
+      stats.depth = Math.max(stats.depth, sub.depth);
+      stats.arrays += sub.arrays;
+      stats.objects += sub.objects;
+    });
+  }
+
+  return stats;
+}
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+function copyOutput() {
+  const text = outputEl.textContent;
+  if (!text) { showToast('Nothing to copy'); return; }
+  navigator.clipboard.writeText(text).then(function() {
+    showToast('Copied to clipboard');
+  }).catch(function() {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Copied to clipboard');
+  });
+}
+
+function clearAll() {
+  inputEl.value = '';
+  clearOutput();
+  showStatus('', '');
+  statsBar.style.display = 'none';
+  document.getElementById('inputInfo').textContent = '0 characters';
+}
+
+function clearOutput() {
+  outputEl.innerHTML = '';
+  lineNumsEl.innerHTML = '';
+  document.getElementById('outputInfo').textContent = '';
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2000);
+}
+
+// Sample data
+const samples = {
+  simple: '{\n  "name": "pure-flon",\n  "type": "developer",\n  "tools": 3,\n  "active": true,\n  "website": "https://pure-flon.com"\n}',
+  nested: '{\n  "users": [\n    {\n      "id": 1,\n      "name": "Alice",\n      "roles": ["admin", "editor"],\n      "settings": {\n        "theme": "dark",\n        "notifications": true\n      }\n    },\n    {\n      "id": 2,\n      "name": "Bob",\n      "roles": ["viewer"],\n      "settings": {\n        "theme": "light",\n        "notifications": false\n      }\n    }\n  ],\n  "total": 2\n}',
+  api: '{\n  "status": 200,\n  "message": "OK",\n  "data": {\n    "items": [\n      { "id": "abc123", "title": "First Item", "price": 29.99, "in_stock": true },\n      { "id": "def456", "title": "Second Item", "price": 49.99, "in_stock": false }\n    ],\n    "pagination": {\n      "page": 1,\n      "per_page": 20,\n      "total": 2,\n      "total_pages": 1\n    }\n  },\n  "timestamp": "2026-03-26T12:00:00Z"\n}',
+  config: '{\n  "app": {\n    "name": "MyApp",\n    "version": "2.1.0",\n    "debug": false\n  },\n  "database": {\n    "host": "localhost",\n    "port": 5432,\n    "name": "myapp_db",\n    "pool_size": 10,\n    "ssl": true\n  },\n  "cache": {\n    "driver": "redis",\n    "ttl": 3600,\n    "prefix": "myapp:"\n  },\n  "logging": {\n    "level": "info",\n    "file": "/var/log/myapp.log",\n    "max_size": "100MB",\n    "rotate": 7\n  }\n}'
+};
+
+function toggleSampleMenu() {
+  document.getElementById('sampleMenu').classList.toggle('show');
+}
+
+function loadSample(type) {
+  inputEl.value = samples[type];
+  document.getElementById('sampleMenu').classList.remove('show');
+  document.getElementById('inputInfo').textContent = inputEl.value.length.toLocaleString() + ' characters';
+  formatJSON();
+}
+
+// Close sample menu on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.sample-dropdown')) {
+    document.getElementById('sampleMenu').classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>

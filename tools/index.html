@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Online Tools - Developer, Productivity & Creative | pure-flon</title>
+<meta name="description" content="Free online tools: JSON formatter, Pomodoro timer, and more. No sign-up, no tracking, 100% browser-based. Developer tools, productivity tools, and creative utilities.">
+<meta name="keywords" content="free online tools, developer tools, productivity tools, json formatter, pomodoro timer, web tools, browser tools, no sign up tools">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free Online Tools - Developer, Productivity & Creative">
+<meta property="og:description" content="Free browser-based tools: JSON formatter, Pomodoro timer, and more. No sign-up required.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/tools/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Online Tools | pure-flon">
+<meta name="twitter:description" content="Free browser-based tools: JSON formatter, Pomodoro timer, and more. No sign-up required.">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Online Tools",
+  "description": "A collection of free browser-based developer, productivity, and creative tools.",
+  "url": "https://pure-flon.com/tools/",
+  "author": {
+    "@type": "Person",
+    "name": "pure-flon",
+    "url": "https://pure-flon.com"
+  },
+  "hasPart": [
+    {
+      "@type": "WebApplication",
+      "name": "JSON Formatter & Validator",
+      "url": "https://pure-flon.com/tools/json-formatter/",
+      "applicationCategory": "DeveloperApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Pomodoro Timer",
+      "url": "https://pure-flon.com/tools/pomodoro/",
+      "applicationCategory": "ProductivityApplication"
+    }
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --card-hover: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --accent: #4fc3f7;
+  --accent-hover: #81d4fa;
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* AI Banner */
+.ai-banner {
+  background: linear-gradient(90deg, #1a1a2e, #16213e);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.ai-banner span { color: var(--accent); font-weight: 600; }
+.ai-banner a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color 0.2s;
+}
+.ai-banner a:hover { color: var(--accent-hover); }
+.sponsor-links { margin-top: 4px; }
+
+/* Nav */
+nav {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--text); }
+nav .sep { color: var(--border); }
+nav .current { color: var(--text); font-weight: 600; }
+
+/* Hero */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 17px;
+  color: var(--text-dim);
+  max-width: 560px;
+  margin: 0 auto 16px;
+}
+
+.hero .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+/* Categories */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+.category {
+  margin-bottom: 48px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.category-icon {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.category-count {
+  font-size: 12px;
+  color: var(--text-dim);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 2px 10px;
+  margin-left: auto;
+}
+
+/* Tool cards */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tool-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.tool-card:hover {
+  background: var(--card-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(79, 195, 247, 0.08);
+}
+
+.tool-card .icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.tool-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tool-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  flex: 1;
+}
+
+.tool-card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(79, 195, 247, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+}
+
+.tool-card .arrow {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: var(--text-dim);
+  font-size: 18px;
+  transition: all 0.3s;
+}
+.tool-card:hover .arrow { color: var(--accent); transform: translateX(4px); }
+
+/* Coming soon */
+.tool-card.coming-soon {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.tool-card.coming-soon::after {
+  content: 'Coming Soon';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--border);
+  color: var(--text-dim);
+}
+
+/* Dev icon colors */
+.icon-dev { background: rgba(79, 195, 247, 0.1); }
+.icon-prod { background: rgba(102, 187, 106, 0.1); }
+.icon-creative { background: rgba(171, 71, 188, 0.1); }
+
+/* Info section */
+.info-section {
+  max-width: 900px;
+  margin: 0 auto 48px;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-left: auto;
+  margin-right: auto;
+}
+.info-section h2 { font-size: 20px; margin-bottom: 16px; }
+.info-section p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 12px;
+  max-width: 700px;
+}
+
+/* Footer */
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 28px; }
+  .hero { padding: 40px 24px 32px; }
+  .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- AI Banner -->
+<div class="ai-banner">
+  <div><span>100% MADE BY AI</span> &mdash; Free browser-based tools by pure-flon</div>
+  <div class="sponsor-links">
+    Support:
+    <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a> |
+    <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a> |
+    <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="/">Home</a>
+  <span class="sep">/</span>
+  <span class="current">Tools</span>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Free Online Tools</h1>
+  <p>Browser-based utilities for developers, students, and creators. No sign-up, no data collection, no ads. Just tools that work.</p>
+  <div class="badge">All tools run locally in your browser</div>
+</div>
+
+<!-- Tools -->
+<div class="container">
+
+  <!-- Developer Tools -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon">&lt;/&gt;</div>
+      <span class="category-title">Developer Tools</span>
+      <span class="category-count">1 tool</span>
+    </div>
+    <div class="tools-grid">
+      <a class="tool-card" href="/tools/json-formatter/">
+        <div class="icon-wrap icon-dev">{ }</div>
+        <h3>JSON Formatter & Validator</h3>
+        <p>Format, validate, beautify, and minify JSON. Syntax highlighting with line numbers and error detection.</p>
+        <div class="tags">
+          <span class="tag">JSON</span>
+          <span class="tag">Formatter</span>
+          <span class="tag">Validator</span>
+        </div>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+      <a class="tool-card coming-soon" href="#">
+        <div class="icon-wrap icon-dev">#</div>
+        <h3>Base64 Encoder/Decoder</h3>
+        <p>Encode and decode Base64 strings. Supports text and file input.</p>
+        <div class="tags">
+          <span class="tag">Base64</span>
+          <span class="tag">Encoder</span>
+        </div>
+      </a>
+
+      <a class="tool-card coming-soon" href="#">
+        <div class="icon-wrap icon-dev">&amp;</div>
+        <h3>URL Encoder/Decoder</h3>
+        <p>Encode and decode URL components. Parse query strings into readable format.</p>
+        <div class="tags">
+          <span class="tag">URL</span>
+          <span class="tag">Encoder</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Productivity Tools -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon">&#9201;</div>
+      <span class="category-title">Productivity Tools</span>
+      <span class="category-count">1 tool</span>
+    </div>
+    <div class="tools-grid">
+      <a class="tool-card" href="/tools/pomodoro/">
+        <div class="icon-wrap icon-prod">&#127813;</div>
+        <h3>Pomodoro Timer</h3>
+        <p>Stay focused with timed work sessions. Customizable durations, audio alerts, fullscreen mode, and session tracking.</p>
+        <div class="tags">
+          <span class="tag">Timer</span>
+          <span class="tag">Focus</span>
+          <span class="tag">Productivity</span>
+        </div>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+      <a class="tool-card coming-soon" href="#">
+        <div class="icon-wrap icon-prod">&#128203;</div>
+        <h3>Markdown Previewer</h3>
+        <p>Write Markdown and see the rendered HTML output in real-time. Export to HTML.</p>
+        <div class="tags">
+          <span class="tag">Markdown</span>
+          <span class="tag">Preview</span>
+        </div>
+      </a>
+
+      <a class="tool-card coming-soon" href="#">
+        <div class="icon-wrap icon-prod">&#128221;</div>
+        <h3>Quick Notes</h3>
+        <p>Distraction-free notepad that auto-saves to your browser. No account needed.</p>
+        <div class="tags">
+          <span class="tag">Notes</span>
+          <span class="tag">Scratchpad</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Creative Tools -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon">&#127912;</div>
+      <span class="category-title">Creative Tools</span>
+      <span class="category-count">Coming soon</span>
+    </div>
+    <div class="tools-grid">
+      <a class="tool-card coming-soon" href="#">
+        <div class="icon-wrap icon-creative">&#127912;</div>
+        <h3>Color Palette Generator</h3>
+        <p>Generate beautiful color palettes. Extract colors from images, convert between formats.</p>
+        <div class="tags">
+          <span class="tag">Color</span>
+          <span class="tag">Design</span>
+        </div>
+      </a>
+
+      <a class="tool-card coming-soon" href="#">
+        <div class="icon-wrap icon-creative">Aa</div>
+        <h3>Font Previewer</h3>
+        <p>Preview and compare Google Fonts side by side with your own text.</p>
+        <div class="tags">
+          <span class="tag">Fonts</span>
+          <span class="tag">Typography</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Info -->
+<div class="info-section" style="max-width:852px;">
+  <h2>Why Use These Tools?</h2>
+  <p>
+    Every tool on this page runs entirely in your browser. Your data never leaves your device.
+    There are no cookies (except analytics), no sign-up walls, no ads, and no premium tiers.
+    Just bookmark and use.
+  </p>
+  <p>
+    Built with modern web standards (HTML, CSS, vanilla JavaScript) for maximum compatibility
+    and performance. Works on desktop, tablet, and mobile. No frameworks, no build steps, no
+    dependencies.
+  </p>
+</div>
+
+<footer>
+  &copy; 2026 <a href="/">pure-flon.com</a> &middot;
+  <a href="https://github.com/pure-flon" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+</body>
+</html>

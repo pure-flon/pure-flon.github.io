@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How AI Guesses What You're Thinking in Just 4 Questions | pure-flon blog</title>
+<meta name="description" content="Learn how Shannon entropy and information theory let an AI guess what you're thinking in just 4 questions. Interactive examples and a playable game inside.">
+<meta name="keywords" content="Shannon entropy, information theory, 20 questions algorithm, AI guessing game, binary search, entropy calculation, decision tree">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/blog/how-ai-guesses-in-4-questions/">
+
+<!-- Verification -->
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="How AI Guesses What You're Thinking in Just 4 Questions">
+<meta property="og:description" content="Shannon entropy, information theory, and the algorithm behind an AI that reads your mind in 4 questions.">
+<meta property="og:url" content="https://pure-flon.com/blog/how-ai-guesses-in-4-questions/">
+<meta property="og:site_name" content="pure-flon blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="article:published_time" content="2026-03-26T00:00:00Z">
+<meta property="article:author" content="pure-flon">
+<meta property="article:section" content="AI">
+<meta property="article:tag" content="Shannon entropy">
+<meta property="article:tag" content="information theory">
+<meta property="article:tag" content="AI game">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How AI Guesses What You're Thinking in Just 4 Questions">
+<meta name="twitter:description" content="Shannon entropy and the algorithm behind an AI guessing game.">
+
+<!-- JSON-LD Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How AI Guesses What You're Thinking in Just 4 Questions",
+  "description": "Learn how Shannon entropy and information theory power an AI that can guess what you're thinking in just 4 questions.",
+  "url": "https://pure-flon.com/blog/how-ai-guesses-in-4-questions/",
+  "datePublished": "2026-03-26",
+  "dateModified": "2026-03-26",
+  "author": {
+    "@type": "Person",
+    "name": "pure-flon",
+    "url": "https://pure-flon.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "pure-flon"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pure-flon.com/blog/how-ai-guesses-in-4-questions/"
+  },
+  "keywords": ["Shannon entropy", "information theory", "20 questions", "AI", "binary search", "decision tree"]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --card-hover: #1a1a1a;
+  --accent: #4466ff;
+  --accent-light: #6688ff;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --text-muted: #555;
+  --border: #222;
+  --tag-bg: #1a1a2e;
+  --radius: 12px;
+  --code-bg: #1a1a2e;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent-light); }
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Nav */
+nav {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .back { color: var(--text-dim); font-size: 0.9rem; }
+nav .back:hover { color: var(--accent); }
+
+.lang-toggle {
+  display: inline-flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Article header */
+.article-header {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-header .tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  font-size: 0.72rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--tag-bg);
+  color: var(--accent-light);
+  border: 1px solid rgba(68, 102, 255, 0.2);
+}
+
+.article-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.article-header .meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Article body */
+article {
+  padding: 40px 0;
+}
+
+article h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 40px 0 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+article h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+
+article h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ddd;
+  margin: 28px 0 12px;
+}
+
+article p {
+  margin-bottom: 18px;
+  color: var(--text);
+}
+
+article ul, article ol {
+  margin: 0 0 18px 24px;
+  color: var(--text);
+}
+
+article li { margin-bottom: 6px; }
+
+article code {
+  background: var(--code-bg);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-family: 'SF Mono', Menlo, monospace;
+  color: var(--accent-light);
+}
+
+article pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+article pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--text);
+}
+
+article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 12px 20px;
+  margin: 0 0 20px;
+  background: var(--card);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.formula-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.formula-box .formula {
+  font-size: 1.2rem;
+  font-family: 'Georgia', serif;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.formula-box .label {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+/* Interactive demo */
+.demo-box {
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin: 28px 0;
+}
+
+.demo-box h3 {
+  color: var(--accent-light);
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+}
+
+.demo-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.demo-slider-row label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  min-width: 120px;
+}
+
+.demo-slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.demo-slider-row .val {
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  color: var(--accent-light);
+  min-width: 48px;
+  text-align: right;
+}
+
+.demo-result {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(68, 102, 255, 0.08);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.demo-result strong { color: #fff; }
+
+/* CTA */
+.cta-box {
+  background: linear-gradient(135deg, rgba(68,102,255,0.12), rgba(68,102,255,0.04));
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.cta-box h3 {
+  color: #fff;
+  margin: 0 0 12px;
+  font-size: 1.3rem;
+}
+
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.cta-btn:hover {
+  background: var(--accent-light);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(68,102,255,0.3);
+}
+
+/* Comparison table */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 28px;
+}
+
+.compare-table th, .compare-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.compare-table th {
+  color: var(--accent-light);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.compare-table td { color: var(--text-dim); }
+.compare-table tr:hover td { color: var(--text); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.sponsor-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.sponsor-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+
+.sponsor-links a:hover { border-color: var(--accent); color: var(--accent-light); }
+
+footer .copy { color: var(--text-muted); font-size: 0.8rem; margin-top: 12px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .article-header { padding: 32px 0 24px; }
+  .article-header h1 { font-size: 1.5rem; }
+  .demo-slider-row { flex-wrap: wrap; }
+  .demo-slider-row label { min-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <a href="/blog/" class="back">&larr; <span data-en="Blog" data-ko="블로그">Blog</span></a>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en')">EN</button>
+      <button onclick="setLang('ko')">KO</button>
+    </div>
+  </nav>
+
+  <div class="article-header">
+    <div class="tags">
+      <span class="tag">AI</span>
+      <span class="tag">Games</span>
+      <span class="tag">Information Theory</span>
+    </div>
+    <h1 data-en="How AI Guesses What You're Thinking in Just 4 Questions" data-ko="AI가 4문제 만에 생각을 맞추는 비밀">How AI Guesses What You're Thinking in Just 4 Questions</h1>
+    <div class="meta">
+      <span data-en="March 26, 2026" data-ko="2026년 3월 26일">March 26, 2026</span> &middot;
+      <span data-en="8 min read" data-ko="8분 소요">8 min read</span> &middot;
+      pure-flon
+    </div>
+  </div>
+
+  <article>
+
+    <!-- EN content -->
+    <div class="lang-content" data-lang="en">
+
+      <h2>The Game That Seems Impossible</h2>
+      <p>Think of any object. A cat, a skyscraper, a slice of pizza. Now imagine an AI asks you just 4-6 yes/no questions and correctly guesses what you were thinking.</p>
+      <p>Sounds like magic? It's actually math. Specifically, it's <strong>Shannon entropy</strong> and <strong>information theory</strong> — the same principles that power compression algorithms, cryptography, and modern machine learning.</p>
+      <p>Let's break down exactly how it works.</p>
+
+      <h2>Shannon Entropy: Measuring Uncertainty</h2>
+      <p>In 1948, Claude Shannon published <em>"A Mathematical Theory of Communication"</em> and forever changed how we think about information. His key insight: <strong>information is surprise</strong>.</p>
+      <p>If I tell you "the sun rose today," that carries almost zero information — you already expected it. But if I tell you "it snowed in the Sahara," that's highly informative because it's unexpected.</p>
+      <p>Shannon formalized this with <strong>entropy</strong>, a measure of uncertainty:</p>
+
+      <div class="formula-box">
+        <div class="formula">H(X) = -&Sigma; p(x) &middot; log<sub>2</sub> p(x)</div>
+        <div class="label">Shannon Entropy — measured in bits</div>
+      </div>
+
+      <p>The higher the entropy, the more uncertain you are, and the more information you need to resolve that uncertainty.</p>
+
+      <h3>A Simple Example</h3>
+      <p>Imagine a bag with 8 equally likely items. The entropy is:</p>
+      <pre><code>H = -8 &times; (1/8 &times; log2(1/8))
+H = -8 &times; (1/8 &times; -3)
+H = 3 bits</code></pre>
+      <p>This means you need exactly <strong>3 yes/no questions</strong> to identify the item. Each perfect question cuts the remaining possibilities in half.</p>
+
+      <h2>Binary Search on the Property Space</h2>
+      <p>Here's how the AI actually works under the hood:</p>
+      <ol>
+        <li><strong>Property database</strong> — Every object has a vector of properties: is it alive? is it bigger than a breadbox? can you eat it?</li>
+        <li><strong>Entropy calculation</strong> — For each possible question, the AI calculates how much entropy it would eliminate.</li>
+        <li><strong>Greedy selection</strong> — It picks the question that maximizes <em>information gain</em> — the question that most evenly splits the remaining candidates.</li>
+        <li><strong>Update beliefs</strong> — After your answer, the AI eliminates all objects inconsistent with it and recalculates.</li>
+      </ol>
+      <p>This is essentially <strong>binary search on a property space</strong> rather than a sorted list.</p>
+
+      <h2>Why 4 Questions, Not 20?</h2>
+      <p>Humans playing 20 Questions waste questions. They ask things like "Is it a type of food?" when only 12% of objects are food. That question eliminates just 12% of possibilities on a "yes" or 88% on a "no" — very uneven.</p>
+      <p>The AI always asks questions that split possibilities close to 50/50, which is mathematically optimal.</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr><th>Strategy</th><th>Avg. Questions</th><th>Efficiency</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Random human</td><td>15-20</td><td>~30%</td></tr>
+          <tr><td>Experienced human</td><td>8-12</td><td>~55%</td></tr>
+          <tr><td>Entropy-optimal AI</td><td>4-6</td><td>~90%</td></tr>
+          <tr><td>Theoretical minimum</td><td>log2(N)</td><td>100%</td></tr>
+        </tbody>
+      </table>
+
+      <p>With a database of ~30 common objects, <code>log2(30) = 4.9 bits</code>. The AI typically needs 4-6 questions because real-world properties aren't perfectly binary and some objects share many properties.</p>
+
+      <h2>Information Gain: Picking the Best Question</h2>
+      <p>The secret sauce is <strong>information gain</strong> — the reduction in entropy after asking a question:</p>
+
+      <div class="formula-box">
+        <div class="formula">IG(Q) = H(before) - H(after | Q)</div>
+        <div class="label">Information Gain — higher is better</div>
+      </div>
+
+      <p>A perfect question has information gain of exactly 1 bit — it cuts uncertainty in half. The AI greedily picks the highest-gain question at each step.</p>
+
+      <h3>Example Walkthrough</h3>
+      <p>Say we have 16 candidate objects. Entropy = 4 bits.</p>
+      <ul>
+        <li><strong>Q1: "Is it alive?"</strong> — Splits 8/8. Gain: 1 bit. Remaining: 3 bits.</li>
+        <li><strong>Q2: "Can you hold it in your hand?"</strong> — Splits 4/4. Gain: 1 bit. Remaining: 2 bits.</li>
+        <li><strong>Q3: "Is it found indoors?"</strong> — Splits 2/2. Gain: 1 bit. Remaining: 1 bit.</li>
+        <li><strong>Q4: "Is it used daily?"</strong> — Splits 1/1. Gain: 1 bit. <strong>Solved!</strong></li>
+      </ul>
+      <p>4 questions, 16 objects, zero wasted bits.</p>
+
+    </div>
+
+    <!-- KO content -->
+    <div class="lang-content" data-lang="ko" style="display:none;">
+
+      <h2>불가능해 보이는 게임</h2>
+      <p>아무 물체나 하나 떠올려 보세요. 고양이, 마천루, 피자 한 조각. 이제 AI가 단 4~6개의 예/아니오 질문만으로 당신이 생각한 것을 정확히 맞추는 상상을 해보세요.</p>
+      <p>마법처럼 보이죠? 사실 수학입니다. 정확히는 <strong>섀넌 엔트로피</strong>와 <strong>정보이론</strong> — 압축 알고리즘, 암호학, 현대 머신러닝의 근간이 되는 바로 그 원리입니다.</p>
+      <p>어떻게 작동하는지 하나씩 분석해 봅시다.</p>
+
+      <h2>섀넌 엔트로피: 불확실성 측정</h2>
+      <p>1948년 클로드 섀넌은 <em>"통신의 수학적 이론"</em>을 발표하며 정보에 대한 우리의 생각을 영원히 바꿨습니다. 그의 핵심 통찰: <strong>정보는 놀라움</strong>입니다.</p>
+      <p>"오늘 해가 떴다"라고 말하면 정보량이 거의 0입니다 — 이미 예상했으니까요. 하지만 "사하라 사막에 눈이 왔다"는 예상 밖이기에 매우 높은 정보량을 갖습니다.</p>
+      <p>섀넌은 이를 <strong>엔트로피</strong>로 정형화했습니다. 불확실성의 척도죠:</p>
+
+      <div class="formula-box">
+        <div class="formula">H(X) = -&Sigma; p(x) &middot; log<sub>2</sub> p(x)</div>
+        <div class="label">섀넌 엔트로피 — 단위: 비트(bits)</div>
+      </div>
+
+      <p>엔트로피가 높을수록 불확실성이 크고, 그만큼 더 많은 정보가 필요합니다.</p>
+
+      <h3>간단한 예시</h3>
+      <p>주머니에 8개의 동일한 확률의 아이템이 있다면 엔트로피는:</p>
+      <pre><code>H = -8 &times; (1/8 &times; log2(1/8))
+H = -8 &times; (1/8 &times; -3)
+H = 3 비트</code></pre>
+      <p>아이템을 식별하는 데 정확히 <strong>3번의 예/아니오 질문</strong>이 필요합니다. 완벽한 질문 하나가 남은 가능성을 정확히 반으로 줄입니다.</p>
+
+      <h2>속성 공간에서의 이진 탐색</h2>
+      <p>AI가 실제로 작동하는 방식은 이렇습니다:</p>
+      <ol>
+        <li><strong>속성 데이터베이스</strong> — 모든 객체는 속성 벡터를 가짐: 살아있는가? 빵 상자보다 큰가? 먹을 수 있는가?</li>
+        <li><strong>엔트로피 계산</strong> — 각 질문에 대해 AI는 얼마나 많은 엔트로피를 제거할 수 있는지 계산.</li>
+        <li><strong>탐욕적 선택</strong> — 남은 후보를 가장 균등하게 나누는, 즉 <em>정보 이득</em>이 최대인 질문을 선택.</li>
+        <li><strong>신념 갱신</strong> — 답변 후 일치하지 않는 모든 객체를 제거하고 재계산.</li>
+      </ol>
+      <p>정렬된 리스트가 아닌 <strong>속성 공간에서의 이진 탐색</strong>입니다.</p>
+
+      <h2>왜 20문제가 아니라 4문제일까?</h2>
+      <p>사람은 스무고개를 할 때 질문을 낭비합니다. "음식인가요?" 같은 질문은 물체의 12%만 음식일 때 "예"에서 12%, "아니오"에서 88%만 제거합니다 — 매우 불균등하죠.</p>
+      <p>AI는 항상 가능성을 50/50에 가깝게 나누는 질문을 합니다. 이것이 수학적으로 최적입니다.</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr><th>전략</th><th>평균 질문 수</th><th>효율성</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>일반 사람</td><td>15-20</td><td>~30%</td></tr>
+          <tr><td>숙련된 사람</td><td>8-12</td><td>~55%</td></tr>
+          <tr><td>엔트로피 최적 AI</td><td>4-6</td><td>~90%</td></tr>
+          <tr><td>이론적 최솟값</td><td>log2(N)</td><td>100%</td></tr>
+        </tbody>
+      </table>
+
+      <p>~30개의 객체 데이터베이스에서 <code>log2(30) = 4.9 비트</code>. 실제 속성이 완벽한 이진값이 아니고 일부 객체가 속성을 공유하기 때문에 AI는 보통 4~6번의 질문이 필요합니다.</p>
+
+      <h2>정보 이득: 최적의 질문 고르기</h2>
+      <p>비결은 <strong>정보 이득</strong> — 질문 후 엔트로피의 감소량입니다:</p>
+
+      <div class="formula-box">
+        <div class="formula">IG(Q) = H(이전) - H(이후 | Q)</div>
+        <div class="label">정보 이득 — 높을수록 좋은 질문</div>
+      </div>
+
+      <p>완벽한 질문의 정보 이득은 정확히 1비트 — 불확실성을 정확히 반으로 줄입니다. AI는 매 단계에서 가장 높은 이득의 질문을 탐욕적으로 선택합니다.</p>
+
+      <h3>예시 풀이</h3>
+      <p>16개의 후보 객체가 있다면 엔트로피 = 4비트:</p>
+      <ul>
+        <li><strong>Q1: "살아있나요?"</strong> — 8/8 분할. 이득: 1비트. 남은: 3비트.</li>
+        <li><strong>Q2: "손에 들 수 있나요?"</strong> — 4/4 분할. 이득: 1비트. 남은: 2비트.</li>
+        <li><strong>Q3: "실내에서 볼 수 있나요?"</strong> — 2/2 분할. 이득: 1비트. 남은: 1비트.</li>
+        <li><strong>Q4: "매일 사용하나요?"</strong> — 1/1 분할. 이득: 1비트. <strong>정답!</strong></li>
+      </ul>
+      <p>4문제, 16개 객체, 낭비 비트 0.</p>
+
+    </div>
+
+    <!-- Shared interactive demo -->
+    <div class="demo-box">
+      <h3 data-en="Interactive: Entropy Calculator" data-ko="인터랙티브: 엔트로피 계산기">Interactive: Entropy Calculator</h3>
+      <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:16px;" data-en="Adjust the number of objects and see how many questions the AI needs:" data-ko="객체 수를 조절하고 AI가 몇 개의 질문이 필요한지 확인하세요:">Adjust the number of objects and see how many questions the AI needs:</p>
+
+      <div class="demo-slider-row">
+        <label data-en="Number of objects:" data-ko="객체 수:">Number of objects:</label>
+        <input type="range" id="objSlider" min="2" max="128" value="30" oninput="updateEntropy()">
+        <span class="val" id="objVal">30</span>
+      </div>
+
+      <div class="demo-result" id="entropyResult">
+        <strong>Entropy:</strong> 4.91 bits<br>
+        <span data-en="The AI needs ~5 questions to identify the object." data-ko="AI가 객체를 식별하는 데 ~5개의 질문이 필요합니다.">The AI needs ~5 questions to identify the object.</span>
+      </div>
+    </div>
+
+    <!-- Shared CTA -->
+    <div class="cta-box">
+      <h3 data-en="Try It Yourself!" data-ko="직접 해보세요!">Try It Yourself!</h3>
+      <p data-en="Think of something and see if the AI can guess it in under 6 questions." data-ko="무언가를 떠올리고 AI가 6문제 안에 맞출 수 있는지 확인해 보세요.">Think of something and see if the AI can guess it in under 6 questions.</p>
+      <a href="/games/twenty-questions/" class="cta-btn" data-en="Play 20 Questions AI" data-ko="AI 스무고개 플레이">Play 20 Questions AI</a>
+    </div>
+
+    <!-- Remaining shared EN section -->
+    <div class="lang-content" data-lang="en">
+      <h2>Beyond Games: Where This Math Lives</h2>
+      <p>Shannon entropy isn't just a party trick. It's the backbone of:</p>
+      <ul>
+        <li><strong>Data compression</strong> (ZIP, MP3, JPEG) — remove bits that carry no information</li>
+        <li><strong>Decision trees</strong> in machine learning — split on features with highest information gain</li>
+        <li><strong>Cryptography</strong> — maximize entropy to make messages unpredictable</li>
+        <li><strong>Natural language processing</strong> — predict next words by measuring surprise</li>
+        <li><strong>Medical diagnosis</strong> — ask the most discriminating tests first</li>
+      </ul>
+      <p>The 20 Questions game is, in a way, the purest expression of how information theory works. Every question is a measurement. Every answer reduces uncertainty. Optimality means asking the right questions.</p>
+
+      <h2>Key Takeaways</h2>
+      <ol>
+        <li><strong>Entropy measures uncertainty</strong> — more possible outcomes = more bits needed.</li>
+        <li><strong>Optimal questions split 50/50</strong> — anything else wastes information capacity.</li>
+        <li><strong>log2(N) is the floor</strong> — you can't beat math, but you can get close.</li>
+        <li><strong>Real-world noise adds 1-2 extra questions</strong> — property overlap and ambiguity cost bits.</li>
+        <li><strong>This is how all AI "thinks"</strong> — from ChatGPT to medical AI, reducing uncertainty is the game.</li>
+      </ol>
+    </div>
+
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <h2>게임을 넘어서: 이 수학이 사용되는 곳</h2>
+      <p>섀넌 엔트로피는 단순한 게임 트릭이 아닙니다. 다음의 근간입니다:</p>
+      <ul>
+        <li><strong>데이터 압축</strong> (ZIP, MP3, JPEG) — 정보가 없는 비트를 제거</li>
+        <li><strong>머신러닝의 의사결정 트리</strong> — 정보 이득이 가장 높은 특성으로 분할</li>
+        <li><strong>암호학</strong> — 엔트로피를 최대화하여 메시지를 예측 불가능하게</li>
+        <li><strong>자연어 처리</strong> — 놀라움을 측정하여 다음 단어를 예측</li>
+        <li><strong>의료 진단</strong> — 가장 판별력 있는 검사를 먼저 수행</li>
+      </ul>
+      <p>스무고개 게임은 어떤 면에서 정보이론의 가장 순수한 표현입니다. 모든 질문은 측정이고, 모든 답은 불확실성을 줄이며, 최적이란 올바른 질문을 하는 것입니다.</p>
+
+      <h2>핵심 정리</h2>
+      <ol>
+        <li><strong>엔트로피는 불확실성을 측정</strong> — 가능한 결과가 많을수록 더 많은 비트 필요.</li>
+        <li><strong>최적 질문은 50/50으로 분할</strong> — 다른 비율은 정보 용량의 낭비.</li>
+        <li><strong>log2(N)이 하한</strong> — 수학을 이길 수는 없지만 가까이 갈 수 있음.</li>
+        <li><strong>현실 노이즈는 1~2개 추가 질문 발생</strong> — 속성 중복과 모호성이 비트를 소모.</li>
+        <li><strong>이것이 모든 AI의 "사고" 방식</strong> — ChatGPT부터 의료 AI까지, 불확실성 감소가 게임.</li>
+      </ol>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+    </div>
+    <a href="/blog/" style="color:var(--text-dim);font-size:0.85rem;" data-en="Back to Blog" data-ko="블로그로 돌아가기">Back to Blog</a>
+    <p class="copy">&copy; 2026 pure-flon. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-toggle button:${lang === 'en' ? 'first' : 'last'}-child`).classList.add('active');
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+
+  document.querySelectorAll('.lang-content').forEach(el => {
+    el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+  });
+
+  updateEntropy();
+}
+
+function updateEntropy() {
+  const n = parseInt(document.getElementById('objSlider').value);
+  document.getElementById('objVal').textContent = n;
+  const entropy = Math.log2(n);
+  const questions = Math.ceil(entropy);
+
+  const isKo = currentLang === 'ko';
+  document.getElementById('entropyResult').innerHTML =
+    `<strong>${isKo ? '엔트로피' : 'Entropy'}:</strong> ${entropy.toFixed(2)} ${isKo ? '비트' : 'bits'}<br>` +
+    `${isKo ? 'AI가 객체를 식별하는 데 ~' + questions + '개의 질문이 필요합니다.' : 'The AI needs ~' + questions + ' questions to identify the object.'}`;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Timer - Free Online Focus Timer | pure-flon</title>
+<meta name="description" content="Free online Pomodoro timer for focused work sessions. 25-minute work intervals, customizable durations, session tracking, audio notifications, and fullscreen mode. No sign-up required.">
+<meta name="keywords" content="pomodoro timer, focus timer, study timer, work timer, productivity timer, pomodoro technique, time management, concentration timer, 25 minute timer, pomodoro online">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/pomodoro/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Pomodoro Timer - Free Online Focus Timer">
+<meta property="og:description" content="Stay focused with customizable Pomodoro sessions. Track your productivity with session stats and audio alerts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/tools/pomodoro/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pomodoro Timer - Free Online Focus Timer">
+<meta name="twitter:description" content="Stay focused with customizable Pomodoro sessions. Track your productivity with session stats and audio alerts.">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pomodoro Timer",
+  "description": "Free online Pomodoro timer with customizable durations, session tracking, audio notifications, and fullscreen mode.",
+  "url": "https://pure-flon.com/tools/pomodoro/",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "pure-flon",
+    "url": "https://pure-flon.com"
+  }
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --border: #2a2a2a;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --accent: #4fc3f7;
+  --accent-hover: #81d4fa;
+  --work: #ef5350;
+  --work-bg: rgba(239, 83, 80, 0.1);
+  --break: #66bb6a;
+  --break-bg: rgba(102, 187, 106, 0.1);
+  --long-break: #ab47bc;
+  --long-break-bg: rgba(171, 71, 188, 0.1);
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* AI Banner */
+.ai-banner {
+  background: linear-gradient(90deg, #1a1a2e, #16213e);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.ai-banner span { color: var(--accent); font-weight: 600; }
+.ai-banner a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color 0.2s;
+}
+.ai-banner a:hover { color: var(--accent-hover); }
+.sponsor-links { margin-top: 4px; }
+
+/* Nav */
+nav {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--text); }
+nav .sep { color: var(--border); }
+nav .current { color: var(--text); font-weight: 600; }
+
+/* Container */
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+/* Mode tabs */
+.mode-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.mode-tab {
+  padding: 10px 24px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: var(--card);
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.mode-tab:hover { border-color: #555; color: var(--text); }
+.mode-tab.active-work {
+  background: var(--work-bg);
+  border-color: var(--work);
+  color: var(--work);
+}
+.mode-tab.active-break {
+  background: var(--break-bg);
+  border-color: var(--break);
+  color: var(--break);
+}
+.mode-tab.active-long {
+  background: var(--long-break-bg);
+  border-color: var(--long-break);
+  color: var(--long-break);
+}
+
+/* Timer display */
+.timer-ring {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 40px;
+}
+
+.timer-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-ring .track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 4;
+}
+
+.timer-ring .progress {
+  fill: none;
+  stroke: var(--work);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s linear, stroke 0.3s;
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-time {
+  font-size: 72px;
+  font-weight: 200;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.timer-label {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 12px 32px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn:hover { border-color: #555; }
+.btn.start {
+  background: var(--work);
+  border-color: var(--work);
+  color: #fff;
+  min-width: 140px;
+  justify-content: center;
+}
+.btn.start:hover { opacity: 0.9; }
+.btn.start.running {
+  background: transparent;
+  border-color: var(--work);
+  color: var(--work);
+}
+
+.btn-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* Session indicators */
+.sessions-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.session-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s;
+}
+.session-dot.completed { background: var(--work); }
+.session-dot.current {
+  background: transparent;
+  border: 2px solid var(--work);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* Settings */
+.settings-toggle {
+  color: var(--text-dim);
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+}
+.settings-toggle:hover { color: var(--text); }
+
+.settings-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 40px;
+  display: none;
+  text-align: left;
+}
+.settings-panel.show { display: block; }
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.setting-row:last-child { border-bottom: none; }
+
+.setting-label {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.setting-input {
+  width: 80px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  text-align: center;
+}
+.setting-input:focus { outline: none; border-color: var(--accent); }
+
+.settings-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn-sm {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0a0a0a;
+  font-weight: 600;
+}
+
+/* Info */
+.info-section {
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: left;
+}
+.info-section h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.info-section p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 12px;
+  max-width: 700px;
+}
+.info-section ul {
+  color: var(--text-dim);
+  font-size: 14px;
+  padding-left: 20px;
+}
+.info-section li { margin-bottom: 6px; }
+
+/* Footer */
+footer {
+  max-width: 680px;
+  margin: 48px auto 0;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Fullscreen adjustments */
+:fullscreen .ai-banner,
+:fullscreen nav,
+:fullscreen .info-section,
+:fullscreen footer,
+:fullscreen .subtitle,
+:fullscreen .settings-toggle,
+:fullscreen .settings-panel { display: none; }
+:fullscreen .container { padding-top: 10vh; }
+:fullscreen .timer-ring { width: 400px; height: 400px; }
+:fullscreen .timer-time { font-size: 96px; }
+
+@media (max-width: 600px) {
+  .timer-ring { width: 260px; height: 260px; }
+  .timer-time { font-size: 56px; }
+  .mode-tabs { gap: 4px; }
+  .mode-tab { padding: 8px 14px; font-size: 13px; }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-card { padding: 14px 10px; }
+  .stat-value { font-size: 22px; }
+  h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- AI Banner -->
+<div class="ai-banner">
+  <div><span>100% MADE BY AI</span> &mdash; Free productivity tools by pure-flon</div>
+  <div class="sponsor-links">
+    Support:
+    <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a> |
+    <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a> |
+    <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="/">Home</a>
+  <span class="sep">/</span>
+  <a href="/tools/">Tools</a>
+  <span class="sep">/</span>
+  <span class="current">Pomodoro Timer</span>
+</nav>
+
+<div class="container">
+  <h1>Pomodoro Timer</h1>
+  <p class="subtitle">Stay focused with timed work sessions. Complete 4 pomodoros to earn a long break.</p>
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button class="mode-tab active-work" id="tabWork" onclick="switchMode('work')">Work</button>
+    <button class="mode-tab" id="tabBreak" onclick="switchMode('break')">Break</button>
+    <button class="mode-tab" id="tabLong" onclick="switchMode('longBreak')">Long Break</button>
+  </div>
+
+  <!-- Timer ring -->
+  <div class="timer-ring" id="timerRing">
+    <svg viewBox="0 0 320 320">
+      <circle class="track" cx="160" cy="160" r="150"></circle>
+      <circle class="progress" id="progressRing" cx="160" cy="160" r="150"
+        stroke-dasharray="942.48" stroke-dashoffset="0"></circle>
+    </svg>
+    <div class="timer-text">
+      <div class="timer-time" id="timerDisplay">25:00</div>
+      <div class="timer-label" id="timerLabel">Focus Time</div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="btn btn-icon" onclick="resetTimer()" title="Reset">&#8635;</button>
+    <button class="btn start" id="startBtn" onclick="toggleTimer()">Start</button>
+    <button class="btn btn-icon" onclick="skipTimer()" title="Skip">&#9197;</button>
+    <button class="btn btn-icon" onclick="toggleFullscreen()" title="Fullscreen">&#9974;</button>
+  </div>
+
+  <!-- Session dots -->
+  <div class="sessions-row" id="sessionDots">
+    <div class="session-dot current"></div>
+    <div class="session-dot"></div>
+    <div class="session-dot"></div>
+    <div class="session-dot"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="statTodaySessions">0</div>
+      <div class="stat-label">Today</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statTotalSessions">0</div>
+      <div class="stat-label">Total Sessions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statTotalTime">0h</div>
+      <div class="stat-label">Focus Time</div>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <button class="settings-toggle" onclick="toggleSettings()">&#9881; Settings</button>
+  <div class="settings-panel" id="settingsPanel">
+    <div class="setting-row">
+      <span class="setting-label">Work duration (min)</span>
+      <input class="setting-input" type="number" id="setWork" min="1" max="120" value="25">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Short break (min)</span>
+      <input class="setting-input" type="number" id="setBreak" min="1" max="60" value="5">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Long break (min)</span>
+      <input class="setting-input" type="number" id="setLong" min="1" max="60" value="15">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Sessions before long break</span>
+      <input class="setting-input" type="number" id="setSessions" min="2" max="10" value="4">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Sound notification</span>
+      <select class="setting-input" id="setSound" style="width:auto;">
+        <option value="1">On</option>
+        <option value="0">Off</option>
+      </select>
+    </div>
+    <div class="settings-actions">
+      <button class="btn-sm" onclick="resetStats()">Reset Stats</button>
+      <button class="btn-sm primary" onclick="saveSettings()">Save</button>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="info-section">
+    <h2>About the Pomodoro Technique</h2>
+    <p>
+      The Pomodoro Technique is a time management method developed by Francesco Cirillo.
+      It uses a timer to break work into focused intervals (traditionally 25 minutes), separated by short breaks.
+    </p>
+    <ul>
+      <li><strong>Work session:</strong> Focus on one task for 25 minutes without interruptions.</li>
+      <li><strong>Short break:</strong> Take a 5-minute break to rest your mind.</li>
+      <li><strong>Long break:</strong> After 4 work sessions, take a longer 15-minute break.</li>
+      <li><strong>Customizable:</strong> Adjust all durations to fit your workflow.</li>
+      <li><strong>Track progress:</strong> Session stats are saved in your browser (localStorage).</li>
+      <li><strong>Fullscreen mode:</strong> Minimize distractions by going fullscreen.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 <a href="/">pure-flon.com</a> &middot;
+  <a href="/tools/">All Tools</a> &middot;
+  <a href="https://github.com/pure-flon" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// State
+let timer = null;
+let timeLeft = 25 * 60;
+let totalTime = 25 * 60;
+let isRunning = false;
+let currentMode = 'work'; // work | break | longBreak
+let currentSession = 0; // 0-indexed within the cycle
+let config = {
+  work: 25,
+  break: 5,
+  longBreak: 15,
+  sessionsBeforeLong: 4,
+  sound: true
+};
+let stats = {
+  totalSessions: 0,
+  totalFocusMinutes: 0,
+  todaySessions: 0,
+  todayDate: ''
+};
+
+const circumference = 2 * Math.PI * 150; // r=150
+const progressRing = document.getElementById('progressRing');
+const timerDisplay = document.getElementById('timerDisplay');
+const timerLabel = document.getElementById('timerLabel');
+const startBtn = document.getElementById('startBtn');
+
+// Init
+loadConfig();
+loadStats();
+updateDisplay();
+updateStatsUI();
+renderSessionDots();
+
+// Audio context (lazy init)
+let audioCtx = null;
+
+function playBeep() {
+  if (!config.sound) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    // Play a pleasant 3-tone notification
+    const now = audioCtx.currentTime;
+    const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+    notes.forEach(function(freq, i) {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.3, now + i * 0.2);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.2 + 0.5);
+      osc.start(now + i * 0.2);
+      osc.stop(now + i * 0.2 + 0.5);
+    });
+  } catch (e) { /* Audio not available */ }
+}
+
+function toggleTimer() {
+  if (isRunning) {
+    pauseTimer();
+  } else {
+    startTimer();
+  }
+}
+
+function startTimer() {
+  isRunning = true;
+  startBtn.textContent = 'Pause';
+  startBtn.classList.add('running');
+
+  timer = setInterval(function() {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      timer = null;
+      isRunning = false;
+      onTimerComplete();
+    }
+    updateDisplay();
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timer);
+  timer = null;
+  isRunning = false;
+  startBtn.textContent = 'Resume';
+  startBtn.classList.remove('running');
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  timer = null;
+  isRunning = false;
+  timeLeft = getModeMinutes(currentMode) * 60;
+  totalTime = timeLeft;
+  startBtn.textContent = 'Start';
+  startBtn.classList.remove('running');
+  updateDisplay();
+}
+
+function skipTimer() {
+  clearInterval(timer);
+  timer = null;
+  isRunning = false;
+  onTimerComplete();
+}
+
+function onTimerComplete() {
+  playBeep();
+
+  if (currentMode === 'work') {
+    // Record completed work session
+    stats.totalSessions++;
+    stats.totalFocusMinutes += config.work;
+    const today = new Date().toISOString().split('T')[0];
+    if (stats.todayDate !== today) {
+      stats.todayDate = today;
+      stats.todaySessions = 0;
+    }
+    stats.todaySessions++;
+    saveStats();
+    updateStatsUI();
+
+    currentSession++;
+    if (currentSession >= config.sessionsBeforeLong) {
+      currentSession = 0;
+      switchMode('longBreak');
+    } else {
+      switchMode('break');
+    }
+  } else {
+    // Break complete, back to work
+    switchMode('work');
+  }
+
+  renderSessionDots();
+
+  // Notify if page hidden
+  if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
+    new Notification('Pomodoro Timer', {
+      body: currentMode === 'work' ? 'Time to focus!' : 'Break is over! Ready to work?'
+    });
+  }
+
+  startBtn.textContent = 'Start';
+  startBtn.classList.remove('running');
+  updateDisplay();
+}
+
+function switchMode(mode) {
+  currentMode = mode;
+  clearInterval(timer);
+  timer = null;
+  isRunning = false;
+  timeLeft = getModeMinutes(mode) * 60;
+  totalTime = timeLeft;
+
+  // Update tab styling
+  document.getElementById('tabWork').className = 'mode-tab' + (mode === 'work' ? ' active-work' : '');
+  document.getElementById('tabBreak').className = 'mode-tab' + (mode === 'break' ? ' active-break' : '');
+  document.getElementById('tabLong').className = 'mode-tab' + (mode === 'longBreak' ? ' active-long' : '');
+
+  // Update ring color
+  const colors = { work: 'var(--work)', break: 'var(--break)', longBreak: 'var(--long-break)' };
+  progressRing.style.stroke = colors[mode];
+
+  // Update start button color
+  const c = { work: '--work', break: '--break', longBreak: '--long-break' };
+  startBtn.style.background = 'var(' + c[mode] + ')';
+  startBtn.style.borderColor = 'var(' + c[mode] + ')';
+
+  // Update labels
+  const labels = { work: 'Focus Time', break: 'Short Break', longBreak: 'Long Break' };
+  timerLabel.textContent = labels[mode];
+
+  startBtn.textContent = 'Start';
+  startBtn.classList.remove('running');
+  updateDisplay();
+}
+
+function getModeMinutes(mode) {
+  const map = { work: config.work, break: config.break, longBreak: config.longBreak };
+  return map[mode] || 25;
+}
+
+function updateDisplay() {
+  const mins = Math.floor(timeLeft / 60);
+  const secs = timeLeft % 60;
+  timerDisplay.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+
+  // Update ring
+  const progress = 1 - (timeLeft / totalTime);
+  const offset = circumference * (1 - progress);
+  progressRing.setAttribute('stroke-dashoffset', offset);
+
+  // Update page title
+  document.title = timerDisplay.textContent + ' - Pomodoro Timer | pure-flon';
+}
+
+function renderSessionDots() {
+  const container = document.getElementById('sessionDots');
+  let html = '';
+  for (let i = 0; i < config.sessionsBeforeLong; i++) {
+    if (i < currentSession) {
+      html += '<div class="session-dot completed"></div>';
+    } else if (i === currentSession && currentMode === 'work') {
+      html += '<div class="session-dot current"></div>';
+    } else {
+      html += '<div class="session-dot"></div>';
+    }
+  }
+  container.innerHTML = html;
+}
+
+// Settings
+function toggleSettings() {
+  const panel = document.getElementById('settingsPanel');
+  panel.classList.toggle('show');
+}
+
+function saveSettings() {
+  config.work = parseInt(document.getElementById('setWork').value) || 25;
+  config.break = parseInt(document.getElementById('setBreak').value) || 5;
+  config.longBreak = parseInt(document.getElementById('setLong').value) || 15;
+  config.sessionsBeforeLong = parseInt(document.getElementById('setSessions').value) || 4;
+  config.sound = document.getElementById('setSound').value === '1';
+
+  localStorage.setItem('pomo_config', JSON.stringify(config));
+
+  // Reset timer to new duration
+  resetTimer();
+  renderSessionDots();
+  document.getElementById('settingsPanel').classList.remove('show');
+  showToast('Settings saved');
+}
+
+function loadConfig() {
+  try {
+    const saved = localStorage.getItem('pomo_config');
+    if (saved) {
+      config = JSON.parse(saved);
+      document.getElementById('setWork').value = config.work;
+      document.getElementById('setBreak').value = config.break;
+      document.getElementById('setLong').value = config.longBreak;
+      document.getElementById('setSessions').value = config.sessionsBeforeLong;
+      document.getElementById('setSound').value = config.sound ? '1' : '0';
+      timeLeft = config.work * 60;
+      totalTime = timeLeft;
+    }
+  } catch (e) {}
+}
+
+// Stats
+function loadStats() {
+  try {
+    const saved = localStorage.getItem('pomo_stats');
+    if (saved) {
+      stats = JSON.parse(saved);
+      // Reset today count if different day
+      const today = new Date().toISOString().split('T')[0];
+      if (stats.todayDate !== today) {
+        stats.todayDate = today;
+        stats.todaySessions = 0;
+      }
+    }
+  } catch (e) {}
+}
+
+function saveStats() {
+  localStorage.setItem('pomo_stats', JSON.stringify(stats));
+}
+
+function updateStatsUI() {
+  document.getElementById('statTodaySessions').textContent = stats.todaySessions;
+  document.getElementById('statTotalSessions').textContent = stats.totalSessions;
+
+  const hours = Math.floor(stats.totalFocusMinutes / 60);
+  const mins = stats.totalFocusMinutes % 60;
+  if (hours > 0) {
+    document.getElementById('statTotalTime').textContent = hours + 'h ' + mins + 'm';
+  } else {
+    document.getElementById('statTotalTime').textContent = mins + 'm';
+  }
+}
+
+function resetStats() {
+  if (confirm('Reset all stats? This cannot be undone.')) {
+    stats = { totalSessions: 0, totalFocusMinutes: 0, todaySessions: 0, todayDate: '' };
+    saveStats();
+    updateStatsUI();
+    showToast('Stats reset');
+  }
+}
+
+// Fullscreen
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(function() {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+// Request notification permission
+if ('Notification' in window && Notification.permission === 'default') {
+  // Will prompt on first interaction
+  document.addEventListener('click', function requestNotif() {
+    Notification.requestPermission();
+    document.removeEventListener('click', requestNotif);
+  }, { once: true });
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.code === 'Space') {
+    e.preventDefault();
+    toggleTimer();
+  } else if (e.code === 'KeyR') {
+    resetTimer();
+  } else if (e.code === 'KeyF') {
+    toggleFullscreen();
+  } else if (e.code === 'KeyS') {
+    skipTimer();
+  }
+});
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2000);
+}
+</script>
+</body>
+</html>
