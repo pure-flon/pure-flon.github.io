@@ -259,7 +259,7 @@
         <priority>0.4</priority>
     </url>
 
-</urlset>    <url>
+    <url>
         <loc>https://pure-flon.com/blog/</loc>
         <lastmod>2026-03-26</lastmod>
         <changefreq>daily</changefreq>
@@ -289,3 +289,4 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+</urlset>
