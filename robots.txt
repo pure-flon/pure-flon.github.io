@@ -28,6 +28,11 @@ Allow: /.well-known/
 # ✅ 게임 섹션
 Allow: /games/
 Allow: /games/twenty-questions/
+Allow: /games/k-meme-quiz/
+
+# ✅ 도구 섹션
+Allow: /tools/
+Allow: /tools/color-palette/
 
 # ✅ 다국어 지원 페이지들
 Allow: /ko/

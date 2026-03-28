@@ -295,4 +295,18 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <!-- Games — K-Meme Quiz (G-002, 2026-03-28) -->
+    <url>
+        <loc>https://pure-flon.com/games/k-meme-quiz/</loc>
+        <lastmod>2026-03-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- Tools — Color Palette Generator (T-001, 2026-03-28) -->
+    <url>
+        <loc>https://pure-flon.com/tools/color-palette/</loc>
+        <lastmod>2026-03-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
