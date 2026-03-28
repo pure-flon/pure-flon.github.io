@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Color Palette Generator — Free Online Tool | Pure-Flon</title>
+  <meta name="description" content="Generate beautiful, harmonious color palettes from any seed color. Export as CSS variables, Tailwind config, or image. Free, no login required." />
+  <meta name="keywords" content="color palette generator, color scheme, CSS variables, Tailwind colors, design tool, HSL color, color harmony" />
+  <link rel="canonical" href="https://pure-flon.com/tools/color-palette/" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WE091T20M0');
+  </script>
+
+  <!-- Verification -->
+  <meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s" />
+  <meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Color Palette Generator — Pure-Flon Tools" />
+  <meta property="og:description" content="Generate harmonious color palettes from a seed color. Export as CSS, Tailwind, or image." />
+  <meta property="og:url" content="https://pure-flon.com/tools/color-palette/" />
+  <meta property="og:site_name" content="Pure-Flon" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Color Palette Generator" />
+  <meta name="twitter:description" content="Free color palette tool. HSL harmony, CSS export, Tailwind config." />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Color Palette Generator",
+    "url": "https://pure-flon.com/tools/color-palette/",
+    "description": "Generate harmonious color palettes from a seed color. Export as CSS variables, Tailwind config, or image.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Pure-Flon", "url": "https://pure-flon.com" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the color palette generator work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Enter any hex color as the seed. The tool uses HSL color theory to generate 5 harmonious shades — complementary, analogous, triadic, and tinted/shaded variants." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I export the palette as CSS variables?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click 'CSS Variables' to copy :root { --color-1: ...; } code directly. You can also export as Tailwind config or download a PNG image." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this tool free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Completely free. No signup, no login, no watermarks. Works entirely in your browser." }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans KR', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            surface: { DEFAULT: '#0a0a0f', card: '#12121a', hover: '#1a1a26', border: '#1e1e2e' },
+            accent: { DEFAULT: '#6366f1', dim: '#4f46e5' },
+            muted: '#64748b',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0a0a0f;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .bg-glow {
+      position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.07) 0%, transparent 70%);
+      z-index: 0; pointer-events: none;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+    .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+
+    /* Color swatch */
+    .swatch {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .swatch:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    .swatch-copy-hint {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      background: rgba(0,0,0,0.3);
+      border-radius: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .swatch:hover .swatch-copy-hint { opacity: 1; }
+
+    /* Tab button */
+    .tab-btn {
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      color: #a5b4fc;
+      border-color: #6366f1;
+      background: rgba(99,102,241,0.1);
+    }
+
+    /* Input styling */
+    input[type="color"] {
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      background: transparent;
+    }
+    input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px rgba(99,102,241,0.4); }
+    input[type="range"] { cursor: pointer; accent-color: #6366f1; }
+
+    /* Export code block */
+    .code-block {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.7;
+      background: #0a0a0f;
+      border: 1px solid #1e1e2e;
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      white-space: pre;
+      color: #94a3b8;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    /* Copy toast */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: #12121a; border: 1px solid rgba(99,102,241,0.4);
+      color: #a5b4fc; padding: 0.75rem 1.25rem; border-radius: 0.75rem;
+      font-size: 0.875rem; font-weight: 500;
+      opacity: 0; transform: translateY(1rem);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 999; pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* Scheme selector */
+    .scheme-btn {
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .scheme-btn.active {
+      border-color: #6366f1 !important;
+      color: #a5b4fc !important;
+      background: rgba(99,102,241,0.1) !important;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #0a0a0f; }
+    ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 3px; }
+
+    /* Lang toggle */
+    .lang-ko-only { display: none; }
+    body.lang-ko .lang-en-only { display: none; }
+    body.lang-ko .lang-ko-only { display: block; }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Copied!</div>
+
+  <div class="relative z-10">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md"
+      style="background: rgba(10,10,15,0.85); border-bottom: 1px solid #1e1e2e;">
+      <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(99,102,241,0.2);">
+            <div class="w-3 h-3 rounded-sm" style="background:#6366f1;"></div>
+          </div>
+          <span class="text-lg font-semibold tracking-tight text-white">Pure-Flon</span>
+        </a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <a href="/tools/" class="text-xs px-3 py-1 rounded-full"
+            style="border:1px solid #1e1e2e; color:#64748b; text-decoration:none; transition: border-color 0.2s, color 0.2s;"
+            onmouseover="this.style.borderColor='rgba(99,102,241,0.4)'; this.style.color='#a5b4fc';"
+            onmouseout="this.style.borderColor='#1e1e2e'; this.style.color='#64748b';">
+            All Tools
+          </a>
+          <button onclick="document.body.classList.toggle('lang-ko')"
+            class="text-xs px-3 py-1 rounded-full"
+            style="border:1px solid #1e1e2e; color:#64748b; background:transparent; cursor:pointer; font-family:inherit; transition: border-color 0.2s, color 0.2s;"
+            onmouseover="this.style.borderColor='rgba(99,102,241,0.4)'; this.style.color='#a5b4fc';"
+            onmouseout="this.style.borderColor='#1e1e2e'; this.style.color='#64748b';">
+            EN / KO
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="max-w-5xl mx-auto px-6" style="padding-top:6rem; padding-bottom:5rem;">
+
+      <!-- Hero -->
+      <section class="text-center mb-10 animate-in delay-1">
+        <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#6366f1; letter-spacing:0.15em;">
+          Design Tool · T-001
+        </p>
+        <h1 class="font-bold text-white tracking-tight mb-4" style="font-size: clamp(1.8rem, 5vw, 3rem);">
+          <span class="lang-en-only">AI Color Palette Generator</span>
+          <span class="lang-ko-only">AI 컬러 팔레트 생성기</span>
+        </h1>
+        <p class="text-base leading-relaxed mx-auto" style="color:#64748b; max-width:520px;">
+          <span class="lang-en-only">Pick a seed color → get 5 harmonious shades → export as CSS, Tailwind, or PNG.</span>
+          <span class="lang-ko-only">시드 컬러 선택 → 5가지 조화로운 색상 생성 → CSS, Tailwind, PNG로 내보내기.</span>
+        </p>
+      </section>
+
+      <!-- Control Panel -->
+      <div class="animate-in delay-2 rounded-2xl p-6 mb-6"
+        style="background:#12121a; border:1px solid #1e1e2e;">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Left: Seed color -->
+          <div>
+            <label class="text-xs font-medium tracking-wider uppercase mb-3 block" style="color:#64748b; letter-spacing:0.1em;">
+              <span class="lang-en-only">Seed Color</span>
+              <span class="lang-ko-only">시드 컬러</span>
+            </label>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:1rem;">
+              <div style="position:relative; flex-shrink:0;">
+                <input type="color" id="colorPicker" value="#6366f1"
+                  style="width:52px; height:52px; border-radius:0.75rem; cursor:pointer; border:2px solid #1e1e2e;"
+                  oninput="syncHexFromPicker(this.value)" />
+              </div>
+              <div style="flex:1; position:relative;">
+                <input type="text" id="hexInput" value="#6366f1" maxlength="7"
+                  placeholder="#6366f1"
+                  class="w-full text-white font-mono rounded-xl px-4 py-3 text-sm"
+                  style="background:#0a0a0f; border:1px solid #1e1e2e;"
+                  oninput="syncPickerFromHex(this.value)"
+                  onkeydown="if(event.key==='Enter') generatePalette()" />
+              </div>
+            </div>
+            <button onclick="generatePalette()"
+              class="w-full py-3 rounded-xl font-semibold text-white text-sm"
+              style="background: linear-gradient(135deg, #6366f1, #8b5cf6); cursor:pointer; transition: opacity 0.2s, transform 0.2s;"
+              onmouseover="this.style.opacity='0.88'; this.style.transform='translateY(-1px)';"
+              onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)';">
+              <span class="lang-en-only">Generate Palette</span>
+              <span class="lang-ko-only">팔레트 생성</span>
+            </button>
+          </div>
+
+          <!-- Right: Scheme & options -->
+          <div>
+            <label class="text-xs font-medium tracking-wider uppercase mb-3 block" style="color:#64748b; letter-spacing:0.1em;">
+              <span class="lang-en-only">Harmony Type</span>
+              <span class="lang-ko-only">조화 유형</span>
+            </label>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:1rem;">
+              <button class="scheme-btn active rounded-xl py-2.5 text-xs font-medium" data-scheme="analogous"
+                style="background:#12121a; border:1px solid #1e1e2e; color:#64748b; cursor:pointer; font-family:inherit;"
+                onclick="selectScheme(this)">Analogous</button>
+              <button class="scheme-btn rounded-xl py-2.5 text-xs font-medium" data-scheme="complementary"
+                style="background:#12121a; border:1px solid #1e1e2e; color:#64748b; cursor:pointer; font-family:inherit;"
+                onclick="selectScheme(this)">Complementary</button>
+              <button class="scheme-btn rounded-xl py-2.5 text-xs font-medium" data-scheme="triadic"
+                style="background:#12121a; border:1px solid #1e1e2e; color:#64748b; cursor:pointer; font-family:inherit;"
+                onclick="selectScheme(this)">Triadic</button>
+              <button class="scheme-btn rounded-xl py-2.5 text-xs font-medium" data-scheme="shades"
+                style="background:#12121a; border:1px solid #1e1e2e; color:#64748b; cursor:pointer; font-family:inherit;"
+                onclick="selectScheme(this)">Shades</button>
+            </div>
+            <div>
+              <label class="text-xs font-medium tracking-wider uppercase mb-2 block" style="color:#64748b; letter-spacing:0.1em;">
+                <span class="lang-en-only">Saturation</span>
+                <span class="lang-ko-only">채도</span>
+                <span id="satVal" style="color:#a5b4fc; margin-left:8px;">80%</span>
+              </label>
+              <input type="range" id="satSlider" min="20" max="100" value="80"
+                class="w-full" style="height:4px;"
+                oninput="document.getElementById('satVal').textContent=this.value+'%'; generatePalette();" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Palette Display -->
+      <div class="animate-in delay-3 rounded-2xl p-6 mb-6"
+        style="background:#12121a; border:1px solid #1e1e2e;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
+          <h2 class="font-semibold text-white text-sm">
+            <span class="lang-en-only">Your Palette</span>
+            <span class="lang-ko-only">생성된 팔레트</span>
+          </h2>
+          <button onclick="downloadPalette()"
+            class="text-xs px-4 py-2 rounded-lg"
+            style="background: rgba(99,102,241,0.12); color:#a5b4fc; border:1px solid rgba(99,102,241,0.25); cursor:pointer; transition:background 0.2s; font-family:inherit;"
+            onmouseover="this.style.background='rgba(99,102,241,0.2)'"
+            onmouseout="this.style.background='rgba(99,102,241,0.12)'">
+            <span class="lang-en-only">Download PNG</span>
+            <span class="lang-ko-only">PNG 저장</span>
+          </button>
+        </div>
+
+        <!-- Swatches: tall bars on desktop, squares on mobile -->
+        <div id="swatchRow" style="display:grid; grid-template-columns: repeat(5, 1fr); gap:12px; margin-bottom:1.5rem;">
+          <!-- injected by JS -->
+        </div>
+
+        <!-- Color info row -->
+        <div id="colorInfoRow" style="display:grid; grid-template-columns: repeat(5, 1fr); gap:12px;">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- Export Panel -->
+      <div class="rounded-2xl p-6 mb-10" style="background:#12121a; border:1px solid #1e1e2e;">
+        <div style="display:flex; gap:8px; margin-bottom:1.25rem; flex-wrap:wrap;">
+          <button class="tab-btn active text-xs px-4 py-2 rounded-lg border" data-tab="css"
+            style="background:#12121a; border-color:#6366f1; color:#a5b4fc; font-family:inherit; cursor:pointer;"
+            onclick="switchTab(this, 'css')">CSS Variables</button>
+          <button class="tab-btn text-xs px-4 py-2 rounded-lg border" data-tab="tailwind"
+            style="background:#12121a; border-color:#1e1e2e; color:#64748b; font-family:inherit; cursor:pointer;"
+            onclick="switchTab(this, 'tailwind')">Tailwind</button>
+          <button class="tab-btn text-xs px-4 py-2 rounded-lg border" data-tab="hex"
+            style="background:#12121a; border-color:#1e1e2e; color:#64748b; font-family:inherit; cursor:pointer;"
+            onclick="switchTab(this, 'hex')">Hex List</button>
+        </div>
+        <div style="position:relative;">
+          <pre id="codeOutput" class="code-block"></pre>
+          <button onclick="copyCode()"
+            style="position:absolute; top:0.75rem; right:0.75rem; padding:0.375rem 0.875rem; border-radius:0.5rem; font-size:0.75rem; background:rgba(99,102,241,0.15); color:#a5b4fc; border:1px solid rgba(99,102,241,0.3); cursor:pointer; font-family:inherit; transition:background 0.2s;"
+            onmouseover="this.style.background='rgba(99,102,241,0.25)'"
+            onmouseout="this.style.background='rgba(99,102,241,0.15)'">
+            <span class="lang-en-only">Copy</span>
+            <span class="lang-ko-only">복사</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- FAQ / SEO Section -->
+      <section class="mb-10">
+        <h2 class="font-bold text-white text-xl mb-6 tracking-tight">
+          <span class="lang-en-only">How to Use the Color Palette Generator</span>
+          <span class="lang-ko-only">컬러 팔레트 생성기 사용 방법</span>
+        </h2>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin-bottom:2rem;">
+          <div class="rounded-xl p-5" style="background:#12121a; border:1px solid #1e1e2e;">
+            <p class="text-xs font-medium tracking-widest uppercase mb-2" style="color:#6366f1;">01</p>
+            <h3 class="font-semibold text-white mb-2 lang-en-only">Pick Your Seed Color</h3>
+            <h3 class="font-semibold text-white mb-2 lang-ko-only">시드 컬러 선택</h3>
+            <p class="text-sm" style="color:#64748b; line-height:1.6;">
+              <span class="lang-en-only">Click the color picker or type any hex value. The seed is the base your palette is built from.</span>
+              <span class="lang-ko-only">컬러 피커를 클릭하거나 헥스 값을 직접 입력하세요. 시드 컬러가 팔레트의 기반이 됩니다.</span>
+            </p>
+          </div>
+          <div class="rounded-xl p-5" style="background:#12121a; border:1px solid #1e1e2e;">
+            <p class="text-xs font-medium tracking-widest uppercase mb-2" style="color:#8b5cf6;">02</p>
+            <h3 class="font-semibold text-white mb-2 lang-en-only">Choose Harmony Type</h3>
+            <h3 class="font-semibold text-white mb-2 lang-ko-only">조화 유형 선택</h3>
+            <p class="text-sm" style="color:#64748b; line-height:1.6;">
+              <span class="lang-en-only">Analogous = similar hues. Complementary = opposite hues. Triadic = 3 evenly spaced. Shades = dark→light.</span>
+              <span class="lang-ko-only">유사색(Analogous), 보색(Complementary), 3색(Triadic), 명도 변화(Shades) 중 선택.</span>
+            </p>
+          </div>
+          <div class="rounded-xl p-5" style="background:#12121a; border:1px solid #1e1e2e;">
+            <p class="text-xs font-medium tracking-widest uppercase mb-2" style="color:#34d399;">03</p>
+            <h3 class="font-semibold text-white mb-2 lang-en-only">Export &amp; Use</h3>
+            <h3 class="font-semibold text-white mb-2 lang-ko-only">내보내기 및 사용</h3>
+            <p class="text-sm" style="color:#64748b; line-height:1.6;">
+              <span class="lang-en-only">Copy as CSS variables (paste into :root), Tailwind config (paste into tailwind.config.js), or download PNG.</span>
+              <span class="lang-ko-only">CSS 변수(:root에 붙여넣기), Tailwind 설정, 또는 PNG로 저장하세요.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div style="display:grid; gap:0.75rem;">
+          <details class="rounded-xl p-5" style="background:#12121a; border:1px solid #1e1e2e; cursor:pointer;">
+            <summary class="font-medium text-white text-sm">
+              <span class="lang-en-only">What is HSL color theory?</span>
+              <span class="lang-ko-only">HSL 색상 이론이란?</span>
+            </summary>
+            <p class="text-sm mt-3" style="color:#64748b; line-height:1.7;">
+              <span class="lang-en-only">HSL stands for Hue, Saturation, Lightness. Hue is the color wheel angle (0–360°), saturation controls vividness, and lightness controls brightness. HSL makes harmonic colors easy to compute — just shift the hue angle.</span>
+              <span class="lang-ko-only">HSL은 색조(Hue), 채도(Saturation), 밝기(Lightness)의 약자입니다. 색조는 색상환 각도(0~360°), 채도는 선명도, 밝기는 밝고 어두운 정도입니다. HSL을 이용하면 조화로운 색상 계산이 쉬워집니다.</span>
+            </p>
+          </details>
+          <details class="rounded-xl p-5" style="background:#12121a; border:1px solid #1e1e2e; cursor:pointer;">
+            <summary class="font-medium text-white text-sm">
+              <span class="lang-en-only">How do I use CSS variables from this tool?</span>
+              <span class="lang-ko-only">이 도구의 CSS 변수를 어떻게 사용하나요?</span>
+            </summary>
+            <p class="text-sm mt-3" style="color:#64748b; line-height:1.7;">
+              <span class="lang-en-only">Copy the CSS Variables output and paste into your stylesheet's :root block. Then use var(--color-1) anywhere in your CSS. This lets you change your entire palette by updating just 5 variables.</span>
+              <span class="lang-ko-only">CSS Variables 출력을 복사해 스타일시트의 :root 블록에 붙여넣으세요. 그런 다음 CSS 어디서든 var(--color-1)으로 사용할 수 있습니다.</span>
+            </p>
+          </details>
+          <details class="rounded-xl p-5" style="background:#12121a; border:1px solid #1e1e2e; cursor:pointer;">
+            <summary class="font-medium text-white text-sm">
+              <span class="lang-en-only">Can I save my palettes?</span>
+              <span class="lang-ko-only">팔레트를 저장할 수 있나요?</span>
+            </summary>
+            <p class="text-sm mt-3" style="color:#64748b; line-height:1.7;">
+              <span class="lang-en-only">Yes — your last generated palette is automatically saved to localStorage and restored when you return. You can also download as PNG or copy the hex codes.</span>
+              <span class="lang-ko-only">네 — 마지막으로 생성한 팔레트는 localStorage에 자동 저장되어 다시 방문 시 복원됩니다. PNG 다운로드 또는 헥스 코드 복사도 가능합니다.</span>
+            </p>
+          </details>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-8 px-6" style="border-top: 1px solid #1e1e2e;">
+      <p class="text-xs mb-2" style="color:#334155;">
+        &copy; 2026 Pure-Flon &nbsp;&middot;&nbsp;
+        <a href="/" style="color:#64748b; text-decoration:none;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#64748b'">Home</a>
+        &nbsp;&middot;&nbsp;
+        <a href="/tools/" style="color:#64748b; text-decoration:none;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#64748b'">Tools</a>
+        &nbsp;&middot;&nbsp;
+        <a href="/blog/" style="color:#64748b; text-decoration:none;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#64748b'">Blog</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // ─── Color Math ───────────────────────────────────────
+    function hexToHsl(hex) {
+      hex = hex.replace('#','');
+      if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+      const r = parseInt(hex.slice(0,2),16)/255;
+      const g = parseInt(hex.slice(2,4),16)/255;
+      const b = parseInt(hex.slice(4,6),16)/255;
+      const max = Math.max(r,g,b), min = Math.min(r,g,b);
+      let h,s,l = (max+min)/2;
+      if (max===min) { h=s=0; } else {
+        const d = max-min;
+        s = l>0.5 ? d/(2-max-min) : d/(max+min);
+        switch(max){
+          case r: h=(g-b)/d+(g<b?6:0); break;
+          case g: h=(b-r)/d+2; break;
+          case b: h=(r-g)/d+4; break;
+        }
+        h /= 6;
+      }
+      return [Math.round(h*360), Math.round(s*100), Math.round(l*100)];
+    }
+
+    function hslToHex(h,s,l) {
+      h = ((h%360)+360)%360;
+      s = Math.max(0,Math.min(100,s));
+      l = Math.max(5,Math.min(95,l));
+      s /= 100; l /= 100;
+      const k = n => (n+h/30)%12;
+      const a = s*Math.min(l,1-l);
+      const f = n => l - a*Math.max(-1, Math.min(k(n)-3, Math.min(9-k(n),1)));
+      return '#' + [f(0),f(8),f(4)].map(x=>Math.round(x*255).toString(16).padStart(2,'0')).join('');
+    }
+
+    function isValidHex(hex) {
+      return /^#[0-9a-fA-F]{6}$/.test(hex);
+    }
+
+    // ─── Palette Generation ───────────────────────────────
+    let currentPalette = [];
+    let currentScheme = 'analogous';
+    let currentTab = 'css';
+
+    function generateScheme(h, s, l, scheme, saturation) {
+      s = saturation;
+      switch(scheme) {
+        case 'analogous':
+          return [
+            hslToHex(h-40, s, l),
+            hslToHex(h-20, s, Math.min(l+5,90)),
+            hslToHex(h, s, l),
+            hslToHex(h+20, s, Math.min(l+5,90)),
+            hslToHex(h+40, s, l),
+          ];
+        case 'complementary': {
+          const comp = h+180;
+          return [
+            hslToHex(h, s, Math.max(l-15,10)),
+            hslToHex(h, s, l),
+            hslToHex(h, s*0.4, Math.min(l+20,90)),
+            hslToHex(comp, s, l),
+            hslToHex(comp, s, Math.max(l-10,10)),
+          ];
+        }
+        case 'triadic': {
+          const t1 = h+120, t2 = h+240;
+          return [
+            hslToHex(h, s, l),
+            hslToHex(h, s*0.5, Math.min(l+20,90)),
+            hslToHex(t1, s, l),
+            hslToHex(t1, s*0.5, Math.min(l+20,90)),
+            hslToHex(t2, s, l),
+          ];
+        }
+        case 'shades':
+          return [
+            hslToHex(h, s, 20),
+            hslToHex(h, s, 35),
+            hslToHex(h, s, l),
+            hslToHex(h, s, 70),
+            hslToHex(h, s*0.5, 88),
+          ];
+        default:
+          return [hslToHex(h,s,l)];
+      }
+    }
+
+    function generatePalette() {
+      const hex = document.getElementById('hexInput').value.trim();
+      if (!isValidHex(hex)) return;
+      const [h,s,l] = hexToHsl(hex);
+      const sat = parseInt(document.getElementById('satSlider').value);
+      currentPalette = generateScheme(h, sat, l, currentScheme, sat);
+      renderSwatches();
+      renderCode();
+      savePalette();
+    }
+
+    function renderSwatches() {
+      const row = document.getElementById('swatchRow');
+      const infoRow = document.getElementById('colorInfoRow');
+      const names = ['Color 1', 'Color 2', 'Color 3', 'Color 4', 'Color 5'];
+      row.innerHTML = currentPalette.map((hex, i) => `
+        <div class="swatch rounded-xl" style="background:${hex}; aspect-ratio:2/3; min-height:120px;" onclick="copyHex('${hex}')">
+          <div class="swatch-copy-hint rounded-xl">Copy</div>
+        </div>
+      `).join('');
+      infoRow.innerHTML = currentPalette.map((hex, i) => `
+        <div class="text-center">
+          <button onclick="copyHex('${hex}')" class="block w-full text-xs font-mono font-medium py-1.5 px-2 rounded-lg" style="background:rgba(255,255,255,0.04); border:1px solid #1e1e2e; color:#94a3b8; cursor:pointer; font-family:'JetBrains Mono',monospace; transition:background 0.2s;"
+            onmouseover="this.style.background='rgba(99,102,241,0.12)'; this.style.color='#a5b4fc';"
+            onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.color='#94a3b8';">
+            ${hex}
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function renderCode() {
+      const el = document.getElementById('codeOutput');
+      if (currentTab === 'css') {
+        el.textContent = ':root {\n' +
+          currentPalette.map((hex,i)=>`  --color-${i+1}: ${hex};`).join('\n') +
+          '\n}';
+      } else if (currentTab === 'tailwind') {
+        el.textContent = '// tailwind.config.js\nmodule.exports = {\n  theme: {\n    extend: {\n      colors: {\n        palette: {\n' +
+          currentPalette.map((hex,i)=>`          ${100*(i+1)}: '${hex}',`).join('\n') +
+          '\n        },\n      },\n    },\n  },\n};';
+      } else {
+        el.textContent = currentPalette.join('\n');
+      }
+    }
+
+    // ─── UI Interactions ──────────────────────────────────
+    function syncHexFromPicker(val) {
+      document.getElementById('hexInput').value = val;
+      generatePalette();
+    }
+
+    function syncPickerFromHex(val) {
+      if (isValidHex(val)) {
+        document.getElementById('colorPicker').value = val;
+        generatePalette();
+      }
+    }
+
+    function selectScheme(btn) {
+      document.querySelectorAll('.scheme-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentScheme = btn.dataset.scheme;
+      generatePalette();
+    }
+
+    function switchTab(btn, tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.borderColor = '#1e1e2e';
+        b.style.color = '#64748b';
+        b.style.background = '#12121a';
+      });
+      btn.classList.add('active');
+      currentTab = tab;
+      renderCode();
+    }
+
+    function copyHex(hex) {
+      navigator.clipboard.writeText(hex).then(() => showToast('Copied ' + hex));
+    }
+
+    function copyCode() {
+      const text = document.getElementById('codeOutput').textContent;
+      navigator.clipboard.writeText(text).then(() => showToast('Code copied!'));
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // ─── PNG Download ─────────────────────────────────────
+    function downloadPalette() {
+      const canvas = document.createElement('canvas');
+      const W = 1000, H = 400, sw = W/currentPalette.length;
+      canvas.width = W; canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      currentPalette.forEach((hex, i) => {
+        ctx.fillStyle = hex;
+        ctx.fillRect(i*sw, 0, sw, H-60);
+        ctx.fillStyle = '#0a0a0f';
+        ctx.fillRect(i*sw, H-60, sw, 60);
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '500 14px JetBrains Mono, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(hex, i*sw + sw/2, H-30);
+      });
+      ctx.fillStyle = '#334155';
+      ctx.font = '400 12px Inter, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('pure-flon.com/tools/color-palette', W-16, H-10);
+      const link = document.createElement('a');
+      link.download = 'palette-' + currentPalette[2].replace('#','') + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      gtag('event', 'palette_download', { scheme: currentScheme });
+    }
+
+    // ─── Persistence ──────────────────────────────────────
+    function savePalette() {
+      const hex = document.getElementById('hexInput').value;
+      const sat = document.getElementById('satSlider').value;
+      try {
+        localStorage.setItem('cp_seed', hex);
+        localStorage.setItem('cp_scheme', currentScheme);
+        localStorage.setItem('cp_sat', sat);
+      } catch(e) {}
+    }
+
+    function loadSaved() {
+      try {
+        const seed = localStorage.getItem('cp_seed');
+        const scheme = localStorage.getItem('cp_scheme');
+        const sat = localStorage.getItem('cp_sat');
+        if (seed && isValidHex(seed)) {
+          document.getElementById('hexInput').value = seed;
+          document.getElementById('colorPicker').value = seed;
+        }
+        if (sat) {
+          document.getElementById('satSlider').value = sat;
+          document.getElementById('satVal').textContent = sat + '%';
+        }
+        if (scheme) {
+          currentScheme = scheme;
+          document.querySelectorAll('.scheme-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.scheme === scheme);
+          });
+        }
+      } catch(e) {}
+    }
+
+    // ─── Init ─────────────────────────────────────────────
+    loadSaved();
+    generatePalette();
+  </script>
+</body>
+</html>
