@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>K-Meme Quiz | 한국 인터넷 밈 퀴즈 — 당신의 밈력은?</title>
+<meta name="description" content="한국 인터넷 밈 퀴즈! 뇌절, 갓생, 현타, 찐친... 50개 이상의 K-밈 중 10문제를 풀며 당신의 밈 지수를 확인하세요. 점수 공유 가능!">
+<meta name="keywords" content="한국 밈 퀴즈, K-밈, 인터넷 밈, 뇌절, 갓생, 현타, 밈 테스트, Korean meme quiz, K-meme">
+<meta name="robots" content="index, follow">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/games/k-meme-quiz/">
+<meta property="og:title" content="K-Meme Quiz — 당신의 밈력은? 🔥">
+<meta property="og:description" content="뇌절, 갓생, 현타, 찐친... 한국 인터넷 밈 50종 중 10문제 랜덤 퀴즈! 연속 정답 스트릭으로 점수를 올려보세요.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/games/k-meme-quiz/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta property="og:image" content="https://pure-flon.com/images/og-k-meme-quiz.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="K-Meme Quiz — 당신의 밈력은? 🔥">
+<meta name="twitter:description" content="한국 인터넷 밈 50종 랜덤 퀴즈. 10문제로 밈 지수 측정!">
+<meta name="twitter:image" content="https://pure-flon.com/images/og-k-meme-quiz.png">
+<link rel="icon" href="/favicon.ico">
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"WebApplication","name":"K-Meme Quiz","alternateName":["한국 밈 퀴즈","Korean Internet Meme Quiz"],"description":"한국 인터넷 밈 50종 이상의 풀에서 랜덤으로 10문제를 선택하는 4지선다 퀴즈 게임. 연속 정답 스트릭 시스템과 점수 공유 기능 포함.","url":"https://pure-flon.com/games/k-meme-quiz/","applicationCategory":"GameApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["ko","en"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"author":{"@type":"Organization","name":"pure-flon","url":"https://pure-flon.com"},"datePublished":"2026-03-28","genre":"Quiz","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1","bestRating":"5"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"K-Meme Quiz란 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"K-Meme Quiz는 한국 인터넷 밈 50종 이상의 풀에서 랜덤으로 10문제를 선택하는 4지선다 퀴즈 게임입니다. 뇌절, 갓생, 현타, 찐친 등 최신 K-밈의 의미와 유래를 테스트해보세요."}},{"@type":"Question","name":"점수는 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"기본 정답 시 100점, 연속 정답 스트릭에 따라 보너스 점수가 추가됩니다. 2연속 x1.5, 3연속 이상 x2 멀티플라이어가 적용됩니다. 최고점은 1000점입니다."}}]}]
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WE091T20M0');function ga(n,p){try{gtag('event',n,p||{})}catch(e){}}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--card:#141414;--border:#222;--accent:#ff2d55;--accent2:#ff6b35;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#4466ff;--text:#e8e8e8;--muted:#888;--dim:#555}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+.container{max-width:480px;width:100%;padding:20px;margin:0 auto}
+h1{font-size:1.8rem;text-align:center;margin:28px 0 6px;letter-spacing:-0.03em;color:#fff;font-weight:700}
+.sub{text-align:center;color:var(--muted);font-size:0.9rem;margin-bottom:28px;line-height:1.5}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:14px;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@keyframes correct{0%{background:var(--card)}50%{background:#0d2a14;border-color:#22c55e}100%{background:var(--card)}}
+@keyframes wrong{0%{background:var(--card)}50%{background:#2a0d0d;border-color:#ef4444}100%{background:var(--card)}}
+@keyframes streakPop{0%{transform:scale(1)}40%{transform:scale(1.3)}100%{transform:scale(1)}}
+.progress-wrap{margin-bottom:20px}
+.progress-info{display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted);margin-bottom:8px}
+.progress{height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .5s ease}
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;background:#1a1a1a;border-radius:12px;padding:10px 16px}
+.score-num{font-size:1.2rem;font-weight:700;color:#fff}
+.score-label{font-size:0.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em}
+.streak{display:flex;align-items:center;gap:6px;font-size:0.9rem;font-weight:600;color:var(--yellow)}
+.streak-fire{font-size:1.2rem;animation:streakPop .4s ease}
+.q-num{font-size:0.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.q-emoji{font-size:2.2rem;text-align:center;margin-bottom:12px}
+.q-text{font-size:1.1rem;line-height:1.6;color:#fff;margin-bottom:6px;font-weight:500}
+.q-sub{font-size:0.82rem;color:var(--muted);margin-bottom:22px;line-height:1.4}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{padding:14px 18px;border:1px solid #2a2a2a;border-radius:12px;background:#1a1a1a;color:#ddd;font-size:0.95rem;cursor:pointer;transition:all .15s;text-align:left;-webkit-user-select:none;user-select:none;min-height:50px;display:flex;align-items:center;gap:10px;line-height:1.35}
+.opt:hover{background:#222;border-color:#444;color:#fff;transform:translateX(3px)}
+.opt:active{transform:scale(.98)}
+.opt-label{flex-shrink:0;width:24px;height:24px;border-radius:6px;background:#252525;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--muted)}
+.opt.selected .opt-label{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt.correct{border-color:var(--green);background:#0a1f0a;color:#fff;cursor:default;transform:none}
+.opt.correct .opt-label{background:var(--green);border-color:var(--green);color:#000;font-weight:700}
+.opt.wrong{border-color:var(--red);background:#1f0a0a;color:#aaa;cursor:default;transform:none}
+.opt.wrong .opt-label{background:var(--red);border-color:var(--red);color:#fff}
+.opt.disabled{cursor:default;transform:none;opacity:.6}
+.opt.disabled:hover{background:#1a1a1a;border-color:#2a2a2a;transform:none}
+.feedback{border-radius:12px;padding:14px 18px;margin-top:12px;animation:fadeUp .25s ease;font-size:0.88rem;line-height:1.5}
+.feedback.ok{background:#0a1f0a;border:1px solid #1a4a1a;color:#6ee79a}
+.feedback.fail{background:#1f0a0a;border:1px solid #4a1a1a;color:#f98080}
+.feedback-title{font-weight:700;font-size:0.95rem;margin-bottom:4px}
+.feedback-exp{color:inherit;opacity:.85}
+.btn-next{width:100%;padding:15px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1rem;font-weight:600;cursor:pointer;margin-top:14px;transition:all .2s;letter-spacing:-0.01em}
+.btn-next:hover{opacity:.9;transform:translateY(-1px)}
+.btn-next:active{transform:scale(.98)}
+.screen{display:none}.screen.active{display:block}
+/* Start Screen */
+.meme-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0}
+.tag{padding:6px 14px;border-radius:20px;background:#1a1a1a;border:1px solid #2a2a2a;font-size:0.82rem;color:#aaa}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0}
+.stat-box{background:#1a1a1a;border-radius:12px;padding:14px 10px;text-align:center}
+.stat-n{font-size:1.6rem;font-weight:700;color:#fff}
+.stat-l{font-size:0.7rem;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.06em}
+.btn-start{width:100%;padding:18px;border:none;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1.1rem;font-weight:700;cursor:pointer;letter-spacing:-0.02em;margin-top:8px;transition:all .2s}
+.btn-start:hover{opacity:.9;transform:translateY(-2px)}
+.btn-start:active{transform:scale(.98)}
+/* Result Screen */
+.result-hero{text-align:center;padding:32px 16px 24px}
+.result-emoji{font-size:4rem;margin-bottom:14px;display:block;animation:pulse .8s ease 2}
+.result-grade{font-size:2rem;font-weight:700;color:#fff;margin-bottom:6px}
+.result-score{font-size:1.1rem;color:var(--muted);margin-bottom:20px}
+.result-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.r-stat{background:#1a1a1a;border-radius:12px;padding:14px 8px;text-align:center}
+.r-n{font-size:1.5rem;font-weight:700;color:#fff}
+.r-l{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+.history-wrap{margin-top:4px}
+.hist-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #1a1a1a;font-size:0.83rem}
+.hist-q{flex:1;color:#aaa;line-height:1.4}
+.hist-badge{flex-shrink:0;font-weight:700;font-size:0.8rem}
+.hist-badge.ok{color:var(--green)}
+.hist-badge.fail{color:var(--red)}
+.btn-share{width:100%;padding:14px;border:1px solid #2a2a4e;border-radius:14px;background:#1a1a2e;color:#aab;font-size:0.95rem;cursor:pointer;margin-bottom:10px;transition:all .2s}
+.btn-share:hover{background:#252540;border-color:#3a3a6e}
+.btn-replay{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-replay:hover{opacity:.9;transform:translateY(-1px)}
+/* Sponsor Banner */
+.sponsor{margin:20px 0 8px;padding:14px 18px;background:#111;border:1px solid #1e1e1e;border-radius:12px;text-align:center;font-size:0.8rem;color:#555}
+.sponsor a{color:#666;text-decoration:none;transition:color .2s}
+.sponsor a:hover{color:#aaa}
+.sponsor strong{color:#777}
+/* Toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:10px 20px;border-radius:24px;font-size:0.88rem;opacity:0;transition:all .3s;pointer-events:none;z-index:9999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Timer */
+.timer-wrap{height:3px;background:#1a1a1a;border-radius:2px;margin-bottom:18px;overflow:hidden}
+.timer-bar{height:100%;background:var(--accent);border-radius:2px;transition:width .1s linear}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- START SCREEN -->
+<div class="screen active" id="scr-start">
+  <h1>🔥 K-Meme Quiz</h1>
+  <p class="sub">한국 인터넷 밈 퀴즈<br>50+ 밈 풀에서 10문제 랜덤 출제</p>
+
+  <div class="card">
+    <div class="meme-tags">
+      <span class="tag">뇌절 🔁</span>
+      <span class="tag">갓생 👑</span>
+      <span class="tag">현타 😶</span>
+      <span class="tag">찐친 🤝</span>
+      <span class="tag">떡상 🚀</span>
+      <span class="tag">병맛 💀</span>
+      <span class="tag">인싸 🌟</span>
+      <span class="tag">꿀잼 🍯</span>
+      <span class="tag">도파민 ⚡</span>
+      <span class="tag">갬성 🌙</span>
+    </div>
+  </div>
+
+  <div class="stat-row" id="best-stats">
+    <div class="stat-box">
+      <div class="stat-n" id="stat-best">—</div>
+      <div class="stat-l">최고점</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" id="stat-plays">0</div>
+      <div class="stat-l">플레이</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" id="stat-streak">—</div>
+      <div class="stat-l">최장 스트릭</div>
+    </div>
+  </div>
+
+  <button class="btn-start" onclick="startGame()">퀴즈 시작 →</button>
+</div>
+
+<!-- QUIZ SCREEN -->
+<div class="screen" id="scr-quiz">
+  <div class="score-bar">
+    <div>
+      <div class="score-label">점수</div>
+      <div class="score-num" id="cur-score">0</div>
+    </div>
+    <div class="streak" id="streak-display" style="display:none">
+      <span class="streak-fire">🔥</span>
+      <span id="streak-num">2</span>연속
+    </div>
+    <div>
+      <div class="score-label">남은 문제</div>
+      <div class="score-num" id="q-remain">10</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="q-label">1 / 10</span>
+      <span id="q-cat"></span>
+    </div>
+    <div class="progress"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="timer-wrap"><div class="timer-bar" id="timer-bar" style="width:100%"></div></div>
+
+  <div class="card" id="q-card">
+    <div class="q-num" id="q-num">문제 1</div>
+    <div class="q-emoji" id="q-emoji">🤔</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-sub" id="q-sub"></div>
+    <div class="options" id="options-wrap"></div>
+    <div id="feedback-wrap"></div>
+    <button class="btn-next" id="btn-next" style="display:none" onclick="nextQuestion()">다음 문제 →</button>
+  </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div class="screen" id="scr-result">
+  <div class="result-hero">
+    <span class="result-emoji" id="r-emoji">🏆</span>
+    <div class="result-grade" id="r-grade">밈 마스터</div>
+    <div class="result-score" id="r-score">1000점 · 10/10 정답</div>
+  </div>
+  <div class="result-stats">
+    <div class="r-stat"><div class="r-n" id="r-correct">10</div><div class="r-l">정답</div></div>
+    <div class="r-stat"><div class="r-n" id="r-streak">5</div><div class="r-l">최장 스트릭</div></div>
+    <div class="r-stat"><div class="r-n" id="r-bonus">+200</div><div class="r-l">스트릭 보너스</div></div>
+  </div>
+  <button class="btn-share" onclick="shareResult()">📤 결과 공유하기</button>
+  <div class="card">
+    <div style="font-size:0.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px">문제별 정오표</div>
+    <div class="history-wrap" id="history-wrap"></div>
+  </div>
+  <button class="btn-replay" onclick="startGame()" style="margin-top:14px">🔄 다시 도전</button>
+
+  <div class="sponsor">
+    <strong>☕ 이 게임이 마음에 드셨나요?</strong><br>
+    <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi로 커피 한 잔 후원</a> ·
+    <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a> ·
+    <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+  </div>
+</div>
+
+</div><!-- /container -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── MEME POOL (50+ questions) ───────────────────────────────────────────────
+const MEME_POOL = [
+  {
+    emoji:'🔁', cat:'줄임말',
+    q:'이 밈의 의미는 무엇인가요?',
+    sub:'"와, 이 드립 또 써? 진짜 뇌절이다."',
+    opts:['아이디어가 매우 신선하다','같은 것을 너무 반복해서 재미가 없다','뇌를 자극하는 강렬한 콘텐츠','스마트한 사람을 부르는 말'],
+    ans:1, exp:'뇌절 = 같은 드립/밈을 너무 반복해서 재미가 사라진 상태. "뇌(腦)가 절단났다"는 표현에서 유래.'
+  },
+  {
+    emoji:'👑', cat:'신조어',
+    q:'"갓생"이란 무슨 뜻인가요?',
+    sub:'최근 MZ세대 사이에서 유행 중입니다.',
+    opts:['게임에서 신 캐릭터를 사는 것','God처럼 충실하고 바람직하게 사는 삶','갓난아기처럼 순수한 생활','고양이(고양)를 애칭으로 부르는 말'],
+    ans:1, exp:'갓생 = God + 생(활). 아이돌처럼 운동·공부·자기계발을 철저히 실천하는 삶. "갓생 살기"가 트렌드.'
+  },
+  {
+    emoji:'😶', cat:'감정표현',
+    q:'"현타"가 오는 순간은 언제인가요?',
+    sub:'현타 = 현실 자각 타임',
+    opts:['새로운 목표를 세울 때','즐거운 시간이 끝나고 갑자기 현실을 인식할 때','현금이 부족할 때','현장 체험 학습을 갈 때'],
+    ans:1, exp:'현타 = 현실 자각 타임. 여행·파티 직후 집에 돌아오거나, 즐거운 순간이 끝나고 허무감이 밀려올 때.'
+  },
+  {
+    emoji:'🤝', cat:'관계',
+    q:'"찐친"의 올바른 의미는?',
+    sub:'"우리 찐친이잖아, 뭐든 말해."',
+    opts:['찐 (뜨거운) 우정으로 만난 친구','진짜(찐) 친한 친구','처음 만난 새 친구','찐득하게 붙어다니는 친구'],
+    ans:1, exp:'찐친 = 찐(진짜의 변형) + 친(친구). 오래되고 깊은 우정의 진짜 친한 친구. 찐 = 진짜를 강조하는 접두어.'
+  },
+  {
+    emoji:'🚀', cat:'경제/트렌드',
+    q:'"떡상"의 반대말은?',
+    sub:'코인·주식·인기 등에 자주 사용됩니다.',
+    opts:['떡볶이','떡밥','떡락','떡훈'],
+    ans:2, exp:'떡상 = 가격/인기가 급격히 상승. 떡락 = 급격히 하락. 떡(tteok)의 이미지처럼 찐득하게 올라가거나 내려오는 것.'
+  },
+  {
+    emoji:'💀', cat:'콘텐츠',
+    q:'"병맛"이 가장 잘 어울리는 콘텐츠는?',
+    sub:'90년대 인터넷 문화에서 유래했습니다.',
+    opts:['완성도 높고 세련된 광고','의도적으로 어설프고 황당한 개그 영상','병원 관련 정보 콘텐츠','맛있는 음식을 먹는 먹방'],
+    ans:1, exp:'병맛 = "병(病)신 맛". 의도적으로 퀄리티가 낮거나 황당한 개그. 허무 개그, 개연성 없는 전개가 특징.'
+  },
+  {
+    emoji:'🌟', cat:'관계',
+    q:'"인싸"의 반대말은?',
+    sub:'Insider의 줄임말입니다.',
+    opts:['아싸','핵인싸','찐인싸','진인싸'],
+    ans:0, exp:'인싸 = Insider → 인기 많고 무리에 잘 섞이는 사람. 아싸 = Outsider → 혼자 있기 좋아하거나 무리에 잘 못 끼는 사람.'
+  },
+  {
+    emoji:'🍯', cat:'감정표현',
+    q:'"꿀잼"이란?',
+    sub:'"이 드라마 꿀잼이다, 밤새 봤어."',
+    opts:['꿀처럼 달콤한 음식','꿀벌이 만든 자연산 잼','꿀처럼 달콤하게 재미있는 것','꿀을 넣은 디저트'],
+    ans:2, exp:'꿀잼 = 꿀 + 재미. 꿀처럼 달콤하게 매우 재미있는 것. 반대: 노잼(no+재미 = 재미없음).'
+  },
+  {
+    emoji:'⚡', cat:'신체/감각',
+    q:'"도파민"을 밈으로 쓸 때 의미는?',
+    sub:'"이 영상 도파민 터진다."',
+    opts:['의약품의 일종','뇌의 쾌락 물질처럼 강한 쾌감·자극을 주는 것','도파 + 민 = 실망스러운 상황','집중력을 높이는 보조제'],
+    ans:1, exp:'도파민 = 뇌의 보상회로를 자극하는 신경전달물질. 밈으로는 숏폼·게임·SNS처럼 강한 즉각적 쾌감을 주는 콘텐츠.'
+  },
+  {
+    emoji:'🌙', cat:'감성/분위기',
+    q:'"갬성"은 어떤 상황에 쓰이나요?',
+    sub:'감성(感性)의 변형 표현입니다.',
+    opts:['게임을 할 때의 집중 상태','감성적인 분위기나 느낌을 강조할 때','캠핑 관련 용어','감사 표현'],
+    ans:1, exp:'갬성 = 감성의 변형 슬랭. 감성적인 사진, 분위기, 공간 등에 사용. "갬성 카페", "갬성 사진".'
+  },
+  {
+    emoji:'🔥', cat:'줄임말',
+    q:'"ㄹㅇ"의 뜻은?',
+    sub:'채팅에서 매우 자주 쓰이는 자음 줄임말.',
+    opts:['리얼리(really)','라이브 영상','리셋 요청','응 아니오'],
+    ans:0, exp:'ㄹㅇ = 리얼의 첫글자. "진짜로", "맞아"의 뜻. "ㄹㅇ 공감", "ㄹㅇ임?"처럼 사용.'
+  },
+  {
+    emoji:'🎯', cat:'줄임말',
+    q:'"점메추"는 무슨 뜻인가요?',
+    sub:'직장인·학생 사이의 단골 표현.',
+    opts:['점수 메달 추가','점심 메뉴 추천','점프 메서드 추출','정말 메시지 추가'],
+    ans:1, exp:'점메추 = 점(심) 메(뉴) 추(천). "오늘 점메추 해줘"처럼 사용. 저메추(저녁), 야메추(야식)도 있음.'
+  },
+  {
+    emoji:'🧠', cat:'줄임말',
+    q:'"TMI"를 한국 밈으로 쓸 때 의미는?',
+    sub:'영어 약자를 그대로 사용합니다.',
+    opts:['Too Much Investment - 과도한 투자','Too Much Information - 과도하게 많은(또는 불필요한) 정보','Terminal Management Interface','Team Meeting Initiative'],
+    ans:1, exp:'TMI = Too Much Information. 상대방이 굳이 알 필요 없는 과도한 개인 정보를 공유하는 것. "TMI인데…"로 문장 시작.'
+  },
+  {
+    emoji:'🍑', cat:'음식/생활',
+    q:'"존맛탱"이란?',
+    sub:'"이 떡볶이 존맛탱이야!"',
+    opts:['존경할 만큼 맛있는 것','매우 맛있는 것 (강조 표현)','아주 오래된 맛집','맛이 없음을 역설적으로 표현'],
+    ans:1, exp:'존맛탱 = 존나(강조) + 맛 + 탱(ing느낌 접미사). 매우 맛있다는 뜻의 강한 감탄 표현.'
+  },
+  {
+    emoji:'😤', cat:'감정표현',
+    q:'"킹받는다"의 의미는?',
+    sub:'"저 사람 행동 진짜 킹받는다."',
+    opts:['왕처럼 대우받아 기분이 좋다','킹(King)처럼 화가 치밀어 오른다','게임에서 킹 캐릭터를 얻었다','존경스럽고 감동적이다'],
+    ans:1, exp:'킹받다 = 열받다(화나다)의 강조 변형. King처럼 강하게 화가 난다는 뜻. "킹받게 잘 생겼다"처럼 아이러니하게도 사용.'
+  },
+  {
+    emoji:'🎭', cat:'정체성',
+    q:'"부캐"의 의미는?',
+    sub:'게임 용어에서 파생된 표현입니다.',
+    opts:['부(副) 캐릭터 — 현실과 다른 또 다른 나의 정체성','부자(富) 캐릭터 — 돈 많은 사람','부드러운 캐릭터 성격','부모님의 캐릭터'],
+    ans:0, exp:'부캐 = 부(副)캐릭터. 게임의 서브 캐릭터에서 유래. 현실의 "본캐"와 다른 직업·이름·성격으로 활동하는 것. 유재석의 "유산슬"이 대표 예.'
+  },
+  {
+    emoji:'📢', cat:'커뮤니티',
+    q:'"떡밥"을 커뮤니티에서 쓸 때 의미는?',
+    sub:'낚시 용어에서 파생되었습니다.',
+    opts:['떡을 판매하는 방법','사람들의 관심을 끄는 화제·이슈·단서','음식 공동구매','게시글 잠금 해제'],
+    ans:1, exp:'떡밥 = 낚시에서 물고기를 유혹하는 먹이처럼, 커뮤니티에서 사람들의 관심·토론·추측을 유발하는 힌트나 이슈.'
+  },
+  {
+    emoji:'💪', cat:'신체/생활',
+    q:'"오하운"의 뜻은?',
+    sub:'SNS에서 해시태그로 자주 사용됩니다.',
+    opts:['오늘 하루 운영 계획','오늘 하루 운동','오후 하산 운동','오하이오 운동화'],
+    ans:1, exp:'오하운 = 오(늘) 하(루) 운(동). 매일 운동 인증을 올리는 챌린지 문화에서 사용. "오하운 인증합니다!"'
+  },
+  {
+    emoji:'😂', cat:'커뮤니티',
+    q:'"짤방"이란?',
+    sub:'인터넷 게시판 문화에서 유래했습니다.',
+    opts:['짧은 동영상 방송','게시글이 짤리지 않도록 첨부하는 이미지 → 현재는 모든 인터넷 짤을 의미','짝퉁 사진','즉흥적인 방송'],
+    ans:1, exp:'짤방 = 짤림 방지. 과거 게시글이 이미지 없으면 삭제되던 시절 첨부하던 이미지. 현재는 인터넷에서 공유되는 모든 재미있는 이미지/짤.'
+  },
+  {
+    emoji:'🤳', cat:'줄임말',
+    q:'"자만추"의 의미는?',
+    sub:'솔로 남녀 사이의 관계 관련 표현.',
+    opts:['자기만의 추억을 만드는 것','자연스러운 만남 추구','자만심이 넘치는 행동','자동 만남 추진'],
+    ans:1, exp:'자만추 = 자(연스러운) 만(남) 추(구). 소개팅·앱이 아닌 일상에서 자연스럽게 만남을 원하는 것. 반대: 인만추(인위적 만남 추구).'
+  },
+  {
+    emoji:'👀', cat:'커뮤니티',
+    q:'"낄끼빠빠"의 뜻은?',
+    sub:'대화·상황 파악 능력을 표현합니다.',
+    opts:['낄낄거리며 빠르게 파악하는 것','끼어들 땐 끼고, 빠질 땐 빠지는 눈치','낄때 낄때 빠빠 = 낄낄 웃는 소리','낄끼+빠빠 = 가위바위보 변형'],
+    ans:1, exp:'낄끼빠빠 = 낄(때) 끼(고) 빠(질 때) 빠(져라). 상황 파악을 잘 해서 무리에 합류하거나 빠지는 눈치를 뜻함.'
+  },
+  {
+    emoji:'🌊', cat:'생활철학',
+    q:'"복세편살"의 의미는?',
+    sub:'MZ 세대의 생활 철학을 담은 줄임말.',
+    opts:['복잡한 세상, 편하게 살자','복잡한 세상에서 편의점만 살자','복권 세계 편의 살기','복고 세계 편안하게'],
+    ans:0, exp:'복세편살 = 복(잡한) 세(상) 편(하게) 살(자). 사회 복잡도가 높아지면서 단순하고 편하게 살고 싶은 MZ 세대의 정서 반영.'
+  },
+  {
+    emoji:'🎮', cat:'게임/문화',
+    q:'"핵인싸"와 가장 비슷한 표현은?',
+    sub:'"그 파티에 핵인싸들만 모였어."',
+    opts:['가장 아웃사이더인 사람','극강의 아싸 = 완전 혼자인 사람','무리의 중심에 있는 매우 인기 있는 사람','해킹을 잘 하는 컴퓨터 전문가'],
+    ans:2, exp:'핵인싸 = 핵(매우 강조) + 인싸(Insider). 모임의 중심에 있는 인싸 중의 인싸. "핵"은 최강의 강조어로 앞에 붙어 극대화.'
+  },
+  {
+    emoji:'💰', cat:'경제/트렌드',
+    q:'"개이득"이란?',
+    sub:'"공짜로 얻었어? 완전 개이득이다!"',
+    opts:['개(犬)에게 이득이 되는 상황','매우 큰 이득 (개 = 강조 접두어)','개인적인 이득','개발로 얻은 이득'],
+    ans:1, exp:'개이득 = 개(강조 접두어) + 이득. "개"는 한국어 슬랭에서 극도의 강조에 사용. 개꿀(매우 좋음), 개웃김(매우 웃김) 등 같은 패턴.'
+  },
+  {
+    emoji:'✌️', cat:'줄임말',
+    q:'"솔까말"의 뜻은?',
+    sub:'"솔까말, 나 요즘 좀 지쳐."',
+    opts:['솔직히 까놓고 말해서','소름 까지 말라','솔(Sol)의 까만 색','소리 까지 말하기'],
+    ans:0, exp:'솔까말 = 솔(직히) 까(놓고) 말(해서). 감추지 않고 있는 그대로 솔직하게 말하겠다는 뜻. 대화 앞에 붙임.'
+  },
+  {
+    emoji:'📈', cat:'경제/트렌드',
+    q:'"떡상"을 처음 만든 커뮤니티는?',
+    sub:'암호화폐 커뮤니티에서 유행했습니다.',
+    opts:['유튜브 댓글창','디시인사이드 코인 갤러리','트위터(X)','네이버 카페'],
+    ans:1, exp:'떡상/떡락은 디시인사이드 코인 갤러리에서 비트코인 열풍 때 유행. 이후 주식·인기·성적 등 모든 상승/하락 표현으로 확장.'
+  },
+  {
+    emoji:'🤯', cat:'신조어',
+    q:'"존버"의 의미는?',
+    sub:'투자 커뮤니티에서 특히 자주 쓰입니다.',
+    opts:['존경하며 버티는 것','어떤 상황이든 끝까지 버티는 것','존나 비싼 물건','존경받는 버스 기사'],
+    ans:1, exp:'존버 = 존(강조) + 버(티기). 코인/주식이 떨어져도 팔지 않고 끝까지 보유하는 것. 긍정적 의미로 "끝까지 포기하지 않는 것".'
+  },
+  {
+    emoji:'🎪', cat:'커뮤니티',
+    q:'"레전드"를 커뮤니티에서 쓸 때 뜻은?',
+    sub:'"이 짤 진짜 레전드다."',
+    opts:['오래된 전설 속 이야기','역대급으로 뛰어나거나 회자될 만한 것','레전드 등급 아이템','전설의 포켓몬'],
+    ans:1, exp:'레전드 = 커뮤니티에서 역대급, 회자될 만한 명장면·명대사·사건. "레전드 짤", "레전드 경기"처럼 최고 수준을 의미.'
+  },
+  {
+    emoji:'🧊', cat:'신조어',
+    q:'"아이스 아메리카노"를 줄인 밈 표현은?',
+    sub:'카공족(카페에서 공부하는 사람들) 사이에서 유래.',
+    opts:['아아','차차','시원이','얼음커피'],
+    ans:0, exp:'아아 = 아(이스) 아(메리카노). 카페에서 "아아 주세요"라고 하면 점원이 바로 알아듣는 인기 표현. 반대: 따아(따뜻한 아메리카노).'
+  },
+  {
+    emoji:'🙏', cat:'줄임말',
+    q:'"ㅇㅈ"의 뜻은?',
+    sub:'커뮤니티 댓글에서 주로 사용합니다.',
+    opts:['요즘 줄임말','인정(認定)','아줌마','여자'],
+    ans:1, exp:'ㅇㅈ = 인(정)의 자음만 표기. "맞아", "인정해"의 뜻. "ㅇㅈ?ㄴㄴ"(인정? 노노)처럼 대화하기도.'
+  },
+  {
+    emoji:'😌', cat:'신조어',
+    q:'"MZ세대"의 M과 Z는 각각 무엇을 뜻하나요?',
+    sub:'마케팅 용어에서 출발해 일상어로 확산.',
+    opts:['M=밀레니얼(1981~1996년생), Z=Z세대(1997~2012년생)','M=모바일 세대, Z=제트기를 타는 세대','M=음악 세대, Z=줌(Zoom) 세대','M=멘탈 세대, Z=Z등급 세대'],
+    ans:0, exp:'MZ = Millennial(M, 1981~96년생) + Z세대(Z, 1997~2012년생). 디지털 네이티브 세대. 한국에서는 두 세대를 묶어 "MZ"로 통칭하는 경우가 많음.'
+  },
+  {
+    emoji:'🎵', cat:'문화',
+    q:'"칼군무"란?',
+    sub:'K-Pop을 설명할 때 자주 나오는 표현.',
+    opts:['칼을 사용하는 무술 공연','군대(群)처럼 정밀하게 맞춘 단체 퍼포먼스','칼로리를 태우는 군사 훈련 무용','칼날처럼 날카로운 무기 춤'],
+    ans:1, exp:'칼군무 = 칼(처럼 정밀한) 군(무) + 무(대). K-Pop 아이돌이 칼같이 동작을 맞추는 퍼포먼스. BTS·BLACKPINK 등이 유명.'
+  },
+  {
+    emoji:'🥵', cat:'감정표현',
+    q:'"멘붕"의 의미는?',
+    sub:'"시험 망쳤어, 완전 멘붕이야."',
+    opts:['멘탈이 붕괴될 정도로 당황·혼란스러운 상태','멘토에게 붕괴된 상담을 받은 것','멘트(ment)가 부족한 상황','멘탈이 강한 사람'],
+    ans:0, exp:'멘붕 = 멘(탈) 붕(괴). 정신적 충격으로 사고가 마비된 상태. "완전 멘붕", "멘탈 탈탈 털렸다"처럼 사용.'
+  },
+  {
+    emoji:'🛡️', cat:'커뮤니티',
+    q:'"어그로"를 인터넷에서 쓸 때 뜻은?',
+    sub:'원래 게임 용어에서 유래했습니다.',
+    opts:['공격적인 사람을 칭찬하는 말','관심·분노를 의도적으로 유발하는 행위','어두운 색의 그래픽','게임 아이템 이름'],
+    ans:1, exp:'어그로 = Aggro(적의 관심). 게임에서 몬스터의 공격 집중시키기 → 온라인에서 의도적으로 논란·분노를 유발해 관심 받는 행위.'
+  },
+  {
+    emoji:'📱', cat:'플랫폼/앱',
+    q:'"배민"이란?',
+    sub:'한국 대표 배달 앱의 별칭입니다.',
+    opts:['배구 민족 앱','배달의 민족 (음식 배달 앱)','배민가득 (커머스 앱)','배낭 민박 앱'],
+    ans:1, exp:'배민 = 배(달의) 민(족). 우아한형제들이 운영하는 한국 최대 음식 배달 앱. "배민 시켜먹자"처럼 동사형으로 사용.'
+  },
+  {
+    emoji:'🧩', cat:'줄임말',
+    q:'"갓벽하다"의 의미는?',
+    sub:'"그 사람 실력 갓벽해."',
+    opts:['신(God)처럼 완벽하다','과거에 벽처럼 완고했다','갓난아이처럼 순수하다','갓(모자)을 완벽하게 쓴다'],
+    ans:0, exp:'갓벽 = 갓(God) + 완벽. "신처럼 완벽하다"는 극강의 칭찬. 갓 = 최고 수준을 의미하는 접두어로 다양하게 사용.'
+  },
+  {
+    emoji:'🎲', cat:'생활',
+    q:'"치맥"이란?',
+    sub:'한국 음식 조합 밈의 대표주자.',
+    opts:['치즈 + 막국수','치킨 + 맥주','치즈 + 맥주','치킨 + 마늘'],
+    ans:1, exp:'치맥 = 치(킨) + 맥(주). 한국인이 가장 사랑하는 조합 중 하나. 드라마 "별에서 온 그대"로 해외까지 유명해짐.'
+  },
+  {
+    emoji:'🤔', cat:'신조어',
+    q:'"텐션"을 일상에서 쓸 때 의미는?',
+    sub:'"오늘 텐션이 너무 낮아."',
+    opts:['음악 화성의 텐션 노트','팽팽하게 당기는 긴장감','분위기·에너지 레벨 (높음/낮음)','TV 안테나 신호'],
+    ans:2, exp:'텐션 = 영어 Tension에서 차용했으나 한국에서는 "분위기", "기분 레벨"의 뜻으로 사용. "텐션이 높다" = 신남, "텐션이 낮다" = 처짐.'
+  },
+  {
+    emoji:'🏋️', cat:'챌린지',
+    q:'"갓생살기" 챌린지에 포함되지 않는 것은?',
+    sub:'SNS에서 인증 문화와 함께 유행합니다.',
+    opts:['새벽 기상 + 운동 루틴','하루 하나 책 읽기','친구와 밤새 게임하기','식단 관리 + 물 2L 마시기'],
+    ans:2, exp:'갓생살기 = 아이돌처럼 철저한 자기관리 루틴 실천. 새벽 기상·운동·독서·식단·학습이 핵심. 밤새 게임은 갓생의 반대!'
+  },
+  {
+    emoji:'🦁', cat:'커뮤니티',
+    q:'"킹왕짱"이란?',
+    sub:'왕(王)·짱(最强)이 결합된 강조 표현.',
+    opts:['왕 중의 왕','최고 중의 최고 (King + 王 + 짱)','킹코브라처럼 강한 것','왕짱구 캐릭터'],
+    ans:1, exp:'킹왕짱 = King + 왕(王, 王) + 짱(최강의 속어). 3개의 "최고" 표현이 겹쳐 최강을 의미. 주로 유머스럽게 사용.'
+  },
+  {
+    emoji:'📸', cat:'SNS',
+    q:'"인증샷"이란?',
+    sub:'SNS 문화를 대표하는 표현.',
+    opts:['인터넷 인증서 이미지','무언가를 했다는 증거 사진','인기 캐릭터 샷','인플루언서 샷의 줄임말'],
+    ans:1, exp:'인증샷 = 인증 + 사진. 운동·독서·여행·음식 등 무언가를 했다는 증거 사진을 SNS에 올리는 것. "오하운 인증샷"처럼 사용.'
+  },
+  {
+    emoji:'🎯', cat:'커뮤니티',
+    q:'"불판"이 벌어진다는 말의 뜻은?',
+    sub:'온라인 커뮤니티에서 사용됩니다.',
+    opts:['고기를 굽는 행사 개최','논쟁·싸움이 치열하게 벌어진다','불판 제품 세일','불꽃놀이 판매'],
+    ans:1, exp:'불판 = 고기 굽는 판에서 유래. 커뮤니티에서 논쟁·갈등이 뜨겁게 벌어지는 것. "불판 끓고 있다" = 치열한 온라인 싸움 중.'
+  },
+  {
+    emoji:'😴', cat:'줄임말',
+    q:'"야민정음"이란?',
+    sub:'한글의 모양이 비슷한 글자를 바꿔쓰는 것.',
+    opts:['야간 민족 정음 교육','글자 모양이 비슷한 한글을 바꿔 쓰는 언어 유희','야구+민속+정음의 합성어','밤에 쓰는 특수한 글씨체'],
+    ans:1, exp:'야민정음 = 야(구갤러리) 민(정음). ㅎ↔ 下, 대↔ 머, 렬↔ 법처럼 모양이 비슷한 글자를 바꿔 유머를 만드는 것. 예: "사탕" → "사랑"처럼.'
+  },
+  {
+    emoji:'🍜', cat:'먹방',
+    q:'"먹방"의 국제적 의미는?',
+    sub:'영어 사전에도 등재된 한국어 신조어.',
+    opts:['먹는 방법','먹는 방송 — 음식 먹는 것을 중계하는 방송','먹을 수 있는 방','메뉴판의 줄임말'],
+    ans:1, exp:'먹방 = 먹(는) 방(송). 한국에서 시작된 음식 먹는 방송. 2010년대 세계적으로 확산되어 "Mukbang"으로 영어 사전에 등재.'
+  },
+  {
+    emoji:'🧸', cat:'감정표현',
+    q:'"귀엽다"를 강조하는 신조어는?',
+    sub:'"저 고양이 완전 귀엽죠? 귀여워 죽겠다."',
+    opts:['귀여워서 죽겠다 = 귀죽','귀몽','귀요미','귀소'],
+    ans:2, exp:'귀요미 = 귀여운 + 미(美). "귀여운 것/사람"을 부르는 애칭. 2013년 "귀요미 송"으로 대유행. 현재도 귀여운 대상에 사용.'
+  },
+  {
+    emoji:'🌈', cat:'신조어',
+    q:'"아무말 대잔치"란?',
+    sub:'커뮤니티 게시판에서 자주 볼 수 있습니다.',
+    opts:['아무나 말할 수 있는 발표 대회','논리 없이 무작위로 하는 말들의 향연','아무 말이나 해도 되는 자유 잔치','아무 말로 이루어진 언어 축제'],
+    ans:0, exp:'아무말 대잔치 = 근거·논리 없이 뜬금없는 말을 마구 쏟아내는 것. "이건 진짜 아무말 대잔치네"처럼 비판적으로 사용.'
+  },
+  {
+    emoji:'🎶', cat:'K-Pop',
+    q:'다음 중 K-Pop 관련 밈이 아닌 것은?',
+    sub:'K-Pop 팬덤 문화에서 발생한 표현들.',
+    opts:['총공 (팬들이 동시에 스트리밍·투표하는 것)','최애 (가장 좋아하는 멤버)','데뷔 (처음 등장)','오하운 (오늘 하루 운동)'],
+    ans:3, exp:'오하운은 K-Pop과 무관한 운동 인증 문화 밈. 총공·최애·데뷔는 모두 아이돌 팬덤에서 비롯됐거나 주로 사용되는 표현.'
+  },
+  {
+    emoji:'⚡', cat:'줄임말',
+    q:'"ㄷㄷ"의 주로 쓰이는 뜻은?',
+    sub:'놀라움을 표현할 때 사용합니다.',
+    opts:['대단하다','덜덜(두렵거나 놀라울 때 떨리는 것)','달달하다','독독하다'],
+    ans:1, exp:'ㄷㄷ = 덜(덜). 공포·놀라움·감탄으로 몸이 떨리는 상태. "와 ㄷㄷ", "ㄷㄷ 오진다"처럼 사용. 신기함이나 감탄에도 사용.'
+  },
+  {
+    emoji:'🐣', cat:'신조어',
+    q:'"생파"란?',
+    sub:'"오늘 내 생파야, 와줘!"',
+    opts:['생존 파티','생일 파티','생선 파티','생방 파워'],
+    ans:1, exp:'생파 = 생(일) 파(티). 생일 파티를 부르는 줄임말. "내 생파에 초대할게"처럼 자연스럽게 사용.'
+  },
+  {
+    emoji:'🤖', cat:'IT/기술',
+    q:'"GPT충"이란?',
+    sub:'AI 시대에 등장한 신조어입니다.',
+    opts:['GPT를 과도하게 의존하거나 맹목적으로 사용하는 사람','GPT 개발 회사 직원','충(忠)성스러운 GPT 팬','AI GPT 로봇'],
+    ans:0, exp:'GPT충 = GPT + 충(~충: 과도하게 빠져있는 사람 접미사). ChatGPT를 과도하게 맹신하거나 매번 의존하는 사람을 비꼬는 표현.'
+  },
+  {
+    emoji:'📖', cat:'줄임말',
+    q:'"인강"이란?',
+    sub:'수험생과 자기계발러 사이의 필수 표현.',
+    opts:['인터넷 강의','인격 강화','인기 강연','인도 강가'],
+    ans:0, exp:'인강 = 인(터넷) 강(의). 온라인으로 제공되는 강의. 수능 인강, 취업 인강, 자격증 인강 등. 오르비·메가스터디 등이 대표 플랫폼.'
+  },
+  {
+    emoji:'💬', cat:'커뮤니티',
+    q:'"공감 테러"란?',
+    sub:'커뮤니티 공감 버튼 문화에서 비롯됐습니다.',
+    opts:['공감을 강요하는 행위','많은 사람이 한 게시물에 공감을 눌러 급상승시키는 것','테러처럼 공감이 어려운 글','공감 없이 테러 관련 글 올리기'],
+    ans:1, exp:'공감 테러 = 팬덤이나 커뮤니티가 조직적으로 특정 글에 공감을 몰아주어 인기 게시물로 올리는 행위. "공감 테러 부탁드려요".'
+  }
+];
+
+// ─── GAME STATE ────────────────────────────────────────────────────────────────
+const Q_COUNT = 10;
+const TIME_LIMIT = 20; // seconds per question
+let state = {};
+let timerInterval = null;
+
+function shuffle(arr){return arr.slice().sort(()=>Math.random()-.5)}
+
+function startGame(){
+  const questions = shuffle(MEME_POOL).slice(0, Q_COUNT);
+  state = {
+    questions,
+    idx: 0,
+    score: 0,
+    streak: 0,
+    maxStreak: 0,
+    correct: 0,
+    bonusTotal: 0,
+    history: [],
+    timeLeft: TIME_LIMIT,
+    answered: false
+  };
+  ga('game_start',{game:'k-meme-quiz',questions:Q_COUNT});
+  show('scr-quiz');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = state.questions[state.idx];
+  const n = state.idx + 1;
+  state.answered = false;
+
+  // progress
+  document.getElementById('q-label').textContent = `${n} / ${Q_COUNT}`;
+  document.getElementById('q-cat').textContent = q.cat;
+  document.getElementById('prog-bar').style.width = `${((n-1)/Q_COUNT)*100}%`;
+  document.getElementById('q-remain').textContent = Q_COUNT - state.idx;
+  document.getElementById('cur-score').textContent = state.score;
+  document.getElementById('q-num').textContent = `문제 ${n}`;
+  document.getElementById('q-emoji').textContent = q.emoji;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-sub').textContent = q.sub || '';
+
+  // streak
+  const sd = document.getElementById('streak-display');
+  if(state.streak >= 2){
+    sd.style.display = 'flex';
+    document.getElementById('streak-num').textContent = state.streak;
+  } else {
+    sd.style.display = 'none';
+  }
+
+  // options
+  const labels = ['A','B','C','D'];
+  const wrap = document.getElementById('options-wrap');
+  wrap.innerHTML = '';
+  // shuffle options keeping answer tracking
+  const idxMap = [0,1,2,3];
+  const shuffled = shuffle(idxMap);
+  let newAns = 0;
+  shuffled.forEach((origIdx, pos) => {
+    if(origIdx === q.ans) newAns = pos;
+  });
+  state.currentShuffledAns = newAns;
+  state.currentShuffled = shuffled;
+
+  shuffled.forEach((origIdx, pos) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = `<span class="opt-label">${labels[pos]}</span>${q.opts[origIdx]}`;
+    btn.onclick = () => selectAnswer(pos, btn, origIdx);
+    wrap.appendChild(btn);
+  });
+
+  document.getElementById('feedback-wrap').innerHTML = '';
+  document.getElementById('btn-next').style.display = 'none';
+
+  // timer
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  state.timeLeft = TIME_LIMIT;
+  const bar = document.getElementById('timer-bar');
+  bar.style.width = '100%';
+  bar.style.background = 'var(--accent)';
+
+  timerInterval = setInterval(()=>{
+    if(state.answered){clearInterval(timerInterval);return;}
+    state.timeLeft -= 0.1;
+    const pct = Math.max(0, (state.timeLeft / TIME_LIMIT) * 100);
+    bar.style.width = pct + '%';
+    if(state.timeLeft <= 5) bar.style.background = 'var(--red)';
+    else if(state.timeLeft <= 10) bar.style.background = 'var(--yellow)';
+    if(state.timeLeft <= 0){
+      clearInterval(timerInterval);
+      timeUp();
+    }
+  }, 100);
+}
+
+function timeUp(){
+  if(state.answered) return;
+  state.answered = true;
+  const q = state.questions[state.idx];
+  // show correct
+  const opts = document.querySelectorAll('.opt');
+  opts.forEach((el, pos) => {
+    if(pos === state.currentShuffledAns) el.classList.add('correct');
+    else el.classList.add('disabled');
+  });
+  state.streak = 0;
+  document.getElementById('streak-display').style.display = 'none';
+  showFeedback(false, q);
+  state.history.push({q:q.q, ok:false});
+  document.getElementById('btn-next').style.display = 'block';
+}
+
+function selectAnswer(pos, btnEl, origIdx){
+  if(state.answered) return;
+  state.answered = true;
+  clearInterval(timerInterval);
+
+  const q = state.questions[state.idx];
+  const isCorrect = pos === state.currentShuffledAns;
+  const opts = document.querySelectorAll('.opt');
+
+  opts.forEach((el, i) => {
+    if(i === state.currentShuffledAns) el.classList.add('correct');
+    else if(i === pos && !isCorrect) el.classList.add('wrong');
+    else el.classList.add('disabled');
+    el.onclick = null;
+  });
+
+  if(isCorrect){
+    state.correct++;
+    state.streak++;
+    state.maxStreak = Math.max(state.maxStreak, state.streak);
+    let mult = 1;
+    let bonus = 0;
+    if(state.streak >= 3){ mult = 2; bonus = 100; }
+    else if(state.streak >= 2){ mult = 1.5; bonus = 50; }
+    const base = 100;
+    const pts = Math.round(base * mult);
+    state.score += pts;
+    state.bonusTotal += bonus;
+    if(state.streak >= 2){
+      const sd = document.getElementById('streak-display');
+      sd.style.display = 'flex';
+      document.getElementById('streak-num').textContent = state.streak;
+      sd.style.animation = 'none'; sd.offsetHeight; sd.style.animation = '';
+    }
+    ga('question_correct',{q_idx:state.idx, streak:state.streak, score:pts});
+  } else {
+    state.streak = 0;
+    document.getElementById('streak-display').style.display = 'none';
+    ga('question_wrong',{q_idx:state.idx});
+  }
+
+  document.getElementById('cur-score').textContent = state.score;
+  showFeedback(isCorrect, q);
+  state.history.push({q:q.q, ok:isCorrect});
+  document.getElementById('btn-next').style.display = 'block';
+
+  // sound
+  playSound(isCorrect);
+}
+
+function playSound(ok){
+  try{
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    if(ok){
+      osc.frequency.setValueAtTime(660, ctx.currentTime);
+      osc.frequency.setValueAtTime(880, ctx.currentTime+0.1);
+    } else {
+      osc.frequency.setValueAtTime(220, ctx.currentTime);
+      osc.frequency.setValueAtTime(180, ctx.currentTime+0.1);
+    }
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.3);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime+0.3);
+  }catch(e){}
+}
+
+function showFeedback(ok, q){
+  const wrap = document.getElementById('feedback-wrap');
+  const fb = document.createElement('div');
+  fb.className = 'feedback ' + (ok ? 'ok' : 'fail');
+  const icon = ok ? '✅' : '❌';
+  const title = ok ? '정답!' : '오답!';
+  fb.innerHTML = `<div class="feedback-title">${icon} ${title}</div><div class="feedback-exp">${q.exp}</div>`;
+  wrap.appendChild(fb);
+}
+
+function nextQuestion(){
+  state.idx++;
+  if(state.idx >= Q_COUNT){
+    endGame();
+  } else {
+    renderQuestion();
+  }
+}
+
+function endGame(){
+  clearInterval(timerInterval);
+  document.getElementById('prog-bar').style.width = '100%';
+
+  // grade
+  const pct = state.correct / Q_COUNT;
+  let emoji, grade;
+  if(pct >= 1.0){ emoji='🏆'; grade='밈 마스터'; }
+  else if(pct >= 0.9){ emoji='🔥'; grade='밈 고수'; }
+  else if(pct >= 0.7){ emoji='😎'; grade='밈 인싸'; }
+  else if(pct >= 0.5){ emoji='🙂'; grade='밈 중수'; }
+  else if(pct >= 0.3){ emoji='😅'; grade='밈 입문자'; }
+  else { emoji='💀'; grade='밈 뇌절'; }
+
+  document.getElementById('r-emoji').textContent = emoji;
+  document.getElementById('r-grade').textContent = grade;
+  document.getElementById('r-score').textContent = `${state.score}점 · ${state.correct}/${Q_COUNT} 정답`;
+  document.getElementById('r-correct').textContent = state.correct;
+  document.getElementById('r-streak').textContent = state.maxStreak;
+  document.getElementById('r-bonus').textContent = '+'+state.bonusTotal;
+
+  // history
+  const hw = document.getElementById('history-wrap');
+  hw.innerHTML = '';
+  state.history.forEach((h,i)=>{
+    const d = document.createElement('div');
+    d.className = 'hist-item';
+    d.innerHTML = `<span class="hist-q">${i+1}. ${h.q.length>40?h.q.slice(0,40)+'…':h.q}</span><span class="hist-badge ${h.ok?'ok':'fail'}">${h.ok?'✓':'✗'}</span>`;
+    hw.appendChild(d);
+  });
+
+  // persist best
+  const saved = JSON.parse(localStorage.getItem('kmq') || '{}');
+  const plays = (saved.plays||0) + 1;
+  const bestScore = Math.max(saved.bestScore||0, state.score);
+  const bestStreak = Math.max(saved.bestStreak||0, state.maxStreak);
+  localStorage.setItem('kmq', JSON.stringify({plays, bestScore, bestStreak}));
+
+  ga('game_end',{score:state.score, correct:state.correct, grade});
+  show('scr-result');
+}
+
+function shareResult(){
+  const pct = state.correct / Q_COUNT;
+  let grade;
+  if(pct >= 1.0) grade='밈 마스터 🏆';
+  else if(pct >= 0.9) grade='밈 고수 🔥';
+  else if(pct >= 0.7) grade='밈 인싸 😎';
+  else if(pct >= 0.5) grade='밈 중수 🙂';
+  else if(pct >= 0.3) grade='밈 입문자 😅';
+  else grade='밈 뇌절 💀';
+
+  const dots = state.history.map(h=>h.ok?'🟩':'🟥').join('');
+  const text = `K-Meme Quiz\n${grade}\n${state.correct}/${Q_COUNT} 정답 · ${state.score}점\n${dots}\nhttps://pure-flon.com/games/k-meme-quiz/`;
+
+  if(navigator.share){
+    navigator.share({title:'K-Meme Quiz 결과', text}).catch(()=>copyText(text));
+  } else {
+    copyText(text);
+  }
+  ga('share',{score:state.score});
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text).then(()=>showToast('📋 클립보드에 복사됐어요!')).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('📋 클립보드에 복사됐어요!');
+  });
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// Load best stats on start
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved = JSON.parse(localStorage.getItem('kmq')||'{}');
+  if(saved.bestScore) document.getElementById('stat-best').textContent = saved.bestScore;
+  if(saved.plays) document.getElementById('stat-plays').textContent = saved.plays;
+  if(saved.bestStreak) document.getElementById('stat-streak').textContent = saved.bestStreak + '연속';
+});
+</script>
+</body>
+</html>
