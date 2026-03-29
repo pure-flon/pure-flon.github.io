@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
+<meta name="description" content="Test your world geography! Guess all 195 country flags in timed or relaxed mode. Track your score by continent. Free flag quiz game — no download needed.">
+<meta name="keywords" content="world flag quiz, country flag quiz, flags of the world, flag guessing game, geography quiz, flag trivia, flag challenge">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/games/world-flag-quiz/">
+<meta property="og:title" content="World Flag Quiz — Can You Name All 195 Country Flags? 🌍">
+<meta property="og:description" content="Guess country flags from all 195 nations. Timed mode for speed, relaxed mode for learning. Free geography quiz!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/games/world-flag-quiz/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta property="og:image" content="https://pure-flon.com/images/og-world-flag-quiz.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="World Flag Quiz — 195 Country Flags 🌍">
+<meta name="twitter:description" content="Name all 195 country flags. Timed or relaxed mode. Free quiz!">
+<meta name="twitter:image" content="https://pure-flon.com/images/og-world-flag-quiz.png">
+<link rel="icon" href="/favicon.ico">
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"WebApplication","name":"World Flag Quiz","alternateName":["Flag Quiz","Country Flag Quiz","Flags of the World Quiz"],"description":"An interactive quiz where you identify country flags from all 195 nations worldwide. Features a timed speed mode and a relaxed learning mode with continent score tracking.","url":"https://pure-flon.com/games/world-flag-quiz/","applicationCategory":"GameApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":"en","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"author":{"@type":"Organization","name":"pure-flon","url":"https://pure-flon.com"},"datePublished":"2026-03-29","genre":"Quiz","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1","bestRating":"5"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many countries are in the World Flag Quiz?","acceptedAnswer":{"@type":"Answer","text":"The quiz features all 195 internationally recognized countries, including all 193 UN member states plus Kosovo and Taiwan."}},{"@type":"Question","name":"What are the two game modes?","acceptedAnswer":{"@type":"Answer","text":"Timed Mode: Answer as many flags as possible in 60 seconds. Relaxed Mode: 10 questions with no time pressure, perfect for learning."}},{"@type":"Question","name":"How is the score calculated?","acceptedAnswer":{"@type":"Answer","text":"Each correct answer earns 100 points. Streak bonuses apply: 2 in a row = 150 pts, 3+ in a row = 200 pts per question."}}]}]
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WE091T20M0');function ga(n,p){try{gtag('event',n,p||{})}catch(e){}}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#3b82f6;--accent2:#60a5fa;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+  padding-bottom:max(env(safe-area-inset-bottom),16px);
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right)
+}
+.container{max-width:480px;width:100%;padding:0 16px;margin:0 auto;flex:1}
+.screen{display:none}
+
+/* ── START ── */
+.start-hero{text-align:center;padding:36px 0 20px}
+.globe{font-size:3.2rem;display:block;margin-bottom:10px}
+.start-hero h1{font-size:1.9rem;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.2}
+.start-hero p{color:var(--muted);font-size:0.92rem;margin-top:8px;line-height:1.5}
+.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.mode-card{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:14px;padding:18px 14px;cursor:pointer;
+  transition:border-color .2s,transform .15s;text-align:center
+}
+.mode-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mode-card.active{border-color:var(--accent);background:#0d1d38}
+.mode-card .mi{font-size:1.9rem;display:block;margin-bottom:7px}
+.mode-card .mt{font-weight:700;font-size:0.95rem;color:#fff;margin-bottom:3px}
+.mode-card .md{font-size:0.76rem;color:var(--muted);line-height:1.4}
+.mode-badge{display:inline-block;margin-top:7px;padding:2px 8px;border-radius:20px;font-size:0.68rem;font-weight:700}
+.mb-fire{background:#ff2d5522;color:#ff6b35}
+.mb-calm{background:#22c55e22;color:#22c55e}
+.best-row{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:13px 16px;margin-bottom:18px;
+  display:flex;justify-content:space-around
+}
+.best-item{text-align:center}
+.bi-label{font-size:0.7rem;color:var(--muted);margin-bottom:3px}
+.bi-val{font-size:1.05rem;font-weight:700;color:var(--accent2)}
+.btn-primary{
+  width:100%;padding:15px;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff;border:none;border-radius:13px;
+  font-size:1rem;font-weight:700;cursor:pointer;
+  transition:transform .15s,opacity .15s;letter-spacing:-0.01em
+}
+.btn-primary:hover{transform:translateY(-1px);opacity:.92}
+.btn-primary:active{transform:scale(.98)}
+.nav-links{text-align:center;padding:14px 0 4px;display:flex;justify-content:center;gap:16px}
+.nav-link{font-size:0.76rem;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-link:hover{color:var(--accent2)}
+
+/* ── GAME ── */
+.game-header{padding:14px 0 6px}
+.progress-row{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);margin-bottom:6px}
+.progress-track{height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .35s}
+.score-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.score-num{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.03em}
+.score-lbl{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.timer-section{margin-bottom:6px}
+.timer-top{text-align:center;margin-bottom:5px;font-size:0.82rem;color:var(--muted)}
+.timer-top b{color:var(--text)}
+.timer-track{background:#1a1a1a;border-radius:3px;height:5px;overflow:hidden}
+.timer-fill{height:100%;background:var(--green);border-radius:3px;transition:width 1s linear,background .4s}
+.flag-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:24px 16px;margin:10px 0;
+  text-align:center;animation:fadeUp .3s ease
+}
+.flag-emoji{font-size:5.5rem;line-height:1.1;display:block;user-select:none}
+.flag-hint{font-size:0.72rem;color:var(--dim);margin-top:6px}
+.streak-badge{
+  text-align:center;min-height:22px;margin-bottom:10px;
+  font-size:0.83rem;font-weight:700;color:#ff6b35;
+  transition:opacity .25s
+}
+.answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.answer-btn{
+  background:var(--card);border:1.5px solid var(--border);
+  color:var(--text);border-radius:12px;padding:14px 10px;
+  font-size:0.86rem;font-weight:500;cursor:pointer;
+  transition:border-color .15s,background .15s,transform .12s;
+  line-height:1.3;text-align:center;min-height:62px;
+  display:flex;align-items:center;justify-content:center
+}
+.answer-btn:hover:not(:disabled){border-color:var(--accent);background:#0d1d38;transform:translateY(-1px)}
+.answer-btn:active:not(:disabled){transform:scale(.97)}
+.answer-btn.correct{background:#0b2214;border-color:var(--green)!important;color:var(--green);font-weight:700}
+.answer-btn.wrong{background:#22080a;border-color:var(--red)!important;color:var(--red)}
+.answer-btn:disabled{cursor:default}
+
+/* ── RESULT ── */
+.result-header{text-align:center;padding:32px 0 18px}
+.result-header h2{font-size:1.55rem;font-weight:800;color:#fff;margin-bottom:6px}
+.result-header p{color:var(--muted);font-size:0.88rem}
+.score-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:26px;text-align:center;margin-bottom:14px;
+  animation:fadeUp .35s ease
+}
+.big-score{font-size:3.4rem;font-weight:900;color:var(--accent2);letter-spacing:-0.04em;line-height:1}
+.big-score-lbl{font-size:0.75rem;color:var(--muted);margin-top:4px;margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em}
+.stat-row{display:flex;justify-content:center;gap:24px}
+.stat{text-align:center}
+.stat-n{font-size:1.35rem;font-weight:700;color:#fff}
+.stat-l{font-size:0.7rem;color:var(--muted);margin-top:2px}
+.new-best{
+  display:inline-block;margin-top:12px;
+  background:#ff6b3520;color:#ff6b35;
+  border-radius:20px;padding:4px 12px;font-size:0.76rem;font-weight:700
+}
+.cont-section{margin-bottom:14px}
+.cont-section h3{font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.cont-row{
+  display:grid;grid-template-columns:120px 1fr 40px;
+  align-items:center;gap:10px;margin-bottom:9px;font-size:0.83rem
+}
+.cont-name{display:flex;align-items:center;gap:5px;overflow:hidden}
+.cont-bar-wrap{background:#1a1a1a;border-radius:3px;height:6px;overflow:hidden;width:100%}
+.cont-fill{height:100%;border-radius:3px;width:0;transition:width .6s ease}
+.cont-pct{font-weight:700;font-size:0.78rem;text-align:right}
+.result-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.btn-secondary{
+  padding:13px;background:var(--card);border:1.5px solid var(--border);
+  color:var(--text);border-radius:12px;font-size:0.88rem;font-weight:600;
+  cursor:pointer;transition:border-color .15s,background .15s
+}
+.btn-secondary:hover{border-color:var(--accent);background:#0d1d38}
+
+/* ── SPONSOR ── */
+.sponsor{
+  background:var(--card);border-top:1px solid var(--border);
+  padding:13px 16px;text-align:center;width:100%;margin-top:auto
+}
+.sponsor p{font-size:0.73rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{
+  font-size:0.76rem;color:var(--muted);text-decoration:none;
+  padding:5px 10px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.06)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── START ── -->
+  <div id="screen-start" class="screen">
+    <div class="start-hero">
+      <span class="globe">🌍</span>
+      <h1>World Flag Quiz</h1>
+      <p>How many of the world's 195 country flags<br>can you name? Test your geography!</p>
+    </div>
+    <div class="mode-cards">
+      <div class="mode-card active" data-mode="timed" onclick="pickMode(this)">
+        <span class="mi">⚡</span>
+        <div class="mt">Timed</div>
+        <div class="md">Race the clock — answer as many flags as you can</div>
+        <span class="mode-badge mb-fire">60 seconds</span>
+      </div>
+      <div class="mode-card" data-mode="relaxed" onclick="pickMode(this)">
+        <span class="mi">🌿</span>
+        <div class="mt">Relaxed</div>
+        <div class="md">Learn at your own pace — no time pressure</div>
+        <span class="mode-badge mb-calm">10 flags</span>
+      </div>
+    </div>
+    <div class="best-row">
+      <div class="best-item">
+        <div class="bi-label">⚡ Best (Timed)</div>
+        <div class="bi-val" id="best-timed">—</div>
+      </div>
+      <div class="best-item">
+        <div class="bi-label">🌿 Best (Relaxed)</div>
+        <div class="bi-val" id="best-relaxed">—</div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startGame()">Start Quiz 🌍</button>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">← Home</a>
+      <a href="/games/" class="nav-link">All Games</a>
+    </nav>
+  </div>
+
+  <!-- ── GAME ── -->
+  <div id="screen-game" class="screen">
+    <div class="game-header">
+      <div class="progress-row">
+        <span id="q-counter">1 / ?</span>
+        <span>Score: <b id="score-disp">0</b></span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="score-row">
+      <div></div>
+      <div id="timer-section" style="display:none;flex:1;margin:0 12px">
+        <div class="timer-top">⏱ <b id="timer-num">60</b>s</div>
+        <div class="timer-track">
+          <div class="timer-fill" id="timer-fill" style="width:100%"></div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+    <div class="flag-card">
+      <span class="flag-emoji" id="flag-emoji" aria-label="Country flag"></span>
+      <div class="flag-hint">Which country does this flag belong to?</div>
+    </div>
+    <div class="streak-badge" id="streak-badge" style="opacity:0" aria-live="polite"></div>
+    <div class="answers-grid" id="answers-grid" role="group" aria-label="Answer choices"></div>
+  </div>
+
+  <!-- ── RESULT ── -->
+  <div id="screen-result" class="screen">
+    <div class="result-header">
+      <h2 id="result-title">Quiz Complete!</h2>
+      <p id="result-sub"></p>
+    </div>
+    <div class="score-card">
+      <div class="big-score" id="res-score">0</div>
+      <div class="big-score-lbl">Points</div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n" id="res-correct">0</div><div class="stat-l">Correct</div></div>
+        <div class="stat"><div class="stat-n" id="res-total">0</div><div class="stat-l">Answered</div></div>
+        <div class="stat"><div class="stat-n" id="res-acc">0%</div><div class="stat-l">Accuracy</div></div>
+      </div>
+      <div id="res-newbest" class="new-best" style="display:none">🏆 New Personal Best!</div>
+    </div>
+    <div class="cont-section">
+      <h3>Score by Continent</h3>
+      <div id="cont-breakdown"></div>
+    </div>
+    <div class="result-btns">
+      <button class="btn-secondary" id="btn-share" onclick="share()">📤 Share</button>
+      <button class="btn-secondary" onclick="goHome()">🔁 Play Again</button>
+    </div>
+    <button class="btn-primary" onclick="startGame()">Quick Rematch ⚡</button>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">← Home</a>
+      <a href="/games/" class="nav-link">All Games</a>
+    </nav>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── SPONSOR ── -->
+<div class="sponsor">
+  <p>Enjoying the quiz? Support free tools &amp; games ☕</p>
+  <div class="sponsor-links">
+    <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener">☕ Ko-fi</a>
+    <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener">💖 GitHub Sponsors</a>
+    <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener">💳 PayPal</a>
+  </div>
+</div>
+
+<script>
+// ── COUNTRY DATA ──
+// Format: [code, name, continent]  Af=Africa Am=Americas As=Asia Eu=Europe Oc=Oceania
+const C = [
+// Africa (54)
+['DZ','Algeria','Af'],['AO','Angola','Af'],['BJ','Benin','Af'],['BW','Botswana','Af'],
+['BF','Burkina Faso','Af'],['BI','Burundi','Af'],['CM','Cameroon','Af'],['CV','Cape Verde','Af'],
+['CF','Central African Rep.','Af'],['TD','Chad','Af'],['KM','Comoros','Af'],
+['CG','Republic of Congo','Af'],['CD','DR Congo','Af'],['CI','Ivory Coast','Af'],
+['DJ','Djibouti','Af'],['EG','Egypt','Af'],['GQ','Equatorial Guinea','Af'],
+['ER','Eritrea','Af'],['ET','Ethiopia','Af'],['GA','Gabon','Af'],['GM','Gambia','Af'],
+['GH','Ghana','Af'],['GN','Guinea','Af'],['GW','Guinea-Bissau','Af'],['KE','Kenya','Af'],
+['LS','Lesotho','Af'],['LR','Liberia','Af'],['LY','Libya','Af'],['MG','Madagascar','Af'],
+['MW','Malawi','Af'],['ML','Mali','Af'],['MR','Mauritania','Af'],['MU','Mauritius','Af'],
+['MA','Morocco','Af'],['MZ','Mozambique','Af'],['NA','Namibia','Af'],['NE','Niger','Af'],
+['NG','Nigeria','Af'],['RW','Rwanda','Af'],['ST','São Tomé & Príncipe','Af'],
+['SN','Senegal','Af'],['SC','Seychelles','Af'],['SL','Sierra Leone','Af'],['SO','Somalia','Af'],
+['ZA','South Africa','Af'],['SS','South Sudan','Af'],['SD','Sudan','Af'],['SZ','Eswatini','Af'],
+['TZ','Tanzania','Af'],['TG','Togo','Af'],['TN','Tunisia','Af'],['UG','Uganda','Af'],
+['ZM','Zambia','Af'],['ZW','Zimbabwe','Af'],
+// Americas (35)
+['AG','Antigua & Barbuda','Am'],['AR','Argentina','Am'],['BS','Bahamas','Am'],
+['BB','Barbados','Am'],['BZ','Belize','Am'],['BO','Bolivia','Am'],['BR','Brazil','Am'],
+['CA','Canada','Am'],['CL','Chile','Am'],['CO','Colombia','Am'],['CR','Costa Rica','Am'],
+['CU','Cuba','Am'],['DM','Dominica','Am'],['DO','Dominican Republic','Am'],
+['EC','Ecuador','Am'],['SV','El Salvador','Am'],['GD','Grenada','Am'],
+['GT','Guatemala','Am'],['GY','Guyana','Am'],['HT','Haiti','Am'],['HN','Honduras','Am'],
+['JM','Jamaica','Am'],['MX','Mexico','Am'],['NI','Nicaragua','Am'],['PA','Panama','Am'],
+['PY','Paraguay','Am'],['PE','Peru','Am'],['KN','Saint Kitts & Nevis','Am'],
+['LC','Saint Lucia','Am'],['VC','Saint Vincent','Am'],['SR','Suriname','Am'],
+['TT','Trinidad & Tobago','Am'],['US','United States','Am'],['UY','Uruguay','Am'],
+['VE','Venezuela','Am'],
+// Asia (48)
+['AF','Afghanistan','As'],['AM','Armenia','As'],['AZ','Azerbaijan','As'],['BH','Bahrain','As'],
+['BD','Bangladesh','As'],['BT','Bhutan','As'],['BN','Brunei','As'],['KH','Cambodia','As'],
+['CN','China','As'],['CY','Cyprus','As'],['GE','Georgia','As'],['IN','India','As'],
+['ID','Indonesia','As'],['IR','Iran','As'],['IQ','Iraq','As'],['IL','Israel','As'],
+['JP','Japan','As'],['JO','Jordan','As'],['KZ','Kazakhstan','As'],['KW','Kuwait','As'],
+['KG','Kyrgyzstan','As'],['LA','Laos','As'],['LB','Lebanon','As'],['MY','Malaysia','As'],
+['MV','Maldives','As'],['MN','Mongolia','As'],['MM','Myanmar','As'],['NP','Nepal','As'],
+['KP','North Korea','As'],['OM','Oman','As'],['PK','Pakistan','As'],['PH','Philippines','As'],
+['QA','Qatar','As'],['SA','Saudi Arabia','As'],['SG','Singapore','As'],
+['KR','South Korea','As'],['LK','Sri Lanka','As'],['SY','Syria','As'],['TW','Taiwan','As'],
+['TJ','Tajikistan','As'],['TH','Thailand','As'],['TL','Timor-Leste','As'],
+['TR','Türkiye','As'],['TM','Turkmenistan','As'],['AE','UAE','As'],
+['UZ','Uzbekistan','As'],['VN','Vietnam','As'],['YE','Yemen','As'],
+// Europe (44)
+['AL','Albania','Eu'],['AD','Andorra','Eu'],['AT','Austria','Eu'],['BY','Belarus','Eu'],
+['BE','Belgium','Eu'],['BA','Bosnia & Herzegovina','Eu'],['BG','Bulgaria','Eu'],
+['HR','Croatia','Eu'],['CZ','Czechia','Eu'],['DK','Denmark','Eu'],['EE','Estonia','Eu'],
+['FI','Finland','Eu'],['FR','France','Eu'],['DE','Germany','Eu'],['GR','Greece','Eu'],
+['HU','Hungary','Eu'],['IS','Iceland','Eu'],['IE','Ireland','Eu'],['IT','Italy','Eu'],
+['XK','Kosovo','Eu'],['LV','Latvia','Eu'],['LI','Liechtenstein','Eu'],['LT','Lithuania','Eu'],
+['LU','Luxembourg','Eu'],['MT','Malta','Eu'],['MD','Moldova','Eu'],['MC','Monaco','Eu'],
+['ME','Montenegro','Eu'],['NL','Netherlands','Eu'],['MK','North Macedonia','Eu'],
+['NO','Norway','Eu'],['PL','Poland','Eu'],['PT','Portugal','Eu'],['RO','Romania','Eu'],
+['RU','Russia','Eu'],['SM','San Marino','Eu'],['RS','Serbia','Eu'],['SK','Slovakia','Eu'],
+['SI','Slovenia','Eu'],['ES','Spain','Eu'],['SE','Sweden','Eu'],['CH','Switzerland','Eu'],
+['UA','Ukraine','Eu'],['GB','United Kingdom','Eu'],
+// Oceania (14)
+['AU','Australia','Oc'],['FJ','Fiji','Oc'],['KI','Kiribati','Oc'],
+['MH','Marshall Islands','Oc'],['FM','Micronesia','Oc'],['NR','Nauru','Oc'],
+['NZ','New Zealand','Oc'],['PG','Papua New Guinea','Oc'],['WS','Samoa','Oc'],
+['SB','Solomon Islands','Oc'],['TO','Tonga','Oc'],['TV','Tuvalu','Oc'],
+['VU','Vanuatu','Oc'],['PW','Palau','Oc']
+];
+// Af=54 Am=35 As=48 Eu=44 Oc=14  => 195 total
+
+const CNAMES = {Af:'Africa',Am:'Americas',As:'Asia',Eu:'Europe',Oc:'Oceania'};
+const CEMOJI = {Af:'🌍',Am:'🌎',As:'🌏',Eu:'🏛️',Oc:'🌊'};
+
+// ISO code → flag emoji (Regional Indicator Symbols)
+const toFlag = code => [...code.toUpperCase()].map(c =>
+  String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+
+// ── HELPERS ──
+function shuffle(a) {
+  const b = [...a];
+  for (let i = b.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
+
+// ── STATE ──
+let G = {};
+
+// ── INIT ──
+function init() {
+  loadBests();
+  showScreen('start');
+}
+
+function loadBests() {
+  const t = localStorage.getItem('wfq_t');
+  const r = localStorage.getItem('wfq_r');
+  document.getElementById('best-timed').textContent   = t ? (+t).toLocaleString() : '—';
+  document.getElementById('best-relaxed').textContent = r ? (+r).toLocaleString() : '—';
+}
+
+function pickMode(el) {
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function goHome() {
+  showScreen('start');
+  loadBests();
+}
+
+// ── START GAME ──
+function startGame() {
+  const mode = (document.querySelector('.mode-card.active') || {}).dataset.mode || 'timed';
+  G = {
+    mode,
+    pool: shuffle(C),
+    idx: 0,
+    score: 0,
+    streak: 0,
+    maxStreak: 0,
+    correct: 0,
+    total: 0,
+    timeLeft: 60,
+    timer: null,
+    stats: {Af:{c:0,t:0},Am:{c:0,t:0},As:{c:0,t:0},Eu:{c:0,t:0},Oc:{c:0,t:0}},
+    maxQ: mode === 'relaxed' ? 10 : 9999,
+    done: false,
+    answering: false,
+  };
+
+  ga('game_start', {game_mode: mode});
+
+  document.getElementById('timer-section').style.display = mode === 'timed' ? 'block' : 'none';
+  if (mode === 'timed') {
+    document.getElementById('timer-fill').style.width = '100%';
+    document.getElementById('timer-fill').style.background = 'var(--green)';
+    document.getElementById('timer-num').textContent = '60';
+  }
+
+  showScreen('game');
+  renderQ();
+
+  if (mode === 'timed') {
+    G.timer = setInterval(tick, 1000);
+  }
+}
+
+// ── TIMER ──
+function tick() {
+  if (G.done) return;
+  G.timeLeft--;
+  const pct = G.timeLeft / 60 * 100;
+  const fill = document.getElementById('timer-fill');
+  fill.style.width = pct + '%';
+  fill.style.background = pct < 25 ? 'var(--red)' : pct < 50 ? 'var(--yellow)' : 'var(--green)';
+  document.getElementById('timer-num').textContent = G.timeLeft;
+  if (G.timeLeft <= 0) endGame();
+}
+
+// ── RENDER QUESTION ──
+function renderQ() {
+  if (G.done) return;
+  G.answering = false;
+
+  const q = G.pool[G.idx];
+  if (!q || G.idx >= G.maxQ) { endGame(); return; }
+
+  // Progress
+  const total = G.mode === 'relaxed' ? G.maxQ : G.pool.length;
+  document.getElementById('prog-fill').style.width = (G.idx / total * 100) + '%';
+  document.getElementById('q-counter').textContent =
+    G.mode === 'relaxed' ? `${G.idx + 1} / ${G.maxQ}` : `${G.idx + 1} / ?`;
+  document.getElementById('score-disp').textContent = G.score.toLocaleString();
+
+  // Flag
+  document.getElementById('flag-emoji').textContent = toFlag(q[0]);
+  document.getElementById('flag-emoji').setAttribute('aria-label', 'Flag of ' + q[1]);
+
+  // Streak
+  const sb = document.getElementById('streak-badge');
+  if (G.streak >= 2) {
+    sb.textContent = `🔥 ${G.streak}× streak! +${G.streak >= 3 ? 200 : 150} pts`;
+    sb.style.opacity = '1';
+  } else {
+    sb.style.opacity = '0';
+  }
+
+  // Generate options: 1 correct + 3 wrong (prefer same continent)
+  const same = C.filter(d => d[2] === q[2] && d[0] !== q[0]);
+  const diff = C.filter(d => d[2] !== q[2]);
+  const wrongs = shuffle([...same, ...shuffle(diff)]).slice(0, 3);
+  const opts = shuffle([q, ...wrongs]);
+
+  const grid = document.getElementById('answers-grid');
+  grid.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.textContent = opt[1];
+    btn.setAttribute('aria-label', opt[1]);
+    btn.addEventListener('click', () => onAnswer(btn, opt[0] === q[0], q), {once: true});
+    grid.appendChild(btn);
+  });
+}
+
+// ── HANDLE ANSWER ──
+function onAnswer(btn, isCorrect, q) {
+  if (G.done || G.answering) return;
+  G.answering = true;
+
+  // Disable all
+  document.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+
+  G.total++;
+  G.stats[q[2]].t++;
+
+  if (isCorrect) {
+    btn.classList.add('correct');
+    btn.style.animation = 'pulse .35s ease';
+    G.correct++;
+    G.streak++;
+    if (G.streak > G.maxStreak) G.maxStreak = G.streak;
+    G.stats[q[2]].c++;
+    const pts = G.streak >= 3 ? 200 : G.streak === 2 ? 150 : 100;
+    G.score += pts;
+    beep('correct');
+    ga('correct_answer', {country: q[1], streak: G.streak});
+  } else {
+    btn.classList.add('wrong');
+    btn.style.animation = 'shake .35s ease';
+    G.streak = 0;
+    // Reveal correct answer
+    document.querySelectorAll('.answer-btn').forEach(b => {
+      if (b.textContent === q[1]) b.classList.add('correct');
+    });
+    beep('wrong');
+    ga('wrong_answer', {country: q[1]});
+  }
+
+  document.getElementById('score-disp').textContent = G.score.toLocaleString();
+
+  setTimeout(() => {
+    G.idx++;
+    renderQ();
+  }, 950);
+}
+
+// ── END GAME ──
+function endGame() {
+  if (G.done) return;
+  G.done = true;
+  if (G.timer) { clearInterval(G.timer); G.timer = null; }
+
+  const acc = G.total > 0 ? Math.round(G.correct / G.total * 100) : 0;
+  const key = G.mode === 'timed' ? 'wfq_t' : 'wfq_r';
+  const prev = +(localStorage.getItem(key) || 0);
+  const isNew = G.score > 0 && G.score > prev;
+  if (isNew) localStorage.setItem(key, G.score);
+
+  ga('game_complete', {score: G.score, accuracy: acc, mode: G.mode,
+    correct: G.correct, total: G.total, max_streak: G.maxStreak});
+
+  showResult(acc, isNew);
+}
+
+// ── SHOW RESULT ──
+function showResult(acc, isNew) {
+  const titles = [
+    'Keep Exploring! 🗺️',
+    'Getting Warmer! 🌡️',
+    'Solid Geography! 👍',
+    'Flag Expert! 🌟',
+    'Geography Master! 🏆'
+  ];
+  document.getElementById('result-title').textContent =
+    titles[Math.min(Math.floor(acc / 20), 4)];
+  document.getElementById('result-sub').textContent =
+    G.mode === 'timed'
+      ? `You named ${G.total} flags in 60 seconds!`
+      : `${G.correct} of 10 flags correct`;
+
+  document.getElementById('res-score').textContent   = G.score.toLocaleString();
+  document.getElementById('res-correct').textContent = G.correct;
+  document.getElementById('res-total').textContent   = G.total;
+  document.getElementById('res-acc').textContent     = acc + '%';
+  document.getElementById('res-newbest').style.display = isNew ? 'inline-block' : 'none';
+
+  // Continent breakdown
+  const bd = document.getElementById('cont-breakdown');
+  bd.innerHTML = '';
+  Object.entries(G.stats).forEach(([k, v]) => {
+    if (v.t === 0) return;
+    const pct = Math.round(v.c / v.t * 100);
+    const color = pct >= 70 ? 'var(--green)' : pct >= 40 ? 'var(--yellow)' : 'var(--red)';
+    const row = document.createElement('div');
+    row.className = 'cont-row';
+    row.innerHTML =
+      `<div class="cont-name">${CEMOJI[k]} <span>${CNAMES[k]}</span></div>` +
+      `<div class="cont-bar-wrap"><div class="cont-fill" style="background:${color}" data-w="${pct}"></div></div>` +
+      `<div class="cont-pct" style="color:${color}">${pct}%</div>`;
+    bd.appendChild(row);
+  });
+
+  showScreen('result');
+
+  // Animate bars after paint
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll('.cont-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }));
+}
+
+// ── SHARE ──
+function share() {
+  const acc = G.total > 0 ? Math.round(G.correct / G.total * 100) : 0;
+  const modeLabel = G.mode === 'timed' ? '⚡ Timed 60s' : '🌿 Relaxed';
+  const text =
+    `🌍 World Flag Quiz\n` +
+    `${modeLabel} — ${G.score.toLocaleString()} pts\n` +
+    `${G.correct}/${G.total} correct (${acc}%)\n` +
+    `🔥 Best streak: ${G.maxStreak}\n\n` +
+    `pure-flon.com/games/world-flag-quiz/`;
+
+  if (navigator.share) {
+    navigator.share({title: 'World Flag Quiz', text,
+      url: 'https://pure-flon.com/games/world-flag-quiz/'}).catch(() => {});
+  } else {
+    navigator.clipboard?.writeText(text).then(() => {
+      const btn = document.getElementById('btn-share');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📤 Share'; }, 2000);
+    });
+  }
+  ga('share', {score: G.score, mode: G.mode});
+}
+
+// ── WEB AUDIO ──
+let _ctx;
+function beep(type) {
+  try {
+    if (!_ctx) _ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = _ctx.createOscillator();
+    const g = _ctx.createGain();
+    o.connect(g); g.connect(_ctx.destination);
+    if (type === 'correct') {
+      o.type = 'sine'; o.frequency.value = 523;
+      g.gain.setValueAtTime(0.08, _ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, _ctx.currentTime + 0.35);
+      o.start(); o.stop(_ctx.currentTime + 0.35);
+    } else {
+      o.type = 'sawtooth'; o.frequency.value = 196;
+      g.gain.setValueAtTime(0.06, _ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, _ctx.currentTime + 0.25);
+      o.start(); o.stop(_ctx.currentTime + 0.25);
+    }
+  } catch (e) {}
+}
+
+// ── SCREEN ──
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => { s.style.display = 'none'; });
+  document.getElementById('screen-' + name).style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// ── BOOT ──
+init();
+</script>
+</body>
+</html>
