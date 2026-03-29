@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Free QR Code Generator — URL, WiFi, vCard | Pure-Flon</title>
+  <meta name="description" content="Generate QR codes instantly for URLs, text, WiFi networks, and vCards. Download as PNG or SVG. Free, client-side, no data sent to servers." />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="QR code generator, free QR code, WiFi QR code, vCard QR, URL QR code, PNG SVG download" />
+  <link rel="canonical" href="https://pure-flon.com/tools/qr-generator/" />
+
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s" />
+  <meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free QR Code Generator — URL, WiFi, vCard" />
+  <meta property="og:description" content="Generate QR codes for URLs, text, WiFi, and vCards. Download as PNG or SVG. Completely free." />
+  <meta property="og:url" content="https://pure-flon.com/tools/qr-generator/" />
+  <meta property="og:site_name" content="Pure-Flon" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Free QR Code Generator" />
+  <meta name="twitter:description" content="Generate QR codes for URLs, WiFi, vCard. PNG/SVG download. Free &amp; private." />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- JSON-LD WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "QR Code Generator",
+    "url": "https://pure-flon.com/tools/qr-generator/",
+    "description": "Free online QR code generator for URLs, text, WiFi networks, and vCards. Download as PNG or SVG.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "creator": { "@type": "Organization", "name": "Pure-Flon", "url": "https://pure-flon.com" }
+  }
+  </script>
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I generate a WiFi QR code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select the WiFi tab, enter your network name (SSID), password, and security type (WPA/WEP/Open). Click Generate and download the QR code. Scanning it will automatically connect the device to the network."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the QR code as SVG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After generating your QR code, click the SVG button to download a scalable vector file — perfect for print and high-resolution use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this QR code generator free and private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The generator runs entirely in your browser. No data is sent to any server. It is completely free with no account required."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WE091T20M0');
+  </script>
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --card: #12121a;
+      --card-hover: #1a1a26;
+      --border: #1e1e2e;
+      --accent: #6366f1;
+      --accent-dim: #4f46e5;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --success: #10b981;
+      --warn: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .bg-glow {
+      position: fixed; top: -10%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px; z-index: 0; pointer-events: none;
+      background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%);
+    }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10,10,15,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(99,102,241,0.2); display: flex; align-items: center; justify-content: center;
+    }
+    .logo-dot { width: 12px; height: 12px; border-radius: 4px; background: var(--accent); }
+    .logo-text { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .lang-btn {
+      font-size: 0.75rem; padding: 4px 12px; border-radius: 999px;
+      border: 1px solid var(--border); color: var(--muted);
+      background: transparent; cursor: pointer; font-family: inherit;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { border-color: rgba(99,102,241,0.4); color: #a5b4fc; }
+
+    /* Main */
+    main { flex: 1; position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; width: 100%; padding: 40px 24px 60px; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 32px; }
+    .subtitle a { color: var(--accent); text-decoration: none; }
+    .subtitle a:hover { text-decoration: underline; }
+
+    /* Tool layout */
+    .tool-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    @media (max-width: 720px) { .tool-layout { grid-template-columns: 1fr; } }
+
+    /* Card */
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    }
+
+    /* Tabs */
+    .tab-bar { display: flex; gap: 4px; background: var(--bg); border-radius: 10px; padding: 4px; margin-bottom: 20px; border: 1px solid var(--border); }
+    .tab-btn {
+      flex: 1; padding: 7px 4px; border-radius: 7px; border: none;
+      background: transparent; color: var(--muted); font-size: 0.8rem; font-weight: 500;
+      cursor: pointer; font-family: inherit; transition: background 0.2s, color 0.2s;
+    }
+    .tab-btn.active { background: var(--accent); color: #fff; }
+
+    /* Form */
+    label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.03em; text-transform: uppercase; }
+    .field { margin-bottom: 16px; }
+    input[type="text"], input[type="url"], input[type="tel"], input[type="email"], input[type="password"], textarea, select {
+      width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 14px; color: var(--text); font-size: 0.9rem; font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+    textarea { resize: vertical; min-height: 80px; }
+    select option { background: #1a1a26; }
+
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Color row */
+    .color-row { display: flex; align-items: center; gap: 10px; }
+    input[type="color"] {
+      width: 40px; height: 36px; border-radius: 6px; border: 1px solid var(--border);
+      background: none; cursor: pointer; padding: 2px;
+    }
+    .color-hex {
+      flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 12px; color: var(--text); font-size: 0.85rem; font-family: monospace;
+      outline: none; transition: border-color 0.2s;
+    }
+    .color-hex:focus { border-color: var(--accent); }
+
+    /* Range slider */
+    input[type="range"] {
+      width: 100%; accent-color: var(--accent); height: 4px; cursor: pointer;
+      background: var(--border); border-radius: 2px;
+    }
+    .range-row { display: flex; align-items: center; gap: 12px; }
+    .range-val { font-size: 0.85rem; color: var(--muted); min-width: 40px; text-align: right; }
+
+    /* Generate button */
+    .btn-generate {
+      width: 100%; padding: 12px; border-radius: 10px; border: none;
+      background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+      color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      font-family: inherit; transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+    }
+    .btn-generate:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(99,102,241,0.35); }
+    .btn-generate:active { transform: translateY(0); }
+
+    /* Preview panel */
+    .preview-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .qr-wrapper {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px; display: flex; align-items: center; justify-content: center;
+      min-height: 280px; width: 100%;
+    }
+    #qr-canvas { display: block; border-radius: 8px; max-width: 100%; height: auto; }
+    .placeholder-msg { color: var(--muted); font-size: 0.9rem; text-align: center; }
+    .placeholder-icon { font-size: 2.5rem; margin-bottom: 8px; opacity: 0.4; }
+
+    /* Download buttons */
+    .dl-row { display: flex; gap: 10px; width: 100%; }
+    .btn-dl {
+      flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--card-hover); color: var(--text); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; font-family: inherit; transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-dl:hover { border-color: var(--accent); background: rgba(99,102,241,0.1); transform: translateY(-1px); }
+    .btn-dl:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+    /* Info/error */
+    .qr-info { font-size: 0.78rem; color: var(--muted); text-align: center; }
+    .qr-error { font-size: 0.82rem; color: #f87171; text-align: center; }
+
+    /* Section hidden */
+    .input-section { display: none; }
+    .input-section.active { display: block; }
+
+    /* Footer */
+    footer {
+      position: relative; z-index: 10; border-top: 1px solid var(--border);
+      text-align: center; padding: 20px 24px; font-size: 0.75rem; color: #334155;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: #a5b4fc; }
+
+    /* Lang */
+    .ko { display: none; }
+    body.lang-ko .en { display: none; }
+    body.lang-ko .ko { display: inline; }
+    .ko-block { display: none; }
+    body.lang-ko .ko-block { display: block; }
+    body.lang-ko .en-block { display: none; }
+    .en-block { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+
+    /* Sponsor */
+    .sponsor-bar {
+      background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.15); border-radius: 10px;
+      padding: 12px 16px; font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 16px;
+    }
+    .sponsor-bar a { color: var(--accent); text-decoration: none; }
+    .sponsor-bar a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-icon"><div class="logo-dot"></div></div>
+        <span class="logo-text">Pure-Flon</span>
+      </a>
+      <div class="header-right">
+        <a href="/tools/" style="font-size:0.8rem; color:var(--muted); text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='var(--muted)'">
+          <span class="en">Tools</span><span class="ko">도구</span>
+        </a>
+        <button class="lang-btn" onclick="document.body.classList.toggle('lang-ko'); this.textContent = document.body.classList.contains('lang-ko') ? 'EN' : 'KO'">KO</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="en-block">
+      <h1>QR Code Generator</h1>
+      <p class="subtitle">
+        Create QR codes for URLs, text, WiFi, and vCards. Download as PNG or SVG. &nbsp;
+        <a href="/tools/">More tools →</a>
+      </p>
+    </div>
+    <div class="ko-block">
+      <h1>QR 코드 생성기</h1>
+      <p class="subtitle">
+        URL, 텍스트, WiFi, vCard용 QR 코드를 생성하세요. PNG/SVG 다운로드 지원. &nbsp;
+        <a href="/tools/">더 많은 도구 →</a>
+      </p>
+    </div>
+
+    <div class="tool-layout">
+      <!-- Left: Input -->
+      <div class="card">
+        <!-- Tab bar -->
+        <div class="tab-bar" role="tablist">
+          <button class="tab-btn active" role="tab" onclick="switchTab('url', this)">URL</button>
+          <button class="tab-btn" role="tab" onclick="switchTab('text', this)">
+            <span class="en">Text</span><span class="ko">텍스트</span>
+          </button>
+          <button class="tab-btn" role="tab" onclick="switchTab('wifi', this)">WiFi</button>
+          <button class="tab-btn" role="tab" onclick="switchTab('vcard', this)">vCard</button>
+        </div>
+
+        <!-- URL -->
+        <div id="sec-url" class="input-section active">
+          <div class="field">
+            <label><span class="en">URL</span><span class="ko">주소</span></label>
+            <input type="url" id="inp-url" placeholder="https://example.com" autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div id="sec-text" class="input-section">
+          <div class="field">
+            <label><span class="en">Text</span><span class="ko">텍스트</span></label>
+            <textarea id="inp-text" placeholder="Enter any text..."></textarea>
+          </div>
+        </div>
+
+        <!-- WiFi -->
+        <div id="sec-wifi" class="input-section">
+          <div class="field">
+            <label>SSID (<span class="en">Network Name</span><span class="ko">네트워크 이름</span>)</label>
+            <input type="text" id="inp-ssid" placeholder="MyNetwork" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label><span class="en">Password</span><span class="ko">비밀번호</span></label>
+            <input type="password" id="inp-wifi-pass" placeholder="••••••••" autocomplete="new-password" />
+          </div>
+          <div class="field">
+            <label><span class="en">Security</span><span class="ko">보안 방식</span></label>
+            <select id="inp-wifi-sec">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass"><span class="en">Open (no password)</span><span class="ko">개방형 (비밀번호 없음)</span></option>
+            </select>
+          </div>
+        </div>
+
+        <!-- vCard -->
+        <div id="sec-vcard" class="input-section">
+          <div class="row2">
+            <div class="field">
+              <label><span class="en">First Name</span><span class="ko">이름</span></label>
+              <input type="text" id="inp-fname" placeholder="Jane" />
+            </div>
+            <div class="field">
+              <label><span class="en">Last Name</span><span class="ko">성</span></label>
+              <input type="text" id="inp-lname" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="field">
+            <label><span class="en">Organization</span><span class="ko">조직</span></label>
+            <input type="text" id="inp-org" placeholder="Company Inc." />
+          </div>
+          <div class="field">
+            <label><span class="en">Phone</span><span class="ko">전화</span></label>
+            <input type="tel" id="inp-phone" placeholder="+1 555 0100" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="inp-email" placeholder="jane@example.com" />
+          </div>
+          <div class="field">
+            <label><span class="en">Website</span><span class="ko">웹사이트</span></label>
+            <input type="url" id="inp-website" placeholder="https://example.com" />
+          </div>
+        </div>
+
+        <!-- Options -->
+        <hr style="border:none; border-top: 1px solid var(--border); margin: 4px 0 16px;" />
+
+        <div class="row2">
+          <!-- FG Color -->
+          <div class="field">
+            <label><span class="en">QR Color</span><span class="ko">QR 색상</span></label>
+            <div class="color-row">
+              <input type="color" id="clr-fg" value="#000000" oninput="syncHex('clr-fg','hex-fg')" />
+              <input type="text" class="color-hex" id="hex-fg" value="#000000" maxlength="7" oninput="syncColor('hex-fg','clr-fg')" />
+            </div>
+          </div>
+          <!-- BG Color -->
+          <div class="field">
+            <label><span class="en">BG Color</span><span class="ko">배경 색상</span></label>
+            <div class="color-row">
+              <input type="color" id="clr-bg" value="#ffffff" oninput="syncHex('clr-bg','hex-bg')" />
+              <input type="text" class="color-hex" id="hex-bg" value="#ffffff" maxlength="7" oninput="syncColor('hex-bg','clr-bg')" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Size -->
+        <div class="field">
+          <label><span class="en">Size</span><span class="ko">크기</span></label>
+          <div class="range-row">
+            <input type="range" id="rng-size" min="200" max="600" step="50" value="300" oninput="document.getElementById('val-size').textContent=this.value+'px'" />
+            <span class="range-val" id="val-size">300px</span>
+          </div>
+        </div>
+
+        <!-- Error correction -->
+        <div class="field">
+          <label><span class="en">Error Correction</span><span class="ko">오류 수정 레벨</span></label>
+          <select id="sel-ec">
+            <option value="L">L — <span class="en">Low (7%)</span><span class="ko">낮음 (7%)</span></option>
+            <option value="M" selected>M — <span class="en">Medium (15%)</span><span class="ko">중간 (15%)</span></option>
+            <option value="Q">Q — <span class="en">Quartile (25%)</span><span class="ko">분기 (25%)</span></option>
+            <option value="H">H — <span class="en">High (30%)</span><span class="ko">높음 (30%)</span></option>
+          </select>
+        </div>
+
+        <button class="btn-generate" onclick="generateQR()">
+          <span class="en">Generate QR Code</span><span class="ko">QR 코드 생성</span>
+        </button>
+      </div>
+
+      <!-- Right: Preview -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="card">
+          <div class="qr-wrapper" id="qr-wrapper">
+            <div class="placeholder-msg" id="qr-placeholder">
+              <div class="placeholder-icon">⬛</div>
+              <div class="en">Your QR code will appear here</div>
+              <div class="ko">QR 코드가 여기에 표시됩니다</div>
+            </div>
+            <canvas id="qr-canvas" style="display:none;"></canvas>
+          </div>
+          <div id="qr-status" class="qr-info" style="margin-top:10px;"></div>
+        </div>
+
+        <div class="dl-row">
+          <button class="btn-dl" id="btn-png" onclick="downloadPNG()" disabled>
+            ↓ PNG
+          </button>
+          <button class="btn-dl" id="btn-svg" onclick="downloadSVG()" disabled>
+            ↓ SVG
+          </button>
+        </div>
+
+        <!-- Sponsor / support -->
+        <div class="sponsor-bar">
+          <span class="en">
+            Free tool by <a href="/">Pure-Flon</a>.
+            If it helped, <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">buy us a coffee ☕</a>
+            or <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">sponsor on GitHub</a>.
+          </span>
+          <span class="ko">
+            <a href="/">Pure-Flon</a>이 만든 무료 도구입니다.
+            도움이 됐다면 <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">커피 한 잔 ☕</a>
+            또는 <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub 후원</a>을 고려해 주세요.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ (visible for SEO) -->
+    <section style="margin-top:48px; max-width:720px;">
+      <h2 style="font-size:1.1rem; font-weight:600; margin-bottom:20px; color:var(--text);">
+        <span class="en">Frequently Asked Questions</span><span class="ko">자주 묻는 질문</span>
+      </h2>
+
+      <details style="border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:10px;">
+        <summary style="cursor:pointer; font-weight:500; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span class="en">How do I create a WiFi QR code?</span>
+          <span class="ko">WiFi QR 코드는 어떻게 만드나요?</span>
+          <span style="color:var(--muted); font-size:1.2rem;">+</span>
+        </summary>
+        <p style="margin-top:10px; color:var(--muted); font-size:0.88rem; line-height:1.6;">
+          <span class="en">Select the WiFi tab, enter your SSID, password, and security type. Click Generate. Scanning the code on a phone will automatically connect to the network.</span>
+          <span class="ko">WiFi 탭을 선택하고 네트워크 이름(SSID), 비밀번호, 보안 방식을 입력하세요. 생성 버튼을 누르면 완성됩니다. 스마트폰으로 스캔하면 자동 연결됩니다.</span>
+        </p>
+      </details>
+
+      <details style="border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:10px;">
+        <summary style="cursor:pointer; font-weight:500; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span class="en">What is the difference between PNG and SVG?</span>
+          <span class="ko">PNG와 SVG의 차이는 무엇인가요?</span>
+          <span style="color:var(--muted); font-size:1.2rem;">+</span>
+        </summary>
+        <p style="margin-top:10px; color:var(--muted); font-size:0.88rem; line-height:1.6;">
+          <span class="en">PNG is a raster image at a fixed pixel size. SVG is scalable vector — it looks crisp at any size. Use SVG for print materials and PNG for digital sharing.</span>
+          <span class="ko">PNG는 고정된 픽셀 크기의 래스터 이미지입니다. SVG는 벡터 형식으로 어떤 크기에서도 선명하게 표시됩니다. 인쇄물에는 SVG, 디지털 공유에는 PNG를 사용하세요.</span>
+        </p>
+      </details>
+
+      <details style="border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:10px;">
+        <summary style="cursor:pointer; font-weight:500; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span class="en">Is this QR generator private?</span>
+          <span class="ko">개인 정보가 안전한가요?</span>
+          <span style="color:var(--muted); font-size:1.2rem;">+</span>
+        </summary>
+        <p style="margin-top:10px; color:var(--muted); font-size:0.88rem; line-height:1.6;">
+          <span class="en">Yes. All processing is done in your browser. No data is sent to any server. Your WiFi password and personal details never leave your device.</span>
+          <span class="ko">예. 모든 처리는 브라우저에서 직접 이루어집니다. 서버로 전송되는 데이터가 없습니다. WiFi 비밀번호나 개인 정보는 기기 밖으로 나가지 않습니다.</span>
+        </p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      &copy; 2026 Pure-Flon &nbsp;&middot;&nbsp;
+      <a href="/">pure-flon.com</a> &nbsp;&middot;&nbsp;
+      <a href="/tools/">Tools</a> &nbsp;&middot;&nbsp;
+      <a href="/games/">Games</a>
+    </p>
+  </footer>
+
+  <!-- QR code generator library (client-side only) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+  <script>
+    // Current tab and QR state
+    let currentTab = 'url';
+    let currentQR = null;  // stores qr module data
+    let currentFg = '#000000';
+    let currentBg = '#ffffff';
+    let currentSize = 300;
+
+    // Tab switching
+    function switchTab(tab, btn) {
+      currentTab = tab;
+      document.querySelectorAll('.input-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('sec-' + tab).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // Color sync helpers
+    function syncHex(colorId, hexId) {
+      document.getElementById(hexId).value = document.getElementById(colorId).value;
+    }
+    function syncColor(hexId, colorId) {
+      const val = document.getElementById(hexId).value;
+      if (/^#[0-9a-fA-F]{6}$/.test(val)) {
+        document.getElementById(colorId).value = val;
+      }
+    }
+
+    // Build content string based on tab
+    function buildContent() {
+      if (currentTab === 'url') {
+        const v = document.getElementById('inp-url').value.trim();
+        return v || null;
+      }
+      if (currentTab === 'text') {
+        const v = document.getElementById('inp-text').value.trim();
+        return v || null;
+      }
+      if (currentTab === 'wifi') {
+        const ssid = document.getElementById('inp-ssid').value.trim();
+        if (!ssid) return null;
+        const pass = document.getElementById('inp-wifi-pass').value;
+        const sec = document.getElementById('inp-wifi-sec').value;
+        // Escape special chars: \ ; , " :
+        const esc = s => s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/"/g,'\\"').replace(/:/g,'\\:');
+        if (sec === 'nopass') return `WIFI:T:nopass;S:${esc(ssid)};;`;
+        return `WIFI:T:${sec};S:${esc(ssid)};P:${esc(pass)};;`;
+      }
+      if (currentTab === 'vcard') {
+        const fn = document.getElementById('inp-fname').value.trim();
+        const ln = document.getElementById('inp-lname').value.trim();
+        if (!fn && !ln) return null;
+        const org  = document.getElementById('inp-org').value.trim();
+        const phone = document.getElementById('inp-phone').value.trim();
+        const email = document.getElementById('inp-email').value.trim();
+        const web  = document.getElementById('inp-website').value.trim();
+        let vc = 'BEGIN:VCARD\nVERSION:3.0\n';
+        vc += `N:${ln};${fn};;;\n`;
+        vc += `FN:${fn} ${ln}\n`;
+        if (org)   vc += `ORG:${org}\n`;
+        if (phone) vc += `TEL;TYPE=CELL:${phone}\n`;
+        if (email) vc += `EMAIL:${email}\n`;
+        if (web)   vc += `URL:${web}\n`;
+        vc += 'END:VCARD';
+        return vc;
+      }
+      return null;
+    }
+
+    // Generate QR code
+    function generateQR() {
+      const content = buildContent();
+      const statusEl = document.getElementById('qr-status');
+      const placeholder = document.getElementById('qr-placeholder');
+      const canvas = document.getElementById('qr-canvas');
+
+      if (!content) {
+        statusEl.className = 'qr-error';
+        statusEl.innerHTML = '<span class="en">Please enter content first.</span><span class="ko">내용을 입력해 주세요.</span>';
+        return;
+      }
+
+      currentFg = document.getElementById('clr-fg').value;
+      currentBg = document.getElementById('clr-bg').value;
+      currentSize = parseInt(document.getElementById('rng-size').value);
+      const ecLevel = document.getElementById('sel-ec').value;
+
+      try {
+        // Find minimum typeNumber that fits the content
+        let qr = null;
+        for (let typeNum = 1; typeNum <= 40; typeNum++) {
+          try {
+            qr = qrcode(typeNum, ecLevel);
+            qr.addData(content, 'Byte');
+            qr.make();
+            break;
+          } catch (e) {
+            qr = null;
+          }
+        }
+
+        if (!qr) {
+          statusEl.className = 'qr-error';
+          statusEl.innerHTML = '<span class="en">Content is too long for a QR code.</span><span class="ko">내용이 너무 길어서 QR 코드를 생성할 수 없습니다.</span>';
+          return;
+        }
+
+        currentQR = qr;
+
+        // Render to canvas
+        const moduleCount = qr.getModuleCount();
+        const margin = 2; // modules of quiet zone
+        const totalModules = moduleCount + margin * 2;
+        const cellSize = currentSize / totalModules;
+
+        canvas.width = currentSize;
+        canvas.height = currentSize;
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = currentBg;
+        ctx.fillRect(0, 0, currentSize, currentSize);
+
+        // Modules
+        ctx.fillStyle = currentFg;
+        for (let row = 0; row < moduleCount; row++) {
+          for (let col = 0; col < moduleCount; col++) {
+            if (qr.isDark(row, col)) {
+              const x = (col + margin) * cellSize;
+              const y = (row + margin) * cellSize;
+              ctx.fillRect(Math.floor(x), Math.floor(y), Math.ceil(cellSize), Math.ceil(cellSize));
+            }
+          }
+        }
+
+        placeholder.style.display = 'none';
+        canvas.style.display = 'block';
+        canvas.classList.add('fade-in');
+
+        document.getElementById('btn-png').disabled = false;
+        document.getElementById('btn-svg').disabled = false;
+
+        statusEl.className = 'qr-info';
+        const charCount = content.length;
+        statusEl.innerHTML = `<span class="en">${moduleCount}×${moduleCount} modules · ${charCount} chars · EC: ${ecLevel}</span>
+                              <span class="ko">${moduleCount}×${moduleCount} 모듈 · ${charCount}자 · 오류수정: ${ecLevel}</span>`;
+
+        // GA4 event
+        gtag('event', 'qr_generated', { type: currentTab, ec_level: ecLevel, size: currentSize });
+
+      } catch (err) {
+        statusEl.className = 'qr-error';
+        statusEl.textContent = 'Error: ' + err.message;
+      }
+    }
+
+    // PNG download
+    function downloadPNG() {
+      const canvas = document.getElementById('qr-canvas');
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = `qrcode-${currentTab}-${Date.now()}.png`;
+      link.click();
+      gtag('event', 'qr_download', { format: 'png', type: currentTab });
+    }
+
+    // SVG download
+    function downloadSVG() {
+      if (!currentQR) return;
+      const qr = currentQR;
+      const moduleCount = qr.getModuleCount();
+      const margin = 2;
+      const totalModules = moduleCount + margin * 2;
+      const cellSize = 10; // 10px per module in SVG (scalable)
+      const svgSize = totalModules * cellSize;
+
+      let svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${svgSize}" height="${svgSize}" viewBox="0 0 ${svgSize} ${svgSize}" shape-rendering="crispEdges">
+  <rect width="${svgSize}" height="${svgSize}" fill="${currentBg}"/>
+`;
+      for (let row = 0; row < moduleCount; row++) {
+        for (let col = 0; col < moduleCount; col++) {
+          if (qr.isDark(row, col)) {
+            const x = (col + margin) * cellSize;
+            const y = (row + margin) * cellSize;
+            svg += `  <rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" fill="${currentFg}"/>\n`;
+          }
+        }
+      }
+      svg += '</svg>';
+
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `qrcode-${currentTab}-${Date.now()}.svg`;
+      link.click();
+      URL.revokeObjectURL(url);
+      gtag('event', 'qr_download', { format: 'svg', type: currentTab });
+    }
+
+    // Auto-generate on Enter key in URL input
+    document.getElementById('inp-url').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') generateQR();
+    });
+
+    // Generate on page load for demo
+    window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('inp-url').value = 'https://pure-flon.com/';
+      generateQR();
+    });
+  </script>
+</body>
+</html>
