@@ -372,4 +372,19 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+
+    <url>
+        <loc>https://pure-flon.com/blog/bitcoin-halving-history/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://pure-flon.com/saas/ai-ops-autopilot/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
 </urlset>
