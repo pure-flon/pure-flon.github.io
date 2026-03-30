@@ -621,12 +621,12 @@ function showResult(acc, isNew) {
 // ── SHARE ──
 function share() {
   const acc = G.total > 0 ? Math.round(G.correct / G.total * 100) : 0;
+  const grade = acc >= 90 ? 'Flag Master 🏆' : acc >= 70 ? 'Flag Expert 🌟' : acc >= 50 ? 'Flag Learner 📚' : 'Flag Rookie 🌱';
   const modeLabel = G.mode === 'timed' ? '⚡ Timed 60s' : '🌿 Relaxed';
   const text =
-    `🌍 World Flag Quiz\n` +
+    `🌍 World Flag Quiz — ${grade}\n` +
     `${modeLabel} — ${G.score.toLocaleString()} pts\n` +
-    `${G.correct}/${G.total} correct (${acc}%)\n` +
-    `🔥 Best streak: ${G.maxStreak}\n\n` +
+    `${G.correct}/${G.total} correct (${acc}%) | 🔥 Streak: ${G.maxStreak}\n\n` +
     `pure-flon.com/games/world-flag-quiz/`;
 
   if (navigator.share) {
