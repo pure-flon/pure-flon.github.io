@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pure-flon</title>
+    <link>https://pure-flon.com</link>
+    <description>Free AI-powered games, tools &amp; blog</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Mar 2026 07:37:43 +0000</lastBuildDate>
+    <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <generator>auto_distribute.py</generator>
+    <item>
+      <title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
+      <link>https://pure-flon.com/games/world-flag-quiz/</link>
+      <description>Test your world geography! Guess all 195 country flags in timed or relaxed mode. Track your score by continent. Free flag quiz game — no download needed.</description>
+      <pubDate>Mon, 30 Mar 2026 07:27:35 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/</guid>
+    </item>
+    <item>
+      <title>K-Meme Quiz | 한국 인터넷 밈 퀴즈 — 당신의 밈력은?</title>
+      <link>https://pure-flon.com/games/k-meme-quiz/</link>
+      <description>한국 인터넷 밈 퀴즈! 뇌절, 갓생, 현타, 찐친... 50개 이상의 K-밈 중 10문제를 풀며 당신의 밈 지수를 확인하세요. 점수 공유 가능!</description>
+      <pubDate>Mon, 30 Mar 2026 07:27:33 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/k-meme-quiz/</guid>
+    </item>
+    <item>
+      <title>AI 20 Questions | Think of something — AI will guess it</title>
+      <link>https://pure-flon.com/games/twenty-questions/</link>
+      <description>Challenge the AI mind reader! Think of anything from K-Food, K-Pop, Animals, Tech, Places, or Memes — AI uses information theory to guess it in 20 questions.</description>
+      <pubDate>Mon, 30 Mar 2026 07:27:29 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/twenty-questions/</guid>
+    </item>
+    <item>
+      <title>JSON Formatter &amp; Validator - Free Online Tool | pure-flon</title>
+      <link>https://pure-flon.com/tools/json-formatter/</link>
+      <description>Free online JSON formatter, validator, and beautifier. Paste your JSON to format, minify, validate with syntax highlighting and error detection. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 07:27:13 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/json-formatter/</guid>
+    </item>
+    <item>
+      <title>Pomodoro Timer - Free Online Focus Timer | pure-flon</title>
+      <link>https://pure-flon.com/tools/pomodoro/</link>
+      <description>Free online Pomodoro timer for focused work sessions. 25-minute work intervals, customizable durations, session tracking, audio notifications, and fullscreen mode. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 07:27:10 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/pomodoro/</guid>
+    </item>
+    <item>
+      <title>Free QR Code Generator — URL, WiFi, vCard | Pure-Flon</title>
+      <link>https://pure-flon.com/tools/qr-generator/</link>
+      <description>Generate QR codes instantly for URLs, text, WiFi networks, and vCards. Download as PNG or SVG. Free, client-side, no data sent to servers.</description>
+      <pubDate>Mon, 30 Mar 2026 05:57:23 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/qr-generator/</guid>
+    </item>
+    <item>
+      <title>Best Free Developer Tools in 2026 — Our Top Picks | pure-flon blog</title>
+      <link>https://pure-flon.com/blog/best-free-dev-tools-2026/</link>
+      <description>20 best free developer tools in 2026. From JSON formatters to AI coding assistants — boost your productivity without spending a dime.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/best-free-dev-tools-2026/</guid>
+    </item>
+    <item>
+      <title>Korean Honorifics Explained Simply | pure-flon blog</title>
+      <link>https://pure-flon.com/blog/korean-honorifics-guide/</link>
+      <description>A complete guide to Korean honorifics and speech levels. Learn when to use oppa, unnie, nim, yo, and the 7 Korean speech levels with interactive examples.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/korean-honorifics-guide/</guid>
+    </item>
+    <item>
+      <title>AI Color Palette Generator — Free Online Tool | Pure-Flon</title>
+      <link>https://pure-flon.com/tools/color-palette/</link>
+      <description>Generate beautiful, harmonious color palettes from any seed color. Export as CSS variables, Tailwind config, or image. Free, no login required.</description>
+      <pubDate>Sat, 28 Mar 2026 03:32:41 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/color-palette/</guid>
+    </item>
+    <item>
+      <title>How AI Guesses What You&apos;re Thinking in Just 4 Questions | pure-flon blog</title>
+      <link>https://pure-flon.com/blog/how-ai-guesses-in-4-questions/</link>
+      <description>Learn how Shannon entropy and information theory let an AI guess what you&apos;re thinking in just 4 questions. Interactive examples and a playable game inside.</description>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/how-ai-guesses-in-4-questions/</guid>
+    </item>
+    <item>
+      <title>Top 10 Korean Foods Foreigners Love (And Where to Start) | pure-flon blog</title>
+      <link>https://pure-flon.com/blog/top-10-korean-foods-foreigners-love/</link>
+      <description>Discover the top 10 Korean foods loved by foreigners worldwide. From Korean fried chicken to bibimbap — your ultimate K-food starter guide with spice levels and fun facts.</description>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/top-10-korean-foods-foreigners-love/</guid>
+    </item>
+  </channel>
+</rss>
