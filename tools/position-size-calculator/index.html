@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Position Size Calculator — Risk Management Tool | pure-flon</title>
+<meta name="description" content="Free crypto position size calculator. Input your account balance, risk %, entry price, and stop-loss to get your exact position size in units and USD. Works for BTC, ETH, and all crypto pairs.">
+<meta name="keywords" content="crypto position size calculator, position sizing calculator, crypto risk management, stop loss calculator, trading position calculator, BTC position size, forex position size crypto">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/position-size-calculator/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crypto Position Size Calculator — Risk Management Tool">
+<meta property="og:description" content="Calculate exact position sizes for any crypto trade. Enter account balance, risk %, entry, and stop-loss. Instant results.">
+<meta property="og:url" content="https://pure-flon.com/tools/position-size-calculator/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Crypto Position Size Calculator">
+<meta name="twitter:description" content="Calculate exact position sizes for any crypto trade. Enter account balance, risk %, entry, and stop-loss. Instant results.">
+
+<!-- JSON-LD WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crypto Position Size Calculator",
+  "description": "Free online crypto position size calculator for risk management. Calculate position sizes based on account balance, risk percentage, entry price, and stop-loss level.",
+  "url": "https://pure-flon.com/tools/position-size-calculator/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you calculate crypto position size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Position size = (Account balance × Risk %) ÷ (Entry price − Stop-loss price). For example: $10,000 account × 1% risk = $100 max loss. If entry is $50,000 and stop is $49,000 (a $1,000 risk per BTC), your position size is $100 ÷ $1,000 = 0.1 BTC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good risk percentage per trade in crypto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Professional traders typically risk 0.5%–2% of their account per trade. 1% is the most common rule. Risking more than 3% per trade is considered aggressive and can lead to account blowout after a losing streak."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 1% rule in trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 1% rule means never risking more than 1% of your total trading account on any single trade. If you have a $10,000 account, your maximum loss per trade should be $100. This rule protects against account blowout during losing streaks."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111;
+    --surface2: #161616;
+    --border: #222;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #00d4aa;
+    --accent2: #7c6aff;
+    --warn: #f5a623;
+    --good: #27d87a;
+    --danger: #e05555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+  }
+  header a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+  nav a:hover { color: var(--text); }
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .page-header { text-align: center; margin-bottom: 48px; }
+  .page-tag {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .subtitle { color: var(--muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+  /* Calculator Layout */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 600px) {
+    .calc-grid { grid-template-columns: 1fr; }
+  }
+  .calc-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .calc-panel h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-prefix {
+    position: absolute;
+    left: 12px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+  .input-suffix {
+    position: absolute;
+    right: 12px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+  input[type="number"] {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+    padding: 10px 40px 10px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus { border-color: var(--accent); }
+  .has-prefix input { padding-left: 28px; }
+
+  /* Direction Toggle */
+  .direction-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .dir-btn {
+    flex: 1;
+    padding: 9px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #0d0d0d;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .dir-btn.active-long { background: #0a2a1a; border-color: var(--good); color: var(--good); }
+  .dir-btn.active-short { background: #2a0a0a; border-color: var(--danger); color: var(--danger); }
+
+  /* Results Panel */
+  .results-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .results-panel h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .result-item {
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .result-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px;
+  }
+  .result-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .result-value.secondary { font-size: 1rem; color: var(--text); }
+  .result-note { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+  .risk-bar-wrap {
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .risk-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .risk-bar-label span { color: var(--text); font-weight: 700; }
+  .risk-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .risk-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease, background 0.3s;
+  }
+  .rr-display {
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .rr-label { font-size: 0.8rem; color: var(--muted); }
+  .rr-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  .rr-rating {
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  .rr-poor { background: #2a1111; color: var(--danger); }
+  .rr-ok { background: #2a2211; color: var(--warn); }
+  .rr-good { background: #0a2a1a; color: var(--good); }
+  .rr-great { background: #0a1a2a; color: var(--accent); }
+
+  /* Leverage warning */
+  .leverage-warn {
+    background: #1a1400;
+    border: 1px solid #3a3000;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--warn);
+    margin-top: 14px;
+    display: none;
+  }
+
+  /* Info box */
+  .info-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 32px 0;
+  }
+  .info-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+  .info-box p, .info-box li { font-size: 0.9rem; color: var(--muted); margin-bottom: 8px; }
+  .info-box ol { padding-left: 20px; }
+  .formula {
+    background: #0d1117;
+    border: 1px solid #1e2a38;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88rem;
+    color: #c9d1d9;
+    margin: 12px 0;
+    white-space: pre-wrap;
+  }
+  .sponsor-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 48px 0;
+    text-align: center;
+  }
+  .sponsor-box p { color: var(--muted); font-size: 0.92rem; margin-bottom: 16px; }
+  .sponsor-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .sponsor-links a {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn-kofi { background: #ff5e5b; color: #fff; }
+  .btn-gh { background: #238636; color: #fff; }
+  .btn-pp { background: #0070ba; color: #fff; }
+  .faq { margin: 40px 0; }
+  .faq h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq-q { font-weight: 700; margin-bottom: 8px; font-size: 0.97rem; }
+  .faq-a { color: var(--muted); font-size: 0.9rem; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--muted); margin: 0 10px; }
+  footer a:hover { color: var(--text); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/">pure-flon</a>
+  <nav>
+    <a href="/tools/">Tools</a>
+    <a href="/blog/">Blog</a>
+    <a href="/games/">Games</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-tag">Free Tool</div>
+    <h1>Crypto Position Size Calculator</h1>
+    <p class="subtitle">Enter your account balance, risk %, entry, and stop-loss — get your exact position size instantly.</p>
+  </div>
+
+  <div class="calc-grid">
+    <!-- Left: Inputs -->
+    <div class="calc-panel">
+      <h2>Trade Parameters</h2>
+
+      <div class="direction-toggle">
+        <button class="dir-btn active-long" id="btnLong" onclick="setDirection('long')">▲ Long</button>
+        <button class="dir-btn" id="btnShort" onclick="setDirection('short')">▼ Short</button>
+      </div>
+
+      <div class="field">
+        <label for="accountBalance">Account Balance</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="accountBalance" value="10000" min="1" step="100" oninput="calculate()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="riskPct">Risk per Trade (%)</label>
+        <div class="input-wrap">
+          <input type="number" id="riskPct" value="1" min="0.1" max="100" step="0.1" oninput="calculate()">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="entryPrice">Entry Price</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="entryPrice" value="85000" min="0.000001" step="100" oninput="calculate()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="stopLoss">Stop-Loss Price</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="stopLoss" value="83000" min="0.000001" step="100" oninput="calculate()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="takeProfit">Take-Profit Price (optional)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="takeProfit" value="89000" min="0" step="100" oninput="calculate()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="leverage">Leverage (1x = spot)</label>
+        <div class="input-wrap">
+          <input type="number" id="leverage" value="1" min="1" max="125" step="1" oninput="calculate()">
+          <span class="input-suffix">×</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Results -->
+    <div class="calc-panel">
+      <h2>Results</h2>
+
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-label">Position Size</div>
+          <div class="result-value" id="positionSize">0.0588 BTC</div>
+          <div class="result-note" id="positionSizeUsd">≈ $5,000</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Max Loss (USD)</div>
+          <div class="result-value secondary" id="maxLoss">$100.00</div>
+          <div class="result-note" id="maxLossPct">1.00% of account</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Potential Profit</div>
+          <div class="result-value secondary" id="potentialProfit">$235.29</div>
+          <div class="result-note" id="potentialProfitPct">from TP target</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Stop Distance</div>
+          <div class="result-value secondary" id="stopDistance">$2,000</div>
+          <div class="result-note" id="stopDistancePct">2.35% from entry</div>
+        </div>
+      </div>
+
+      <div class="risk-bar-wrap">
+        <div class="risk-bar-label">
+          Risk Level <span id="riskLevelLabel">Low</span>
+        </div>
+        <div class="risk-bar">
+          <div class="risk-bar-fill" id="riskBarFill" style="width:33%; background: var(--good);"></div>
+        </div>
+      </div>
+
+      <div class="rr-display">
+        <div>
+          <div class="rr-label">Risk/Reward Ratio</div>
+          <div class="rr-value" id="rrValue" style="color: var(--accent);">1 : 2.35</div>
+        </div>
+        <div class="rr-rating rr-good" id="rrRating">Good</div>
+      </div>
+
+      <div class="leverage-warn" id="leverageWarn">
+        ⚠️ High leverage detected. Position requires <span id="marginRequired">—</span> in margin. Liquidation risk increases significantly above 10×.
+      </div>
+    </div>
+  </div>
+
+  <!-- Explanation -->
+  <div class="info-box">
+    <h3>How Position Sizing Works</h3>
+    <p>Position sizing is the #1 risk management technique used by professional traders. The formula:</p>
+    <div class="formula">Position Size = (Account Balance × Risk %) ÷ Stop Distance
+
+Stop Distance = |Entry Price − Stop-Loss Price|</div>
+    <p><strong>Example:</strong> $10,000 account, 1% risk, BTC entry $85,000, stop $83,000:</p>
+    <ol>
+      <li>Max loss = $10,000 × 1% = <strong>$100</strong></li>
+      <li>Stop distance = $85,000 − $83,000 = <strong>$2,000 per BTC</strong></li>
+      <li>Position size = $100 ÷ $2,000 = <strong>0.05 BTC</strong></li>
+    </ol>
+    <p style="margin-top:12px;">Professional traders typically risk <strong>0.5%–2% per trade</strong>. The 1% rule is the most widely followed standard.</p>
+  </div>
+
+  <!-- Related tools -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:14px; margin: 32px 0;">
+    <a href="/tools/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tools</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">All Free Tools →</div>
+    </a>
+    <a href="/blog/free-crypto-apis-developers-2026/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Blog</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Best Free Crypto APIs 2026</div>
+    </a>
+    <a href="/blog/python-crypto-trading-libraries-2026/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Blog</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Python Crypto Trading Libraries</div>
+    </a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">How do you calculate crypto position size?</div>
+      <div class="faq-a">Position size = (Account balance × Risk %) ÷ Stop distance. Example: $10,000 account × 1% = $100 max loss. If entry is $85,000 and stop is $83,000 (a $2,000 distance), position size = $100 ÷ $2,000 = 0.05 BTC.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is a good risk percentage per trade in crypto?</div>
+      <div class="faq-a">Professional traders risk 0.5%–2% of their account per trade. 1% is the most common rule. Risking more than 3% per trade is considered aggressive and can lead to account drawdown after a losing streak.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the 1% rule in trading?</div>
+      <div class="faq-a">The 1% rule means never risking more than 1% of your total account on any single trade. With a $10,000 account your max loss per trade is $100. This rule protects against large drawdowns during losing streaks.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is a good risk-to-reward ratio?</div>
+      <div class="faq-a">A minimum of 1:2 (risk $1 to make $2) is generally recommended. Professional traders often target 1:3 or better. A ratio below 1:1 means your wins need to outnumber your losses to be profitable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does leverage affect position size?</div>
+      <div class="faq-a">Leverage amplifies both gains and losses. With 10× leverage, a 1% price move equals a 10% account change. Your stop-loss distance should be set before applying leverage. This calculator shows the margin required at your chosen leverage.</div>
+    </div>
+  </div>
+
+  <div class="sponsor-box">
+    <p>This tool is free to use. If it helped your trading, consider supporting the project:</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" class="btn-kofi" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'kofi'})">☕ Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" class="btn-gh" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'github_sponsors'})">★ GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" class="btn-pp" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'paypal'})">PayPal</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 pure-flon · <a href="/">Home</a> <a href="/tools/">Tools</a> <a href="/blog/">Blog</a> <a href="/games/">Games</a></p>
+</footer>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<script>
+let direction = 'long';
+
+function setDirection(dir) {
+  direction = dir;
+  document.getElementById('btnLong').className = 'dir-btn' + (dir === 'long' ? ' active-long' : '');
+  document.getElementById('btnShort').className = 'dir-btn' + (dir === 'short' ? ' active-short' : '');
+  calculate();
+}
+
+function fmt(n, decimals = 2) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
+function fmtCoin(n) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  if (n < 0.001) return n.toFixed(6);
+  if (n < 1) return n.toFixed(4);
+  return n.toFixed(4);
+}
+
+function calculate() {
+  const balance = parseFloat(document.getElementById('accountBalance').value) || 0;
+  const riskPct = parseFloat(document.getElementById('riskPct').value) || 0;
+  const entry = parseFloat(document.getElementById('entryPrice').value) || 0;
+  const stop = parseFloat(document.getElementById('stopLoss').value) || 0;
+  const tp = parseFloat(document.getElementById('takeProfit').value) || 0;
+  const leverage = parseFloat(document.getElementById('leverage').value) || 1;
+
+  if (!balance || !riskPct || !entry || !stop || entry === stop) return;
+
+  const maxLossUsd = balance * (riskPct / 100);
+  const stopDist = Math.abs(entry - stop);
+  const stopDistPct = (stopDist / entry) * 100;
+
+  // Position size in coin units
+  const posSize = maxLossUsd / stopDist;
+  const posSizeUsd = posSize * entry;
+
+  // With leverage: margin required
+  const marginRequired = posSizeUsd / leverage;
+
+  // Potential profit
+  let profitUsd = 0;
+  let rrRatio = 0;
+  if (tp > 0 && tp !== entry) {
+    const tpDist = Math.abs(tp - entry);
+    profitUsd = posSize * tpDist;
+    rrRatio = tpDist / stopDist;
+  }
+
+  // Update DOM
+  document.getElementById('positionSize').textContent = fmtCoin(posSize) + ' coins';
+  document.getElementById('positionSizeUsd').textContent = '≈ $' + fmt(posSizeUsd);
+  document.getElementById('maxLoss').textContent = '$' + fmt(maxLossUsd);
+  document.getElementById('maxLossPct').textContent = fmt(riskPct, 2) + '% of account';
+  document.getElementById('potentialProfit').textContent = tp > 0 ? '$' + fmt(profitUsd) : '—';
+  document.getElementById('potentialProfitPct').textContent = tp > 0 ? 'from TP target' : 'enter TP price';
+  document.getElementById('stopDistance').textContent = '$' + fmt(stopDist);
+  document.getElementById('stopDistancePct').textContent = fmt(stopDistPct, 2) + '% from entry';
+
+  // Risk bar
+  const riskBarFill = document.getElementById('riskBarFill');
+  const riskLabel = document.getElementById('riskLevelLabel');
+  const barPct = Math.min(riskPct / 5 * 100, 100);
+  riskBarFill.style.width = barPct + '%';
+  if (riskPct <= 1) {
+    riskBarFill.style.background = 'var(--good)';
+    riskLabel.textContent = 'Low (Conservative)';
+    riskLabel.style.color = 'var(--good)';
+  } else if (riskPct <= 2) {
+    riskBarFill.style.background = 'var(--accent)';
+    riskLabel.textContent = 'Moderate';
+    riskLabel.style.color = 'var(--accent)';
+  } else if (riskPct <= 3) {
+    riskBarFill.style.background = 'var(--warn)';
+    riskLabel.textContent = 'Elevated';
+    riskLabel.style.color = 'var(--warn)';
+  } else {
+    riskBarFill.style.background = 'var(--danger)';
+    riskLabel.textContent = 'High (Aggressive)';
+    riskLabel.style.color = 'var(--danger)';
+  }
+
+  // R:R display
+  const rrEl = document.getElementById('rrValue');
+  const rrRatingEl = document.getElementById('rrRating');
+  if (tp > 0 && rrRatio > 0) {
+    rrEl.textContent = '1 : ' + fmt(rrRatio, 2);
+    if (rrRatio < 1) {
+      rrEl.style.color = 'var(--danger)';
+      rrRatingEl.className = 'rr-rating rr-poor';
+      rrRatingEl.textContent = 'Poor';
+    } else if (rrRatio < 2) {
+      rrEl.style.color = 'var(--warn)';
+      rrRatingEl.className = 'rr-rating rr-ok';
+      rrRatingEl.textContent = 'Acceptable';
+    } else if (rrRatio < 3) {
+      rrEl.style.color = 'var(--good)';
+      rrRatingEl.className = 'rr-rating rr-good';
+      rrRatingEl.textContent = 'Good';
+    } else {
+      rrEl.style.color = 'var(--accent)';
+      rrRatingEl.className = 'rr-rating rr-great';
+      rrRatingEl.textContent = 'Excellent';
+    }
+  } else {
+    rrEl.textContent = '— (no TP)';
+    rrEl.style.color = 'var(--muted)';
+    rrRatingEl.className = 'rr-rating';
+    rrRatingEl.style.display = 'none';
+  }
+  if (tp > 0) rrRatingEl.style.display = '';
+
+  // Leverage warning
+  const lwarn = document.getElementById('leverageWarn');
+  if (leverage > 5) {
+    lwarn.style.display = 'block';
+    document.getElementById('marginRequired').textContent = '$' + fmt(marginRequired);
+  } else {
+    lwarn.style.display = 'none';
+  }
+}
+
+// Run on load
+calculate();
+</script>
+</body>
+</html>
