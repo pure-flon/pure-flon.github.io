@@ -5,7 +5,7 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 10:48:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 11:04:02 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
     <item>
@@ -154,6 +154,13 @@
       <description>20 best free developer tools in 2026. From JSON formatters to AI coding assistants — boost your productivity without spending a dime.</description>
       <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/blog/best-free-dev-tools-2026/</guid>
+    </item>
+    <item>
+      <title>How to Build an AI Trading System: From Research to Live Trading | pure-flon</title>
+      <link>https://pure-flon.com/blog/how-to-build-ai-trading-system/</link>
+      <description>A practical guide to building an AI trading system: architecture, data pipelines, backtesting, and live deployment. Built from real experience running a production trading bot.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/how-to-build-ai-trading-system/</guid>
     </item>
     <item>
       <title>Why Indian Developers Love These 5 Tools | pure-flon blog</title>
