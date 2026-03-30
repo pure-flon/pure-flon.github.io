@@ -5,43 +5,50 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 14:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 13:09:15 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
     <item>
+      <title>Compound Interest Calculator — See Your Money Grow | pure-flon</title>
+      <link>https://pure-flon.com/tools/compound-interest-calculator/</link>
+      <description>Free compound interest calculator. Enter principal, annual interest rate, compounding frequency, and years to see your investment grow. Includes yearly breakdown table and inflation adjustment.</description>
+      <pubDate>Mon, 30 Mar 2026 13:08:21 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/compound-interest-calculator/</guid>
+    </item>
+    <item>
+      <title>Bitcoin DCA Calculator — Dollar Cost Averaging Returns | pure-flon</title>
+      <link>https://pure-flon.com/tools/dca-calculator/</link>
+      <description>Free Bitcoin DCA calculator. See how much you would have made dollar cost averaging into Bitcoin or any crypto over any period. Compare lump sum vs DCA strategy instantly.</description>
+      <pubDate>Mon, 30 Mar 2026 13:06:29 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/dca-calculator/</guid>
+    </item>
+    <item>
+      <title>Crypto Profit Calculator — Calculate Gains, ROI &amp; Taxes | pure-flon</title>
+      <link>https://pure-flon.com/tools/crypto-profit-calculator/</link>
+      <description>Free crypto profit calculator. Enter buy price, sell price, investment amount, and fees to instantly calculate your profit, ROI%, and tax estimate. Works for Bitcoin, Ethereum, and any crypto.</description>
+      <pubDate>Mon, 30 Mar 2026 13:04:29 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/crypto-profit-calculator/</guid>
+    </item>
+    <item>
+      <title>Crypto Position Size Calculator — Risk Management Tool | pure-flon</title>
+      <link>https://pure-flon.com/tools/position-size-calculator/</link>
+      <description>Free crypto position size calculator. Input your account balance, risk %, entry price, and stop-loss to get your exact position size in units and USD. Works for BTC, ETH, and all crypto pairs.</description>
+      <pubDate>Mon, 30 Mar 2026 12:57:30 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/position-size-calculator/</guid>
+    </item>
+    <item>
       <title>What Is the Pomodoro Technique? Complete Guide 2026 | pure-flon</title>
       <link>https://pure-flon.com/tools/pomodoro/technique/</link>
-      <description>The Pomodoro Technique explained: how it works, why it's effective, the 25/5 rule, common variations, and how to get started with a free online Pomodoro timer.</description>
-      <pubDate>Mon, 30 Mar 2026 14:00:00 +0000</pubDate>
+      <description>The Pomodoro Technique explained: how it works, why it&apos;s effective, the 25/5 rule, common variations, and how to get started with a free online Pomodoro timer.</description>
+      <pubDate>Mon, 30 Mar 2026 12:47:30 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/tools/pomodoro/technique/</guid>
     </item>
     <item>
       <title>Pomodoro Timer vs Forest App — Free Comparison | pure-flon</title>
       <link>https://pure-flon.com/tools/pomodoro/vs-forest/</link>
-      <description>Comparing pure-flon Pomodoro Timer to Forest app. Both help you focus — but one is free, browser-based, and requires no install. Full feature comparison.</description>
-      <pubDate>Mon, 30 Mar 2026 13:55:00 +0000</pubDate>
+      <description>Comparing pure-flon Pomodoro Timer to Forest app. Both help you focus — but one is free, browser-based, and requires no install. See the full comparison.</description>
+      <pubDate>Mon, 30 Mar 2026 12:45:12 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/tools/pomodoro/vs-forest/</guid>
-    </item>
-    <item>
-      <title>PTFE vs PEEK vs PFA Tubing: Which to Choose? | pure-flon</title>
-      <link>https://pure-flon.com/blog/ptfe-vs-peek-vs-pfa/</link>
-      <description>Complete comparison of PTFE, PEEK, and PFA tubing: temperature range, chemical resistance, flexibility, and cost. Application selection guide for semiconductor, medical, and chemical industries.</description>
-      <pubDate>Mon, 30 Mar 2026 13:50:00 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/blog/ptfe-vs-peek-vs-pfa/</guid>
-    </item>
-    <item>
-      <title>Top 5 Python Libraries for Crypto Trading in 2026 | pure-flon</title>
-      <link>https://pure-flon.com/blog/python-crypto-trading-libraries-2026/</link>
-      <description>CCXT, Pandas-TA, VectorBT, Backtrader, LightGBM — the essential Python libraries for building crypto trading bots. Real code examples from a production trading system.</description>
-      <pubDate>Mon, 30 Mar 2026 13:45:00 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/blog/python-crypto-trading-libraries-2026/</guid>
-    </item>
-    <item>
-      <title>Best Free Pomodoro Timer Online 2026 — Top Picks | pure-flon</title>
-      <link>https://pure-flon.com/blog/best-pomodoro-timer-2026/</link>
-      <description>The 7 best free Pomodoro timers in 2026. Browser-based, no install needed. Comparison table, setup tips, and pro techniques for the Pomodoro method.</description>
-      <pubDate>Mon, 30 Mar 2026 13:40:00 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/blog/best-pomodoro-timer-2026/</guid>
     </item>
     <item>
       <title>Strong Password Guide — What Makes a Password Secure? | pure-flon</title>
@@ -219,6 +226,20 @@
       <guid isPermaLink="true">https://pure-flon.com/blog/best-free-dev-tools-2026/</guid>
     </item>
     <item>
+      <title>Best Free Pomodoro Timer Online 2026 — Top Picks | pure-flon blog</title>
+      <link>https://pure-flon.com/blog/best-pomodoro-timer-2026/</link>
+      <description>The 7 best free Pomodoro timers online in 2026. Browser-based, no install needed. Includes comparison table, tips, and our free Pomodoro tool.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/best-pomodoro-timer-2026/</guid>
+    </item>
+    <item>
+      <title>Best Free Crypto APIs for Developers in 2026 (Tested &amp; Ranked) | pure-flon</title>
+      <link>https://pure-flon.com/blog/free-crypto-apis-developers-2026/</link>
+      <description>Top free crypto APIs for developers in 2026: CoinGecko, Binance, CoinMarketCap, Kraken, and more. Rate limits, endpoints, code examples, and honest comparisons tested by a quant developer.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/free-crypto-apis-developers-2026/</guid>
+    </item>
+    <item>
       <title>How to Build an AI Trading System: From Research to Live Trading | pure-flon</title>
       <link>https://pure-flon.com/blog/how-to-build-ai-trading-system/</link>
       <description>A practical guide to building an AI trading system: architecture, data pipelines, backtesting, and live deployment. Built from real experience running a production trading bot.</description>
@@ -240,11 +261,25 @@
       <guid isPermaLink="true">https://pure-flon.com/blog/korean-honorifics-guide/</guid>
     </item>
     <item>
+      <title>PTFE vs PEEK vs PFA Tubing: Which to Choose? Complete Guide 2026 | pure-flon</title>
+      <link>https://pure-flon.com/blog/ptfe-vs-peek-vs-pfa/</link>
+      <description>PTFE vs PEEK vs PFA tubing: side-by-side comparison of temperature range, chemical resistance, flexibility, and cost. Choose the right material for your application.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/ptfe-vs-peek-vs-pfa/</guid>
+    </item>
+    <item>
       <title>PTFE vs Teflon: Are They the Same? Complete Guide 2026 | pure-flon</title>
       <link>https://pure-flon.com/blog/ptfe-vs-teflon/</link>
       <description>PTFE and Teflon are the same material — but there&apos;s much more to the story. Compare PTFE vs ETFE vs FEP vs PFA, learn key properties, and find the right fluoropolymer for your application.</description>
       <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/blog/ptfe-vs-teflon/</guid>
+    </item>
+    <item>
+      <title>Top 5 Python Libraries for Crypto Trading in 2026 | pure-flon blog</title>
+      <link>https://pure-flon.com/blog/python-crypto-trading-libraries-2026/</link>
+      <description>Best Python libraries for building crypto trading bots in 2026. CCXT, Pandas-TA, Backtrader, VectorBT, and more. Real code examples and benchmarks.</description>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/python-crypto-trading-libraries-2026/</guid>
     </item>
     <item>
       <title>How AI Guesses What You&apos;re Thinking in Just 4 Questions | pure-flon blog</title>

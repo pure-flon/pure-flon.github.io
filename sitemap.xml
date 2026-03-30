@@ -44,6 +44,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://pure-flon.com/company/about.html</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
         <loc>https://pure-flon.com/products/chemical.html</loc>
         <lastmod>2025-03-25</lastmod>
         <changefreq>monthly</changefreq>
