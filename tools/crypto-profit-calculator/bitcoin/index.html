@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin Profit Calculator — Calculate BTC Gains & ROI | pure-flon</title>
+<meta name="description" content="Free Bitcoin profit calculator. Enter your BTC buy price, sell price, and investment amount to instantly calculate profit, loss, ROI%, and estimated tax. No sign-up required.">
+<meta name="keywords" content="bitcoin profit calculator, BTC profit calculator, bitcoin gain calculator, how much profit from bitcoin, bitcoin ROI calculator, bitcoin investment calculator, bitcoin loss calculator, how much did I make on bitcoin">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/crypto-profit-calculator/bitcoin/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bitcoin Profit Calculator — Calculate BTC Gains & ROI">
+<meta property="og:description" content="Calculate your exact Bitcoin profit or loss. Enter buy price, sell price, and investment for instant ROI results. Free, no sign-up.">
+<meta property="og:url" content="https://pure-flon.com/tools/crypto-profit-calculator/bitcoin/">
+<meta property="og:site_name" content="pure-flon.com">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bitcoin Profit Calculator">
+<meta name="twitter:description" content="Calculate Bitcoin profit, ROI, and tax estimate instantly. Free online tool — no sign-up required.">
+
+<!-- JSON-LD WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Bitcoin Profit Calculator",
+  "description": "Free Bitcoin profit and ROI calculator. Calculate profits, losses, percentage gains, and tax estimates for any Bitcoin trade.",
+  "url": "https://pure-flon.com/tools/crypto-profit-calculator/bitcoin/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate Bitcoin profit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bitcoin profit = (Sell Price × Coins) − (Buy Price × Coins) − Trading Fees. If you bought 0.1 BTC at $30,000 ($3,000 total) and sold at $65,000 ($6,500 total), your gross profit is $3,500. After typical exchange fees of ~0.5% each way ($45), your net profit is roughly $3,455. Our calculator does this math instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good ROI for Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bitcoin has historically averaged 100–200% annual returns over 4-year periods, though with extreme volatility. The S&P 500 averages ~10% per year. Any Bitcoin trade returning over 20% in a year beats most traditional assets. However, Bitcoin can also drop 70–80% in bear markets, so ROI must always be weighed against drawdown risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I pay taxes on Bitcoin profits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in most countries Bitcoin profits are taxable. In the United States, Bitcoin held under 1 year is taxed as short-term capital gains (ordinary income rate, up to 37%). Held over 1 year qualifies for long-term capital gains rates (0%, 15%, or 20% depending on income). Our calculator provides an estimate based on your selected tax bracket — always consult a tax professional for your specific situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do trading fees affect Bitcoin profits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trading fees directly reduce your profit. Most exchanges charge 0.1%–0.5% per trade. On a $10,000 trade at 0.5% each way, you pay $50 in fees — meaning you need Bitcoin to rise at least 1% just to break even. High-frequency traders can lose significant profit to fees, which is why low-fee exchanges like Binance (0.1%) or Kraken (0.26% maker) matter for active traders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "If I invested $1,000 in Bitcoin in 2020, how much would it be worth now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bitcoin was roughly $7,000–$9,000 in early 2020. By 2024, BTC reached $73,000 — approximately 8–10x from 2020 prices. A $1,000 investment in January 2020 would have grown to roughly $8,000–$10,000 by early 2024, before accounting for trading fees and taxes. Use our DCA calculator to model periodic investment scenarios."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pure-flon.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pure-flon.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Crypto Profit Calculator", "item": "https://pure-flon.com/tools/crypto-profit-calculator/"},
+    {"@type": "ListItem", "position": 4, "name": "Bitcoin", "item": "https://pure-flon.com/tools/crypto-profit-calculator/bitcoin/"}
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#f7931a;--accent2:#fbb042;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.6
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+.container{max-width:820px;margin:0 auto;padding:24px 16px}
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb .sep{color:var(--dim)}
+.hero{text-align:center;padding:20px 0 32px}
+.btc-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#f7931a22,#f7931a11);border:1px solid #f7931a44;color:var(--accent);border-radius:8px;padding:4px 14px;font-size:0.82rem;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(1.55rem,4vw,2.1rem);font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.2;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:560px;margin:0 auto;line-height:1.6}
+/* Calculator */
+.calc-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0}
+.calc-wrap h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:520px){.input-grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:0.78rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:0.95rem;outline:none;transition:border-color .15s}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.field select option{background:#111}
+.calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#c87010,#f7931a);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88;transform:translateY(-1px)}
+.results{display:none;margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.result-card{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.result-card .label{font-size:0.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.result-card .value{font-size:1.3rem;font-weight:800;color:#fff}
+.result-card.profit .value{color:var(--green)}
+.result-card.loss .value{color:var(--red)}
+.result-card.neutral .value{color:var(--accent)}
+/* Example scenarios */
+.scenarios{margin:32px 0}
+.scenarios h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:16px}
+.scenario-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;font-size:0.84rem}
+.scenario-table thead{background:#1a1000}
+.scenario-table th{padding:12px 16px;text-align:left;font-weight:700;color:var(--accent2);font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em}
+.scenario-table td{padding:11px 16px;border-top:1px solid var(--border)}
+.scenario-table tr:hover{background:#0a0800}
+.pos{color:var(--green);font-weight:700}
+.neg{color:var(--red);font-weight:700}
+.neut{color:var(--muted)}
+/* Formula box */
+.formula-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 22px;margin:28px 0}
+.formula-box h3{font-size:0.85rem;font-weight:700;color:var(--accent2);margin-bottom:10px}
+.formula-box code{display:block;background:#0a0a0a;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:monospace;font-size:0.85rem;color:#7c6aff;margin:8px 0;white-space:pre-wrap}
+.formula-box p{color:var(--text);font-size:0.86rem;line-height:1.65;margin-top:8px}
+/* FAQ */
+.faq-section{margin:36px 0}
+.faq-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:10px}
+.faq-item h3{font-size:0.9rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.85rem;line-height:1.65}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,rgba(247,147,26,0.12),rgba(247,147,26,0.04));border:1px solid #f7931a44;border-radius:16px;padding:28px;text-align:center;margin:28px 0}
+.cta-box h3{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:0.88rem;margin-bottom:20px}
+.btn-primary{display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#c87010,#f7931a);color:#fff;border-radius:12px;font-size:1rem;font-weight:700;text-decoration:none;transition:transform .15s,opacity .15s}
+.btn-primary:hover{transform:translateY(-2px);opacity:.9;color:#fff}
+/* Related links */
+.related{margin:32px 0;padding-top:24px;border-top:1px solid var(--border)}
+.related h2{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.related-link{display:block;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);text-decoration:none;font-size:0.86rem;transition:border-color .15s,background .15s}
+.related-link:hover{border-color:var(--accent);background:#120900}
+.related-link span{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px}
+/* Sponsor */
+.sponsor{background:var(--card);border-top:1px solid var(--border);padding:16px;text-align:center;margin-top:40px;border-radius:14px}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{font-size:0.78rem;color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--border);border-radius:20px;transition:color .15s,border-color .15s}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/crypto-profit-calculator/">Crypto Profit Calculator</a><span class="sep">/</span>
+    <span>Bitcoin</span>
+  </nav>
+
+  <div class="hero">
+    <div class="btc-badge">₿ Bitcoin</div>
+    <h1>Bitcoin Profit Calculator</h1>
+    <p>Enter your BTC buy price, sell price, and investment amount to instantly calculate your profit, loss, ROI%, and estimated taxes. No account required.</p>
+  </div>
+
+  <!-- Calculator -->
+  <div class="calc-wrap">
+    <h2>Calculate Your BTC Profit</h2>
+    <div class="input-grid">
+      <div class="field">
+        <label>Buy Price (USD per BTC)</label>
+        <input type="number" id="buyPrice" placeholder="e.g. 30000" min="0" step="any" value="30000">
+      </div>
+      <div class="field">
+        <label>Sell Price (USD per BTC)</label>
+        <input type="number" id="sellPrice" placeholder="e.g. 65000" min="0" step="any" value="65000">
+      </div>
+      <div class="field">
+        <label>Investment Amount (USD)</label>
+        <input type="number" id="investment" placeholder="e.g. 1000" min="0" step="any" value="1000">
+      </div>
+      <div class="field">
+        <label>Trading Fee (%)</label>
+        <input type="number" id="feePercent" placeholder="e.g. 0.5" min="0" step="any" value="0.5">
+      </div>
+      <div class="field">
+        <label>Hold Duration</label>
+        <select id="holdDuration">
+          <option value="short">Under 1 year (short-term)</option>
+          <option value="long">Over 1 year (long-term)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tax Bracket</label>
+        <select id="taxBracket">
+          <option value="0">0% (no tax / exempt)</option>
+          <option value="15" selected>15% (long-term, mid-income)</option>
+          <option value="20">20% (long-term, high-income)</option>
+          <option value="22">22% (short-term, 22% bracket)</option>
+          <option value="32">32% (short-term, 32% bracket)</option>
+          <option value="37">37% (short-term, top bracket)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate Bitcoin Profit</button>
+    <div class="results" id="results">
+      <div class="result-card" id="card-profit">
+        <div class="label">Net Profit / Loss</div>
+        <div class="value" id="netProfit">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">ROI</div>
+        <div class="value" id="roi">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">BTC Purchased</div>
+        <div class="value" id="btcAmount">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">Gross Profit</div>
+        <div class="value" id="grossProfit">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">Fees Paid</div>
+        <div class="value" id="fees">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">Est. Tax Owed</div>
+        <div class="value" id="taxOwed">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formula -->
+  <div class="formula-box">
+    <h3>Bitcoin Profit Formula</h3>
+    <code>Coins Bought = Investment ÷ Buy Price
+Gross Profit = (Sell Price − Buy Price) × Coins
+Fees = Investment × Fee% + Sell Value × Fee%
+Net Profit = Gross Profit − Fees
+ROI = Net Profit ÷ Investment × 100%</code>
+    <p>Example: $1,000 invested at $30,000/BTC → 0.0333 BTC. Sold at $65,000 → sell value $2,167. Gross profit $1,167. Fees (0.5% in + 0.5% out) ≈ $16. Net profit ≈ $1,151. ROI ≈ 115%.</p>
+  </div>
+
+  <!-- Scenario table -->
+  <div class="scenarios">
+    <h2>Bitcoin Investment Scenarios</h2>
+    <table class="scenario-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Buy Price</th>
+          <th>Sell Price</th>
+          <th>$1,000 Invested</th>
+          <th>ROI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2020 → 2021 bull run</td>
+          <td class="neut">$9,000</td>
+          <td class="neut">$64,000</td>
+          <td class="pos">+$6,111</td>
+          <td class="pos">+611%</td>
+        </tr>
+        <tr>
+          <td>2021 ATH → 2022 bear</td>
+          <td class="neut">$69,000</td>
+          <td class="neut">$16,000</td>
+          <td class="neg">−$768</td>
+          <td class="neg">−77%</td>
+        </tr>
+        <tr>
+          <td>2022 bear → 2024 ATH</td>
+          <td class="neut">$16,000</td>
+          <td class="neut">$73,000</td>
+          <td class="pos">+$3,563</td>
+          <td class="pos">+356%</td>
+        </tr>
+        <tr>
+          <td>$30K → $65K (typical cycle)</td>
+          <td class="neut">$30,000</td>
+          <td class="neut">$65,000</td>
+          <td class="pos">+$1,151</td>
+          <td class="pos">+115%</td>
+        </tr>
+        <tr>
+          <td>5% swing trade (short-term)</td>
+          <td class="neut">$60,000</td>
+          <td class="neut">$63,000</td>
+          <td class="pos">+$40</td>
+          <td class="pos">+4%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cta-box">
+    <h3>Need More Crypto Calculations?</h3>
+    <p>Full calculator with Ethereum, altcoins, and advanced fee modeling.</p>
+    <a href="/tools/crypto-profit-calculator/" class="btn-primary">Open Full Calculator →</a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Bitcoin Profit Calculator — FAQ</h2>
+    <div class="faq-item">
+      <h3>How do I calculate Bitcoin profit?</h3>
+      <p>Bitcoin profit = (Sell Price × Coins Held) − (Buy Price × Coins Held) − Trading Fees. If you bought 0.1 BTC at $30,000 ($3,000 total) and sold at $65,000 ($6,500 total), gross profit is $3,500. After 0.5% fees both ways (~$48), your net profit is roughly $3,452.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is a good ROI for Bitcoin?</h3>
+      <p>Bitcoin has historically averaged 100–200% annual returns over 4-year halving cycles, though with extreme volatility. Any trade returning over 20% per year beats most traditional assets. However, Bitcoin can also drop 70–80% in bear markets — always weigh ROI against your maximum drawdown risk.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I pay taxes on Bitcoin profits?</h3>
+      <p>Yes. In the United States, Bitcoin held under 1 year is taxed as ordinary income (up to 37%). Held over 1 year qualifies for long-term capital gains (0%, 15%, or 20% depending on income bracket). Our calculator estimates your tax — always consult a CPA for your specific situation.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do trading fees affect Bitcoin profits?</h3>
+      <p>Fees directly reduce profit. At 0.5% per trade, a $10,000 position costs $100 in round-trip fees — BTC must move 1%+ just to break even. Most exchanges charge 0.1%–0.5%. Binance (0.1%), Coinbase Pro (0.4%), and Kraken (0.26% maker) are common benchmarks.</p>
+    </div>
+    <div class="faq-item">
+      <h3>If I invested $1,000 in Bitcoin in 2020, how much is it worth?</h3>
+      <p>BTC was ~$7,000–$9,000 in early 2020. By the 2024 ATH of $73,000, a $1,000 investment would have grown to roughly $8,000–$10,000 — an 8–10x return before fees and taxes. Use our DCA calculator to model periodic buying over the same period.</p>
+    </div>
+  </div>
+
+  <!-- Related tools -->
+  <div class="related">
+    <h2>Related Calculators</h2>
+    <div class="related-grid">
+      <a href="/tools/crypto-profit-calculator/" class="related-link">
+        Crypto Profit Calculator
+        <span>Full calculator — all coins, advanced fees</span>
+      </a>
+      <a href="/tools/crypto-profit-calculator/ethereum/" class="related-link">
+        Ethereum Profit Calculator
+        <span>ETH gains, ROI, and tax estimate</span>
+      </a>
+      <a href="/tools/dca-calculator/" class="related-link">
+        Bitcoin DCA Calculator
+        <span>Dollar-cost averaging returns</span>
+      </a>
+      <a href="/tools/position-size-calculator/" class="related-link">
+        Position Size Calculator
+        <span>Risk-based BTC position sizing</span>
+      </a>
+      <a href="/tools/compound-interest-calculator/" class="related-link">
+        Compound Interest Calculator
+        <span>Long-term investment growth</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sponsor">
+    <p>pure-flon tools are free forever. Support keeps the lights on.</p>
+    <div class="sponsor-links">
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'btc-profit-calc'})">GitHub Sponsors</a>
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'btc-profit-calc'})">Ko-fi</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'btc-profit-calc'})">PayPal</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 <a href="/">pure-flon.com</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · Not financial advice.</p>
+  </footer>
+
+</div>
+
+<script>
+function fmt(n,decimals=2){
+  if(Math.abs(n)<0.01&&n!==0)return n.toFixed(6);
+  return n.toLocaleString('en-US',{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
+}
+function calculate(){
+  const buy=parseFloat(document.getElementById('buyPrice').value)||0;
+  const sell=parseFloat(document.getElementById('sellPrice').value)||0;
+  const inv=parseFloat(document.getElementById('investment').value)||0;
+  const fee=parseFloat(document.getElementById('feePercent').value)||0;
+  const tax=parseFloat(document.getElementById('taxBracket').value)||0;
+
+  if(!buy||!sell||!inv){return;}
+
+  const coins=inv/buy;
+  const sellValue=coins*sell;
+  const feeIn=inv*(fee/100);
+  const feeOut=sellValue*(fee/100);
+  const totalFees=feeIn+feeOut;
+  const grossProfit=sellValue-inv;
+  const netProfit=grossProfit-totalFees;
+  const roi=(netProfit/inv)*100;
+  const taxOwed=netProfit>0?netProfit*(tax/100):0;
+
+  const res=document.getElementById('results');
+  res.style.display='grid';
+
+  document.getElementById('btcAmount').textContent=fmt(coins,6)+' BTC';
+  document.getElementById('grossProfit').textContent='$'+fmt(grossProfit);
+  document.getElementById('fees').textContent='$'+fmt(totalFees);
+  document.getElementById('taxOwed').textContent='$'+fmt(taxOwed);
+
+  const np=document.getElementById('netProfit');
+  const card=document.getElementById('card-profit');
+  np.textContent=(netProfit>=0?'+':'')+' $'+fmt(Math.abs(netProfit));
+  card.className='result-card '+(netProfit>=0?'profit':'loss');
+
+  const roiEl=document.getElementById('roi');
+  roiEl.textContent=(roi>=0?'+':'')+fmt(roi)+'%';
+  roiEl.style.color=roi>=0?'var(--green)':'var(--red)';
+
+  gtag('event','calculate',{tool:'btc_profit_calc',roi:Math.round(roi)});
+}
+// Auto-calculate on load
+document.addEventListener('DOMContentLoaded',calculate);
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calculate));
+</script>
+</body>
+</html>

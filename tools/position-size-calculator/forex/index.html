@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forex Position Size Calculator — Lot Size by Risk % | pure-flon</title>
+<meta name="description" content="Free forex position size calculator. Calculate lot size based on account balance, risk percentage, stop loss in pips, and currency pair. Works for EUR/USD, GBP/USD, USD/JPY and all major pairs.">
+<meta name="keywords" content="forex position size calculator, lot size calculator forex, forex lot calculator, position sizing forex, forex risk calculator, how many lots should I trade, pip value calculator, forex position calculator, currency lot size">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/position-size-calculator/forex/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Forex Position Size Calculator — Lot Size by Risk %">
+<meta property="og:description" content="Calculate forex lot size from account balance and risk percentage. Enter stop loss in pips to get position size for any currency pair. Free, instant, no sign-up.">
+<meta property="og:url" content="https://pure-flon.com/tools/position-size-calculator/forex/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Forex Position Size Calculator">
+<meta name="twitter:description" content="Calculate forex lot size by risk percentage. Works for EUR/USD, GBP/USD, USD/JPY and all forex pairs. Free, no sign-up.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Forex Position Size Calculator",
+  "description": "Free forex position size calculator. Calculate the correct lot size for any currency pair based on your account balance, risk percentage, and stop loss in pips.",
+  "url": "https://pure-flon.com/tools/position-size-calculator/forex/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate forex position size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Forex position size in lots = (Account Balance × Risk %) ÷ (Stop Loss in Pips × Pip Value per Standard Lot). For a USD account trading EUR/USD: Pip value = $10/pip for 1 standard lot. If you risk 1% of a $10,000 account ($100) with a 20-pip stop loss: Position = $100 ÷ (20 × $10) = 0.5 standard lots. For mini lots (10,000 units), pip value = $1/pip; for micro lots (1,000 units), $0.10/pip."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What percentage of account should I risk per forex trade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Professional forex traders typically risk 0.5%–2% of account per trade. Beginners should start at 0.5%–1%. At 1% risk, you can take 100 consecutive losing trades before losing your account — giving you plenty of time to refine your strategy. Risking over 5% per trade significantly increases ruin probability and is generally considered reckless. The Kelly Criterion formula can optimize exact risk percentage based on your win rate and R:R ratio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a pip in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A pip (percentage in point) is the smallest standard price move in forex. For most currency pairs (EUR/USD, GBP/USD), 1 pip = 0.0001 (4th decimal place). For JPY pairs (USD/JPY, EUR/JPY), 1 pip = 0.01 (2nd decimal place). Some brokers quote 5 decimal places ('pipettes') where the 5th decimal = 0.1 pip. A standard lot move of 1 pip in EUR/USD is worth approximately $10 in a USD account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a standard lot in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard lot = 100,000 units of the base currency. Mini lot = 10,000 units. Micro lot = 1,000 units. Nano lot = 100 units. For EUR/USD, 1 standard lot means you control €100,000. Most retail traders use mini or micro lots. At 1:30 leverage, trading 1 standard lot of EUR/USD requires ~$3,333 in margin. Micro lots ($0.10/pip) are ideal for accounts under $5,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does leverage affect forex position sizing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leverage multiplies your position size relative to your margin, but risk management should be calculated on the actual position size — not the margin used. At 1:100 leverage, $100 controls $10,000 in currency. However, if EUR/USD moves 100 pips against you (1 cent), you lose $100 — your entire margin. This is why position sizing by risk % (regardless of leverage) is the correct approach: use stops and size positions so a stop-loss hit loses only your predefined risk amount."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pure-flon.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pure-flon.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Position Size Calculator", "item": "https://pure-flon.com/tools/position-size-calculator/"},
+    {"@type": "ListItem", "position": 4, "name": "Forex", "item": "https://pure-flon.com/tools/position-size-calculator/forex/"}
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#27ae60;--accent2:#2ecc71;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+.container{max-width:820px;margin:0 auto;padding:24px 16px}
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb .sep{color:var(--dim)}
+.hero{text-align:center;padding:20px 0 32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#27ae6022,#27ae6011);border:1px solid #27ae6044;color:var(--accent);border-radius:8px;padding:4px 14px;font-size:0.82rem;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(1.55rem,4vw,2.1rem);font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.2;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:580px;margin:0 auto;line-height:1.6}
+.calc-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0}
+.calc-wrap h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:520px){.input-grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:0.78rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:0.95rem;outline:none;transition:border-color .15s}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.field select option{background:#111}
+.calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#1a7a42,#27ae60);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88;transform:translateY(-1px)}
+.results{display:none;margin-top:20px}
+.results-main{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+.result-card{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.result-card .label{font-size:0.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.result-card .value{font-size:1.25rem;font-weight:800;color:var(--green)}
+.result-card.neutral .value{color:var(--accent)}
+.result-card.warn .value{color:var(--yellow)}
+/* Lot size reference */
+.lot-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;font-size:0.83rem;margin:28px 0}
+.lot-table thead{background:#081a0e}
+.lot-table th{padding:11px 14px;text-align:left;font-weight:700;color:var(--accent2);font-size:0.76rem;text-transform:uppercase;letter-spacing:.04em}
+.lot-table td{padding:10px 14px;border-top:1px solid var(--border)}
+.lot-table .highlight{color:var(--green);font-weight:700}
+/* Risk guide */
+.risk-guide{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 22px;margin:28px 0}
+.risk-guide h3{font-size:0.85rem;font-weight:700;color:var(--accent2);margin-bottom:12px}
+.risk-levels{display:grid;grid-template-columns:auto 1fr 1fr;gap:0;font-size:0.82rem}
+.risk-levels .header{font-weight:700;color:var(--muted);font-size:0.72rem;text-transform:uppercase;padding:6px 10px;border-bottom:1px solid var(--border)}
+.risk-levels .cell{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
+.risk-levels .cell:last-child,.risk-levels .header:last-child{text-align:right}
+.risk-green{color:var(--green)}
+.risk-yellow{color:var(--yellow)}
+.risk-red{color:var(--red)}
+/* FAQ */
+.faq-section{margin:36px 0}
+.faq-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:10px}
+.faq-item h3{font-size:0.9rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.85rem;line-height:1.65}
+.cta-box{background:linear-gradient(135deg,rgba(39,174,96,0.1),rgba(39,174,96,0.04));border:1px solid #27ae6044;border-radius:16px;padding:28px;text-align:center;margin:28px 0}
+.cta-box h3{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:0.88rem;margin-bottom:20px}
+.btn-primary{display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#1a7a42,#27ae60);color:#fff;border-radius:12px;font-size:1rem;font-weight:700;text-decoration:none;transition:transform .15s,opacity .15s}
+.btn-primary:hover{transform:translateY(-2px);opacity:.9;color:#fff}
+.related{margin:32px 0;padding-top:24px;border-top:1px solid var(--border)}
+.related h2{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.related-link{display:block;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);text-decoration:none;font-size:0.86rem;transition:border-color .15s}
+.related-link:hover{border-color:var(--accent)}
+.related-link span{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px}
+.sponsor{background:var(--card);border-top:1px solid var(--border);padding:16px;text-align:center;margin-top:40px;border-radius:14px}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{font-size:0.78rem;color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--border);border-radius:20px;transition:color .15s,border-color .15s}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/position-size-calculator/">Position Size Calculator</a><span class="sep">/</span>
+    <span>Forex</span>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">💱 Forex Lot Sizing</div>
+    <h1>Forex Position Size Calculator</h1>
+    <p>Calculate the correct lot size for any forex trade based on your account balance, risk percentage, and stop loss in pips. Works for all major currency pairs including EUR/USD, GBP/USD, and USD/JPY.</p>
+  </div>
+
+  <!-- Calculator -->
+  <div class="calc-wrap">
+    <h2>Forex Lot Size Calculator</h2>
+    <div class="input-grid">
+      <div class="field">
+        <label>Account Balance (USD)</label>
+        <input type="number" id="balance" placeholder="e.g. 10000" min="0" step="any" value="10000">
+      </div>
+      <div class="field">
+        <label>Risk Per Trade (%)</label>
+        <input type="number" id="riskPct" placeholder="e.g. 1" min="0.01" max="100" step="0.1" value="1">
+      </div>
+      <div class="field">
+        <label>Stop Loss (Pips)</label>
+        <input type="number" id="stopPips" placeholder="e.g. 20" min="1" step="1" value="20">
+      </div>
+      <div class="field">
+        <label>Currency Pair</label>
+        <select id="pair">
+          <option value="10" selected>EUR/USD (pip = $10/std lot)</option>
+          <option value="10">GBP/USD (pip = $10/std lot)</option>
+          <option value="10">AUD/USD (pip = $10/std lot)</option>
+          <option value="10">NZD/USD (pip = $10/std lot)</option>
+          <option value="8">USD/CAD (pip ≈ $8/std lot)</option>
+          <option value="9">USD/CHF (pip ≈ $9/std lot)</option>
+          <option value="7">USD/JPY (pip ≈ $7/std lot)</option>
+          <option value="10">Gold XAU/USD (pip = $10/std lot)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate Forex Lot Size</button>
+    <div class="results" id="results">
+      <div class="results-main">
+        <div class="result-card">
+          <div class="label">Lot Size</div>
+          <div class="value" id="lotSize">—</div>
+        </div>
+        <div class="result-card neutral">
+          <div class="label">Risk Amount</div>
+          <div class="value" id="riskAmount">—</div>
+        </div>
+        <div class="result-card neutral">
+          <div class="label">Units</div>
+          <div class="value" id="units">—</div>
+        </div>
+        <div class="result-card neutral">
+          <div class="label">Pip Value</div>
+          <div class="value" id="pipValue">—</div>
+        </div>
+        <div class="result-card neutral">
+          <div class="label">Max Loss</div>
+          <div class="value" id="maxLoss">—</div>
+        </div>
+      </div>
+      <div id="lotBreakdown" style="font-size:0.82rem;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;line-height:1.7"></div>
+    </div>
+  </div>
+
+  <!-- Lot size reference table -->
+  <h2 style="font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px">Forex Lot Size Reference</h2>
+  <table class="lot-table">
+    <thead>
+      <tr>
+        <th>Lot Type</th>
+        <th>Units</th>
+        <th>EUR/USD Pip Value</th>
+        <th>Typical Account Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Standard Lot</td>
+        <td>100,000</td>
+        <td class="highlight">$10/pip</td>
+        <td style="color:var(--muted)">$10,000+ (at 1:100 lev)</td>
+      </tr>
+      <tr>
+        <td>Mini Lot (0.10)</td>
+        <td>10,000</td>
+        <td class="highlight">$1/pip</td>
+        <td style="color:var(--muted)">$1,000–$10,000</td>
+      </tr>
+      <tr>
+        <td>Micro Lot (0.01)</td>
+        <td>1,000</td>
+        <td class="highlight">$0.10/pip</td>
+        <td style="color:var(--muted)">$100–$1,000</td>
+      </tr>
+      <tr>
+        <td>Nano Lot (0.001)</td>
+        <td>100</td>
+        <td class="highlight">$0.01/pip</td>
+        <td style="color:var(--muted)">Under $100</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Risk guide -->
+  <div class="risk-guide">
+    <h3>Forex Risk Management — What % to Risk Per Trade</h3>
+    <div class="risk-levels">
+      <div class="header">Risk Level</div>
+      <div class="header">% Per Trade</div>
+      <div class="header" style="text-align:right">Trades Until Ruin</div>
+      <div class="cell risk-green">Conservative (Pro)</div>
+      <div class="cell">0.5%–1%</div>
+      <div class="cell" style="text-align:right;color:var(--green)">100–200</div>
+      <div class="cell risk-yellow">Moderate</div>
+      <div class="cell">1%–2%</div>
+      <div class="cell" style="text-align:right;color:var(--yellow)">50–100</div>
+      <div class="cell risk-red">Aggressive</div>
+      <div class="cell">2%–5%</div>
+      <div class="cell" style="text-align:right;color:var(--red)">20–50</div>
+      <div class="cell risk-red">Gambling</div>
+      <div class="cell">5%+</div>
+      <div class="cell" style="text-align:right;color:var(--red)">&lt;20</div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-top:12px">"Trades until ruin" assumes a 50% win rate. At 1% risk, 100 consecutive losses = account wiped — which gives you enough runway to learn and adjust. Most prop firms require ≤1% risk per trade.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Position Sizing for Crypto Too</h3>
+    <p>Our full position size calculator works for BTC, ETH, and other crypto assets.</p>
+    <a href="/tools/position-size-calculator/" class="btn-primary">Open Full Calculator →</a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Forex Position Size — FAQ</h2>
+    <div class="faq-item">
+      <h3>How do I calculate forex position size?</h3>
+      <p>Position size (lots) = (Account Balance × Risk %) ÷ (Stop Loss in Pips × Pip Value per Standard Lot). For a $10,000 USD account, 1% risk ($100), 20-pip stop on EUR/USD (pip value = $10/lot): Position = $100 ÷ (20 × $10) = 0.5 lots = 50,000 units.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What percentage should I risk per forex trade?</h3>
+      <p>Professional traders typically risk 0.5%–2% per trade. Beginners: start at 0.5%–1%. At 1% risk, 100 consecutive losing trades wipe your account — giving you plenty of runway. Most funded trader accounts (FTMO, MyForexFunds) require ≤1% daily risk and ≤2% per trade. Never risk more than 5%.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is a pip in forex?</h3>
+      <p>A pip = the 4th decimal place for most pairs (EUR/USD: 0.0001). For JPY pairs, pip = 2nd decimal (USD/JPY: 0.01). 1 standard lot moves $10 per pip in EUR/USD. 1 mini lot moves $1/pip. Some brokers show 5 decimal places — the 5th decimal is a "pipette" (0.1 pip).</p>
+    </div>
+    <div class="faq-item">
+      <h3>What lot size should a beginner trade?</h3>
+      <p>Start with micro lots (0.01) — that's $0.10 per pip in EUR/USD. On a $1,000 account with a 20-pip stop, micro lots risk $2 (0.2%). This lets you practice real trading psychology without destroying your account during the learning curve. Graduate to mini lots when you have a consistently profitable system.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How does leverage affect position sizing?</h3>
+      <p>Leverage amplifies your position but shouldn't change your risk calculation. Always size based on how much you can afford to lose if stopped out — not on how much margin you have available. At 1:100 leverage, $100 margin controls $10,000 in currency. But if your stop is 50 pips on EUR/USD mini lot, max loss = $5 — regardless of your leverage.</p>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="related">
+    <h2>Related Calculators</h2>
+    <div class="related-grid">
+      <a href="/tools/position-size-calculator/" class="related-link">
+        Position Size Calculator
+        <span>Full calculator for crypto and stocks</span>
+      </a>
+      <a href="/tools/crypto-profit-calculator/" class="related-link">
+        Crypto Profit Calculator
+        <span>Calculate gains on any crypto trade</span>
+      </a>
+      <a href="/tools/dca-calculator/" class="related-link">
+        DCA Calculator
+        <span>Dollar-cost averaging returns</span>
+      </a>
+      <a href="/tools/compound-interest-calculator/" class="related-link">
+        Compound Interest Calculator
+        <span>Long-term investment growth</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sponsor">
+    <p>pure-flon tools are free forever. Support keeps the lights on.</p>
+    <div class="sponsor-links">
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'forex-position-calc'})">GitHub Sponsors</a>
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'forex-position-calc'})">Ko-fi</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'forex-position-calc'})">PayPal</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 <a href="/">pure-flon.com</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · Not financial advice.</p>
+  </footer>
+
+</div>
+
+<script>
+function fmt(n,d=2){return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})}
+
+function calculate(){
+  const balance=parseFloat(document.getElementById('balance').value)||0;
+  const riskPct=parseFloat(document.getElementById('riskPct').value)||0;
+  const stopPips=parseFloat(document.getElementById('stopPips').value)||0;
+  const pipVal=parseFloat(document.getElementById('pair').value)||10;
+  if(!balance||!riskPct||!stopPips)return;
+
+  const riskAmount=balance*(riskPct/100);
+  const lotSize=riskAmount/(stopPips*pipVal);
+  const units=Math.round(lotSize*100000);
+  const pipValueForLot=pipVal*lotSize;
+  const maxLoss=stopPips*pipValueForLot;
+
+  const lotLabel=lotSize>=1?fmt(lotSize)+' standard'
+    :lotSize>=0.1?fmt(lotSize)+' ('+fmt(lotSize*10,1)+' mini lots)'
+    :fmt(lotSize)+' ('+fmt(lotSize*100,1)+' micro lots)';
+
+  const res=document.getElementById('results');
+  res.style.display='block';
+  document.getElementById('lotSize').textContent=fmt(lotSize,2)+' lots';
+  document.getElementById('riskAmount').textContent='$'+fmt(riskAmount);
+  document.getElementById('units').textContent=units.toLocaleString()+' units';
+  document.getElementById('pipValue').textContent='$'+fmt(pipValueForLot,2)+'/pip';
+  document.getElementById('maxLoss').textContent='$'+fmt(maxLoss);
+
+  // Breakdown text
+  const breakdown=document.getElementById('lotBreakdown');
+  const riskColor=riskPct<=1?'#22c55e':riskPct<=2?'#eab308':'#ef4444';
+  breakdown.innerHTML=`
+    <strong style="color:#fff">Position breakdown:</strong><br>
+    Account: <strong>$${fmt(balance)}</strong> &nbsp;→&nbsp;
+    Risk: <strong style="color:${riskColor}">${fmt(riskPct,1)}% = $${fmt(riskAmount)}</strong><br>
+    Stop: <strong>${fmt(stopPips,0)} pips</strong> &nbsp;→&nbsp;
+    Lot: <strong style="color:var(--green)">${fmt(lotSize,2)}</strong> (${lotLabel})<br>
+    At stop-out: max loss = <strong style="color:var(--red)">$${fmt(maxLoss)}</strong> = ${fmt(riskPct,1)}% of account
+  `;
+
+  gtag('event','calculate',{tool:'forex_position_calc',risk_pct:riskPct,stop_pips:stopPips});
+}
+document.addEventListener('DOMContentLoaded',calculate);
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calculate));
+</script>
+</body>
+</html>
