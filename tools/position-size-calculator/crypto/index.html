@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Position Size Calculator — Risk-Based Sizing for BTC, ETH | pure-flon</title>
+<meta name="description" content="Free crypto position size calculator. Calculate how much BTC, ETH, or any cryptocurrency to buy based on account balance, risk percentage, and stop loss. Supports leverage trading.">
+<meta name="keywords" content="crypto position size calculator, bitcoin position size calculator, position sizing crypto, crypto risk calculator, how much crypto to buy, btc position size, crypto trading calculator, position calculator cryptocurrency, leverage position size crypto">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/position-size-calculator/crypto/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crypto Position Size Calculator — Risk-Based BTC/ETH Sizing">
+<meta property="og:description" content="Calculate exactly how much crypto to buy or short based on your account size and risk tolerance. Works for Bitcoin, Ethereum, and all cryptocurrencies. Supports leverage.">
+<meta property="og:url" content="https://pure-flon.com/tools/position-size-calculator/crypto/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Crypto Position Size Calculator">
+<meta name="twitter:description" content="Risk-based position sizing for BTC, ETH, and all crypto. Enter account balance, risk %, and stop loss to get exact position size. Free, no sign-up.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crypto Position Size Calculator",
+  "description": "Free calculator for crypto position sizing. Calculates optimal trade size in USD and coin amount based on account balance, risk percentage, entry price, and stop loss.",
+  "url": "https://pure-flon.com/tools/position-size-calculator/crypto/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate position size for crypto trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Crypto position size formula: Position Size ($) = Account Balance × Risk % / Stop Loss %. Then Coin Amount = Position Size ÷ Entry Price. Example: $10,000 account, 1% risk ($100), BTC entry at $65,000, stop loss at $63,700 (2% below entry). Stop loss % = 2%. Position Size = $100 / 0.02 = $5,000 worth of BTC. Coin amount = $5,000 / $65,000 = 0.0769 BTC. If BTC hits your stop, you lose exactly $100 (1% of account)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What risk percentage should I use for crypto trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For crypto (spot): 1-2% per trade is standard. For crypto with leverage: 0.25-0.5% per trade. Crypto is 3-5x more volatile than stocks, so you must reduce position sizes accordingly. At 2% risk on spot and 50 consecutive losses (unlikely), you'd still have 36% of your account. Many professional crypto traders use fixed 1% risk rules regardless of conviction to survive extended drawdowns, which are common in crypto (80-90% corrections)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does leverage affect crypto position sizing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leverage amplifies both gains and losses but doesn't change your risk-in-dollars calculation. With 10x leverage and $10,000 account: you control $100,000 in crypto. But risk management stays the same — if risking 1% ($100), your stop loss should be 0.1% away from entry. A 1% move against you = $1,000 loss (10x amplified). Most beginners should avoid leverage entirely; if using it, start at 2-3x maximum and keep stop losses tight."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good risk-reward ratio for crypto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Minimum 2:1 risk-reward (R:R) for crypto trades. At 2:1 R:R with 50% win rate, you break even. At 3:1 R:R with 40% win rate, you're profitable. Most professional crypto traders target 3:1 to 5:1 R:R. High-volatility crypto setups often offer 5:1+ R:R during breakouts. Avoid trades under 2:1 R:R — transaction fees and slippage eat into profits on tight setups."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much BTC should I buy with $1,000?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With $1,000 for investment (not trading): many use dollar-cost averaging (DCA), buying $50-100/month. For a single trade with risk management: if risking 2% of a $5,000 total portfolio ($100 risk) with a 5% stop loss on BTC, position size = $100/0.05 = $2,000. But if your total crypto budget is $1,000, simply buying $200-500 worth while keeping the rest in stablecoins provides diversification. Never invest more than you can afford to lose 100% of."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pure-flon.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pure-flon.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Position Size Calculator", "item": "https://pure-flon.com/tools/position-size-calculator/"},
+    {"@type": "ListItem", "position": 4, "name": "Crypto", "item": "https://pure-flon.com/tools/position-size-calculator/crypto/"}
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#f7a600;--accent2:#ffc840;
+  --green:#22c55e;--red:#ef4444;--text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:#7c6aff;text-decoration:none}
+a:hover{color:#a594ff}
+.container{max-width:820px;margin:0 auto;padding:24px 16px}
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:#a594ff}
+.breadcrumb .sep{color:var(--dim)}
+.hero{text-align:center;padding:20px 0 32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#f7a60022,#f7a60011);border:1px solid #f7a60044;color:var(--accent);border-radius:8px;padding:4px 14px;font-size:0.82rem;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(1.55rem,4vw,2.1rem);font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.2;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:580px;margin:0 auto;line-height:1.6}
+.calc-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0}
+.calc-wrap h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:520px){.input-grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:0.78rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:0.95rem;outline:none;transition:border-color .15s}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#c87b00,#f7a600);color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer;margin-top:4px;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88;transform:translateY(-1px)}
+.results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.result-card{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.result-card .label{font-size:0.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.result-card .value{font-size:1.25rem;font-weight:800;color:var(--accent)}
+.result-card.green .value{color:var(--green)}
+.result-card.red .value{color:var(--red)}
+.warn-box{background:#1a1000;border:1px solid #f7a60044;border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 18px;margin:20px 0;font-size:0.82rem;color:#f7a600}
+.info-section{margin:28px 0}
+.info-section h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+.info-card h3{font-size:0.82rem;font-weight:700;color:var(--accent2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.info-card p{font-size:0.83rem;color:var(--muted);line-height:1.6}
+.info-card .num{font-size:1.4rem;font-weight:800;color:var(--green);display:block;margin-bottom:4px}
+.formula-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 22px;margin:28px 0}
+.formula-box h3{font-size:0.85rem;font-weight:700;color:var(--accent2);margin-bottom:10px}
+.formula-box code{display:block;background:#0a0a0a;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:monospace;font-size:0.84rem;color:var(--accent);margin:8px 0;white-space:pre-wrap}
+.formula-box p{color:var(--text);font-size:0.86rem;line-height:1.65;margin-top:8px}
+.risk-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;font-size:0.83rem;margin:28px 0}
+.risk-table thead{background:#1a0f00}
+.risk-table th{padding:10px 14px;text-align:left;font-weight:700;color:var(--accent2);font-size:0.76rem;text-transform:uppercase;letter-spacing:.04em}
+.risk-table td{padding:9px 14px;border-top:1px solid var(--border);color:var(--muted)}
+.risk-table td:first-child{color:var(--text);font-weight:600}
+.risk-table .good{color:var(--green)}
+.risk-table .bad{color:var(--red)}
+.faq-section{margin:36px 0}
+.faq-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:10px}
+.faq-item h3{font-size:0.9rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.85rem;line-height:1.65}
+.related{margin:32px 0;padding-top:24px;border-top:1px solid var(--border)}
+.related h2{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.related-link{display:block;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);text-decoration:none;font-size:0.86rem;transition:border-color .15s}
+.related-link:hover{border-color:var(--accent)}
+.related-link span{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px}
+.sponsor{background:var(--card);border-top:1px solid var(--border);padding:16px;text-align:center;margin-top:40px;border-radius:14px}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{font-size:0.78rem;color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--border);border-radius:20px;transition:color .15s,border-color .15s}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:#a594ff}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/position-size-calculator/">Position Size Calculator</a><span class="sep">/</span>
+    <span>Crypto</span>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">₿ Bitcoin · ETH · All Crypto</div>
+    <h1>Crypto Position Size Calculator</h1>
+    <p>Calculate exactly how much BTC, ETH, or any crypto to buy or short based on your account balance and risk tolerance. Supports spot and leverage trading. Never risk more than you plan to.</p>
+  </div>
+
+  <div class="calc-wrap">
+    <h2>Position Size — Crypto</h2>
+    <div class="input-grid">
+      <div class="field">
+        <label>Account Balance ($)</label>
+        <input type="number" id="balance" placeholder="e.g. 10000" min="1" step="any" value="10000">
+      </div>
+      <div class="field">
+        <label>Risk Per Trade (%)</label>
+        <input type="number" id="riskPct" placeholder="e.g. 1" min="0.01" max="100" step="any" value="1">
+      </div>
+      <div class="field">
+        <label>Entry Price ($)</label>
+        <input type="number" id="entry" placeholder="e.g. 65000" min="0.000001" step="any" value="65000">
+      </div>
+      <div class="field">
+        <label>Stop Loss Price ($)</label>
+        <input type="number" id="stopLoss" placeholder="e.g. 62700" min="0" step="any" value="62700">
+      </div>
+      <div class="field">
+        <label>Take Profit Price ($) <span style="font-size:0.7rem;color:var(--dim)">(optional)</span></label>
+        <input type="number" id="takeProfit" placeholder="e.g. 72000" min="0" step="any" value="72000">
+      </div>
+      <div class="field">
+        <label>Leverage</label>
+        <select id="leverage">
+          <option value="1" selected>1× (Spot)</option>
+          <option value="2">2×</option>
+          <option value="3">3×</option>
+          <option value="5">5×</option>
+          <option value="10">10×</option>
+          <option value="20">20×</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate Crypto Position Size</button>
+
+    <div class="results" id="results" style="display:none">
+      <div class="result-card">
+        <div class="label">Position Size ($)</div>
+        <div class="value" id="posSize">—</div>
+      </div>
+      <div class="result-card">
+        <div class="label">Coin Amount</div>
+        <div class="value" id="coinAmt">—</div>
+      </div>
+      <div class="result-card red">
+        <div class="label">Max Loss ($)</div>
+        <div class="value" id="maxLoss">—</div>
+      </div>
+      <div class="result-card green">
+        <div class="label">Max Profit ($)</div>
+        <div class="value" id="maxProfit">—</div>
+      </div>
+      <div class="result-card">
+        <div class="label">Risk:Reward</div>
+        <div class="value" id="rr">—</div>
+      </div>
+      <div class="result-card">
+        <div class="label">Stop Loss %</div>
+        <div class="value" id="slPct">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn-box" id="warnBox" style="display:none">
+    ⚠️ <strong>Leverage Warning:</strong> <span id="warnText"></span>
+  </div>
+
+  <!-- Risk table -->
+  <div class="info-section">
+    <h2>Recommended Risk Levels by Account Type</h2>
+    <table class="risk-table">
+      <thead>
+        <tr><th>Trader Type</th><th>Risk/Trade</th><th>Max Consecutive Losses</th><th>Recommendation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Beginner (Spot)</td>
+          <td class="good">0.5% – 1%</td>
+          <td>100–200 losses before -50%</td>
+          <td>Start here. Learn before scaling.</td>
+        </tr>
+        <tr>
+          <td>Intermediate (Spot)</td>
+          <td class="good">1% – 2%</td>
+          <td>35–50 losses before -50%</td>
+          <td>Standard professional sizing</td>
+        </tr>
+        <tr>
+          <td>Leverage (2-5×)</td>
+          <td>0.25% – 0.5%</td>
+          <td>Varies by stop distance</td>
+          <td>Reduce size proportionally</td>
+        </tr>
+        <tr>
+          <td>High Leverage (10×+)</td>
+          <td class="bad">Avoid unless professional</td>
+          <td>Liquidation risk is severe</td>
+          <td>Not recommended for most</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Formula -->
+  <div class="formula-box">
+    <h3>Crypto Position Sizing Formula</h3>
+    <code>Dollar Risk = Account Balance × Risk %
+Stop Loss % = |Entry Price − Stop Price| / Entry Price
+Position Size ($) = Dollar Risk / Stop Loss %
+Coin Amount = Position Size / Entry Price
+
+With leverage: Margin Required = Position Size / Leverage</code>
+    <p>Example: $10,000 account, 1% risk, BTC entry $65,000, stop $62,700. Dollar risk = $100. Stop loss % = ($65,000 − $62,700) / $65,000 = 3.54%. Position size = $100 / 0.0354 = $2,825. Coin amount = $2,825 / $65,000 = 0.0434 BTC. If BTC hits your stop at $62,700, you lose exactly $100 = 1% of account.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Crypto Position Sizing — FAQ</h2>
+    <div class="faq-item">
+      <h3>Why is position sizing critical in crypto?</h3>
+      <p>Crypto is 3-5× more volatile than stocks. Bitcoin has historically dropped 80-90% from peaks (2018: -84%, 2022: -77%). Without proper position sizing, a single leveraged trade can wipe 20-50% of your account. Professional traders who survive long-term almost universally use fixed-% risk rules. The math: at 2% risk/trade with 50% win rate and 2:1 R:R, you'll profit long-term regardless of which individual trades win or lose.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do I set a stop loss for Bitcoin?</h3>
+      <p>BTC stop loss placement: (1) Below key support levels (swing lows, major moving averages). (2) Below ATR-based levels: BTC's daily ATR is typically $1,500-3,000, so stops under 1× ATR often get stopped out by normal volatility. (3) As a percentage: 3-8% stops for swing trades, 1-2% for intraday scalps. Wider stops require smaller position sizes to maintain the same dollar risk. Never use round-number stops — set them 0.5-1% beyond the obvious level to avoid stop-hunting.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is a good R:R ratio for crypto trading?</h3>
+      <p>Minimum 2:1 risk-reward (R:R) for any crypto trade. This means your take profit is at least 2× further from entry than your stop loss. At 2:1 R:R with 50% win rate, you break even after fees. At 3:1 with 40% win rate, you're profitable. Crypto trend trades often offer 5:1 to 10:1 R:R during breakouts. Avoid "revenge trades" with 1:1 or worse R:R — they're mathematically guaranteed to lose long-term unless you win over 55%+ of trades.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Should I use leverage for crypto trading?</h3>
+      <p>Only if experienced. Statistics: 75-85% of leveraged crypto traders lose money. 10× leverage means a 10% adverse move liquidates your position. With Bitcoin's 3-5% daily volatility, 10× leverage is extremely risky. If you use leverage: start at 2-3×, reduce position size (half your normal $ risk), use tight stops, and never use more than 10-20% of your account as margin. Spot trading crypto already provides high returns during bull markets without liquidation risk.</p>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-grid">
+      <a href="/tools/position-size-calculator/" class="related-link">
+        Position Size Calculator
+        <span>Universal risk-based position sizing</span>
+      </a>
+      <a href="/tools/position-size-calculator/forex/" class="related-link">
+        Forex Position Size
+        <span>Lot size by pip value and risk %</span>
+      </a>
+      <a href="/tools/crypto-profit-calculator/" class="related-link">
+        Crypto Profit Calculator
+        <span>Calculate profit/loss on any crypto trade</span>
+      </a>
+      <a href="/tools/dca-calculator/" class="related-link">
+        DCA Calculator
+        <span>Dollar-cost averaging returns for BTC/ETH</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sponsor">
+    <p>pure-flon tools are free forever. Support keeps the lights on.</p>
+    <div class="sponsor-links">
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'crypto-position-calc'})">GitHub Sponsors</a>
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'crypto-position-calc'})">Ko-fi</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'crypto-position-calc'})">PayPal</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 <a href="/">pure-flon.com</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a></p>
+  </footer>
+
+</div>
+
+<script>
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function fmtD(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fmtC(n){
+  if(n>=1)return n.toFixed(4);
+  if(n>=0.001)return n.toFixed(6);
+  return n.toFixed(8);
+}
+
+function calculate(){
+  const bal=parseFloat(document.getElementById('balance').value)||0;
+  const rp=parseFloat(document.getElementById('riskPct').value)/100||0;
+  const entry=parseFloat(document.getElementById('entry').value)||0;
+  const sl=parseFloat(document.getElementById('stopLoss').value)||0;
+  const tp=parseFloat(document.getElementById('takeProfit').value)||0;
+  const lev=parseFloat(document.getElementById('leverage').value)||1;
+
+  if(!bal||!rp||!entry||!sl)return;
+  if(sl>=entry){alert('Stop loss must be below entry price for a long position.');return;}
+
+  const dollarRisk=bal*rp;
+  const slPct=Math.abs(entry-sl)/entry;
+  const posSize=dollarRisk/slPct;
+  const coinAmt=posSize/entry;
+  const maxLoss=dollarRisk;
+  const maxProfit=tp?((tp-entry)/entry)*posSize:null;
+  const rr=tp?(tp-entry)/(entry-sl):null;
+  const margin=posSize/lev;
+
+  document.getElementById('results').style.display='grid';
+  document.getElementById('posSize').textContent=fmtD(posSize);
+  document.getElementById('coinAmt').textContent=fmtC(coinAmt);
+  document.getElementById('maxLoss').textContent='-'+fmtD(maxLoss);
+  document.getElementById('maxProfit').textContent=maxProfit?'+'+fmtD(maxProfit):'Set TP';
+  document.getElementById('rr').textContent=rr?'1:'+rr.toFixed(1):'N/A';
+  document.getElementById('slPct').textContent=(slPct*100).toFixed(2)+'%';
+
+  // Leverage warning
+  const warnBox=document.getElementById('warnBox');
+  if(lev>1){
+    const liquidationPct=(1/lev)*100;
+    document.getElementById('warnText').textContent=`At ${lev}× leverage, a ${liquidationPct.toFixed(1)}% adverse move liquidates your position. Margin required: ${fmtD(margin)}.`;
+    warnBox.style.display='block';
+  } else {
+    warnBox.style.display='none';
+  }
+
+  gtag('event','calculate',{tool:'crypto_position',leverage:lev,risk_pct:(rp*100).toFixed(1)});
+}
+
+document.addEventListener('DOMContentLoaded',calculate);
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calculate));
+</script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Compound Interest Calculator — Interest Compounded Daily | pure-flon</title>
+<meta name="description" content="Free daily compound interest calculator. Calculate how your savings grow when interest compounds every day. Includes daily contributions, year-by-year table, and inflation adjustment.">
+<meta name="keywords" content="daily compound interest calculator, compound interest daily, daily compounding calculator, calculate compound interest daily, interest compounded daily, daily compound interest formula, APY calculator daily, high yield savings calculator">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/compound-interest-calculator/daily/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Daily Compound Interest Calculator — Interest Compounded Daily">
+<meta property="og:description" content="Calculate compound interest compounded daily (365×/year). See exact growth with daily compounding, compare to monthly/annually, and get year-by-year breakdown.">
+<meta property="og:url" content="https://pure-flon.com/tools/compound-interest-calculator/daily/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Daily Compound Interest Calculator">
+<meta name="twitter:description" content="Compound interest compounded 365× per year. Year-by-year breakdown, inflation adjustment, and daily contribution support. Free, no sign-up.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Daily Compound Interest Calculator",
+  "description": "Free calculator for compound interest compounded daily (365 times per year). Supports daily contributions, inflation adjustment, and year-by-year breakdown.",
+  "url": "https://pure-flon.com/tools/compound-interest-calculator/daily/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the formula for daily compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daily compound interest formula: A = P(1 + r/365)^(365t), where A = final amount, P = principal, r = annual interest rate as decimal, t = years. Example: $10,000 at 5% annual rate compounded daily for 10 years: A = 10,000 × (1 + 0.05/365)^3650 = $16,487. This is $16 more than monthly compounding ($16,471) and $53 more than annual compounding ($16,289)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much more does daily compounding earn vs monthly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The difference between daily and monthly compounding is very small. On $10,000 at 5% for 30 years: monthly compounding = $44,812; daily compounding = $44,882. That's only $70 more from daily compounding. The real difference is between annual and daily: $43,219 vs $44,882 = $1,663 extra. Most HY savings accounts advertise daily compounding, but APY already accounts for compounding frequency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do high-yield savings accounts actually compound daily?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, most high-yield savings accounts (Marcus, Ally, SoFi, etc.) compound interest daily. However, interest is typically credited to your account monthly. The APY (Annual Percentage Yield) already factors in daily compounding, so when comparing savings accounts, compare APY directly rather than trying to calculate daily compounding yourself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is APY and how does it relate to daily compounding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APY (Annual Percentage Yield) = (1 + APR/n)^n − 1, where n = compounding periods per year. For daily compounding: APY = (1 + APR/365)^365 − 1. At 5% APR: daily APY = 5.127%, monthly APY = 5.116%, annual APY = 5.000%. This means a 5% APR savings account compounded daily has an effective annual return of 5.127%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long to double money with daily compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Rule of 72 as an approximation: 72 ÷ annual rate = years to double. At 5%: ~14.4 years; at 7%: ~10.3 years; at 10%: ~7.2 years. Daily compounding is only marginally faster than monthly. At 7%: daily compounding doubles in 9.90 years vs 9.93 years for monthly — a difference of just 11 days over 10 years."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pure-flon.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pure-flon.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Compound Interest Calculator", "item": "https://pure-flon.com/tools/compound-interest-calculator/"},
+    {"@type": "ListItem", "position": 4, "name": "Daily", "item": "https://pure-flon.com/tools/compound-interest-calculator/daily/"}
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#7c6aff;--accent2:#a594ff;
+  --green:#22c55e;--text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+.container{max-width:820px;margin:0 auto;padding:24px 16px}
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb .sep{color:var(--dim)}
+.hero{text-align:center;padding:20px 0 32px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#7c6aff22,#7c6aff11);border:1px solid #7c6aff44;color:var(--accent);border-radius:8px;padding:4px 14px;font-size:0.82rem;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(1.55rem,4vw,2.1rem);font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.2;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:580px;margin:0 auto;line-height:1.6}
+.calc-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0}
+.calc-wrap h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:520px){.input-grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:0.78rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input{width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:0.95rem;outline:none;transition:border-color .15s}
+.field input:focus{border-color:var(--accent)}
+.calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#5648cc,#7c6aff);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88;transform:translateY(-1px)}
+.results{display:none;margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.result-card{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.result-card .label{font-size:0.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.result-card .value{font-size:1.25rem;font-weight:800;color:var(--green)}
+.result-card.neutral .value{color:var(--accent)}
+.table-section{margin:32px 0;overflow-x:auto}
+.table-section h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:16px}
+.breakdown-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;font-size:0.83rem}
+.breakdown-table thead{background:#0f0a1a}
+.breakdown-table th{padding:10px 14px;text-align:right;font-weight:700;color:var(--accent2);font-size:0.76rem;text-transform:uppercase;letter-spacing:.04em}
+.breakdown-table th:first-child{text-align:left}
+.breakdown-table td{padding:9px 14px;border-top:1px solid var(--border);text-align:right;color:var(--muted)}
+.breakdown-table td:first-child{text-align:left;color:var(--text);font-weight:600}
+.breakdown-table tr:hover{background:#0a0818}
+.breakdown-table .highlight{color:var(--green)}
+.formula-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 22px;margin:28px 0}
+.formula-box h3{font-size:0.85rem;font-weight:700;color:var(--accent2);margin-bottom:10px}
+.formula-box code{display:block;background:#0a0a0a;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:monospace;font-size:0.85rem;color:var(--accent);margin:8px 0;white-space:pre-wrap}
+.formula-box p{color:var(--text);font-size:0.86rem;line-height:1.65;margin-top:8px}
+.compare-section{margin:32px 0}
+.compare-section h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.compare-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;font-size:0.84rem}
+.compare-table thead{background:#0f0a1a}
+.compare-table th{padding:12px 16px;text-align:left;font-weight:700;color:var(--accent2);font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em}
+.compare-table td{padding:10px 16px;border-top:1px solid var(--border)}
+.compare-table .winner{color:var(--green);font-weight:700}
+.faq-section{margin:36px 0}
+.faq-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:10px}
+.faq-item h3{font-size:0.9rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.85rem;line-height:1.65}
+.cta-box{background:linear-gradient(135deg,rgba(124,106,255,0.12),rgba(124,106,255,0.04));border:1px solid #7c6aff44;border-radius:16px;padding:28px;text-align:center;margin:28px 0}
+.cta-box h3{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:0.88rem;margin-bottom:20px}
+.btn-primary{display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#5648cc,#7c6aff);color:#fff;border-radius:12px;font-size:1rem;font-weight:700;text-decoration:none;transition:transform .15s,opacity .15s}
+.btn-primary:hover{transform:translateY(-2px);opacity:.9;color:#fff}
+.related{margin:32px 0;padding-top:24px;border-top:1px solid var(--border)}
+.related h2{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.related-link{display:block;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);text-decoration:none;font-size:0.86rem;transition:border-color .15s}
+.related-link:hover{border-color:var(--accent)}
+.related-link span{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px}
+.sponsor{background:var(--card);border-top:1px solid var(--border);padding:16px;text-align:center;margin-top:40px;border-radius:14px}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{font-size:0.78rem;color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--border);border-radius:20px;transition:color .15s,border-color .15s}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/compound-interest-calculator/">Compound Interest Calculator</a><span class="sep">/</span>
+    <span>Daily</span>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">📆 Compounded Daily (365×/year)</div>
+    <h1>Daily Compound Interest Calculator</h1>
+    <p>Calculate how your savings grow when interest compounds every single day. The most common compounding frequency for high-yield savings accounts. Enter your principal, rate, and time to see exact daily compounding results.</p>
+  </div>
+
+  <!-- Calculator -->
+  <div class="calc-wrap">
+    <h2>Daily Compounding — Calculate Growth</h2>
+    <div class="input-grid">
+      <div class="field">
+        <label>Principal (Starting Amount)</label>
+        <input type="number" id="principal" placeholder="e.g. 10000" min="0" step="any" value="10000">
+      </div>
+      <div class="field">
+        <label>Annual Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g. 5" min="0" step="any" value="5">
+      </div>
+      <div class="field">
+        <label>Time (Years)</label>
+        <input type="number" id="years" placeholder="e.g. 10" min="1" max="50" step="1" value="10">
+      </div>
+      <div class="field">
+        <label>Monthly Contribution ($)</label>
+        <input type="number" id="monthly" placeholder="e.g. 200 (optional)" min="0" step="any" value="200">
+      </div>
+      <div class="field">
+        <label>Inflation Rate (%) <span style="font-size:0.7rem;color:var(--dim)">(optional)</span></label>
+        <input type="number" id="inflation" placeholder="e.g. 3" min="0" step="any" value="3">
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate Daily Compound Interest</button>
+    <div class="results" id="results">
+      <div class="result-card">
+        <div class="label">Final Amount</div>
+        <div class="value" id="finalAmount">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">Total Invested</div>
+        <div class="value" id="totalInvested">—</div>
+      </div>
+      <div class="result-card">
+        <div class="label">Interest Earned</div>
+        <div class="value" id="interestEarned">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">ROI</div>
+        <div class="value" id="roi">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">Effective APY</div>
+        <div class="value" id="apy">—</div>
+      </div>
+      <div class="result-card neutral">
+        <div class="label">Inflation-Adj. Value</div>
+        <div class="value" id="realValue">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Year-by-year table -->
+  <div class="table-section">
+    <h2>Year-by-Year Growth (Daily Compounding)</h2>
+    <table class="breakdown-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Balance</th>
+          <th>Contributions</th>
+          <th>Interest Earned</th>
+          <th>Real Value</th>
+        </tr>
+      </thead>
+      <tbody id="breakdownBody">
+        <tr><td colspan="5" style="text-align:center;padding:20px;color:var(--muted)">Enter values above to see breakdown</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Formula -->
+  <div class="formula-box">
+    <h3>Daily Compound Interest Formula</h3>
+    <code>A = P × (1 + r/365)^(365t)
+
+P = principal  ·  r = annual rate (decimal)  ·  t = years
+APY = (1 + r/365)^365 − 1</code>
+    <p>Example: $10,000 at 5% APR compounded daily for 10 years → A = 10,000 × (1.05/365 + 1)^3650 = $16,487. The effective APY is 5.127% (vs the stated 5.0% APR). Banks advertise APY to show the actual annual return after compounding — always compare APY, not APR.</p>
+  </div>
+
+  <!-- Compounding comparison -->
+  <div class="compare-section">
+    <h2>Daily vs Other Compounding Frequencies</h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Frequency</th><th>$10,000 at 5% — 10 yrs</th><th>$10,000 at 5% — 30 yrs</th><th>Effective APY</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Annually</td><td>$16,289</td><td>$43,219</td><td>5.000%</td>
+        </tr>
+        <tr>
+          <td>Quarterly</td><td>$16,436</td><td>$44,402</td><td>5.095%</td>
+        </tr>
+        <tr>
+          <td>Monthly</td><td>$16,471</td><td>$44,812</td><td>5.116%</td>
+        </tr>
+        <tr class="winner">
+          <td class="winner">Daily</td><td class="winner">$16,487</td><td class="winner">$44,882</td><td class="winner">5.127%</td>
+        </tr>
+        <tr>
+          <td>Continuous</td><td>$16,487</td><td>$44,817</td><td>5.127%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:10px">At 5%, the difference between daily and monthly compounding is only $16 over 10 years. APY is the more useful comparison metric.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>More Compounding Options</h3>
+    <p>Monthly, quarterly, annually — compare all compounding frequencies in the full calculator.</p>
+    <a href="/tools/compound-interest-calculator/" class="btn-primary">Open Full Calculator →</a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Daily Compound Interest — FAQ</h2>
+    <div class="faq-item">
+      <h3>What does "compounded daily" mean?</h3>
+      <p>Compounded daily means interest is calculated and added to your balance 365 times per year (once per day). Each day's interest is based on a slightly higher balance than the day before. This creates the "compounding" effect: you earn interest on your interest. Daily compounding is standard for most high-yield savings accounts (Marcus, Ally, SoFi, Discover) and some CDs.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is daily compounding really better than monthly?</h3>
+      <p>Technically yes, but practically the difference is tiny. On $50,000 at 5% for 30 years: monthly = $224,060; daily = $224,409 — just $349 difference. The interest rate matters enormously more. A 5.1% account compounded monthly beats a 5.0% account compounded daily by $3,200 over 30 years. Focus on finding the best APY, not the compounding frequency.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is APR vs APY with daily compounding?</h3>
+      <p>APR (Annual Percentage Rate) is the stated rate without compounding. APY (Annual Percentage Yield) is the effective rate after compounding. For a 5% APR compounded daily: APY = (1 + 0.05/365)^365 − 1 = 5.127%. When a bank advertises "5.00% APY," they've already calculated the compounding effect — compare APY to APY when shopping savings accounts.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much interest does $10,000 earn in a year at 5% compounded daily?</h3>
+      <p>$10,000 × 5.127% (effective APY) = $512.67 in the first year. With simple/annual compounding at 5%, you'd earn exactly $500.00. The daily compounding adds $12.67 more. After 10 years, the $10,000 grows to $16,487 with daily compounding vs $16,289 with annual compounding — a $198 difference that grows over time.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Which savings accounts use daily compounding?</h3>
+      <p>Most online high-yield savings accounts compound daily: Marcus by Goldman Sachs, Ally Bank, SoFi, Discover Bank, American Express HYSA, and most credit union savings accounts. Traditional brick-and-mortar banks often compound monthly or quarterly. Check your bank's terms — they must disclose both APR and APY so you can see the compounding effect.</p>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="related">
+    <h2>Related Calculators</h2>
+    <div class="related-grid">
+      <a href="/tools/compound-interest-calculator/monthly/" class="related-link">
+        Monthly Compound Interest
+        <span>Compare daily vs monthly compounding</span>
+      </a>
+      <a href="/tools/compound-interest-calculator/annually/" class="related-link">
+        Annual Compound Interest
+        <span>Simple once-a-year compounding</span>
+      </a>
+      <a href="/tools/compound-interest-calculator/" class="related-link">
+        Full Compound Calculator
+        <span>All frequencies + full breakdown</span>
+      </a>
+      <a href="/tools/dca-calculator/" class="related-link">
+        DCA Calculator
+        <span>Regular investing returns for crypto</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sponsor">
+    <p>pure-flon tools are free forever. Support keeps the lights on.</p>
+    <div class="sponsor-links">
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'daily-compound-calc'})">GitHub Sponsors</a>
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'daily-compound-calc'})">Ko-fi</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{tool:'daily-compound-calc'})">PayPal</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 <a href="/">pure-flon.com</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a></p>
+  </footer>
+
+</div>
+
+<script>
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function fmtD(n){return '$'+fmt(n)}
+function fmtPct(n){return n.toFixed(3)+'%'}
+
+function calculate(){
+  const P=parseFloat(document.getElementById('principal').value)||0;
+  const r=parseFloat(document.getElementById('rate').value)/100||0;
+  const t=parseInt(document.getElementById('years').value)||0;
+  const M=parseFloat(document.getElementById('monthly').value)||0;
+  const inf=parseFloat(document.getElementById('inflation').value)/100||0;
+  if(!P||!r||!t)return;
+
+  const n=365;
+  const rn=r/n;
+  // Final amount: principal compound + monthly contribution annuity (approximated as daily)
+  const principalFinal=P*Math.pow(1+rn,n*t);
+  // Monthly contribution converted to daily: M/30.44 per day
+  const Md=M/30.44167;
+  const monthlyFinal=Md>0 ? Md*(Math.pow(1+rn,n*t)-1)/rn : 0;
+  const A=principalFinal+monthlyFinal;
+  const totalContrib=P+M*12*t;
+  const interestEarned=A-totalContrib;
+  const roi=(interestEarned/totalContrib)*100;
+  const realA=A/Math.pow(1+inf,t);
+  const apy=(Math.pow(1+r/365,365)-1)*100;
+
+  const res=document.getElementById('results');
+  res.style.display='grid';
+  document.getElementById('finalAmount').textContent=fmtD(A);
+  document.getElementById('totalInvested').textContent=fmtD(totalContrib);
+  document.getElementById('interestEarned').textContent=fmtD(interestEarned);
+  document.getElementById('roi').textContent='+'+fmt(roi)+'%';
+  document.getElementById('apy').textContent=fmtPct(apy);
+  document.getElementById('realValue').textContent=fmtD(realA);
+
+  // Build yearly breakdown
+  const tbody=document.getElementById('breakdownBody');
+  tbody.innerHTML='';
+  for(let yr=1;yr<=t;yr++){
+    const bal=P*Math.pow(1+rn,n*yr)+(Md>0?Md*(Math.pow(1+rn,n*yr)-1)/rn:0);
+    const contrib=P+M*12*yr;
+    const intEarned=bal-contrib;
+    const real=bal/Math.pow(1+inf,yr);
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>Year ${yr}</td><td class="highlight">${fmtD(bal)}</td><td>${fmtD(contrib)}</td><td>${fmtD(intEarned)}</td><td style="color:var(--muted)">${fmtD(real)}</td>`;
+    tbody.appendChild(tr);
+  }
+  gtag('event','calculate',{tool:'daily_compound',years:t,roi:Math.round(roi)});
+}
+
+document.addEventListener('DOMContentLoaded',calculate);
+document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calculate));
+</script>
+</body>
+</html>

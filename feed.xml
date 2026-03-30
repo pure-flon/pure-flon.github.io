@@ -372,5 +372,40 @@
       <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/blog/top-10-korean-foods-foreigners-love/</guid>
     </item>
-  </channel>
+    <item>
+    <title>Daily Compound Interest Calculator</title>
+    <link>https://pure-flon.com/tools/compound-interest-calculator/daily/</link>
+    <description>Calculate compound interest compounded daily (365x per year). Includes APY calculation, year-by-year breakdown, and comparison to monthly and annual compounding.</description>
+    <pubDate>2026-03-30</pubDate>
+    <guid isPermaLink='true'>https://pure-flon.com/tools/compound-interest-calculator/daily/</guid>
+  </item>
+  <item>
+    <title>Annual Compound Interest Calculator</title>
+    <link>https://pure-flon.com/tools/compound-interest-calculator/annually/</link>
+    <description>Classic A=P(1+r)^t annual compound interest calculator. Year-by-year breakdown, CAGR calculation, and Rule of 72 doubling time.</description>
+    <pubDate>2026-03-30</pubDate>
+    <guid isPermaLink='true'>https://pure-flon.com/tools/compound-interest-calculator/annually/</guid>
+  </item>
+  <item>
+    <title>Crypto Position Size Calculator</title>
+    <link>https://pure-flon.com/tools/position-size-calculator/crypto/</link>
+    <description>Risk-based position sizing for BTC, ETH, and all crypto. Calculate exact coin amount to buy based on account balance, risk percentage, and stop loss.</description>
+    <pubDate>2026-03-30</pubDate>
+    <guid isPermaLink='true'>https://pure-flon.com/tools/position-size-calculator/crypto/</guid>
+  </item>
+  <item>
+    <title>Stock Position Size Calculator</title>
+    <link>https://pure-flon.com/tools/position-size-calculator/stocks/</link>
+    <description>Calculate how many shares to buy based on risk percentage and stop loss. Works for any stock or ETF. Includes R:R analysis.</description>
+    <pubDate>2026-03-30</pubDate>
+    <guid isPermaLink='true'>https://pure-flon.com/tools/position-size-calculator/stocks/</guid>
+  </item>
+  <item>
+    <title>7 Best Crypto Tax Software in 2026 — Tested & Ranked</title>
+    <link>https://pure-flon.com/blog/best-crypto-tax-software-2026/</link>
+    <description>Koinly vs CoinTracker vs TaxBit vs ZenLedger — tested against real portfolios. Which crypto tax software is worth paying for in 2026?</description>
+    <pubDate>2026-03-30</pubDate>
+    <guid isPermaLink='true'>https://pure-flon.com/blog/best-crypto-tax-software-2026/</guid>
+  </item>
+</channel>
 </rss>
