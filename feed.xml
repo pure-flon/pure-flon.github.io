@@ -5,9 +5,72 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 07:49:31 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 08:07:39 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
+    <item>
+      <title>25 Hardest Country Flags to Identify — Can You Get Them All?</title>
+      <link>https://pure-flon.com/games/world-flag-quiz/hardest-flags/</link>
+      <description>Can you tell Romania from Chad? Indonesia from Monaco? These are the 25 most commonly confused country flags in the world, with explanations of what makes each pair tricky.</description>
+      <pubDate>Mon, 30 Mar 2026 08:06:14 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/hardest-flags/</guid>
+    </item>
+    <item>
+      <title>How to Generate Tailwind CSS Color Palettes — Free Tool</title>
+      <link>https://pure-flon.com/tools/color-palette/tailwind/</link>
+      <description>Create custom Tailwind CSS color palettes with the right shade progression. Free generator with HSL manipulation, 50-950 scale output, and copy-paste config.</description>
+      <pubDate>Mon, 30 Mar 2026 08:02:53 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/color-palette/tailwind/</guid>
+    </item>
+    <item>
+      <title>How to Format API JSON Responses — Quick &amp; Free Guide</title>
+      <link>https://pure-flon.com/tools/json-formatter/api-response/</link>
+      <description>Learn how to pretty print messy API JSON responses instantly. Before/after examples, common pitfalls, and a free online JSON formatter. No signup required.</description>
+      <pubDate>Mon, 30 Mar 2026 08:00:31 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/json-formatter/api-response/</guid>
+    </item>
+    <item>
+      <title>How to Create a WiFi QR Code — Share Your Password Instantly</title>
+      <link>https://pure-flon.com/tools/qr-generator/wifi/</link>
+      <description>Learn how to create a WiFi QR code that lets guests connect instantly — no typing passwords. Step-by-step guide with free generator. Works on iPhone and Android.</description>
+      <pubDate>Mon, 30 Mar 2026 07:58:23 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/qr-generator/wifi/</guid>
+    </item>
+    <item>
+      <title>JSON Formatter &amp; Validator - Free Online Tool | pure-flon</title>
+      <link>https://pure-flon.com/tools/json-formatter/</link>
+      <description>Free online JSON formatter, validator, and beautifier. Paste your JSON to format, minify, validate with syntax highlighting and error detection. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 07:53:02 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/json-formatter/</guid>
+    </item>
+    <item>
+      <title>Pomodoro Timer - Free Online Focus Timer | pure-flon</title>
+      <link>https://pure-flon.com/tools/pomodoro/</link>
+      <description>Free online Pomodoro timer for focused work sessions. 25-minute work intervals, customizable durations, session tracking, audio notifications, and fullscreen mode. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 07:53:01 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/pomodoro/</guid>
+    </item>
+    <item>
+      <title>AI Color Palette Generator — Free Online Tool | Pure-Flon</title>
+      <link>https://pure-flon.com/tools/color-palette/</link>
+      <description>Generate beautiful, harmonious color palettes from any seed color. Export as CSS variables, Tailwind config, or image. Free, no login required.</description>
+      <pubDate>Mon, 30 Mar 2026 07:51:28 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/color-palette/</guid>
+    </item>
+    <item>
+      <title>Free QR Code Generator — URL, WiFi, vCard | Pure-Flon</title>
+      <link>https://pure-flon.com/tools/qr-generator/</link>
+      <description>Generate QR codes instantly for URLs, text, WiFi networks, and vCards. Download as PNG or SVG. Free, client-side, no data sent to servers.</description>
+      <pubDate>Mon, 30 Mar 2026 07:51:03 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/qr-generator/</guid>
+    </item>
+    <item>
+      <title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
+      <link>https://pure-flon.com/games/world-flag-quiz/</link>
+      <description>Test your world geography! Guess all 195 country flags in timed or relaxed mode. Track your score by continent. Free flag quiz game — no download needed.</description>
+      <pubDate>Mon, 30 Mar 2026 07:50:38 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/</guid>
+    </item>
     <item>
       <title>African Country Flag Quiz — Test Your Knowledge</title>
       <link>https://pure-flon.com/games/world-flag-quiz/africa/</link>
@@ -65,13 +128,6 @@
       <guid isPermaLink="true">https://pure-flon.com/tools/qr-generator/vs-qrcode-monkey/</guid>
     </item>
     <item>
-      <title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
-      <link>https://pure-flon.com/games/world-flag-quiz/</link>
-      <description>Test your world geography! Guess all 195 country flags in timed or relaxed mode. Track your score by continent. Free flag quiz game — no download needed.</description>
-      <pubDate>Mon, 30 Mar 2026 07:27:35 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/</guid>
-    </item>
-    <item>
       <title>K-Meme Quiz | 한국 인터넷 밈 퀴즈 — 당신의 밈력은?</title>
       <link>https://pure-flon.com/games/k-meme-quiz/</link>
       <description>한국 인터넷 밈 퀴즈! 뇌절, 갓생, 현타, 찐친... 50개 이상의 K-밈 중 10문제를 풀며 당신의 밈 지수를 확인하세요. 점수 공유 가능!</description>
@@ -86,27 +142,6 @@
       <guid isPermaLink="true">https://pure-flon.com/games/twenty-questions/</guid>
     </item>
     <item>
-      <title>JSON Formatter &amp; Validator - Free Online Tool | pure-flon</title>
-      <link>https://pure-flon.com/tools/json-formatter/</link>
-      <description>Free online JSON formatter, validator, and beautifier. Paste your JSON to format, minify, validate with syntax highlighting and error detection. No sign-up required.</description>
-      <pubDate>Mon, 30 Mar 2026 07:27:13 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/tools/json-formatter/</guid>
-    </item>
-    <item>
-      <title>Pomodoro Timer - Free Online Focus Timer | pure-flon</title>
-      <link>https://pure-flon.com/tools/pomodoro/</link>
-      <description>Free online Pomodoro timer for focused work sessions. 25-minute work intervals, customizable durations, session tracking, audio notifications, and fullscreen mode. No sign-up required.</description>
-      <pubDate>Mon, 30 Mar 2026 07:27:10 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/tools/pomodoro/</guid>
-    </item>
-    <item>
-      <title>Free QR Code Generator — URL, WiFi, vCard | Pure-Flon</title>
-      <link>https://pure-flon.com/tools/qr-generator/</link>
-      <description>Generate QR codes instantly for URLs, text, WiFi networks, and vCards. Download as PNG or SVG. Free, client-side, no data sent to servers.</description>
-      <pubDate>Mon, 30 Mar 2026 05:57:23 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/tools/qr-generator/</guid>
-    </item>
-    <item>
       <title>Best Free Developer Tools in 2026 — Our Top Picks | pure-flon blog</title>
       <link>https://pure-flon.com/blog/best-free-dev-tools-2026/</link>
       <description>20 best free developer tools in 2026. From JSON formatters to AI coding assistants — boost your productivity without spending a dime.</description>
@@ -119,13 +154,6 @@
       <description>A complete guide to Korean honorifics and speech levels. Learn when to use oppa, unnie, nim, yo, and the 7 Korean speech levels with interactive examples.</description>
       <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/blog/korean-honorifics-guide/</guid>
-    </item>
-    <item>
-      <title>AI Color Palette Generator — Free Online Tool | Pure-Flon</title>
-      <link>https://pure-flon.com/tools/color-palette/</link>
-      <description>Generate beautiful, harmonious color palettes from any seed color. Export as CSS variables, Tailwind config, or image. Free, no login required.</description>
-      <pubDate>Sat, 28 Mar 2026 03:32:41 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/tools/color-palette/</guid>
     </item>
     <item>
       <title>How AI Guesses What You&apos;re Thinking in Just 4 Questions | pure-flon blog</title>
