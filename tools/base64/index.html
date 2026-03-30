@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Encoder & Decoder - Free Online Tool | pure-flon</title>
+<meta name="description" content="Free online Base64 encoder and decoder. Encode text or files to Base64, decode Base64 strings instantly. Runs in your browser — no data sent to servers. No sign-up required.">
+<meta name="keywords" content="base64 encoder, base64 decoder, base64 encode online, base64 decode online, base64 converter, encode decode base64, base64 to text, text to base64">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/base64/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Base64 Encoder & Decoder - Free Online Tool">
+<meta property="og:description" content="Encode and decode Base64 instantly. Runs in your browser, no data sent to servers, completely free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/tools/base64/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Base64 Encoder & Decoder - Free Online Tool">
+<meta name="twitter:description" content="Encode/decode Base64 instantly in your browser. Free, private, no sign-up.">
+
+<!-- JSON-LD WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 Encoder & Decoder",
+  "description": "Free online Base64 encoder and decoder. Runs entirely in your browser — no data is sent to any server.",
+  "url": "https://pure-flon.com/tools/base64/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Pure-Flon", "url": "https://pure-flon.com" }
+}
+</script>
+<!-- JSON-LD FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Base64 encoding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 is a binary-to-text encoding scheme that converts binary data into a string of ASCII characters. It is commonly used to encode binary data — such as images or files — for transmission over text-based protocols like HTTP or email (MIME)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Base64 encoding the same as encryption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Base64 encoding is not encryption. It is a reversible encoding scheme — anyone with the Base64 string can decode it back to the original data without a key. Never use Base64 to secure sensitive information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I decode any Base64 string with this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can decode any valid Base64 string. If the string is not valid Base64, the tool will display an error message. This tool handles both standard Base64 and URL-safe Base64 (which uses - and _ instead of + and /)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data private when using this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All encoding and decoding happens entirely in your browser using JavaScript. No data is sent to any server. You can even use this tool offline after loading the page once."
+      }
+    }
+  ]
+}
+</script>
+<!-- JSON-LD BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pure-flon.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pure-flon.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Base64 Encoder & Decoder", "item": "https://pure-flon.com/tools/base64/" }
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --border: #2a2a2a;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --accent: #4fc3f7;
+  --accent-hover: #81d4fa;
+  --error: #ef5350;
+  --success: #66bb6a;
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.ai-banner {
+  background: linear-gradient(90deg, #1a1a2e, #16213e);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.ai-banner span { color: var(--accent); font-weight: 600; }
+.ai-banner a { color: var(--accent); text-decoration: none; margin: 0 6px; }
+.ai-banner a:hover { color: var(--accent-hover); }
+.sponsor-links { margin-top: 4px; }
+
+nav {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+nav a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+nav a:hover { color: var(--text); }
+nav .sep { color: var(--border); }
+nav .current { color: var(--text); font-weight: 600; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.subtitle { color: var(--text-dim); font-size: 15px; margin-bottom: 32px; }
+
+/* Mode tabs */
+.mode-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  width: fit-content;
+}
+.mode-tab {
+  padding: 8px 24px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mode-tab.active {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+.mode-tab:not(.active):hover { color: var(--text); }
+
+/* Editor grid */
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .editor-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 22px; }
+  .mode-tabs { width: 100%; }
+  .mode-tab { flex: 1; text-align: center; }
+}
+
+.editor-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.panel-copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.panel-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+textarea {
+  width: 100%;
+  min-height: 280px;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+}
+textarea::placeholder { color: #555; }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary {
+  background: var(--accent);
+  color: #0a0a0a;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.btn.primary:hover { background: var(--accent-hover); }
+.btn.danger { color: var(--error); }
+.btn.danger:hover { border-color: var(--error); }
+
+.status-bar {
+  padding: 10px 16px;
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-bar.error { color: var(--error); }
+.status-bar.success { color: var(--success); }
+
+.options-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox-label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Info section */
+.info-section {
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.info-section h2 { font-size: 20px; margin-bottom: 16px; }
+.info-section h3 { font-size: 16px; margin: 24px 0 10px; color: var(--accent); }
+.info-section p { color: var(--text-dim); font-size: 14px; margin-bottom: 12px; max-width: 750px; line-height: 1.7; }
+.info-section ul { color: var(--text-dim); font-size: 14px; padding-left: 20px; }
+.info-section li { margin-bottom: 6px; }
+
+/* Related links */
+.related {
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.related h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.related-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.related-link {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.related-link:hover { border-color: var(--accent); color: var(--accent); }
+
+footer {
+  max-width: 1100px;
+  margin: 48px auto 0;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+footer a { color: var(--text-dim); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="ai-banner">
+  <span>pure-flon tools</span> — free, private, browser-based
+  <div class="sponsor-links">
+    Support: <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">GitHub Sponsors</a> ·
+    <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">Ko-fi</a>
+  </div>
+</div>
+
+<nav>
+  <a href="/">Home</a><span class="sep">›</span>
+  <a href="/tools/">Tools</a><span class="sep">›</span>
+  <span class="current">Base64 Encoder &amp; Decoder</span>
+</nav>
+
+<div class="container">
+  <h1>Base64 Encoder &amp; Decoder</h1>
+  <p class="subtitle">Encode text to Base64 or decode Base64 strings — instantly, in your browser. No data sent to servers.</p>
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tab-encode" onclick="setMode('encode')">Encode</button>
+    <button class="mode-tab" id="tab-decode" onclick="setMode('decode')">Decode</button>
+  </div>
+
+  <!-- Options -->
+  <div class="options-row">
+    <label class="checkbox-label">
+      <input type="checkbox" id="urlSafe"> URL-safe Base64 (uses - and _ instead of + and /)
+    </label>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn primary" onclick="convert()">
+      <span id="btn-label">&#9654; Encode</span>
+    </button>
+    <button class="btn" onclick="swapPanels()">&#8645; Swap</button>
+    <button class="btn" onclick="clearAll()">&#10005; Clear</button>
+    <button class="btn" onclick="loadSample()">Load Sample</button>
+  </div>
+
+  <!-- Editor grid -->
+  <div class="editor-grid">
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span id="label-input">Plain Text</span>
+        <button class="panel-copy-btn" onclick="copyPanel('input')">Copy</button>
+      </div>
+      <textarea id="input-area" placeholder="Enter text to encode..."></textarea>
+      <div class="status-bar" id="input-status"></div>
+    </div>
+
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span id="label-output">Base64</span>
+        <button class="panel-copy-btn" onclick="copyPanel('output')">Copy</button>
+      </div>
+      <textarea id="output-area" placeholder="Base64 output will appear here..." readonly></textarea>
+      <div class="status-bar" id="output-status"></div>
+    </div>
+  </div>
+
+  <!-- Info section -->
+  <div class="info-section">
+    <h2>About Base64 Encoding</h2>
+    <p>Base64 is a group of binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation. Each Base64 character represents 6 bits of data, so 3 bytes of binary data become 4 Base64 characters.</p>
+
+    <h3>Common Use Cases</h3>
+    <ul>
+      <li><strong>Email attachments</strong> — MIME uses Base64 to encode binary files for transport over text-based protocols</li>
+      <li><strong>Data URIs</strong> — Embed images directly in HTML/CSS: <code>src="data:image/png;base64,..."</code></li>
+      <li><strong>API tokens</strong> — HTTP Basic Authentication encodes credentials as Base64</li>
+      <li><strong>JSON payloads</strong> — Safely transmit binary data within JSON strings</li>
+      <li><strong>JWT tokens</strong> — JSON Web Tokens use Base64URL encoding for header and payload</li>
+    </ul>
+
+    <h3>Base64 vs URL-safe Base64</h3>
+    <p>Standard Base64 uses <code>+</code> and <code>/</code> characters which have special meaning in URLs. URL-safe Base64 (Base64URL) replaces these with <code>-</code> and <code>_</code>, making the output safe to include in URLs and filenames without percent-encoding.</p>
+
+    <h3>Is Base64 Encryption?</h3>
+    <p>No. Base64 is an encoding scheme, not encryption. It is fully reversible without any key. Never use Base64 to hide sensitive data — use proper encryption like AES instead.</p>
+
+    <h3>Privacy</h3>
+    <p>All encoding and decoding happens entirely in your browser using JavaScript. No data is transmitted to any server. This tool works offline after the page loads.</p>
+  </div>
+
+  <!-- Related tools -->
+  <div class="related">
+    <h3>Related Tools</h3>
+    <div class="related-links">
+      <a href="/tools/base64/decode/" class="related-link">Base64 Decode</a>
+      <a href="/tools/json-formatter/" class="related-link">JSON Formatter</a>
+      <a href="/tools/qr-generator/" class="related-link">QR Code Generator</a>
+      <a href="/tools/password-generator/" class="related-link">Password Generator</a>
+      <a href="/tools/" class="related-link">All Tools →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><a href="/">pure-flon.com</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/games/">Games</a></p>
+  <p style="margin-top:8px">Free developer tools — no sign-up, no tracking, 100% browser-based</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let currentMode = 'encode';
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('tab-encode').classList.toggle('active', mode === 'encode');
+  document.getElementById('tab-decode').classList.toggle('active', mode === 'decode');
+  document.getElementById('btn-label').textContent = mode === 'encode' ? '▶ Encode' : '▶ Decode';
+  document.getElementById('label-input').textContent = mode === 'encode' ? 'Plain Text' : 'Base64';
+  document.getElementById('label-output').textContent = mode === 'encode' ? 'Base64' : 'Plain Text';
+  document.getElementById('input-area').placeholder = mode === 'encode'
+    ? 'Enter text to encode...'
+    : 'Paste Base64 string to decode...';
+  document.getElementById('output-area').placeholder = mode === 'encode'
+    ? 'Base64 output will appear here...'
+    : 'Decoded text will appear here...';
+  clearStatus();
+}
+
+function convert() {
+  const input = document.getElementById('input-area').value;
+  const urlSafe = document.getElementById('urlSafe').checked;
+  const outEl = document.getElementById('output-area');
+  const statusEl = document.getElementById('output-status');
+
+  if (!input.trim()) {
+    statusEl.className = 'status-bar';
+    statusEl.textContent = '';
+    outEl.value = '';
+    return;
+  }
+
+  try {
+    let result;
+    if (currentMode === 'encode') {
+      result = btoa(unescape(encodeURIComponent(input)));
+      if (urlSafe) result = result.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+      statusEl.className = 'status-bar success';
+      statusEl.textContent = `✓ Encoded — ${input.length} chars → ${result.length} chars`;
+      gtag('event', 'base64_encode', { event_category: 'tool', event_label: 'base64' });
+    } else {
+      let b64 = input.trim();
+      if (urlSafe) b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+      // Add padding if missing
+      while (b64.length % 4) b64 += '=';
+      result = decodeURIComponent(escape(atob(b64)));
+      statusEl.className = 'status-bar success';
+      statusEl.textContent = `✓ Decoded — ${input.trim().length} chars → ${result.length} chars`;
+      gtag('event', 'base64_decode', { event_category: 'tool', event_label: 'base64' });
+    }
+    outEl.value = result;
+  } catch(e) {
+    outEl.value = '';
+    statusEl.className = 'status-bar error';
+    statusEl.textContent = '✗ Invalid input — ' + (currentMode === 'decode' ? 'not valid Base64' : e.message);
+  }
+}
+
+function swapPanels() {
+  const inEl = document.getElementById('input-area');
+  const outEl = document.getElementById('output-area');
+  const temp = inEl.value;
+  inEl.value = outEl.value;
+  outEl.value = temp;
+  setMode(currentMode === 'encode' ? 'decode' : 'encode');
+  clearStatus();
+}
+
+function clearAll() {
+  document.getElementById('input-area').value = '';
+  document.getElementById('output-area').value = '';
+  clearStatus();
+}
+
+function clearStatus() {
+  document.getElementById('input-status').textContent = '';
+  document.getElementById('output-status').textContent = '';
+  document.getElementById('input-status').className = 'status-bar';
+  document.getElementById('output-status').className = 'status-bar';
+}
+
+function loadSample() {
+  if (currentMode === 'encode') {
+    document.getElementById('input-area').value = 'Hello, World! 🌍\nThis is a Base64 encoding example.';
+  } else {
+    document.getElementById('input-area').value = 'SGVsbG8sIFdvcmxkISA8YnI+VGhpcyBpcyBhIEJhc2U2NCBlbmNvZGluZyBleGFtcGxlLg==';
+  }
+  clearStatus();
+}
+
+function copyPanel(which) {
+  const id = which === 'input' ? 'input-area' : 'output-area';
+  const text = document.getElementById(id).value;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => showToast('Copied!')).catch(() => {
+    const ta = document.getElementById(id);
+    ta.select();
+    document.execCommand('copy');
+    showToast('Copied!');
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// Auto-convert on input (debounced)
+let debounceTimer;
+['input-area'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(convert, 300);
+  });
+});
+</script>
+</body>
+</html>

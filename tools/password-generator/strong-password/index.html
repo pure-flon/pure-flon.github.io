@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strong Password Guide — What Makes a Password Secure? | pure-flon</title>
+<meta name="description" content="Learn what makes a strong password: length, entropy, character sets, and common mistakes to avoid. Generate a strong password instantly with our free tool.">
+<meta name="keywords" content="strong password, strong password generator, what makes a strong password, password security, secure password tips, password best practices, how to create strong password">
+<meta name="robots" content="index, follow">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/tools/password-generator/strong-password/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+<link rel="alternate" hreflang="en" href="https://pure-flon.com/tools/password-generator/strong-password/">
+<link rel="alternate" hreflang="x-default" href="https://pure-flon.com/tools/password-generator/strong-password/">
+<link rel="icon" href="/favicon.ico">
+
+<!-- OG -->
+<meta property="og:title" content="Strong Password Guide — What Makes a Password Secure?">
+<meta property="og:description" content="Learn what actually makes a strong password — entropy, length, character sets, and common attack types. With a free password generator.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pure-flon.com/tools/password-generator/strong-password/">
+<meta property="og:site_name" content="pure-flon.com">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Strong Password Guide">
+<meta name="twitter:description" content="What makes a password strong? Entropy, length, character sets explained.">
+
+<!-- JSON-LD Article -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Strong Password Guide — What Makes a Password Secure?","description":"Learn what makes a strong password: length, entropy, character sets, and how to avoid common password mistakes.","url":"https://pure-flon.com/tools/password-generator/strong-password/","datePublished":"2026-03-30","author":{"@type":"Organization","name":"Pure-Flon","url":"https://pure-flon.com"},"publisher":{"@type":"Organization","name":"Pure-Flon"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long should a strong password be?","acceptedAnswer":{"@type":"Answer","text":"At minimum 16 characters for most accounts, and 20+ for high-value accounts like email or banking. Every extra character exponentially increases the number of possible combinations an attacker must test."}},{"@type":"Question","name":"What characters should a strong password include?","acceptedAnswer":{"@type":"Answer","text":"A strong password should mix uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special symbols (!@#$%^&*). Using all four types maximizes entropy for a given password length."}},{"@type":"Question","name":"How many bits of entropy is a strong password?","acceptedAnswer":{"@type":"Answer","text":"Security experts typically recommend at least 80 bits of entropy for a strong password. A 16-character password using all character types (94 possible chars) provides approximately 105 bits of entropy."}},{"@type":"Question","name":"Is a long password better than a complex one?","acceptedAnswer":{"@type":"Answer","text":"Length is more important than complexity. A 20-character lowercase password is stronger than a 10-character password with symbols. The best passwords are both long AND use multiple character types."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pure-flon.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pure-flon.com/tools/"},{"@type":"ListItem","position":3,"name":"Password Generator","item":"https://pure-flon.com/tools/password-generator/"},{"@type":"ListItem","position":4,"name":"Strong Password Guide","item":"https://pure-flon.com/tools/password-generator/strong-password/"}]}</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WE091T20M0');</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--card:#141414;--border:#222;--accent:#4fc3f7;--accent2:#81d4fa;--green:#22c55e;--red:#ef4444;--warn:#ffa726;--text:#e0e0e0;--muted:#888;--dim:#444}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7}
+.container{max-width:780px;margin:0 auto;padding:24px 16px}
+
+/* Breadcrumb */
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:28px;display:flex;flex-wrap:wrap;gap:4px}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}.breadcrumb a:hover{color:var(--accent)}.breadcrumb .sep{color:var(--dim)}
+
+/* Hero */
+.hero{text-align:center;padding:16px 0 32px}
+.hero h1{font-size:1.75rem;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.25;margin-bottom:12px}
+.hero .badge{display:inline-block;background:linear-gradient(135deg,#1a2c1a,#22c55e);color:#fff;border-radius:8px;padding:3px 14px;font-size:0.85rem;font-weight:700;margin-bottom:14px}
+.hero p{color:var(--muted);font-size:0.93rem;max-width:600px;margin:0 auto;line-height:1.65}
+
+/* Entropy table */
+.entropy-table-section{margin:32px 0}
+.entropy-table-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:-0.02em}
+.entropy-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;font-size:0.84rem}
+.entropy-table thead{background:#0d1d38}
+.entropy-table th{padding:12px 16px;text-align:left;font-weight:700;color:var(--accent);font-size:0.8rem;text-transform:uppercase;letter-spacing:.04em}
+.entropy-table td{padding:11px 16px;border-top:1px solid var(--border)}
+.entropy-table .strong{color:var(--green);font-weight:700}
+.entropy-table .medium{color:var(--warn);font-weight:700}
+.entropy-table .weak{color:var(--red);font-weight:700}
+.entropy-table tr:hover{background:#0a0a1a}
+
+/* Guide sections */
+.guide-section{margin:36px 0}
+.guide-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:14px}
+.guide-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:12px}
+.guide-card h3{font-size:0.95rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.guide-card p{font-size:0.87rem;color:var(--muted);line-height:1.65}
+.guide-card ul{font-size:0.87rem;color:var(--muted);padding-left:18px;line-height:1.8}
+
+/* Dos and don'ts */
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+@media(max-width:540px){.do-dont{grid-template-columns:1fr}}
+.do-card{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.25);border-radius:12px;padding:18px}
+.dont-card{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:18px}
+.do-card h3{color:var(--green);font-size:0.9rem;font-weight:800;margin-bottom:10px}
+.dont-card h3{color:var(--red);font-size:0.9rem;font-weight:800;margin-bottom:10px}
+.do-card ul,.dont-card ul{font-size:0.84rem;color:var(--muted);padding-left:16px;line-height:1.9}
+
+/* FAQ */
+.faq-section{margin:36px 0}
+.faq-section>h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:14px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px}
+.faq-item h3{font-size:0.92rem;font-weight:700;color:#fff;margin-bottom:8px}
+.faq-item p{font-size:0.87rem;color:var(--muted);line-height:1.65}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,#0d1d38,#0d2a18);border:1px solid #1e4a7a;border-radius:14px;padding:28px;text-align:center;margin:32px 0}
+.cta-box h2{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:0.88rem;margin-bottom:18px}
+.cta-btn{display:inline-block;padding:11px 30px;background:var(--accent);color:#0a0a0a;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:background .2s}
+.cta-btn:hover{background:var(--accent2)}
+
+footer{padding:24px 16px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--muted);text-decoration:none}.footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/tools/">Tools</a><span class="sep">›</span>
+    <a href="/tools/password-generator/">Password Generator</a><span class="sep">›</span>
+    <span>Strong Password Guide</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge">SECURITY GUIDE</div>
+    <h1>What Makes a Password Strong?</h1>
+    <p>The complete guide to password entropy, length, character sets, and how to protect your accounts from modern attacks.</p>
+  </div>
+
+  <!-- Entropy table -->
+  <div class="entropy-table-section">
+    <h2>Password Strength by Length &amp; Character Set</h2>
+    <table class="entropy-table">
+      <thead>
+        <tr>
+          <th>Length</th>
+          <th>Character Set</th>
+          <th>Possible Combos</th>
+          <th>Entropy</th>
+          <th>Strength</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>8</td><td>Lowercase only</td><td>200 billion</td><td>37 bits</td><td class="weak">Weak</td></tr>
+        <tr><td>8</td><td>Upper + Lower</td><td>53 trillion</td><td>45 bits</td><td class="weak">Weak</td></tr>
+        <tr><td>8</td><td>All types (94 chars)</td><td>6.1 quadrillion</td><td>52 bits</td><td class="medium">Medium</td></tr>
+        <tr><td>12</td><td>All types</td><td>475 quintillion</td><td>78 bits</td><td class="medium">Medium</td></tr>
+        <tr><td>16</td><td>All types</td><td>36 sextillion</td><td>105 bits</td><td class="strong">Strong</td></tr>
+        <tr><td>20</td><td>All types</td><td>2.8 septillion</td><td>131 bits</td><td class="strong">Very Strong</td></tr>
+        <tr><td>24</td><td>All types</td><td>220 octillion</td><td>157 bits</td><td class="strong">Unbreakable</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Guide cards -->
+  <div class="guide-section">
+    <h2>The Four Rules of Strong Passwords</h2>
+    <div class="guide-card">
+      <h3>1. Length is the most important factor</h3>
+      <p>Every additional character multiplies the number of possible passwords by the size of the character set. A 20-character lowercase password has 26^20 = 19.9 septillion combinations — orders of magnitude more than an 8-character complex password (94^8 = 6.1 quadrillion).</p>
+    </div>
+    <div class="guide-card">
+      <h3>2. Mix all four character types</h3>
+      <p>Using uppercase (A-Z), lowercase (a-z), numbers (0-9), and symbols (!@#$%) maximizes the character set size. The number of possible passwords = (charset size)^(length). Larger charset size = exponentially stronger passwords for the same length.</p>
+    </div>
+    <div class="guide-card">
+      <h3>3. Never reuse passwords</h3>
+      <p>The most common way accounts get compromised is credential stuffing — attackers use leaked passwords from one site to try logging in to other sites. A unique password for every account means one breach does not cascade. Use a password manager.</p>
+    </div>
+    <div class="guide-card">
+      <h3>4. Avoid predictable patterns</h3>
+      <p>Attackers use rule-based cracking: dictionary words with number suffixes (password123), keyboard walks (qwerty), common substitutions (p@ssw0rd), and popular base words. None of these patterns survive targeted attacks even at 12+ characters.</p>
+    </div>
+  </div>
+
+  <!-- Do / Don't -->
+  <div class="do-dont">
+    <div class="do-card">
+      <h3>✓ DO</h3>
+      <ul>
+        <li>Use 16+ characters</li>
+        <li>Use all character types</li>
+        <li>Use a unique password per site</li>
+        <li>Store in a password manager</li>
+        <li>Enable 2FA on all accounts</li>
+        <li>Generate randomly (not manually)</li>
+      </ul>
+    </div>
+    <div class="dont-card">
+      <h3>✗ DON'T</h3>
+      <ul>
+        <li>Use dictionary words</li>
+        <li>Use names, birthdays, or dates</li>
+        <li>Reuse passwords across sites</li>
+        <li>Use keyboard patterns (qwerty)</li>
+        <li>Use l33tspeak substitutions</li>
+        <li>Store in a text file or browser only</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Common Questions</h2>
+    <div class="faq-item">
+      <h3>How long should my passwords be?</h3>
+      <p>At minimum 16 characters for general accounts. For high-value accounts (email, banking, password manager master password), use 20+ characters. If a site limits password length below 16, note it as a security red flag.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is a passphrase better than a random password?</h3>
+      <p>Passphrases (4+ random dictionary words) are both strong and memorable: "correct-horse-battery-staple" has ~44 bits of entropy per word. For accounts requiring memorization, a 5+ word passphrase is excellent. For everything else, a random 20-character password stored in a password manager is stronger.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How often should I change my passwords?</h3>
+      <p>Modern security guidance (NIST SP 800-63B) no longer recommends mandatory periodic password changes unless there is evidence of compromise. Changing passwords frequently encourages weak, predictable patterns. Instead: use strong unique passwords and change immediately if a breach is suspected.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can attackers crack a 16-character password?</h3>
+      <p>A 16-character random password with all character types has ~105 bits of entropy. At 100 trillion guesses per second (current GPU clusters), cracking it would take longer than the age of the universe. In practice, attackers rely on stolen hashes, phishing, or reuse — not brute force of truly random passwords.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h2>Generate a Strong Password Now</h2>
+    <p>Use our free password generator to create a cryptographically secure password in one click.</p>
+    <a href="/tools/password-generator/" class="cta-btn">Open Password Generator →</a>
+  </div>
+</div>
+
+<footer>
+  <p><a href="/">pure-flon.com</a> · <a href="/tools/">Free Tools</a> · <a href="/tools/password-generator/">Password Generator</a></p>
+  <p style="margin-top:6px">Free online developer tools — browser-based, private, no sign-up</p>
+</footer>
+</body>
+</html>
