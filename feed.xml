@@ -5,9 +5,16 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 13:29:24 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 13:32:28 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
+    <item>
+      <title>Bitcoin Halving History: Every Date, Block Reward &amp; Price Impact | pure-flon</title>
+      <link>https://pure-flon.com/blog/bitcoin-halving-history/</link>
+      <description>Complete Bitcoin halving history: all 4 halvings with exact dates, block heights, block reward reductions, and price performance before/after each event. Next halving forecast included.</description>
+      <pubDate>Mon, 30 Mar 2026 13:31:27 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/bitcoin-halving-history/</guid>
+    </item>
     <item>
       <title>Crypto Position Size Calculator — Risk Management Tool | pure-flon</title>
       <link>https://pure-flon.com/tools/position-size-calculator/</link>
