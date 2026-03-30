@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Quote | B2B Fluoropolymer Tubing | PURE-FLON</title>
+    <meta name="description" content="Request a B2B quote for PURE-FLON ESD PFA, PFA, and PTFE tubing. Volume discounts available. Response within 1 business day.">
+    <link rel="canonical" href="https://pure-flon.com/quote/">
+
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css?v=4.6.0">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; color: #0f172a; background: #fff; }
+        .page-hero { background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%); color: #fff; padding: 60px 0 50px; text-align: center; }
+        .page-hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; }
+        .page-hero p { color: #94a3b8; font-size: 1.05rem; }
+        .trust-bar { background: #1e293b; padding: 12px 0; }
+        .trust-bar .container { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+        .trust-item { color: #94a3b8; font-size: 0.85rem; }
+        .trust-item strong { color: #e2e8f0; }
+        .main-content { padding: 60px 0; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .layout { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start; }
+        .form-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 36px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .form-card h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+        .form-card > p { color: #64748b; font-size: 0.9rem; margin-bottom: 28px; }
+        .form-section { margin-bottom: 28px; }
+        .form-section h3 { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #f1f5f9; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 6px; }
+        .form-group label .req { color: #ef4444; margin-left: 2px; }
+        .form-control { width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.9rem; font-family: inherit; transition: border-color 0.15s; background: #fff; }
+        .form-control:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+        select.form-control { cursor: pointer; }
+        textarea.form-control { resize: vertical; min-height: 90px; }
+        .product-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+        .product-option { position: relative; }
+        .product-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .product-option label { display: block; padding: 12px 10px; border: 2px solid #e2e8f0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.15s; font-size: 0.82rem; font-weight: 500; }
+        .product-option label strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+        .product-option input:checked + label { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
+        .product-option label:hover { border-color: #93c5fd; }
+        .discount-hint { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: #065f46; margin-bottom: 16px; }
+        .discount-hint strong { display: block; font-size: 0.85rem; margin-bottom: 4px; }
+        .incoterm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .incoterm-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .incoterm-option { position: relative; }
+        .incoterm-option label { display: block; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; cursor: pointer; font-size: 0.82rem; font-weight: 500; transition: all 0.15s; }
+        .incoterm-option label .desc { display: block; font-size: 0.72rem; color: #94a3b8; margin-top: 2px; }
+        .incoterm-option input:checked + label { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
+        .incoterm-option input:checked + label .desc { color: #93c5fd; }
+        .submit-btn { width: 100%; padding: 14px; background: #3b82f6; color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.15s; font-family: inherit; }
+        .submit-btn:hover { background: #2563eb; }
+        .submit-btn:active { background: #1d4ed8; }
+        .privacy-note { margin-top: 12px; font-size: 0.78rem; color: #94a3b8; text-align: center; }
+        .sidebar { position: sticky; top: 24px; }
+        .info-card { background: #f8fafc; border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .info-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 14px; }
+        .info-step { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+        .info-step__num { width: 28px; height: 28px; background: #3b82f6; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+        .info-step__text strong { display: block; font-size: 0.875rem; margin-bottom: 2px; }
+        .info-step__text p { font-size: 0.8rem; color: #64748b; }
+        .contact-card { background: #0f172a; color: #fff; border-radius: 16px; padding: 24px; }
+        .contact-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+        .contact-card a { color: #60a5fa; text-decoration: none; }
+        .contact-item { font-size: 0.875rem; color: #94a3b8; margin-bottom: 8px; }
+        .contact-item strong { color: #e2e8f0; display: block; }
+        .success-msg { display: none; background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 24px; text-align: center; margin-top: 20px; }
+        .success-msg h3 { color: #065f46; margin-bottom: 8px; }
+        .success-msg p { color: #374151; font-size: 0.9rem; }
+        @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .sidebar { position: static; } }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .product-selector { grid-template-columns: 1fr; } .incoterm-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="../" aria-label="PURE-FLON Homepage">
+                    <img src="../images/logo.png" alt="PURE-FLON" width="180" height="40">
+                </a>
+            </div>
+            <nav class="nav" role="navigation">
+                <ul class="nav__menu">
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#" class="nav__link" aria-haspopup="true">Products ▼</a>
+                        <ul class="nav__dropdown">
+                            <li><a href="../products/esd-pfa-tube.html">ESD PFA Tubing</a></li>
+                            <li><a href="../products/pfa-tube.html">PFA Tubing</a></li>
+                            <li><a href="../products/ptfe-tube.html">PTFE Tubing</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__item"><a href="../" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="../quote/" class="nav__link active">Get Quote</a></li>
+                    <li class="nav__item"><a href="mailto:contact@pure-flon.com" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Request a B2B Quote</h1>
+            <p>Fill in your specifications — receive a detailed quotation within 1 business day</p>
+        </div>
+    </section>
+
+    <!-- Trust bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <span class="trust-item">⏱ <strong>1 business day</strong> response</span>
+            <span class="trust-item">📦 <strong>Volume discounts</strong> available</span>
+            <span class="trust-item">🚚 <strong>Global shipping</strong> — EXW/FOB/DHL Express</span>
+            <span class="trust-item">💳 <strong>Stripe</strong> — card or wire transfer</span>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="main-content">
+            <div class="container">
+                <div class="layout">
+                    <!-- Form -->
+                    <div class="form-card">
+                        <h2>RFQ — Request for Quotation</h2>
+                        <p>All fields marked <span style="color:#ef4444">*</span> are required. We'll reply to your email with a detailed quote.</p>
+
+                        <form id="rfqForm" action="https://formspree.io/f/contact@pure-flon.com" method="POST" novalidate>
+
+                            <!-- Company Info -->
+                            <div class="form-section">
+                                <h3>Your Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name <span class="req">*</span></label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control" required autocomplete="given-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name <span class="req">*</span></label>
+                                        <input type="text" id="lastName" name="lastName" class="form-control" required autocomplete="family-name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company">Company Name <span class="req">*</span></label>
+                                    <input type="text" id="company" name="company" class="form-control" required autocomplete="organization">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Business Email <span class="req">*</span></label>
+                                        <input type="email" id="email" name="email" class="form-control" required autocomplete="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone / WhatsApp</label>
+                                        <input type="tel" id="phone" name="phone" class="form-control" autocomplete="tel">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country / Region <span class="req">*</span></label>
+                                    <select id="country" name="country" class="form-control" required>
+                                        <option value="">— Select Country —</option>
+                                        <option>United States</option>
+                                        <option>Germany</option>
+                                        <option>Japan</option>
+                                        <option>South Korea</option>
+                                        <option>Taiwan</option>
+                                        <option>Singapore</option>
+                                        <option>Netherlands</option>
+                                        <option>United Kingdom</option>
+                                        <option>France</option>
+                                        <option>China</option>
+                                        <option>India</option>
+                                        <option>Malaysia</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Product Selection -->
+                            <div class="form-section">
+                                <h3>Product & Specifications</h3>
+                                <div class="form-group">
+                                    <label>Product Type <span class="req">*</span></label>
+                                    <div class="product-selector">
+                                        <div class="product-option">
+                                            <input type="radio" id="prod_esd" name="product" value="ESD PFA Tubing" required>
+                                            <label for="prod_esd">
+                                                <strong>ESD PFA</strong>
+                                                Antistatic · Semiconductor
+                                            </label>
+                                        </div>
+                                        <div class="product-option">
+                                            <input type="radio" id="prod_pfa" name="product" value="PFA Tubing">
+                                            <label for="prod_pfa">
+                                                <strong>PFA</strong>
+                                                High Purity · Transparent
+                                            </label>
+                                        </div>
+                                        <div class="product-option">
+                                            <input type="radio" id="prod_ptfe" name="product" value="PTFE Tubing">
+                                            <label for="prod_ptfe">
+                                                <strong>PTFE</strong>
+                                                Max Resistance · Standard
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="innerDia">Inner Diameter (ID) <span class="req">*</span></label>
+                                        <input type="text" id="innerDia" name="innerDia" class="form-control" placeholder='e.g. 6mm or 1/4"' required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="outerDia">Outer Diameter (OD) <span class="req">*</span></label>
+                                        <input type="text" id="outerDia" name="outerDia" class="form-control" placeholder='e.g. 8mm or 3/8"' required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="length">Length per piece</label>
+                                        <input type="text" id="length" name="length" class="form-control" placeholder="e.g. 5m, 10m, custom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity <span class="req">*</span></label>
+                                        <input type="text" id="quantity" name="quantity" class="form-control" placeholder="e.g. 100 pcs or 500m" required>
+                                    </div>
+                                </div>
+
+                                <div class="discount-hint">
+                                    <strong>Volume Discount Structure</strong>
+                                    The more you order, the lower the unit price. Specify your quantity and we'll apply the best rate for your volume in the quotation.
+                                </div>
+                            </div>
+
+                            <!-- Logistics -->
+                            <div class="form-section">
+                                <h3>Delivery & Shipping</h3>
+                                <div class="form-group">
+                                    <label>Preferred Incoterm</label>
+                                    <div class="incoterm-grid">
+                                        <div class="incoterm-option">
+                                            <input type="radio" id="inc_exw" name="incoterm" value="EXW">
+                                            <label for="inc_exw">EXW <span class="desc">Ex Works (buyer handles shipping)</span></label>
+                                        </div>
+                                        <div class="incoterm-option">
+                                            <input type="radio" id="inc_fob" name="incoterm" value="FOB">
+                                            <label for="inc_fob">FOB <span class="desc">Free on Board (Korea port)</span></label>
+                                        </div>
+                                        <div class="incoterm-option">
+                                            <input type="radio" id="inc_dhl" name="incoterm" value="DHL Express">
+                                            <label for="inc_dhl">DHL Express <span class="desc">Door-to-door (samples)</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deliveryDate">Required By Date</label>
+                                    <input type="date" id="deliveryDate" name="deliveryDate" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Additional Info -->
+                            <div class="form-section">
+                                <h3>Application & Requirements</h3>
+                                <div class="form-group">
+                                    <label for="application">Application / End Use</label>
+                                    <select id="application" name="application" class="form-control">
+                                        <option value="">— Select Industry —</option>
+                                        <option>Semiconductor / Fab</option>
+                                        <option>Pharmaceutical / Biotech</option>
+                                        <option>Chemical Processing</option>
+                                        <option>Food & Beverage</option>
+                                        <option>Oil & Gas</option>
+                                        <option>Laboratory / Analytical</option>
+                                        <option>Electronics Manufacturing</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Additional Requirements / Notes</label>
+                                    <textarea id="notes" name="notes" class="form-control" placeholder="Custom colors, certifications needed (COA, SDS, SEMI F57), special packaging, etc."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Hidden fields for tracking -->
+                            <input type="hidden" name="_subject" value="[NEW RFQ] PURE-FLON B2B Quote Request">
+                            <input type="hidden" name="_next" value="https://pure-flon.com/quote/thank-you.html">
+                            <input type="text" name="_gotcha" style="display:none">
+
+                            <button type="submit" class="submit-btn">Submit Quote Request →</button>
+                            <p class="privacy-note">Your information is kept confidential and used only to prepare your quotation.</p>
+                        </form>
+
+                        <div class="success-msg" id="successMsg">
+                            <h3>✅ Quote Request Received!</h3>
+                            <p>Thank you. We will review your requirements and send a detailed quotation to your email within <strong>1 business day</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="sidebar">
+                        <div class="info-card">
+                            <h3>How It Works</h3>
+                            <div class="info-step">
+                                <div class="info-step__num">1</div>
+                                <div class="info-step__text">
+                                    <strong>Submit RFQ</strong>
+                                    <p>Fill the form with your product specs and quantity.</p>
+                                </div>
+                            </div>
+                            <div class="info-step">
+                                <div class="info-step__num">2</div>
+                                <div class="info-step__text">
+                                    <strong>Receive Quote</strong>
+                                    <p>Within 1 business day — unit price, lead time, and Stripe payment link.</p>
+                                </div>
+                            </div>
+                            <div class="info-step">
+                                <div class="info-step__num">3</div>
+                                <div class="info-step__text">
+                                    <strong>Confirm & Pay</strong>
+                                    <p>Approve the quote and pay via Stripe (card or wire transfer).</p>
+                                </div>
+                            </div>
+                            <div class="info-step">
+                                <div class="info-step__num">4</div>
+                                <div class="info-step__text">
+                                    <strong>Track Shipment</strong>
+                                    <p>We dispatch and send you a DHL/FedEx tracking number.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Volume Discounts</h3>
+                            <p style="font-size:0.85rem;color:#64748b;line-height:1.6;">The more you order, the lower the unit price. We work with B2B buyers from small sample orders to full container loads.</p>
+                            <ul style="margin-top:12px;padding-left:16px;font-size:0.82rem;color:#374151;">
+                                <li style="margin-bottom:6px;">Sample / trial quantities welcome</li>
+                                <li style="margin-bottom:6px;">Tiered pricing for volume</li>
+                                <li style="margin-bottom:6px;">Annual contract pricing available</li>
+                                <li>OEM / private label on request</li>
+                            </ul>
+                        </div>
+
+                        <div class="contact-card">
+                            <h3>Direct Contact</h3>
+                            <div class="contact-item">
+                                <strong>Email</strong>
+                                <a href="mailto:contact@pure-flon.com">contact@pure-flon.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <strong>Response SLA</strong>
+                                1 business day
+                            </div>
+                            <div class="contact-item">
+                                <strong>Timezone</strong>
+                                KST (UTC+9) — Mon–Fri
+                            </div>
+                            <div class="contact-item" style="margin-top:16px;">
+                                <a href="../products/esd-pfa-tube.html" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ ESD PFA Tube specs</a>
+                                <a href="../products/pfa-tube.html" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ PFA Tube specs</a>
+                                <a href="../products/ptfe-tube.html" style="font-size:0.82rem;display:block;">→ PTFE Tube specs</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background:#0f172a;color:#94a3b8;padding:40px 0;text-align:center;margin-top:0;">
+        <div class="container">
+            <p style="margin-bottom:8px;"><strong style="color:#fff;">PURE-FLON</strong> — Fluoropolymer Tube Manufacturer</p>
+            <p style="font-size:0.85rem;">contact@pure-flon.com &nbsp;|&nbsp; <a href="../products/esd-pfa-tube.html" style="color:#3b82f6;">ESD PFA</a> &nbsp;|&nbsp; <a href="../products/pfa-tube.html" style="color:#3b82f6;">PFA</a> &nbsp;|&nbsp; <a href="../products/ptfe-tube.html" style="color:#3b82f6;">PTFE</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Pre-fill product from URL param
+        const params = new URLSearchParams(window.location.search);
+        const prod = params.get('product');
+        if (prod) {
+            const map = { 'esd-pfa': 'prod_esd', 'pfa': 'prod_pfa', 'ptfe': 'prod_ptfe' };
+            const el = document.getElementById(map[prod]);
+            if (el) el.checked = true;
+        }
+
+        // Form submission
+        const form = document.getElementById('rfqForm');
+        form.addEventListener('submit', function(e) {
+            // Basic validation
+            const required = form.querySelectorAll('[required]');
+            let valid = true;
+            required.forEach(el => {
+                if (!el.value.trim()) {
+                    el.style.borderColor = '#ef4444';
+                    valid = false;
+                } else {
+                    el.style.borderColor = '';
+                }
+            });
+            if (!valid) { e.preventDefault(); return; }
+
+            // Show success (Formspree handles actual submission)
+            // For mailto fallback, build subject
+        });
+    </script>
+</body>
+</html>
