@@ -256,7 +256,7 @@ async function sendAdminNotificationEmail({ quoteData, customerEmail }) {
 
     await resend.emails.send({
       from: `Pure-Flon System <${process.env.FROM_EMAIL || 'system@pure-flon.com'}>`,
-      to: [process.env.TO_EMAIL || 'quotes@pure-flon.com'],
+      to: [process.env.TO_EMAIL || 'contact@pure-flon.com'],
       subject: `🔔 새로운 견적 요청 - ${quoteData.company_name}`,
       html: `
         <!DOCTYPE html>

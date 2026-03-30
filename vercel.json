@@ -105,6 +105,9 @@
     },
     "api/quotes/settlement-reply-dispatch.js": {
       "maxDuration": 30
+    },
+    "api/shipping/estimate.js": {
+      "maxDuration": 15
     }
   },
   "regions": ["icn1", "nrt1", "hnd1", "sin1"],
