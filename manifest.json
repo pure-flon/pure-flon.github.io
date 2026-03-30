@@ -1,0 +1,19 @@
+{
+  "name": "Pure-Flon — Free AI Games & Tools",
+  "short_name": "Pure-Flon",
+  "description": "Free AI-powered games, developer tools, and blog. No signup, no ads.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["games", "utilities", "education"],
+  "lang": "en",
+  "scope": "/"
+}
