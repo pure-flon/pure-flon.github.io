@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build an AI Trading System: From Research to Live Trading | pure-flon</title>
+<meta name="description" content="A practical guide to building an AI trading system: architecture, data pipelines, backtesting, and live deployment. Built from real experience running a production trading bot.">
+<meta name="keywords" content="ai trading system, automated trading bot, machine learning trading, algorithmic trading, backtesting, live trading deployment, quantitative trading">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/blog/how-to-build-ai-trading-system/">
+
+<!-- Verification -->
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Build an AI Trading System: From Research to Live Trading">
+<meta property="og:description" content="A practical guide to building an AI trading system from scratch — architecture, backtesting, shadow testing, and going live. Built from real experience.">
+<meta property="og:url" content="https://pure-flon.com/blog/how-to-build-ai-trading-system/">
+<meta property="og:site_name" content="pure-flon">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="article:published_time" content="2026-03-30T00:00:00Z">
+<meta property="article:author" content="pure-flon">
+<meta property="article:section" content="Trading">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="trading">
+<meta property="article:tag" content="machine learning">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Build an AI Trading System: From Research to Live Trading">
+<meta name="twitter:description" content="Architecture, backtesting, shadow testing, live deployment. Lessons learned from building a production AI trading bot.">
+
+<!-- JSON-LD Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build an AI Trading System: From Research to Live Trading",
+  "description": "A practical guide to building an AI trading system: architecture, data pipelines, backtesting, and live deployment. Built from real experience running a production trading bot.",
+  "url": "https://pure-flon.com/blog/how-to-build-ai-trading-system/",
+  "datePublished": "2026-03-30",
+  "dateModified": "2026-03-30",
+  "author": {
+    "@type": "Person",
+    "name": "pure-flon",
+    "url": "https://pure-flon.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "pure-flon"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pure-flon.com/blog/how-to-build-ai-trading-system/"
+  },
+  "keywords": ["ai trading system", "automated trading bot", "machine learning trading", "algorithmic trading", "backtesting", "quantitative trading"]
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an AI trading system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An AI trading system uses machine learning models to generate buy/sell signals and execute trades automatically. It typically combines feature engineering, model training, backtesting, and a live execution engine connected to an exchange."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I avoid overfitting in algorithmic trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use walk-forward validation instead of a single train/test split. Never use future data in your features. Track out-of-sample performance over many distinct market periods, not just one backtest window."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between shadow and live trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shadow trading runs the system on real market data and generates signals, but does not place actual orders. It lets you verify latency, signal quality, and infrastructure stability before committing real capital."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What languages are commonly used for automated trading bots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Python is the most common language for research and model training. The execution engine is often Python or C++ for latency-sensitive paths. Most exchange APIs have Python SDKs, making the full stack achievable in pure Python."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --card-hover: #1a1a1a;
+  --accent: #4466ff;
+  --accent-light: #6688ff;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --orange: #f97316;
+  --red: #ef4444;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --text-muted: #555;
+  --border: #222;
+  --tag-bg: #1a1a2e;
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent-light); }
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .back { color: var(--text-dim); font-size: 0.9rem; }
+nav .back:hover { color: var(--accent); }
+
+.lang-toggle {
+  display: inline-flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.article-header {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-header .tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tag {
+  font-size: 0.72rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--tag-bg);
+  color: var(--accent-light);
+  border: 1px solid rgba(68, 102, 255, 0.2);
+}
+
+.article-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.article-header .meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+article {
+  padding: 40px 0;
+}
+
+article h2 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 40px 0 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+article h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+
+article h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 24px 0 10px;
+}
+
+article p {
+  margin-bottom: 18px;
+  color: var(--text);
+}
+
+article ul, article ol {
+  margin: 0 0 18px 24px;
+}
+
+article li { margin-bottom: 8px; }
+
+article code {
+  font-family: 'Fira Mono', 'Cascadia Code', 'Courier New', monospace;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.87em;
+  color: #a0c4ff;
+}
+
+article pre {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+}
+
+article pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85em;
+  color: #cdd9e5;
+}
+
+/* Phase cards */
+.phase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.phase-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+
+.phase-card:hover { border-color: rgba(68,102,255,0.25); }
+
+.phase-num {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 28px;
+  margin-top: 2px;
+}
+
+.phase-body h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.phase-body p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+
+/* Lesson cards */
+.lesson-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 14px 0;
+}
+
+.lesson-card .lesson-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.lesson-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+
+/* TL;DR */
+.tldr-box {
+  background: rgba(68,102,255,0.06);
+  border: 1px solid rgba(68,102,255,0.2);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.tldr-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+}
+
+.tldr-box ul { margin: 0 0 0 18px; }
+.tldr-box li { margin-bottom: 4px; font-size: 0.9rem; }
+
+/* CTA */
+.cta-box {
+  background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(68,102,255,0.06));
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: var(--radius);
+  padding: 30px;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.cta-box h3 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 18px;
+  font-size: 0.9rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 11px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.93rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.cta-btn:hover {
+  background: var(--accent-light);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0 24px;
+  text-align: center;
+}
+
+.sponsor-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.sponsor-links a {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.sponsor-links a:hover { color: var(--accent); }
+
+.copy {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+/* Warning box */
+.warn-box {
+  background: rgba(234,179,8,0.06);
+  border: 1px solid rgba(234,179,8,0.25);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 20px 0;
+  font-size: 0.88rem;
+  color: #d4a800;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <a href="/blog/" class="back">&#8592; Blog</a>
+    <div class="lang-toggle">
+      <button onclick="setLang('en')" class="active">EN</button>
+      <button onclick="setLang('ko')">KO</button>
+    </div>
+  </nav>
+
+  <header class="article-header">
+    <div class="tags">
+      <span class="tag">AI</span>
+      <span class="tag">Trading</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Engineering</span>
+    </div>
+    <h1 class="lang-content" data-lang="en">How to Build an AI Trading System: From Research to Live Trading</h1>
+    <h1 class="lang-content" data-lang="ko" style="display:none;">AI 트레이딩 시스템 구축 방법: 리서치부터 라이브 트레이딩까지</h1>
+    <div class="meta">
+      <span data-en="March 30, 2026" data-ko="2026년 3월 30일">March 30, 2026</span>
+      &nbsp;·&nbsp;
+      <span data-en="15 min read" data-ko="15분 읽기">15 min read</span>
+      &nbsp;·&nbsp;
+      <span data-en="By pure-flon" data-ko="pure-flon 작성">By pure-flon</span>
+    </div>
+  </header>
+
+  <article>
+
+    <!-- Intro EN -->
+    <div class="lang-content" data-lang="en">
+      <p>Building an AI trading system is not about finding the perfect model. It is about building a system that fails gracefully, promotes strategies cautiously, and keeps you from losing money while you iterate.</p>
+      <p>This guide walks through the full architecture of a production AI trading system — from feature engineering and backtesting to shadow deployment and live execution. Every section is based on hard lessons learned running a real automated trading system on live markets.</p>
+      <p>No theoretical fluff. No promises of easy profit. Just the engineering decisions that matter.</p>
+    </div>
+    <!-- Intro KO -->
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>AI 트레이딩 시스템 구축은 완벽한 모델을 찾는 것이 아닙니다. 실패를 안전하게 처리하고, 전략을 신중하게 승격하며, 반복하는 동안 손실을 최소화하는 시스템을 만드는 것입니다.</p>
+      <p>이 가이드는 피처 엔지니어링과 백테스팅부터 쉐도우 배포와 라이브 실행까지 프로덕션 AI 트레이딩 시스템의 전체 아키텍처를 다룹니다. 모든 섹션은 실제 라이브 시장에서 자동화 트레이딩 시스템을 운영하며 얻은 교훈을 기반으로 합니다.</p>
+      <p>이론적 잡담 없음. 쉬운 수익 약속 없음. 중요한 엔지니어링 결정만.</p>
+    </div>
+
+    <!-- TL;DR -->
+    <div class="tldr-box">
+      <div class="tldr-label" data-en="What You'll Learn" data-ko="학습 내용">What You'll Learn</div>
+      <ul>
+        <li class="lang-content" data-lang="en">How to structure a <strong>production-grade AI trading architecture</strong> (MoE, ensemble, regime detection)</li>
+        <li class="lang-content" data-lang="en">How to build a <strong>leak-free data pipeline</strong> that doesn't lie to your backtest</li>
+        <li class="lang-content" data-lang="en">How to run <strong>walk-forward backtests</strong> that hold up in live trading</li>
+        <li class="lang-content" data-lang="en">The <strong>shadow → canary → active</strong> deployment pattern that protects your capital</li>
+        <li class="lang-content" data-lang="en"><strong>5 lessons</strong> learned the hard way in production</li>
+        <li class="lang-content" data-lang="ko" style="display:none;">프로덕션급 AI 트레이딩 아키텍처 구조화 방법 (MoE, 앙상블, 레짐 감지)</li>
+        <li class="lang-content" data-lang="ko" style="display:none;">백테스트를 왜곡하지 않는 <strong>리크 없는 데이터 파이프라인</strong> 구축 방법</li>
+        <li class="lang-content" data-lang="ko" style="display:none;">라이브 트레이딩에서도 유효한 <strong>워크포워드 백테스트</strong> 실행 방법</li>
+        <li class="lang-content" data-lang="ko" style="display:none;">자본을 보호하는 <strong>쉐도우 → 카나리 → 액티브</strong> 배포 패턴</li>
+        <li class="lang-content" data-lang="ko" style="display:none;">프로덕션에서 힘들게 배운 <strong>5가지 교훈</strong></li>
+      </ul>
+    </div>
+
+    <!-- Section 1: Why AI Trading -->
+    <h2 class="lang-content" data-lang="en">1. Why AI Trading (and Why Most Bots Fail)</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">1. AI 트레이딩과 대부분의 봇이 실패하는 이유</h2>
+
+    <div class="lang-content" data-lang="en">
+      <p>Traditional rule-based bots are brittle. A strategy that worked in a trending market falls apart in a ranging market. An AI trading system can, in theory, adapt — detecting regime changes and switching strategies accordingly.</p>
+      <p>The key phrase is "in theory." Most bots fail because of three reasons:</p>
+      <ul>
+        <li><strong>Overfitting:</strong> The model learned the backtest, not the market.</li>
+        <li><strong>Future leakage:</strong> Features accidentally included data the model wouldn't have at prediction time.</li>
+        <li><strong>Deployment mismatch:</strong> The live environment doesn't match the research environment.</li>
+      </ul>
+      <p>A well-designed AI trading system is mostly infrastructure — gates, checks, and safeguards that prevent these failure modes. The models themselves are almost secondary.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>전통적인 규칙 기반 봇은 취약합니다. 추세 시장에서 작동한 전략은 횡보 시장에서 무너집니다. AI 트레이딩 시스템은 이론적으로 레짐 변화를 감지하고 전략을 전환함으로써 적응할 수 있습니다.</p>
+      <p>"이론적으로"가 핵심입니다. 대부분의 봇이 실패하는 세 가지 이유가 있습니다:</p>
+      <ul>
+        <li><strong>과적합:</strong> 모델이 시장이 아닌 백테스트를 학습했습니다.</li>
+        <li><strong>미래 데이터 누출:</strong> 피처가 예측 시점에 알 수 없는 데이터를 우연히 포함했습니다.</li>
+        <li><strong>배포 불일치:</strong> 라이브 환경이 리서치 환경과 일치하지 않습니다.</li>
+      </ul>
+      <p>잘 설계된 AI 트레이딩 시스템은 대부분 인프라입니다 — 이러한 실패 모드를 방지하는 게이트, 체크, 안전장치. 모델 자체는 거의 부차적입니다.</p>
+    </div>
+
+    <!-- Section 2: Architecture -->
+    <h2 class="lang-content" data-lang="en">2. Architecture Overview</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">2. 아키텍처 개요</h2>
+
+    <div class="lang-content" data-lang="en">
+      <p>A production AI trading system has five main layers. Each layer has a single responsibility and communicates through well-defined interfaces.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>프로덕션 AI 트레이딩 시스템은 다섯 가지 주요 레이어로 구성됩니다. 각 레이어는 단일 책임을 가지며 명확하게 정의된 인터페이스를 통해 통신합니다.</p>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-num">1</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Data Pipeline</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">데이터 파이프라인</h4>
+          <p class="lang-content" data-lang="en">OHLCV ingestion, feature engineering, normalization. Outputs a feature matrix with strict point-in-time correctness.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">OHLCV 수집, 피처 엔지니어링, 정규화. 엄격한 시점 정확성을 갖춘 피처 매트릭스를 출력합니다.</p>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">2</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Model Layer (MoE / Ensemble)</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">모델 레이어 (MoE / 앙상블)</h4>
+          <p class="lang-content" data-lang="en">Multiple specialized models for different regimes. A gating network or meta-learner combines their signals into a single prediction.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">다양한 레짐을 위한 여러 전문화된 모델. 게이팅 네트워크 또는 메타 러너가 신호를 단일 예측으로 결합합니다.</p>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">3</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Regime Detector</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">레짐 감지기</h4>
+          <p class="lang-content" data-lang="en">Classifies current market state (trending, ranging, volatile). Routes signals to the appropriate specialist model.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">현재 시장 상태를 분류합니다 (추세, 횡보, 변동성). 적절한 전문가 모델로 신호를 라우팅합니다.</p>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">4</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Arbitrator / Risk Manager</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">중재자 / 리스크 매니저</h4>
+          <p class="lang-content" data-lang="en">Validates signals against risk limits: max position size, daily loss cap, open trade count. Rejects or scales down any signal that breaches limits.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">신호를 리스크 한도에 대해 검증합니다: 최대 포지션 크기, 일일 손실 한도, 오픈 트레이드 수. 한도를 초과하는 신호를 거부하거나 축소합니다.</p>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">5</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Execution Engine</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">실행 엔진</h4>
+          <p class="lang-content" data-lang="en">Places orders via exchange API. Manages order lifecycle: entry, TP/SL, trailing stops, timeout exits. Logs every decision to a database.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">거래소 API를 통해 주문을 실행합니다. 주문 생명주기를 관리합니다: 진입, TP/SL, 트레일링 스탑, 타임아웃 종료. 모든 결정을 데이터베이스에 로깅합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-content" data-lang="en">
+      <h3>Why Mixture-of-Experts (MoE)?</h3>
+      <p>A single model trained on all market conditions learns average behavior. Average behavior loses money in edge-case regimes. A Mixture-of-Experts architecture trains dedicated models for specific conditions (e.g., high-volatility breakout, low-volatility mean reversion) and activates the right one based on current market state.</p>
+      <p>The result: each specialist can be deep and precise, while the gating layer handles regime detection. This also makes debugging easier — when performance degrades, you can trace it to a specific specialist and a specific regime.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <h3>왜 Mixture-of-Experts (MoE)인가?</h3>
+      <p>모든 시장 조건에서 훈련된 단일 모델은 평균적 행동을 학습합니다. 평균적 행동은 엣지 케이스 레짐에서 손실을 냅니다. Mixture-of-Experts 아키텍처는 특정 조건을 위한 전담 모델을 훈련하고 (예: 고변동성 브레이크아웃, 저변동성 평균 회귀) 현재 시장 상태에 따라 올바른 모델을 활성화합니다.</p>
+      <p>결과: 각 전문가는 깊고 정확할 수 있으며, 게이팅 레이어가 레짐 감지를 처리합니다. 디버깅도 쉬워집니다 — 성능이 저하되면 특정 전문가와 특정 레짐으로 추적할 수 있습니다.</p>
+    </div>
+
+    <!-- Section 3: Data Pipeline -->
+    <h2 class="lang-content" data-lang="en">3. Data Pipeline: Avoiding the Future Leakage Trap</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">3. 데이터 파이프라인: 미래 데이터 누출 함정 피하기</h2>
+
+    <div class="lang-content" data-lang="en">
+      <p>Future leakage is the most common cause of backtests that perform brilliantly but fail in live trading. It happens when a feature calculation inadvertently uses data from the future.</p>
+      <p>Common examples:</p>
+      <ul>
+        <li>Normalizing with the full dataset's mean/std (the mean of future candles is included)</li>
+        <li>Using the close price of the current candle in a feature that's supposed to predict that same close</li>
+        <li>Any look-ahead in feature calculations (e.g., a rolling max that uses future bars)</li>
+      </ul>
+      <h3>The fix: point-in-time correctness</h3>
+      <p>Every feature must only use data available at the moment of prediction. Build your feature pipeline with an explicit <code>as_of</code> timestamp and audit every calculation:</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>미래 데이터 누출은 백테스트에서 훌륭하게 작동하지만 라이브 트레이딩에서 실패하는 가장 일반적인 원인입니다. 피처 계산이 의도치 않게 미래의 데이터를 사용할 때 발생합니다.</p>
+      <p>일반적인 예시:</p>
+      <ul>
+        <li>전체 데이터셋의 평균/표준편차로 정규화 (미래 캔들의 평균이 포함됨)</li>
+        <li>예측하려는 동일한 종가를 피처에 사용</li>
+        <li>피처 계산에서의 모든 룩어헤드 (예: 미래 바를 사용하는 롤링 최댓값)</li>
+      </ul>
+      <h3>해결책: 시점 정확성</h3>
+      <p>모든 피처는 예측 시점에 사용 가능한 데이터만 사용해야 합니다. 명시적인 <code>as_of</code> 타임스탬프로 피처 파이프라인을 구축하고 모든 계산을 감사하세요:</p>
+    </div>
+
+<pre><code># Point-in-time safe feature calculation
+def compute_features(df: pd.DataFrame, as_of: pd.Timestamp) -> pd.Series:
+    # Only use data up to (not including) current bar
+    history = df[df.index < as_of].copy()
+
+    # Safe: rolling stats on past data only
+    rsi = compute_rsi(history['close'], period=14)
+    vol = history['close'].pct_change().rolling(20).std().iloc[-1]
+
+    # Normalize with expanding window (never full-dataset stats)
+    close_norm = (history['close'].iloc[-1] - history['close'].expanding().mean().iloc[-1]) \
+                  / history['close'].expanding().std().iloc[-1]
+
+    return pd.Series({'rsi': rsi, 'vol': vol, 'close_norm': close_norm})</code></pre>
+
+    <div class="lang-content" data-lang="en">
+      <h3>Feature categories that work</h3>
+      <ul>
+        <li><strong>Price-derived:</strong> RSI, Bollinger Bands, ATR, momentum (N-bar returns)</li>
+        <li><strong>Volume-derived:</strong> OBV, VWAP deviation, volume z-score</li>
+        <li><strong>Cross-asset:</strong> BTC dominance, ETH/BTC ratio (regime indicators)</li>
+        <li><strong>Microstructure:</strong> Bid-ask spread, order book imbalance (if available)</li>
+      </ul>
+      <p>Keep feature engineering simple until you have a robust pipeline. A 20-feature model with clean data beats a 200-feature model with leaky data every time.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <h3>효과적인 피처 카테고리</h3>
+      <ul>
+        <li><strong>가격 파생:</strong> RSI, 볼린저 밴드, ATR, 모멘텀 (N바 수익률)</li>
+        <li><strong>거래량 파생:</strong> OBV, VWAP 편차, 거래량 z-스코어</li>
+        <li><strong>크로스에셋:</strong> BTC 도미넌스, ETH/BTC 비율 (레짐 지표)</li>
+        <li><strong>미시구조:</strong> 매수/매도 스프레드, 오더북 불균형 (가용 시)</li>
+      </ul>
+      <p>강건한 파이프라인을 갖출 때까지 피처 엔지니어링을 단순하게 유지하세요. 깨끗한 데이터를 가진 20개 피처 모델이 누출된 데이터를 가진 200개 피처 모델을 항상 이깁니다.</p>
+    </div>
+
+    <!-- Section 4: Backtesting -->
+    <h2 class="lang-content" data-lang="en">4. Backtesting That Actually Predicts Live Performance</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">4. 실제 라이브 성능을 예측하는 백테스팅</h2>
+
+    <div class="lang-content" data-lang="en">
+      <p>Standard train/test splits are inadequate for trading. A single split tests one historical period. Markets change regimes. A strategy validated on 2021 bull data will fail in 2022 bear conditions.</p>
+      <h3>Walk-forward validation</h3>
+      <p>Walk-forward testing slides a window through history: train on months 1–6, test on month 7. Then train on months 2–7, test on month 8. Repeat across the full dataset. This gives you out-of-sample results for every period in your history, not just the end.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>표준 훈련/테스트 분할은 트레이딩에 적합하지 않습니다. 단일 분할은 하나의 역사적 기간만 테스트합니다. 시장은 레짐을 변경합니다. 2021년 강세장 데이터로 검증된 전략은 2022년 약세장 조건에서 실패할 것입니다.</p>
+      <h3>워크포워드 검증</h3>
+      <p>워크포워드 테스팅은 윈도우를 역사 전체에 걸쳐 슬라이드합니다: 1~6개월로 훈련, 7개월로 테스트. 그런 다음 2~7개월로 훈련, 8개월로 테스트. 전체 데이터셋에서 반복합니다. 이를 통해 끝 부분만이 아닌 역사의 모든 기간에 대한 아웃오브샘플 결과를 얻습니다.</p>
+    </div>
+
+    <div class="lang-content" data-lang="en">
+      <h3>Survival analysis — the gate most builders skip</h3>
+      <p>Walk-forward gives you aggregate statistics. Survival analysis asks a harder question: <em>what fraction of strategy variants survived each test period?</em></p>
+      <p>A strategy configuration that survives 80% of test windows at a target return threshold is more reliable than one that averages higher returns but only survives 30% of windows. The survival rate is a proxy for robustness — how likely is this strategy to keep working in conditions it hasn't seen yet?</p>
+      <p>Minimum thresholds before promoting a strategy to live consideration:</p>
+      <ul>
+        <li>Survival rate ≥ 15% of periods tested</li>
+        <li>S-tier + A-tier variants ≥ 20 total</li>
+        <li>Profitable variants / total variants ≥ 50%</li>
+      </ul>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <h3>생존 분석 — 대부분의 개발자가 건너뛰는 게이트</h3>
+      <p>워크포워드는 집계 통계를 제공합니다. 생존 분석은 더 어려운 질문을 합니다: <em>각 테스트 기간을 생존한 전략 변형의 비율은?</em></p>
+      <p>목표 수익률 임계값에서 테스트 윈도우의 80%를 생존하는 전략 구성은 평균 수익률이 더 높지만 윈도우의 30%만 생존하는 것보다 신뢰할 수 있습니다. 생존율은 견고성의 대리 지표입니다 — 이 전략이 아직 보지 못한 조건에서도 계속 작동할 가능성은?</p>
+      <p>라이브 고려를 위해 전략을 승격하기 전 최소 임계값:</p>
+      <ul>
+        <li>생존율 ≥ 테스트 기간의 15%</li>
+        <li>S급 + A급 변형 ≥ 총 20개</li>
+        <li>수익성 변형 / 총 변형 ≥ 50%</li>
+      </ul>
+    </div>
+
+    <div class="warn-box lang-content" data-lang="en">
+      ⚠️ <strong>Important:</strong> Backtesting assumes perfect fill at the signal bar's close. In live trading, slippage, latency, and partial fills will reduce your realized returns. Apply a conservative haircut (e.g., 15–30% worse than backtest) when evaluating whether a strategy is worth deploying.
+    </div>
+    <div class="warn-box lang-content" data-lang="ko" style="display:none;">
+      ⚠️ <strong>중요:</strong> 백테스팅은 신호 바의 종가에서 완벽한 체결을 가정합니다. 라이브 트레이딩에서 슬리피지, 레이턴시, 부분 체결은 실현 수익률을 감소시킵니다. 전략 배포 가치를 평가할 때 보수적인 할인(예: 백테스트보다 15~30% 낮음)을 적용하세요.
+    </div>
+
+    <!-- Section 5: Live Deployment -->
+    <h2 class="lang-content" data-lang="en">5. Live Deployment: Shadow → Canary → Active</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">5. 라이브 배포: 쉐도우 → 카나리 → 액티브</h2>
+
+    <div class="lang-content" data-lang="en">
+      <p>Never go straight from backtest to live trading with real money. The gap between backtest performance and live performance is almost always larger than you expect. The three-stage deployment pattern gives you time to detect and fix problems before they cost you.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>백테스트에서 실제 자금으로 라이브 트레이딩으로 바로 전환하지 마세요. 백테스트 성능과 라이브 성능 사이의 간극은 예상보다 항상 더 큽니다. 3단계 배포 패턴은 비용이 발생하기 전에 문제를 감지하고 수정할 시간을 줍니다.</p>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-num" style="color:var(--text-dim);">S</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Shadow Mode</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">쉐도우 모드</h4>
+          <p class="lang-content" data-lang="en">System runs on live data, generates real signals, but places no orders. Validate that latency, feature computation, and signal frequency match expectations. Run for at least 5–7 days.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">시스템이 라이브 데이터로 실행되고 실제 신호를 생성하지만 주문을 실행하지 않습니다. 레이턴시, 피처 계산, 신호 빈도가 기대치와 일치하는지 검증합니다. 최소 5~7일 운영합니다.</p>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num" style="color:var(--yellow);">C</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Canary Mode</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">카나리 모드</h4>
+          <p class="lang-content" data-lang="en">Live trading with reduced position size (10–20% of target). Real fills, real slippage, real emotions. Compare realized fills to shadow signals. Run until you have 20–30 completed trades.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">축소된 포지션 크기(목표의 10~20%)로 라이브 트레이딩. 실제 체결, 실제 슬리피지, 실제 감정. 실현된 체결을 쉐도우 신호와 비교합니다. 20~30개의 완료된 트레이드가 나올 때까지 운영합니다.</p>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num" style="color:var(--green);">A</div>
+        <div class="phase-body">
+          <h4 class="lang-content" data-lang="en">Active Mode</h4>
+          <h4 class="lang-content" data-lang="ko" style="display:none;">액티브 모드</h4>
+          <p class="lang-content" data-lang="en">Full position size. Only reach this after canary results match shadow predictions within acceptable bounds. Auto-rollback to canary if drawdown exceeds threshold.</p>
+          <p class="lang-content" data-lang="ko" style="display:none;">전체 포지션 크기. 카나리 결과가 허용 범위 내에서 쉐도우 예측과 일치한 후에만 여기에 도달합니다. 손실이 임계값을 초과하면 카나리로 자동 롤백합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-content" data-lang="en">
+      <h3>Circuit breakers you must have</h3>
+      <p>Before going live, implement hard circuit breakers at the risk manager layer. These should be impossible to bypass:</p>
+      <ul>
+        <li><strong>Max daily loss:</strong> Halt all trading if daily PnL drops below X%</li>
+        <li><strong>Max open positions:</strong> Hard cap on simultaneous open trades</li>
+        <li><strong>Max position size:</strong> Per-trade size limit as % of portfolio</li>
+        <li><strong>Anomaly detection:</strong> If signal frequency is 10x normal, pause and investigate before acting</li>
+      </ul>
+      <p>Circuit breakers should be implemented at the infrastructure level, not the model level. A misbehaving model should be caught before it reaches the exchange API.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <h3>반드시 갖춰야 할 서킷 브레이커</h3>
+      <p>라이브 운영 전에 리스크 매니저 레이어에 하드 서킷 브레이커를 구현합니다. 이는 우회 불가능해야 합니다:</p>
+      <ul>
+        <li><strong>최대 일일 손실:</strong> 일일 PnL이 X% 아래로 떨어지면 모든 거래 중단</li>
+        <li><strong>최대 오픈 포지션:</strong> 동시 오픈 트레이드 하드 캡</li>
+        <li><strong>최대 포지션 크기:</strong> 포트폴리오 %로 트레이드당 크기 한도</li>
+        <li><strong>이상 감지:</strong> 신호 빈도가 정상의 10배라면 행동하기 전에 일시 중지하고 조사</li>
+      </ul>
+      <p>서킷 브레이커는 모델 레이어가 아닌 인프라 레이어에서 구현해야 합니다. 오작동하는 모델은 거래소 API에 도달하기 전에 잡혀야 합니다.</p>
+    </div>
+
+    <!-- Section 6: Lessons Learned -->
+    <h2 class="lang-content" data-lang="en">6. Five Lessons Learned in Production</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">6. 프로덕션에서 배운 다섯 가지 교훈</h2>
+
+    <div class="lesson-card lang-content" data-lang="en">
+      <div class="lesson-title">1. The backtest always lies a little</div>
+      <p>Even with perfect point-in-time data, backtests assume you can always fill at the signal bar's close. In practice, by the time your signal fires, prices have moved. Budget for 15–30% lower realized returns than your backtest shows. If the strategy isn't worth deploying at 70% of backtest performance, it's not worth deploying at all.</p>
+    </div>
+    <div class="lesson-card lang-content" data-lang="ko" style="display:none;">
+      <div class="lesson-title">1. 백테스트는 항상 조금 거짓말한다</div>
+      <p>완벽한 시점 데이터에서도 백테스트는 항상 신호 바의 종가에서 체결 가능하다고 가정합니다. 실제로 신호가 발생할 때쯤 가격은 이미 움직였습니다. 백테스트가 보여주는 것보다 15~30% 낮은 실현 수익을 예산에 반영하세요. 전략이 백테스트 성능의 70%에서도 배포할 가치가 없다면 전혀 배포할 가치가 없는 것입니다.</p>
+    </div>
+
+    <div class="lesson-card lang-content" data-lang="en">
+      <div class="lesson-title">2. Log everything — you'll thank yourself later</div>
+      <p>Every signal, every decision, every fill, every rejection. Store with a unique ID, a timestamp, and the feature values that generated the signal. When something goes wrong in production (and it will), your ability to diagnose and fix it depends entirely on how much data you captured. Disk is cheap; debugging without logs is not.</p>
+    </div>
+    <div class="lesson-card lang-content" data-lang="ko" style="display:none;">
+      <div class="lesson-title">2. 모든 것을 로깅하라 — 나중에 감사하게 될 것이다</div>
+      <p>모든 신호, 모든 결정, 모든 체결, 모든 거부. 고유 ID, 타임스탬프, 신호를 생성한 피처 값으로 저장하세요. 프로덕션에서 문제가 발생하면 (반드시 발생합니다), 진단하고 수정하는 능력은 전적으로 얼마나 많은 데이터를 캡처했느냐에 달려 있습니다. 디스크는 저렴합니다; 로그 없이 디버깅하는 것은 그렇지 않습니다.</p>
+    </div>
+
+    <div class="lesson-card lang-content" data-lang="en">
+      <div class="lesson-title">3. Regime detection is harder than price prediction</div>
+      <p>Most AI trading papers focus on predicting price direction. The harder problem is knowing which model to trust right now. A regime detector that correctly identifies trending vs. ranging conditions with 60% accuracy will do more for your system than a price predictor that achieves 55% accuracy in all conditions.</p>
+    </div>
+    <div class="lesson-card lang-content" data-lang="ko" style="display:none;">
+      <div class="lesson-title">3. 레짐 감지는 가격 예측보다 어렵다</div>
+      <p>대부분의 AI 트레이딩 논문은 가격 방향 예측에 집중합니다. 더 어려운 문제는 지금 어느 모델을 신뢰할지 아는 것입니다. 추세 대 횡보 조건을 60% 정확도로 올바르게 식별하는 레짐 감지기는 모든 조건에서 55% 정확도를 달성하는 가격 예측기보다 시스템에 더 많은 기여를 합니다.</p>
+    </div>
+
+    <div class="lesson-card lang-content" data-lang="en">
+      <div class="lesson-title">4. Your data pipeline will drift without you noticing</div>
+      <p>Exchange APIs change. Data vendors add columns, rename fields, or quietly change their aggregation method. A feature that worked for 6 months can silently start returning garbage. Build a data quality monitor that checks feature distributions daily and alerts you when any feature drifts beyond 3 standard deviations from its 30-day mean.</p>
+    </div>
+    <div class="lesson-card lang-content" data-lang="ko" style="display:none;">
+      <div class="lesson-title">4. 데이터 파이프라인은 모르는 사이에 드리프트한다</div>
+      <p>거래소 API는 변경됩니다. 데이터 벤더는 컬럼을 추가하거나 필드 이름을 바꾸거나 조용히 집계 방법을 변경합니다. 6개월 동안 작동한 피처가 조용히 쓰레기 값을 반환하기 시작할 수 있습니다. 피처 분포를 매일 확인하고 피처가 30일 평균에서 3 표준편차를 초과하면 알림을 보내는 데이터 품질 모니터를 구축하세요.</p>
+    </div>
+
+    <div class="lesson-card lang-content" data-lang="en">
+      <div class="lesson-title">5. The psychology of automation is underrated</div>
+      <p>Once you have a live system, the hardest problem is not engineering — it's not touching it. Every time you manually intervene in a position, you're adding your own bias to a system that was specifically designed to remove bias. Set your circuit breaker thresholds, then commit to not overriding them. The discipline required to run an automated system is different from the discipline required to build one.</p>
+    </div>
+    <div class="lesson-card lang-content" data-lang="ko" style="display:none;">
+      <div class="lesson-title">5. 자동화의 심리적 측면은 과소평가된다</div>
+      <p>라이브 시스템을 갖추면 가장 어려운 문제는 엔지니어링이 아닙니다 — 손대지 않는 것입니다. 포지션에 수동으로 개입할 때마다 편향을 제거하도록 특별히 설계된 시스템에 자신의 편향을 추가하는 것입니다. 서킷 브레이커 임계값을 설정하고 이를 재정의하지 않겠다고 다짐하세요. 자동화 시스템을 운영하는 데 필요한 규율은 구축하는 데 필요한 규율과 다릅니다.</p>
+    </div>
+
+    <!-- Section 7: CTA -->
+    <h2 class="lang-content" data-lang="en">7. Where to Go From Here</h2>
+    <h2 class="lang-content" data-lang="ko" style="display:none;">7. 다음 단계</h2>
+
+    <div class="lang-content" data-lang="en">
+      <p>Building a production AI trading system is a multi-month project. Start with the pipeline before the model. Build the logging infrastructure before you write your first strategy. Set up the shadow/canary/active pattern before you trade a dollar.</p>
+      <p>The good news is that each layer is independently testable. You can validate your feature pipeline without any model. You can test your execution engine with random signals. You can run shadow mode indefinitely without risking capital.</p>
+      <p>If you want to see how AI is being used in crypto trading today — and which tools are worth your time — check out our <a href="/blog/ai-crypto-trading-tools-2026/">roundup of the best free AI tools for crypto traders in 2026</a>. And if you're curious about how AI systems make decisions under uncertainty, the same Shannon entropy principle that drives trading model uncertainty is what powers our <a href="/games/twenty-questions/">20 Questions AI game</a>.</p>
+    </div>
+    <div class="lang-content" data-lang="ko" style="display:none;">
+      <p>프로덕션 AI 트레이딩 시스템 구축은 수개월에 걸친 프로젝트입니다. 모델보다 파이프라인을 먼저 시작하세요. 첫 번째 전략을 작성하기 전에 로깅 인프라를 구축하세요. 한 달러를 거래하기 전에 쉐도우/카나리/액티브 패턴을 설정하세요.</p>
+      <p>좋은 소식은 각 레이어가 독립적으로 테스트 가능하다는 것입니다. 어떤 모델 없이도 피처 파이프라인을 검증할 수 있습니다. 무작위 신호로 실행 엔진을 테스트할 수 있습니다. 자본 위험 없이 쉐도우 모드를 무한정 실행할 수 있습니다.</p>
+      <p>오늘날 AI가 암호화폐 트레이딩에서 어떻게 사용되는지 알고 싶다면 — 그리고 어떤 도구가 시간을 투자할 가치가 있는지 — <a href="/blog/ai-crypto-trading-tools-2026/">2026년 암호화폐 트레이더를 위한 최고의 무료 AI 도구 모음</a>을 확인하세요.</p>
+    </div>
+
+    <!-- CTA box -->
+    <div class="cta-box">
+      <h3 class="lang-content" data-lang="en">Test Your Pattern Recognition</h3>
+      <h3 class="lang-content" data-lang="ko" style="display:none;">패턴 인식 능력 테스트</h3>
+      <p class="lang-content" data-lang="en">Good traders see patterns faster. Train that skill with the World Flag Quiz — 200+ flags from every continent, pattern-matching under time pressure.</p>
+      <p class="lang-content" data-lang="ko" style="display:none;">뛰어난 트레이더는 패턴을 더 빠르게 봅니다. 세계 국기 퀴즈로 그 능력을 훈련하세요 — 모든 대륙에서 200개 이상의 국기, 시간 압박 하의 패턴 매칭.</p>
+      <a href="/games/world-flag-quiz/" class="cta-btn" onclick="gtag('event','cta_click',{cta_type:'game_link',source:'blog-ai-trading-system'})">
+        <span class="lang-content" data-lang="en">Play World Flag Quiz</span>
+        <span class="lang-content" data-lang="ko" style="display:none;">세계 국기 퀴즈 플레이</span>
+      </a>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{cta_type:'kofi',product:'blog-ai-trading-system'})">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{cta_type:'github_sponsors',product:'blog-ai-trading-system'})">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{cta_type:'paypal',product:'blog-ai-trading-system'})">PayPal</a>
+    </div>
+    <a href="/blog/" style="color:var(--text-dim);font-size:0.85rem;" data-en="Back to Blog" data-ko="블로그로 돌아가기">Back to Blog</a>
+    <p class="copy">&copy; 2026 pure-flon. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-toggle button:${lang === 'en' ? 'first' : 'last'}-child`).classList.add('active');
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+
+  document.querySelectorAll('.lang-content').forEach(el => {
+    el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
