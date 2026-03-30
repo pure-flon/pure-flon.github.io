@@ -5,9 +5,30 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 13:32:28 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 13:48:32 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
+    <item>
+      <title>Bitcoin DCA Calculator — BTC Dollar Cost Averaging Returns | pure-flon</title>
+      <link>https://pure-flon.com/tools/dca-calculator/bitcoin/</link>
+      <description>Free Bitcoin DCA calculator. See how much you would have made dollar-cost averaging into BTC over any period. Compare weekly vs monthly Bitcoin investing. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 13:47:40 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/dca-calculator/bitcoin/</guid>
+    </item>
+    <item>
+      <title>Bitcoin DCA Strategy: Backtested Results for Every Start Date Since 2017 | pure-flon</title>
+      <link>https://pure-flon.com/blog/bitcoin-dca-strategy/</link>
+      <description>Does dollar-cost averaging Bitcoin actually work? Historical DCA results for every year since 2017. Data table, annualized returns, and step-by-step strategy guide.</description>
+      <pubDate>Mon, 30 Mar 2026 13:45:26 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/blog/bitcoin-dca-strategy/</guid>
+    </item>
+    <item>
+      <title>India Tech Culture Quiz | Do You Know Indian Developer Slang?</title>
+      <link>https://pure-flon.com/games/india-tech-culture/</link>
+      <description>Test your knowledge of Indian IT culture! From &apos;do the needful&apos; to &apos;jugaad&apos; — 50+ questions about Indian developer slang, IT company culture, and desi tech humor.</description>
+      <pubDate>Mon, 30 Mar 2026 13:38:51 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/india-tech-culture/</guid>
+    </item>
     <item>
       <title>Bitcoin Halving History: Every Date, Block Reward &amp; Price Impact | pure-flon</title>
       <link>https://pure-flon.com/blog/bitcoin-halving-history/</link>
