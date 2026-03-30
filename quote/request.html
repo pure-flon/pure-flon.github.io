@@ -358,6 +358,11 @@
                         page_type: 'quote_request',
                         transport_type: 'beacon'
                     });
+                    gtag('event', 'generate_lead', {
+                        currency: 'USD',
+                        value: 0,
+                        items: [{ item_id: productType, item_name: productType + ' tubing' }]
+                    });
                 }
 
                 try {

@@ -20,6 +20,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css?v=4.6.0">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WE091T20M0');
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -291,5 +300,24 @@
 
     <!-- 챗봇 위젯 -->
     <script src="../../js/chat-widget.js" defer></script>
+
+    <!-- GA4 Conversion Tracking -->
+    <script>
+    gtag('event', 'view_item', {
+        currency: 'USD',
+        items: [{ item_id: 'pfa-tube', item_name: 'PFA Tubing', item_category: 'fluoropolymer', item_brand: 'PURE-FLON' }]
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href*="quote"]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                gtag('event', 'generate_lead', {
+                    currency: 'USD',
+                    value: 0,
+                    items: [{ item_id: 'pfa-tube', item_name: 'PFA Tubing' }]
+                });
+            });
+        });
+    });
+    </script>
 </body>
 </html>
