@@ -77,7 +77,7 @@
         @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .product-selector { grid-template-columns: 1fr; } .incoterm-grid { grid-template-columns: 1fr 1fr; } }
     </style>
 </head>
-<body>
+<body data-product="quote">
     <!-- Header -->
     <header class="header" role="banner">
         <div class="header__container">
@@ -412,5 +412,8 @@
             // For mailto fallback, build subject
         });
     </script>
+
+    <!-- 챗봇 위젯 -->
+    <script src="../js/chat-widget.js" defer></script>
 </body>
 </html>

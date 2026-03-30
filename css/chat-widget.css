@@ -1,0 +1,210 @@
+/* Pure-Flon 챗봇 위젯 스타일 */
+
+#pf-chat-toggle {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.45);
+  z-index: 9998;
+  transition: background 0.2s, transform 0.2s;
+}
+#pf-chat-toggle:hover {
+  background: #1d4ed8;
+  transform: scale(1.07);
+}
+#pf-chat-toggle svg {
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
+
+#pf-chat-panel {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: 360px;
+  max-width: calc(100vw - 40px);
+  height: 500px;
+  max-height: calc(100vh - 120px);
+  background: #0f172a;
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  z-index: 9997;
+  overflow: hidden;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#pf-chat-panel.pf-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.97);
+}
+
+.pf-chat-header {
+  padding: 14px 16px;
+  background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.pf-chat-header-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+.pf-chat-header-title {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+.pf-chat-header-sub {
+  font-size: 0.72rem;
+  color: #93c5fd;
+}
+.pf-chat-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  font-size: 1.1rem;
+}
+.pf-chat-close:hover { color: #f1f5f9; }
+
+.pf-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+.pf-chat-messages::-webkit-scrollbar { width: 4px; }
+.pf-chat-messages::-webkit-scrollbar-track { background: transparent; }
+.pf-chat-messages::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+
+.pf-msg {
+  max-width: 88%;
+  padding: 10px 13px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.pf-msg-bot {
+  align-self: flex-start;
+  background: #1e293b;
+  color: #e2e8f0;
+  border-bottom-left-radius: 4px;
+}
+.pf-msg-user {
+  align-self: flex-end;
+  background: #2563eb;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.pf-msg-cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 7px 14px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.pf-msg-cta:hover { background: #1d4ed8; color: #fff; }
+
+.pf-typing {
+  align-self: flex-start;
+  background: #1e293b;
+  color: #94a3b8;
+  padding: 10px 13px;
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  font-size: 0.84rem;
+}
+.pf-typing span {
+  animation: pf-blink 1.2s infinite;
+  display: inline-block;
+}
+.pf-typing span:nth-child(2) { animation-delay: 0.2s; }
+.pf-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes pf-blink {
+  0%,80%,100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+.pf-chat-input-row {
+  padding: 10px 12px;
+  border-top: 1px solid rgba(51,65,85,0.6);
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.pf-chat-input {
+  flex: 1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #e2e8f0;
+  font-size: 0.84rem;
+  resize: none;
+  max-height: 90px;
+  outline: none;
+  font-family: inherit;
+  line-height: 1.4;
+}
+.pf-chat-input::placeholder { color: #64748b; }
+.pf-chat-input:focus { border-color: #2563eb; }
+.pf-chat-send {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #2563eb;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.pf-chat-send:hover { background: #1d4ed8; }
+.pf-chat-send:disabled { background: #334155; cursor: not-allowed; }
+.pf-chat-send svg { width: 16px; height: 16px; pointer-events: none; }
+
+.pf-chat-footer {
+  text-align: center;
+  font-size: 0.68rem;
+  color: #475569;
+  padding: 4px 0 8px;
+}
+
+@media (max-width: 480px) {
+  #pf-chat-toggle { bottom: 18px; right: 18px; }
+  #pf-chat-panel { right: 12px; bottom: 84px; width: calc(100vw - 24px); }
+}
