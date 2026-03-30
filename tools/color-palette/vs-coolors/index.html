@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pure-Flon Color Palette vs Coolors — Free Alternative</title>
+<meta name="description" content="Compare Pure-Flon AI Color Palette Generator with Coolors.co. Both generate color schemes — but one is fully free with no limits, no signup, and full CSS/Tailwind export.">
+<meta name="keywords" content="pure-flon color palette generator, coolors, pure-flon color palette generator vs coolors, free color palette, color palette comparison">
+<meta name="robots" content="index, follow">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/tools/color-palette/vs-coolors/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+<link rel="alternate" hreflang="en" href="https://pure-flon.com/tools/color-palette/vs-coolors/">
+<link rel="alternate" hreflang="x-default" href="https://pure-flon.com/tools/color-palette/vs-coolors/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Pure-Flon Color Palette vs Coolors — Free Alternative">
+<meta property="og:description" content="Compare Pure-Flon AI Color Palette Generator with Coolors.co. Both generate color schemes — but one is fully free with no limits, no signup, and full CSS/Tailwind export.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/tools/color-palette/vs-coolors/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pure-Flon Color Palette vs Coolors — Free Alternative">
+<meta name="twitter:description" content="Compare Pure-Flon AI Color Palette Generator with Coolors.co. Both generate color schemes — but one is fully free with no limits, no signup, and full CSS/Tailwind export.">
+
+<link rel="icon" href="/favicon.ico">
+
+<!-- Structured Data -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Coolors free?", "acceptedAnswer": {"@type": "Answer", "text": "Coolors has a free tier with ads and limited features. Full functionality (PDF export, unlimited saved palettes, collaboration, some export formats) requires a Pro subscription at approximately $3 per month. Pure-Flon Color Palette Generator is completely free with no feature restrictions."}}, {"@type": "Question", "name": "Can Pure-Flon export Tailwind CSS colors?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Pure-Flon's Color Palette Generator has a built-in Tailwind export button that outputs a ready-to-paste Tailwind config object with all five palette colors. This feature is not natively available in Coolors."}}, {"@type": "Question", "name": "Which tool is better for professional designers?", "acceptedAnswer": {"@type": "Answer", "text": "Coolors offers more advanced features like palette exploration from images, gradient generation, and collaboration tools. However, for the core workflow of generating a harmonious palette and exporting to CSS or Tailwind, Pure-Flon is faster and freer. Many developers use both — Coolors for exploration and Pure-Flon for quick CSS-ready exports."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pure-flon.com/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pure-flon.com/tools/"}, {"@type": "ListItem", "position": 3, "name": "Pure-Flon Color Palette Generator", "item": "https://pure-flon.com/tools/color-palette/"}, {"@type": "ListItem", "position": 4, "name": "vs Coolors", "item": "https://pure-flon.com/tools/color-palette/vs-coolors/"}]}</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#3b82f6;--accent2:#60a5fa;
+  --green:#22c55e;--red:#ef4444;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.6
+}
+.container{max-width:800px;margin:0 auto;padding:24px 16px}
+
+/* Breadcrumb */
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb .sep{color:var(--dim)}
+
+/* Hero */
+.hero{text-align:center;padding:20px 0 28px}
+.hero h1{font-size:1.65rem;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.25;margin-bottom:12px}
+.hero .vs-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff;border-radius:8px;padding:3px 14px;
+  font-size:0.85rem;font-weight:700;margin-bottom:14px
+}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:600px;margin:0 auto;line-height:1.6}
+
+/* Comparison Table */
+.comparison-section{margin:32px 0}
+.comparison-section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:16px;letter-spacing:-0.02em}
+.comparison-table{
+  width:100%;border-collapse:collapse;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;font-size:0.85rem
+}
+.comparison-table thead{background:#0d1d38}
+.comparison-table th{
+  padding:14px 16px;text-align:left;font-weight:700;
+  color:var(--accent2);font-size:0.82rem;
+  text-transform:uppercase;letter-spacing:.04em
+}
+.comparison-table td{padding:12px 16px;border-top:1px solid var(--border)}
+.comparison-table .feature-name{font-weight:600;color:#fff;min-width:140px}
+.comparison-table .ours{color:var(--green)}
+.comparison-table .theirs{color:var(--muted)}
+.comparison-table tr:hover{background:#0a0a1a}
+
+/* Advantages */
+.advantages-section{margin:36px 0}
+.advantages-section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:16px}
+.advantage-card{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--green);
+  border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:12px
+}
+.advantage-card p{color:var(--text);font-size:0.88rem;line-height:1.65}
+
+/* CTA */
+.cta-section{text-align:center;margin:32px 0}
+.btn-primary{
+  display:inline-block;padding:16px 48px;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff;border:none;border-radius:13px;
+  font-size:1.05rem;font-weight:700;cursor:pointer;
+  text-decoration:none;transition:transform .15s,opacity .15s
+}
+.btn-primary:hover{transform:translateY(-2px);opacity:.92}
+.cta-sub{color:var(--muted);font-size:0.78rem;margin-top:8px}
+
+/* FAQ */
+.faq-section{margin-top:36px}
+.faq-section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:20px 22px;margin-bottom:12px
+}
+.faq-item h3{font-size:0.92rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.86rem;line-height:1.65}
+
+/* Related Comparisons */
+.related-section{margin-top:36px}
+.related-section>h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-link{
+  display:block;padding:12px 16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:8px;
+  color:var(--text);text-decoration:none;font-size:0.88rem;
+  transition:border-color .15s,background .15s
+}
+.related-link:hover{border-color:var(--accent);background:#0d1d38}
+
+/* Internal Links */
+.internal-links{
+  margin-top:36px;padding-top:24px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center
+}
+.internal-links a{
+  font-size:0.82rem;color:var(--muted);text-decoration:none;
+  padding:6px 14px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.internal-links a:hover{color:var(--accent2);border-color:var(--accent)}
+
+/* Sponsor */
+.sponsor{
+  background:var(--card);border-top:1px solid var(--border);
+  padding:16px;text-align:center;margin-top:40px;border-radius:14px
+}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{
+  font-size:0.78rem;color:var(--muted);text-decoration:none;
+  padding:5px 12px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+
+/* Footer */
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent2)}
+
+/* Responsive Table */
+@media(max-width:600px){
+  .comparison-table{font-size:0.78rem}
+  .comparison-table th,.comparison-table td{padding:10px 10px}
+  .comparison-table .feature-name{min-width:100px}
+  .hero h1{font-size:1.35rem}
+  .btn-primary{padding:14px 36px;font-size:0.95rem}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/color-palette/">Pure-Flon Color Palette Generator</a><span class="sep">/</span>
+    <span>vs Coolors</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="vs-badge">VS</span>
+    <h1>Pure-Flon Color Palette vs Coolors</h1>
+    <p>Choosing the right color palette can make or break a design. Both Pure-Flon and Coolors help you generate harmonious color schemes — but they differ in pricing, export options, and how much they respect your creative flow.</p>
+  </div>
+
+  <!-- Comparison Table -->
+  <div class="comparison-section">
+    <h2>Feature-by-Feature Comparison</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Pure-Flon Color Palette Generator</th>
+          <th>Coolors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature-name">Price</td>
+          <td class="ours">Free forever — no limits</td>
+          <td class="theirs">Freemium ($3/month for full features)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Ads</td>
+          <td class="ours">None</td>
+          <td class="theirs">Ads on free tier</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Account Required</td>
+          <td class="ours">No</td>
+          <td class="theirs">No (needed to save palettes)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Client-Side Processing</td>
+          <td class="ours">Yes — runs in browser</td>
+          <td class="theirs">Server-side + client</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Generate from Seed Color</td>
+          <td class="ours">Yes — enter any hex color</td>
+          <td class="theirs">Yes (spacebar to randomize)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Color Harmony Modes</td>
+          <td class="ours">Complementary, analogous, triadic, split-comp</td>
+          <td class="theirs">Random + harmony rules</td>
+        </tr>
+        <tr>
+          <td class="feature-name">CSS Variable Export</td>
+          <td class="ours">One-click CSS custom properties</td>
+          <td class="theirs">CSS export (premium)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Tailwind Config Export</td>
+          <td class="ours">Direct Tailwind config output</td>
+          <td class="theirs">Not available natively</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Image Export</td>
+          <td class="ours">Download palette as PNG</td>
+          <td class="theirs">PNG, PDF (premium for some)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Palette Saving</td>
+          <td class="ours">Browser localStorage</td>
+          <td class="theirs">Cloud-based (account required)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Contrast Checker</td>
+          <td class="ours">WCAG contrast ratio display</td>
+          <td class="theirs">Yes (more detailed)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Load Speed</td>
+          <td class="ours">Instant (no external deps)</td>
+          <td class="theirs">Moderate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <a href="/tools/color-palette/" class="btn-primary"
+       onclick="gtag('event','cta_click',{cta_type:'try_tool',page:'color-palette-vs-coolors'})">
+      Try Pure-Flon Color Palette Generator Free
+    </a>
+    <div class="cta-sub">No signup &middot; No ads &middot; 100% client-side</div>
+  </div>
+
+  <!-- Advantages -->
+  <div class="advantages-section">
+    <h2>Why Choose Pure-Flon Color Palette Generator?</h2>
+    <div class="advantage-card"><p>Tailwind CSS is used by millions of developers. Pure-Flon is one of the only free palette generators that exports directly as a Tailwind config object — no manual conversion needed.</p></div>
+    <div class="advantage-card"><p>CSS custom properties (variables) export is available with one click. Copy and paste directly into your stylesheet. Coolors requires a premium subscription for some export formats.</p></div>
+    <div class="advantage-card"><p>No account creation, no saved passwords, no email verification. Open the tool, pick your seed color, export your palette. The entire flow takes under 10 seconds.</p></div>
+    <div class="advantage-card"><p>Every calculation happens in your browser. There is no server to go down, no API rate limits, and no risk of Coolors changing their free tier limits — something that has happened before with similar tools.</p></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>Is Coolors free?</h3>
+      <p>Coolors has a free tier with ads and limited features. Full functionality (PDF export, unlimited saved palettes, collaboration, some export formats) requires a Pro subscription at approximately $3 per month. Pure-Flon Color Palette Generator is completely free with no feature restrictions.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can Pure-Flon export Tailwind CSS colors?</h3>
+      <p>Yes. Pure-Flon's Color Palette Generator has a built-in Tailwind export button that outputs a ready-to-paste Tailwind config object with all five palette colors. This feature is not natively available in Coolors.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Which tool is better for professional designers?</h3>
+      <p>Coolors offers more advanced features like palette exploration from images, gradient generation, and collaboration tools. However, for the core workflow of generating a harmonious palette and exporting to CSS or Tailwind, Pure-Flon is faster and freer. Many developers use both — Coolors for exploration and Pure-Flon for quick CSS-ready exports.</p>
+    </div>
+  </div>
+
+  <!-- Second CTA -->
+  <div class="cta-section">
+    <a href="/tools/color-palette/" class="btn-primary"
+       onclick="gtag('event','cta_click',{cta_type:'try_tool_bottom',page:'color-palette-vs-coolors'})">
+      Try Pure-Flon Color Palette Generator Now
+    </a>
+    <div class="cta-sub">Free forever &middot; Works offline &middot; Your data stays in your browser</div>
+  </div>
+
+  <!-- Related Comparisons -->
+  <div class="related-section">
+    <h2>More Tool Comparisons</h2>
+    <a href="/tools/json-formatter/vs-jsonlint/" class="related-link">Pure-Flon JSON Formatter vs JSONLint</a>
+    <a href="/tools/qr-generator/vs-qrcode-monkey/" class="related-link">Pure-Flon QR Generator vs QR Code Monkey</a>
+  </div>
+
+  <!-- Internal Links -->
+  <div class="internal-links">
+    <a href="/tools/">All Tools</a>
+    <a href="/tools/json-formatter/">JSON Formatter</a>
+    <a href="/tools/qr-generator/">QR Generator</a>
+    <a href="/tools/color-palette/">Color Palette</a>
+    <a href="/tools/pomodoro/">Pomodoro Timer</a>
+    <a href="/games/">Games</a>
+    <a href="/games/world-flag-quiz/">World Flag Quiz</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">Home</a>
+  </div>
+
+  <!-- Sponsor -->
+  <div class="sponsor">
+    <p>Like free tools with no ads? Support the project</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'kofi',product:'color-palette-vs-coolors'})">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'github_sponsors',product:'color-palette-vs-coolors'})">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'paypal',product:'color-palette-vs-coolors'})">PayPal</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2026 <a href="/">pure-flon.com</a> &mdash; Free developer tools. No ads, no tracking, no signup.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
