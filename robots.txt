@@ -6,6 +6,7 @@ Allow: /
 Allow: /games/
 Allow: /tools/
 Allow: /blog/
+Allow: /blog/india-tech-culture/
 
 Disallow: /admin/
 Disallow: /private/

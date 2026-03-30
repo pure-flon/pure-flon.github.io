@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Homepage -->
     <url>
         <loc>https://pure-flon.com/</loc>
         <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-
-    <!-- Products (legacy PTFE pages still on disk) -->
     <url>
         <loc>https://pure-flon.com/products/medical.html</loc>
         <lastmod>2025-03-25</lastmod>
@@ -28,16 +25,12 @@
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
-
-    <!-- Games Hub -->
     <url>
         <loc>https://pure-flon.com/games/</loc>
         <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-
-    <!-- Games -->
     <url>
         <loc>https://pure-flon.com/games/twenty-questions/</loc>
         <lastmod>2026-03-26</lastmod>
@@ -56,16 +49,12 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
-    <!-- Tools Hub -->
     <url>
         <loc>https://pure-flon.com/tools/</loc>
         <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-
-    <!-- Tools -->
     <url>
         <loc>https://pure-flon.com/tools/json-formatter/</loc>
         <lastmod>2026-03-26</lastmod>
@@ -90,16 +79,12 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
-    <!-- Blog Hub -->
     <url>
         <loc>https://pure-flon.com/blog/</loc>
         <lastmod>2026-03-30</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
-
-    <!-- Blog Posts -->
     <url>
         <loc>https://pure-flon.com/blog/best-free-dev-tools-2026/</loc>
         <lastmod>2026-03-30</lastmod>
@@ -124,10 +109,6 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
-
-
-    <!-- Programmatic SEO Pages -->
     <url>
         <loc>https://pure-flon.com/games/world-flag-quiz/africa/</loc>
         <lastmod>2026-03-30</lastmod>
@@ -176,8 +157,6 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-
-    <!-- How-To Landing Pages -->
     <url>
         <loc>https://pure-flon.com/tools/qr-generator/wifi/</loc>
         <lastmod>2026-03-30</lastmod>
@@ -203,4 +182,10 @@
         <priority>0.7</priority>
     </url>
 
+    <url>
+        <loc>https://pure-flon.com/blog/india-tech-culture/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>
