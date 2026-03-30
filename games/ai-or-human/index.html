@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI or Human? — Can You Tell the Difference?</title>
+<meta name="description" content="A quiz game: was this text written by AI or a human? Test your instincts across code, emails, blog posts, and Reddit comments. 15 rounds.">
+<link rel="canonical" href="https://pure-flon.com/games/ai-or-human/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="AI or Human? — Can You Tell the Difference?">
+<meta property="og:description" content="Read a text snippet and guess: AI-generated or written by a real person? 15 rounds of code, emails, comments & more.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/games/ai-or-human/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI or Human? Quiz">
+<meta name="twitter:description" content="Can you tell if this was written by AI or a real person? 15 rounds — code, emails, blog posts, Reddit comments.">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI or Human? Quiz",
+  "description": "A quiz game testing your ability to distinguish AI-generated text from human-written text across code, emails, blog posts, and social media.",
+  "url": "https://pure-flon.com/games/ai-or-human/",
+  "applicationCategory": "GameApplication",
+  "author": {"@type": "Person", "name": "pure-flon", "url": "https://pure-flon.com"}
+}
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;
+  --surface:#111;
+  --surface2:#181818;
+  --border:#222;
+  --text:#e0e0e0;
+  --muted:#666;
+  --accent:#7c6af5;
+  --accent2:#a78bfa;
+  --green:#22c55e;
+  --red:#ef4444;
+  --yellow:#f59e0b;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.container{width:100%;max-width:640px}
+header{text-align:center;margin-bottom:32px}
+.ai-tag{display:inline-block;font-size:0.7rem;background:#1a1a3a;color:var(--accent2);padding:3px 10px;border-radius:20px;margin-bottom:12px;letter-spacing:0.05em}
+h1{font-size:2rem;color:#fff;margin-bottom:6px}
+.subtitle{color:var(--muted);font-size:0.95rem}
+
+/* Progress */
+.progress-bar-wrap{background:var(--border);border-radius:8px;height:6px;margin-bottom:24px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 0.4s ease;border-radius:8px}
+.round-info{display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted);margin-bottom:8px}
+
+/* Question card */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:20px}
+.category-tag{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px}
+.snippet{font-family:'SF Mono',Consolas,'Courier New',monospace;font-size:0.9rem;line-height:1.7;color:#ccc;background:var(--surface2);border-radius:12px;padding:20px;white-space:pre-wrap;word-break:break-word;border:1px solid var(--border);max-height:260px;overflow-y:auto}
+.snippet.prose{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.92rem}
+
+/* Buttons */
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.btn{padding:16px;border-radius:12px;border:2px solid transparent;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-ai{background:#1a1a3a;color:var(--accent2);border-color:#2a2a5a}
+.btn-human{background:#1a2a1a;color:#6ee7b7;border-color:#1a3a2a}
+.btn-ai:hover{background:#252550;border-color:var(--accent)}
+.btn-human:hover{background:#1e3a1e;border-color:#22c55e}
+.btn:disabled{opacity:0.6;cursor:default}
+
+/* Reveal */
+.reveal{margin-top:20px;border-radius:14px;padding:18px;animation:fadeIn 0.3s ease}
+.reveal.correct{background:#0d2010;border:1px solid #1a4020;color:#6ee7b7}
+.reveal.wrong{background:#1e0808;border:1px solid #3a1010;color:#fca5a5}
+.reveal-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;opacity:0.7}
+.reveal-answer{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.reveal-explain{font-size:0.88rem;line-height:1.6;opacity:0.85}
+.next-btn{display:block;width:100%;margin-top:16px;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:opacity 0.15s}
+.next-btn:hover{opacity:0.88}
+
+/* Score */
+.score-display{text-align:center;font-size:0.95rem;color:var(--muted);margin-bottom:16px}
+.score-display span{color:#fff;font-weight:700}
+
+/* End screen */
+#end-screen{text-align:center;display:none}
+.big-score{font-size:4rem;font-weight:800;margin:16px 0}
+.rating{font-size:1.3rem;margin-bottom:8px;color:var(--accent2)}
+.rating-sub{color:var(--muted);margin-bottom:32px;font-size:0.9rem}
+.share-btn{display:inline-block;padding:14px 28px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;margin-bottom:12px;transition:opacity 0.15s}
+.share-btn:hover{opacity:0.88}
+.play-again{display:inline-block;padding:12px 24px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:12px;font-size:0.9rem;cursor:pointer;transition:all 0.15s}
+.play-again:hover{color:#fff;border-color:#444}
+.game-links{margin-top:32px;padding:20px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
+.game-links p{font-size:0.85rem;color:var(--muted);margin-bottom:12px}
+.game-links a{display:inline-block;margin:4px;padding:8px 14px;background:var(--surface2);color:#ccc;border:1px solid var(--border);border-radius:8px;text-decoration:none;font-size:0.82rem;transition:all 0.15s}
+.game-links a:hover{color:#fff;border-color:#444}
+
+/* Start screen */
+#start-screen{text-align:center}
+.start-desc{color:var(--muted);max-width:480px;margin:0 auto 28px;line-height:1.7;font-size:0.95rem}
+.start-btn{padding:16px 36px;background:var(--accent);color:#fff;border:none;border-radius:14px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:opacity 0.15s}
+.start-btn:hover{opacity:0.88}
+.tip-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:28px}
+.tip{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-size:0.8rem;color:var(--muted);text-align:center;flex:1;min-width:120px;max-width:160px}
+.tip-icon{font-size:1.4rem;margin-bottom:4px}
+.tip b{display:block;color:#ccc;margin-bottom:2px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="ai-tag">100% MADE BY AI</span>
+    <h1>🤖 AI or Human?</h1>
+    <p class="subtitle">Can you tell the difference?</p>
+  </header>
+
+  <!-- Start screen -->
+  <div id="start-screen">
+    <p class="start-desc">
+      You'll see 15 text snippets — code, emails, blog posts, Reddit comments, git commits.<br>
+      For each one, guess: was it written by an <strong style="color:var(--accent2)">AI</strong> or a <strong style="color:#6ee7b7">human</strong>?<br><br>
+      Some are obvious. Some will fool you.
+    </p>
+    <button class="start-btn" onclick="startGame()">Start Quiz →</button>
+    <div class="tip-row">
+      <div class="tip"><div class="tip-icon">💬</div><b>15 rounds</b>mix of formats</div>
+      <div class="tip"><div class="tip-icon">🧠</div><b>No tricks</b>real examples only</div>
+      <div class="tip"><div class="tip-icon">🔍</div><b>Explanations</b>after each answer</div>
+    </div>
+  </div>
+
+  <!-- Game screen -->
+  <div id="game-screen" style="display:none">
+    <div class="score-display">Score: <span id="score-num">0</span> / <span id="total-num">0</span></div>
+    <div class="round-info">
+      <span id="round-label">Round 1 / 15</span>
+      <span id="category-label"></span>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+    <div class="card" id="question-card">
+      <div class="category-tag" id="cat-tag"></div>
+      <div class="snippet" id="snippet-text"></div>
+      <div class="btn-row">
+        <button class="btn btn-ai" id="btn-ai" onclick="answer('ai')">🤖 AI-Generated</button>
+        <button class="btn btn-human" id="btn-human" onclick="answer('human')">🧑 Human-Written</button>
+      </div>
+      <div class="reveal" id="reveal-box" style="display:none">
+        <div class="reveal-label" id="reveal-label"></div>
+        <div class="reveal-answer" id="reveal-answer"></div>
+        <div class="reveal-explain" id="reveal-explain"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- End screen -->
+  <div id="end-screen">
+    <div class="card">
+      <div class="big-score" id="final-score"></div>
+      <div class="rating" id="rating-text"></div>
+      <div class="rating-sub" id="rating-sub"></div>
+      <button class="share-btn" onclick="shareScore()">Share Result</button><br>
+      <button class="play-again" onclick="restartGame()">Play Again</button>
+    </div>
+    <div class="game-links">
+      <p>Try other games from pure-flon:</p>
+      <a href="/games/india-tech-culture/">🇮🇳 India Tech Quiz</a>
+      <a href="/games/world-flag-quiz/">🌍 Flag Quiz</a>
+      <a href="/games/k-meme-quiz/">🎯 K-Meme Quiz</a>
+      <a href="/games/capital-city-quiz/">🏙️ Capital Cities</a>
+      <a href="/games/twenty-questions/">🧠 20 Questions</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    category: "Email",
+    type: "ai",
+    snippet: `Hi there,
+
+I hope this email finds you well. I wanted to touch base regarding the upcoming project deadline. As per our last discussion, I wanted to ensure that we are all aligned on the deliverables and expectations moving forward.
+
+Please let me know if you have any questions or concerns. I look forward to hearing from you.
+
+Best regards,
+[Your Name]`,
+    explain: "Dead giveaways: 'I hope this email finds you well', 'touch base', 'as per our last discussion', 'moving forward', 'I look forward to hearing from you'. This is a classic AI email template — every phrase is a cliché. Humans writing real emails don't combine all these at once.",
+    prose: true
+  },
+  {
+    category: "Git Commit",
+    type: "human",
+    snippet: `commit a7f2c1d
+Author: Dave K <dave@>
+Date:   Tue Nov 14 02:17 2023
+
+    fix the thing that was broken since tuesday
+
+    idk why this worked but it did. probably timezone related
+    DO NOT TOUCH THIS`,
+    explain: "Human commits are often vague, frustrated, and personal. 'Fix the thing that was broken since tuesday', 'idk why this worked but it did', and 'DO NOT TOUCH THIS' are hallmarks of a tired developer solving an annoying bug at 2am.",
+    prose: false
+  },
+  {
+    category: "Blog Post",
+    type: "ai",
+    snippet: `In today's rapidly evolving digital landscape, businesses must adapt to stay ahead of the curve. Artificial intelligence has emerged as a transformative force, reshaping industries and redefining what's possible.
+
+In this comprehensive guide, we'll explore the key strategies that forward-thinking organizations are leveraging to harness the power of AI. Whether you're a seasoned executive or just beginning your AI journey, this article has something for everyone.`,
+    explain: "Multiple red flags: 'rapidly evolving digital landscape', 'stay ahead of the curve', 'transformative force', 'redefining what's possible', 'comprehensive guide', 'forward-thinking organizations', 'harness the power of'. When you string 6+ business buzzwords into two paragraphs, it's AI.",
+    prose: true
+  },
+  {
+    category: "Code Comment",
+    type: "human",
+    snippet: `// TODO: fix this properly someday
+// this is a hack and i know it
+// if you're reading this, I'm sorry
+const MAGIC_NUMBER = 42; // don't ask
+
+function doTheThing(x) {
+  // why does subtracting 1 fix this??
+  // spent 3 hours on this
+  return x * MAGIC_NUMBER - 1;
+}`,
+    explain: "The apologetic tone, self-deprecation ('I'm sorry'), and documented confusion ('why does subtracting 1 fix this??') are purely human. AI generates clean, confident, explanatory comments — never this kind of battlefield archaeology.",
+    prose: false
+  },
+  {
+    category: "Reddit Comment",
+    type: "human",
+    snippet: `ngl this made me feel things i wasn't prepared for at 11pm on a tuesday
+
+also why does your cat look EXACTLY like my ex's cat. this is extremely upsetting`,
+    explain: "The lowercase, the fragmented structure, the lowercase 'ngl', the deeply specific 'ex's cat' detail, the arbitrary 'tuesday' — no AI would generate this unless specifically prompted to mimic Reddit. This is someone typing from their phone while lying in bed.",
+    prose: true
+  },
+  {
+    category: "Code — Python",
+    type: "ai",
+    snippet: `def calculate_fibonacci(n: int) -> list[int]:
+    """
+    Calculate the Fibonacci sequence up to n terms.
+
+    Args:
+        n: The number of terms to calculate
+
+    Returns:
+        A list containing the Fibonacci sequence
+    """
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+
+    sequence = [0, 1]
+    for i in range(2, n):
+        sequence.append(sequence[i-1] + sequence[i-2])
+
+    return sequence`,
+    explain: "Perfect docstring format with Args/Returns sections, type hints, edge case handling, clean variable names, zero personality. This is textbook AI Python — technically correct, reads like documentation, no individual style.",
+    prose: false
+  },
+  {
+    category: "Stack Overflow Answer",
+    type: "human",
+    snippet: `You're probably hitting the classic race condition. I wasted two days on this exact issue last year.
+
+Short answer: use useEffect with the right deps array, not what you think is right.
+
+Long answer: React batches state updates and your async call is closing over stale state. The thing people miss is that the setState callback DOES give you the current state — use that instead.
+
+Also stop using setInterval in React. Just stop.`,
+    explain: "The 'I wasted two days on this' personal backstory, 'the thing people miss', and especially 'Also stop using setInterval in React. Just stop.' — that final imperative sentence is the voice of someone who has been burned personally. AI doesn't get burned.",
+    prose: true
+  },
+  {
+    category: "Product Description",
+    type: "ai",
+    snippet: `Introducing the QuantumFlux Pro 3000 — your ultimate productivity companion.
+
+Engineered for peak performance and designed with the modern professional in mind, this cutting-edge solution seamlessly integrates into your workflow. Key features include:
+
+• Advanced AI-powered optimization
+• Seamless cross-platform compatibility
+• Intuitive user interface with streamlined navigation
+• Robust security protocols
+
+Unlock your full potential today.`,
+    explain: "'Your ultimate productivity companion', 'engineered for peak performance', 'modern professional', 'cutting-edge solution', 'seamlessly integrates', 'unlock your full potential' — this is marketing AI at its most transparent. Each bullet is a meaningless modifier stacked on a noun.",
+    prose: true
+  },
+  {
+    category: "Hacker News Comment",
+    type: "human",
+    snippet: `This is just bloom filters with extra steps
+
+That said I've been wrong before. What's the actual false-positive rate at p99 latency? The benchmark in the post compares against a hash map which seems unfair. Real comparison would be a counting bloom filter or a cuckoo filter.
+
+(worked on this exact problem at my last job, it's harder than it looks)`,
+    explain: "The dismissive opener followed by immediate self-correction, the specific technical challenge (false-positive rate at p99), the 'this benchmark is unfair' critique, and the parenthetical credentialing — this is HN's characteristic blend of skepticism and expertise.",
+    prose: true
+  },
+  {
+    category: "Code — JavaScript",
+    type: "human",
+    snippet: `// ok so this is terrible but it works
+// the reason we're using 500ms is because jake's api
+// is slow and we never fixed it (its in the backlog lol)
+// please do not reuse this pattern
+setTimeout(() => {
+  if (window.__app_initialized) {
+    doTheThing();
+  } else {
+    // ugh
+    setTimeout(doTheThing, 1000);
+  }
+}, 500);`,
+    explain: "'Jake's api is slow', 'it's in the backlog lol', 'please do not reuse this pattern', the double setTimeout fallback — this is a human working around a known technical debt. Notice the human stores institutional knowledge in comments. AI wouldn't know about Jake.",
+    prose: false
+  },
+  {
+    category: "README",
+    type: "ai",
+    snippet: `## Getting Started
+
+Welcome to ProjectName! This repository contains the source code for our powerful and flexible solution.
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js (v14 or higher)
+- npm or yarn package manager
+- A modern web browser
+
+### Installation
+
+To install ProjectName, follow these steps:
+
+1. Clone the repository
+2. Install dependencies
+3. Configure environment variables
+4. Run the application`,
+    explain: "'Powerful and flexible solution', 'ensure you have met the following requirements' — AI-generated READMEs are universally formal, use passive constructions, and don't have personality. Real developers write READMEs with personality, screenshots, or at least a snarky warning.",
+    prose: true
+  },
+  {
+    category: "Slack Message",
+    type: "human",
+    snippet: `hey can someone look at the prod deploy?? it went out at 3:52 and now the checkout page is just like. a white screen. i checked the logs and there's something about undefined is not a function in checkout.js:847 but i can't reproduce it locally
+
+sarah are you around`,
+    explain: "The panicked double question marks, the 'just like. a white screen' with the mid-sentence pause, the 'i can't reproduce it locally' frustration, and the abrupt 'sarah are you around' — this is a developer discovering a production incident in real time.",
+    prose: true
+  },
+  {
+    category: "Code — Python",
+    type: "human",
+    snippet: `def parse_dates(df):
+    # tried dateutil, arrow, pendulum - all choked on the
+    # korean format. this monstrosity works though
+    def _try(s):
+        for fmt in ['%Y.%m.%d', '%Y-%m-%d', '%Y/%m/%d',
+                    '%d.%m.%Y',  # who formats dates like this
+                    '%Y년 %m월 %d일']:  # korean
+            try:
+                return pd.to_datetime(s, format=fmt)
+            except:
+                pass
+        return pd.NaT  # give up
+    return df['date'].apply(_try)`,
+    explain: "The comment about trying multiple libraries, the inline snark about unusual date formats ('who formats dates like this'), the Korean format handling, and '# give up' — this is a data engineer who has been beaten up by international date formats in production data.",
+    prose: false
+  },
+  {
+    category: "LinkedIn Post",
+    type: "ai",
+    snippet: `Excited to share that I've just completed my certification in [Field]! 🎉
+
+This journey has been incredibly rewarding and has opened my eyes to new possibilities. I want to thank my mentor, my team, and everyone who supported me along the way.
+
+Key takeaways from this experience:
+✅ The importance of continuous learning
+✅ Building meaningful connections
+✅ Embracing challenges as opportunities
+
+What's one thing you're learning right now? Drop it in the comments! 👇
+
+#Learning #GrowthMindset #ProfessionalDevelopment`,
+    explain: "The [Field] placeholder (classic), the gratitude list, 'opened my eyes to new possibilities', the three generic bullet points, the engagement-bait question with 👇, and the hashtag trinity of empty corporate wellness — this is AI ghostwriting LinkedIn posts.",
+    prose: true
+  },
+  {
+    category: "Forum Post",
+    type: "human",
+    snippet: `okay so i've been staring at this for 4 hours and i think i might be losing my mind
+
+the server works perfectly when i test it locally. the moment i deploy to AWS it starts dropping connections after exactly 2 minutes. EXACTLY 2 minutes. i timed it 6 times.
+
+my coworker suggested it's a load balancer timeout and i was like "we don't use a load balancer" but then he sent me this screenshot and apparently we DO use a load balancer and nobody told me
+
+update: it was the load balancer`,
+    explain: "The exhaustion ('losing my mind'), the obsessive timing ('6 times'), the discovery of unknown infrastructure, and the perfect deadpan final line 'update: it was the load balancer' — this is a developer solving a problem through pure persistence and getting a satisfying, embarrassing answer.",
+    prose: true
+  }
+];
+
+let shuffled = [];
+let current = 0;
+let score = 0;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startGame() {
+  shuffled = shuffle(QUESTIONS);
+  current = 0;
+  score = 0;
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'block';
+  document.getElementById('end-screen').style.display = 'none';
+  renderQuestion();
+  gtag('event', 'game_start', {game: 'ai-or-human'});
+}
+
+function renderQuestion() {
+  const q = shuffled[current];
+  const total = shuffled.length;
+
+  document.getElementById('score-num').textContent = score;
+  document.getElementById('total-num').textContent = current;
+  document.getElementById('round-label').textContent = `Round ${current + 1} / ${total}`;
+  document.getElementById('category-label').textContent = q.category;
+  document.getElementById('cat-tag').textContent = q.category.toUpperCase();
+  document.getElementById('progress-bar').style.width = `${(current / total) * 100}%`;
+
+  const snip = document.getElementById('snippet-text');
+  snip.textContent = q.snippet;
+  snip.className = 'snippet' + (q.prose ? ' prose' : '');
+
+  document.getElementById('reveal-box').style.display = 'none';
+  document.getElementById('btn-ai').disabled = false;
+  document.getElementById('btn-human').disabled = false;
+}
+
+function answer(choice) {
+  const q = shuffled[current];
+  const correct = choice === q.type;
+
+  if (correct) score++;
+
+  document.getElementById('btn-ai').disabled = true;
+  document.getElementById('btn-human').disabled = true;
+
+  const box = document.getElementById('reveal-box');
+  box.style.display = 'block';
+  box.className = 'reveal ' + (correct ? 'correct' : 'wrong');
+
+  document.getElementById('reveal-label').textContent = correct ? '✓ Correct!' : '✗ Not quite';
+  document.getElementById('reveal-answer').textContent =
+    q.type === 'ai' ? '🤖 This was AI-generated' : '🧑 This was human-written';
+  document.getElementById('reveal-explain').textContent = q.explain;
+
+  const isLast = current === shuffled.length - 1;
+  document.getElementById('next-btn').textContent = isLast ? 'See Results →' : 'Next →';
+
+  gtag('event', 'question_answered', {
+    game: 'ai-or-human',
+    round: current + 1,
+    correct: correct,
+    category: q.category
+  });
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= shuffled.length) {
+    showEnd();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showEnd() {
+  document.getElementById('game-screen').style.display = 'none';
+  document.getElementById('end-screen').style.display = 'block';
+
+  const total = shuffled.length;
+  const pct = Math.round((score / total) * 100);
+  document.getElementById('final-score').textContent = `${score} / ${total}`;
+
+  let rating, sub;
+  if (pct >= 93) {
+    rating = '🔬 AI Forensics Expert';
+    sub = "You spotted every tell. Are you sure you're human?";
+  } else if (pct >= 80) {
+    rating = '🕵️ Sharp Eye';
+    sub = "You can reliably spot AI text. Impressive.";
+  } else if (pct >= 67) {
+    rating = '🤔 Reasonable Skeptic';
+    sub = "You catch most AI text but a few slipped by.";
+  } else if (pct >= 53) {
+    rating = '😅 Coin Flipper';
+    sub = "About 50/50. The lines are blurring.";
+  } else {
+    rating = '🤖 You Might Be a Bot';
+    sub = "AI fooled you more than you fooled it. That's okay!";
+  }
+
+  document.getElementById('rating-text').textContent = rating;
+  document.getElementById('rating-sub').textContent = sub;
+
+  gtag('event', 'game_complete', {
+    game: 'ai-or-human',
+    score: score,
+    total: total,
+    pct: pct
+  });
+}
+
+function shareScore() {
+  const total = shuffled.length;
+  const pct = Math.round((score / total) * 100);
+  const text = `I scored ${score}/${total} (${pct}%) on the "AI or Human?" quiz — can you beat me?\nhttps://pure-flon.com/games/ai-or-human/`;
+  if (navigator.share) {
+    navigator.share({title: 'AI or Human? Quiz', text, url: 'https://pure-flon.com/games/ai-or-human/'});
+  } else {
+    navigator.clipboard.writeText(text).then(() => alert('Result copied to clipboard!'));
+  }
+  gtag('event', 'share_result', {game: 'ai-or-human', score});
+}
+
+function restartGame() {
+  document.getElementById('end-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'block';
+}
+</script>
+</body>
+</html>
