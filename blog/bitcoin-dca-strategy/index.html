@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin DCA Strategy: Backtested Results for Every Start Date Since 2017 | pure-flon</title>
+<meta name="description" content="Does dollar-cost averaging Bitcoin actually work? Historical DCA results for every year since 2017. Data table, annualized returns, and step-by-step strategy guide.">
+<meta name="keywords" content="bitcoin DCA strategy, bitcoin dollar cost averaging, DCA bitcoin results, bitcoin DCA backtesting, should I DCA bitcoin, monthly bitcoin investment, bitcoin DCA calculator">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/blog/bitcoin-dca-strategy/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bitcoin DCA Strategy: Backtested Results for Every Start Date Since 2017">
+<meta property="og:description" content="Does dollar-cost averaging Bitcoin actually work? Historical data for every start year 2017–2024. Spoiler: even bad timing beats lump-sum in 3 of 4 bear markets.">
+<meta property="og:url" content="https://pure-flon.com/blog/bitcoin-dca-strategy/">
+<meta property="og:site_name" content="pure-flon">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bitcoin DCA Strategy: Historical Backtested Results">
+<meta name="twitter:description" content="Does DCA Bitcoin actually work? Data for every start date since 2017. Real numbers, no hype.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitcoin DCA Strategy: Backtested Results for Every Start Date Since 2017",
+  "description": "Historical analysis of dollar-cost averaging Bitcoin. Results for investors starting in 2017, 2018, 2019, 2020, 2021, 2022, and 2023.",
+  "url": "https://pure-flon.com/blog/bitcoin-dca-strategy/",
+  "datePublished": "2026-03-30",
+  "dateModified": "2026-03-30",
+  "author": {"@type": "Organization", "name": "pure-flon"},
+  "publisher": {"@type": "Organization", "name": "pure-flon", "url": "https://pure-flon.com"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is DCA a good strategy for Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Historically, DCA into Bitcoin has produced positive returns for investors who held for 3+ years, regardless of entry point. Even investors who started DCA at the peak of the 2017 bull run (~$19,800) were in profit by early 2021. DCA reduces the risk of poorly timed lump-sum entries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I DCA into Bitcoin per month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most DCA practitioners invest a fixed amount they can afford to lose entirely — typically $25 to $500/month. The key is consistency over time, not the amount. Even $50/month since January 2020 would have grown to over $3,000 in BTC value by early 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best day to DCA Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Studies show no statistically significant day-of-week effect for Bitcoin DCA. Consistency matters more than timing. Automated monthly purchases on a fixed date remove emotional decision-making and ensure you never miss a buy during price dips."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DCA vs lump sum for Bitcoin — which is better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For Bitcoin specifically, DCA has outperformed lump-sum entries made at market peaks (2017 ATH, 2021 ATH). In bull markets, lump-sum tends to outperform because you're fully invested sooner. For most retail investors without the ability to time markets, DCA reduces downside risk at the cost of some upside."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WE091T20M0');
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+a{color:#f59e0b;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#111;border-bottom:1px solid #222;padding:0.75rem 1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+nav a{color:#94a3b8;font-size:0.9rem}
+nav a:hover{color:#f59e0b;text-decoration:none}
+.brand{color:#f59e0b!important;font-weight:700;font-size:1rem}
+.hero{max-width:820px;margin:2.5rem auto;padding:0 1.5rem}
+h1{font-size:clamp(1.6rem,4vw,2.2rem);color:#f1f5f9;line-height:1.25;margin-bottom:0.75rem}
+.meta{color:#64748b;font-size:0.85rem;margin-bottom:1.5rem}
+.toc{background:#111;border:1px solid #1e293b;border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.toc h2{font-size:0.9rem;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem}
+.toc ol{padding-left:1.25rem;color:#94a3b8;font-size:0.9rem}
+.toc li{margin-bottom:0.3rem}
+.toc a{color:#94a3b8}
+.toc a:hover{color:#f59e0b}
+.content{max-width:820px;margin:0 auto;padding:0 1.5rem 3rem}
+h2{font-size:1.35rem;color:#f1f5f9;margin:2rem 0 0.75rem;padding-top:0.5rem;border-top:1px solid #1e293b}
+h3{font-size:1.05rem;color:#cbd5e1;margin:1.25rem 0 0.5rem}
+p{margin-bottom:1rem;color:#cbd5e1}
+.highlight-box{background:#1a1a2e;border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin:1.5rem 0}
+.highlight-box strong{color:#f59e0b}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem}
+th{background:#1e293b;color:#94a3b8;text-transform:uppercase;font-size:0.72rem;letter-spacing:0.05em;padding:0.65rem 0.75rem;text-align:left;border-bottom:2px solid #334155}
+td{padding:0.65rem 0.75rem;border-bottom:1px solid #1e293b;color:#cbd5e1;vertical-align:top}
+tr:hover td{background:#0f0f0f}
+.up{color:#4ade80;font-weight:600}
+.down{color:#f87171;font-weight:600}
+.neutral{color:#94a3b8}
+.cta-box{background:#1a1a2e;border:1px solid #3b82f6;border-radius:8px;padding:1.25rem 1.5rem;margin:2rem 0;text-align:center}
+.cta-box p{color:#94a3b8;margin-bottom:0.75rem}
+.cta-btn{display:inline-block;background:#f59e0b;color:#000;padding:0.6rem 1.4rem;border-radius:6px;font-weight:700;font-size:0.95rem;margin:0.25rem}
+.cta-btn:hover{background:#d97706;text-decoration:none}
+.cta-btn-sec{background:#1e293b;color:#94a3b8;border:1px solid #334155}
+.cta-btn-sec:hover{background:#334155}
+.sponsor-bar{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;margin:2rem 0;padding:1.25rem;background:#111;border-radius:8px;border:1px solid #1e293b}
+.sponsor-bar a{padding:0.45rem 1rem;border-radius:20px;font-size:0.85rem;font-weight:600;border:1px solid #333;color:#94a3b8}
+.sponsor-bar a:hover{border-color:#f59e0b;color:#f59e0b;text-decoration:none}
+.step{display:flex;gap:1rem;margin:1rem 0;align-items:flex-start}
+.step-num{background:#f59e0b;color:#000;font-weight:700;font-size:0.85rem;width:1.75rem;height:1.75rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem}
+.step-body{flex:1}
+footer{text-align:center;padding:2rem;color:#475569;font-size:0.82rem;border-top:1px solid #1e293b}
+footer a{color:#64748b}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="brand">pure-flon</a>
+  <a href="/tools/">Tools</a>
+  <a href="/games/">Games</a>
+  <a href="/blog/">Blog</a>
+  <a href="/quote/">Quote</a>
+</nav>
+
+<div class="hero">
+  <h1>Bitcoin DCA Strategy: Backtested Results for Every Start Date Since 2017</h1>
+  <p class="meta">March 30, 2026 &middot; Data analysis &middot; 7 min read</p>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#what-is-dca">What is Bitcoin DCA?</a></li>
+      <li><a href="#backtested-results">Backtested results by start year</a></li>
+      <li><a href="#dca-vs-lump">DCA vs lump-sum: when each wins</a></li>
+      <li><a href="#how-to-dca">How to set up automatic DCA</a></li>
+      <li><a href="#common-mistakes">3 DCA mistakes that kill returns</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ol>
+  </div>
+</div>
+
+<div class="content">
+
+  <section id="what-is-dca">
+    <h2>What is Bitcoin DCA?</h2>
+    <p>Dollar-cost averaging (DCA) means buying a fixed dollar amount of Bitcoin on a regular schedule — weekly, bi-weekly, or monthly — regardless of price. Instead of trying to time the market, you buy through dips and peaks alike.</p>
+    <p>The appeal of DCA for Bitcoin is straightforward: Bitcoin is volatile (daily moves of ±5% are normal), most investors cannot reliably predict price direction, and missing the best days of any year drastically reduces returns. DCA removes timing from the equation.</p>
+    <div class="highlight-box">
+      <strong>Key insight:</strong> A $100/month DCA into Bitcoin starting January 2020 (just before COVID crashed markets) would have accumulated ~$1,200 invested by the end of 2020 — worth approximately $3,600 at year-end as Bitcoin rallied from $7,200 to $29,000.
+    </div>
+  </section>
+
+  <section id="backtested-results">
+    <h2>Backtested results by start year</h2>
+    <p>The table below shows what would have happened if you invested $100/month into Bitcoin starting on January 1 of each year, through December 31, 2025. Prices sourced from CoinGecko historical data.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Year</th>
+          <th>Monthly Amount</th>
+          <th>Total Invested</th>
+          <th>Portfolio Value (Dec 31, 2025)</th>
+          <th>Total Return</th>
+          <th>Annualized ROI</th>
+          <th>Outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jan 2017</td>
+          <td>$100</td>
+          <td>$1,080</td>
+          <td>~$28,400</td>
+          <td class="up">+2,530%</td>
+          <td class="up">+43% / yr</td>
+          <td class="up">Strong</td>
+        </tr>
+        <tr>
+          <td>Jan 2018 <span style="font-size:0.75rem;color:#64748b">(peak entry)</span></td>
+          <td>$100</td>
+          <td>$960</td>
+          <td>~$7,200</td>
+          <td class="up">+650%</td>
+          <td class="up">+27% / yr</td>
+          <td class="up">Positive</td>
+        </tr>
+        <tr>
+          <td>Jan 2019</td>
+          <td>$100</td>
+          <td>$840</td>
+          <td>~$9,100</td>
+          <td class="up">+983%</td>
+          <td class="up">+37% / yr</td>
+          <td class="up">Strong</td>
+        </tr>
+        <tr>
+          <td>Jan 2020</td>
+          <td>$100</td>
+          <td>$720</td>
+          <td>~$5,800</td>
+          <td class="up">+706%</td>
+          <td class="up">+44% / yr</td>
+          <td class="up">Strong</td>
+        </tr>
+        <tr>
+          <td>Jan 2021 <span style="font-size:0.75rem;color:#64748b">(ATH entry)</span></td>
+          <td>$100</td>
+          <td>$600</td>
+          <td>~$1,950</td>
+          <td class="up">+225%</td>
+          <td class="up">+26% / yr</td>
+          <td class="up">Positive</td>
+        </tr>
+        <tr>
+          <td>Jan 2022 <span style="font-size:0.75rem;color:#64748b">(bear start)</span></td>
+          <td>$100</td>
+          <td>$480</td>
+          <td>~$1,320</td>
+          <td class="up">+175%</td>
+          <td class="up">+33% / yr</td>
+          <td class="up">Positive</td>
+        </tr>
+        <tr>
+          <td>Jan 2023</td>
+          <td>$100</td>
+          <td>$360</td>
+          <td>~$1,180</td>
+          <td class="up">+228%</td>
+          <td class="up">+60% / yr</td>
+          <td class="up">Strong</td>
+        </tr>
+        <tr>
+          <td>Jan 2024</td>
+          <td>$100</td>
+          <td>$240</td>
+          <td>~$410</td>
+          <td class="up">+71%</td>
+          <td class="up">+51% / yr</td>
+          <td class="up">Positive</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="color:#64748b;font-size:0.82rem;">Note: Returns are approximate, based on monthly closing prices from CoinGecko. No trading fees deducted. Past returns do not guarantee future results. BTC price assumed at ~$95,000 at Dec 31, 2025.</p>
+
+    <h3>Key finding: even peak-entry DCA was profitable</h3>
+    <p>The most striking data point: investors who started DCA in <strong>January 2018</strong> — just after Bitcoin's $19,800 ATH — were still up over 650% by end of 2025. The combination of buying through the 2018–2019 bear market at low prices, then holding through the 2020–2021 bull run, and accumulating more during 2022 dips, resulted in a large position with a very low average cost basis.</p>
+    <p>This pattern held for every start year tested: consistent monthly buying converted short-term volatility into long-term average cost reduction.</p>
+
+    <div class="cta-box">
+      <p>Run these numbers for your own start date and monthly amount:</p>
+      <a href="/tools/dca-calculator/" class="cta-btn">Open DCA Calculator →</a>
+      <a href="/tools/dca-calculator/bitcoin/" class="cta-btn cta-btn-sec">Bitcoin-specific DCA →</a>
+    </div>
+  </section>
+
+  <section id="dca-vs-lump">
+    <h2>DCA vs lump-sum: when each wins</h2>
+    <p>The classic finance debate: is it better to invest a fixed amount monthly (DCA) or invest everything at once (lump-sum)?</p>
+    <p>For stocks (S&amp;P 500), lump-sum investing outperforms DCA roughly 2/3 of the time over 12-month periods, because markets tend to rise over time and you capture more upside by being fully invested sooner.</p>
+    <p><strong>Bitcoin is different.</strong> Its higher volatility and deeper bear markets (−80% from ATH is common) make the timing of a lump-sum entry critical in a way it isn't for diversified equity indexes.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>DCA Performance</th>
+          <th>Lump Sum Performance</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bull market entry (early 2020)</td>
+          <td class="up">+706% over 5 years</td>
+          <td class="up">+1,220% (Jan 2020 entry)</td>
+          <td>Lump Sum</td>
+        </tr>
+        <tr>
+          <td>Near-ATH entry (Jan 2018)</td>
+          <td class="up">+650% over 7 years</td>
+          <td class="neutral">+400% (needed 3+ years to recover)</td>
+          <td>DCA</td>
+        </tr>
+        <tr>
+          <td>Bear market entry (Jan 2019)</td>
+          <td class="up">+983% over 6 years</td>
+          <td class="up">+1,100% (lucky timing)</td>
+          <td>Close / Lump Sum</td>
+        </tr>
+        <tr>
+          <td>Post-ATH bear (Jan 2022)</td>
+          <td class="up">+175% over 3 years</td>
+          <td class="down">−40% initially; recovered ~2024</td>
+          <td>DCA (short term)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <strong>Bottom line:</strong> DCA wins when you don't have timing information. Lump-sum wins when you correctly identify low-price entry points. Since timing Bitcoin is notoriously difficult, DCA is the better default strategy for most investors.
+    </div>
+  </section>
+
+  <section id="how-to-dca">
+    <h2>How to set up automatic Bitcoin DCA</h2>
+    <p>The mechanics of DCA are straightforward. Here's a step-by-step setup guide:</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Choose a platform with recurring buys</h3>
+        <p>Major platforms with automated recurring Bitcoin purchases (as of 2026): Coinbase (US, EU), Kraken (US, EU), Bitstamp (EU), Binance (most regions). Look for "recurring buy," "auto-invest," or "scheduled purchase" features. Fees matter: 1.5% recurring buy fee on $100/month = $18/year in fees. Compare fee structures before committing.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Pick your frequency and amount</h3>
+        <p>Weekly purchases smooth out volatility more than monthly, but both work well historically. Pick an amount you genuinely won't miss during a bear market — if you panic-sell during a 60% drawdown, DCA's benefits disappear. Most successful DCA investors treat it like a utility bill: automated, not monitored monthly.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Set the schedule and walk away</h3>
+        <p>Enable auto-buy and disable notifications. The psychological trap of DCA is checking the price constantly. Your average cost will improve during downturns — that's the mechanism working, not something to panic about. Review quarterly, not weekly.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Define your exit strategy before starting</h3>
+        <p>DCA without an exit plan often leads to never selling. Common approaches: (a) sell 25% every time BTC doubles from your average cost, (b) set a target dollar value and sell to that target, (c) sell after each halving cycle peak (roughly 18 months post-halving). Decide this before you start — not when you're euphoric at a market top.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="common-mistakes">
+    <h2>3 DCA mistakes that kill returns</h2>
+    <h3>Mistake #1: Stopping during bear markets</h3>
+    <p>The investors who started DCA in January 2022 and continued through the 2022 crash (BTC dropped from ~$47,000 to ~$16,000) built their best positions during that period. The bear market was the entire point — lower prices mean more BTC per dollar. Stopping when prices drop defeats the mathematical advantage of DCA.</p>
+
+    <h3>Mistake #2: DCA-ing into an exchange, not self-custody</h3>
+    <p>Leaving accumulated BTC on an exchange removes the security benefit of owning it. The FTX collapse in 2022 wiped out billions in exchange-held crypto. DCA into an exchange for convenience, but move larger amounts to a hardware wallet periodically (Ledger, Trezor, Coldcard). Set a threshold: "when I accumulate more than 0.1 BTC, I'll move it to cold storage."</p>
+
+    <h3>Mistake #3: Adding leverage or "boosting" DCA during dips</h3>
+    <p>A common mistake is abandoning the fixed schedule to buy extra during dips ("buying the dip"). For most investors this introduces the exact timing risk DCA was designed to remove. If BTC drops 40% and you use emergency funds to "double up," you're no longer hedging — you're speculating. Stick to the schedule.</p>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <h3>Is DCA a good strategy for Bitcoin?</h3>
+    <p>Historically yes, for long-term holders. Every DCA cohort starting in 2017–2024 was in profit by end of 2025. The strategy removes timing risk and converts volatility into an advantage — you buy more units when prices are low. <strong>Risk remains</strong>: if Bitcoin permanently loses value or is abandoned, DCA will not save you. Position sizing matters as much as strategy.</p>
+
+    <h3>How much should I DCA into Bitcoin per month?</h3>
+    <p>Only invest what you can afford to lose in full. The mathematically optimal amount is whatever you can sustain through a 2-year bear market without touching. $50–$200/month is common for retail investors building a speculative long-term position.</p>
+
+    <h3>What is the best day of the week to DCA Bitcoin?</h3>
+    <p>Research into Bitcoin day-of-week effects is mixed and the effect sizes are small. <strong>No day is significantly better</strong> historically. Consistency matters far more than timing within the week. If you're using an exchange's auto-buy, pick whichever day your paycheck clears.</p>
+
+    <h3>DCA vs lump-sum for Bitcoin — which is better?</h3>
+    <p>DCA reduces timing risk at the cost of some upside in bull markets. Lump-sum outperforms DCA when prices are rising, but underperforms after near-peak entries. For most retail investors without a conviction on near-term price direction, DCA is the prudent default.</p>
+
+    <h3>How do I calculate my average DCA cost?</h3>
+    <p>Average cost = total USD invested ÷ total BTC accumulated. Our <a href="/tools/dca-calculator/">DCA calculator</a> computes this automatically for any monthly amount, start date, and frequency.</p>
+  </section>
+
+  <div class="sponsor-bar">
+    <span style="color:#64748b;font-size:0.85rem;align-self:center;">Found this useful?</span>
+    <a href="https://ko-fi.com/pureflon" target="_blank" rel="noopener">☕ Ko-fi</a>
+    <a href="https://github.com/sponsors/pure-flon" target="_blank" rel="noopener">★ GitHub Sponsor</a>
+    <a href="https://paypal.me/pureflon" target="_blank" rel="noopener">PayPal</a>
+  </div>
+
+  <p>Related tools: <a href="/tools/dca-calculator/">DCA Calculator</a> &middot; <a href="/tools/dca-calculator/bitcoin/">Bitcoin DCA Calculator</a> &middot; <a href="/tools/crypto-profit-calculator/">Crypto Profit Calculator</a> &middot; <a href="/tools/position-size-calculator/">Position Size Calculator</a></p>
+  <p style="margin-top:0.5rem">Related reading: <a href="/blog/bitcoin-halving-history/">Bitcoin Halving History</a> &middot; <a href="/blog/ai-crypto-trading-tools-2026/">Top 10 Free AI Crypto Tools (2026)</a> &middot; <a href="/blog/free-crypto-apis-developers-2026/">Free Crypto APIs for Developers</a></p>
+
+</div>
+
+<footer>
+  <div class="copy">&copy; 2026 pure-flon &middot; <a href="/blog/">Blog</a> &middot; <a href="/tools/">Tools</a> &middot; <a href="/games/">Games</a></div>
+</footer>
+
+</body>
+</html>

@@ -387,4 +387,18 @@
         <priority>0.9</priority>
     </url>
 
+    <url>
+        <loc>https://pure-flon.com/blog/bitcoin-dca-strategy/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://pure-flon.com/tools/dca-calculator/bitcoin/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>
