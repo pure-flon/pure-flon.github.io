@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>World Capital City Quiz | Name All 195 Country Capitals — Geography Challenge</title>
+<meta name="description" content="Test your world geography! Name the capital city of all 195 countries in timed or relaxed mode. Track your score by continent. Free capital quiz — no download needed.">
+<meta name="keywords" content="capital city quiz, world capitals quiz, capital cities of the world, geography quiz, country capital game, capitals trivia, world geography test">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/games/capital-city-quiz/">
+<meta property="og:title" content="World Capital City Quiz — Can You Name All 195 Capitals? 🏙️">
+<meta property="og:description" content="Name the capital city of all 195 countries. Timed mode for speed, relaxed mode for learning. Free geography quiz!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pure-flon.com/games/capital-city-quiz/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta property="og:image" content="https://pure-flon.com/images/og-capital-city-quiz.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="World Capital City Quiz — 195 Countries 🏙️">
+<meta name="twitter:description" content="Name the capital city of all 195 countries. Timed or relaxed mode. Free quiz!">
+<link rel="icon" href="/favicon.ico">
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"WebApplication","name":"World Capital City Quiz","alternateName":["Capital Quiz","Country Capital Quiz","Capitals of the World Quiz"],"description":"An interactive quiz where you name the capital city of countries from all 195 nations worldwide. Features a timed speed mode and a relaxed learning mode with continent score tracking.","url":"https://pure-flon.com/games/capital-city-quiz/","applicationCategory":"GameApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":"en","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"author":{"@type":"Organization","name":"pure-flon","url":"https://pure-flon.com"},"datePublished":"2026-03-30","genre":"Quiz"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many countries are in the World Capital City Quiz?","acceptedAnswer":{"@type":"Answer","text":"The quiz features all 195 internationally recognized countries, including all 193 UN member states plus Kosovo and Taiwan."}},{"@type":"Question","name":"What are the two game modes?","acceptedAnswer":{"@type":"Answer","text":"Timed Mode: Answer as many capitals as possible in 60 seconds. Relaxed Mode: 10 questions with no time pressure, perfect for learning."}},{"@type":"Question","name":"How is the score calculated?","acceptedAnswer":{"@type":"Answer","text":"Each correct answer earns 100 points. Streak bonuses apply: 2 in a row = 150 pts, 3+ in a row = 200 pts per question."}}]}]
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WE091T20M0');function ga(n,p){try{gtag('event',n,p||{})}catch(e){}}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#3b82f6;--accent2:#60a5fa;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+  padding-bottom:max(env(safe-area-inset-bottom),16px);
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right)
+}
+.container{max-width:480px;width:100%;padding:0 16px;margin:0 auto;flex:1}
+.screen{display:none}
+
+/* ── START ── */
+.start-hero{text-align:center;padding:36px 0 20px}
+.globe{font-size:3.2rem;display:block;margin-bottom:10px}
+.start-hero h1{font-size:1.9rem;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.2}
+.start-hero p{color:var(--muted);font-size:0.92rem;margin-top:8px;line-height:1.5}
+.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.mode-card{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:14px;padding:18px 14px;cursor:pointer;
+  transition:border-color .2s,transform .15s;text-align:center
+}
+.mode-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mode-card.active{border-color:var(--accent);background:#0d1d38}
+.mode-card .mi{font-size:1.9rem;display:block;margin-bottom:7px}
+.mode-card .mt{font-weight:700;font-size:0.95rem;color:#fff;margin-bottom:3px}
+.mode-card .md{font-size:0.76rem;color:var(--muted);line-height:1.4}
+.mode-badge{display:inline-block;margin-top:7px;padding:2px 8px;border-radius:20px;font-size:0.68rem;font-weight:700}
+.mb-fire{background:#ff2d5522;color:#ff6b35}
+.mb-calm{background:#22c55e22;color:#22c55e}
+.best-row{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:13px 16px;margin-bottom:18px;
+  display:flex;justify-content:space-around
+}
+.best-item{text-align:center}
+.bi-label{font-size:0.7rem;color:var(--muted);margin-bottom:3px}
+.bi-val{font-size:1.05rem;font-weight:700;color:var(--accent2)}
+.btn-primary{
+  width:100%;padding:15px;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff;border:none;border-radius:13px;
+  font-size:1rem;font-weight:700;cursor:pointer;
+  transition:transform .15s,opacity .15s;letter-spacing:-0.01em
+}
+.btn-primary:hover{transform:translateY(-1px);opacity:.92}
+.btn-primary:active{transform:scale(.98)}
+.nav-links{text-align:center;padding:14px 0 4px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.nav-link{font-size:0.76rem;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-link:hover{color:var(--accent2)}
+
+/* ── GAME ── */
+.game-header{padding:14px 0 6px}
+.progress-row{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);margin-bottom:6px}
+.progress-track{height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .35s}
+.score-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.timer-top{text-align:center;margin-bottom:5px;font-size:0.82rem;color:var(--muted)}
+.timer-top b{color:var(--text)}
+.timer-track{background:#1a1a1a;border-radius:3px;height:5px;overflow:hidden}
+.timer-fill{height:100%;background:var(--green);border-radius:3px;transition:width 1s linear,background .4s}
+.country-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:28px 16px 20px;margin:10px 0;
+  text-align:center;animation:fadeUp .3s ease
+}
+.country-flag{font-size:4rem;line-height:1.1;display:block;margin-bottom:10px;user-select:none}
+.country-name{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-0.03em;margin-bottom:6px}
+.country-hint{font-size:0.72rem;color:var(--dim)}
+.streak-badge{
+  text-align:center;min-height:22px;margin-bottom:10px;
+  font-size:0.83rem;font-weight:700;color:#ff6b35;
+  transition:opacity .25s
+}
+.answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.answer-btn{
+  background:var(--card);border:1.5px solid var(--border);
+  color:var(--text);border-radius:12px;padding:14px 10px;
+  font-size:0.86rem;font-weight:500;cursor:pointer;
+  transition:border-color .15s,background .15s,transform .12s;
+  line-height:1.3;text-align:center;min-height:62px;
+  display:flex;align-items:center;justify-content:center
+}
+.answer-btn:hover:not(:disabled){border-color:var(--accent);background:#0d1d38;transform:translateY(-1px)}
+.answer-btn:active:not(:disabled){transform:scale(.97)}
+.answer-btn.correct{background:#0b2214;border-color:var(--green)!important;color:var(--green);font-weight:700}
+.answer-btn.wrong{background:#22080a;border-color:var(--red)!important;color:var(--red)}
+.answer-btn:disabled{cursor:default}
+
+/* ── RESULT ── */
+.result-header{text-align:center;padding:32px 0 18px}
+.result-header h2{font-size:1.55rem;font-weight:800;color:#fff;margin-bottom:6px}
+.result-header p{color:var(--muted);font-size:0.88rem}
+.score-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:26px;text-align:center;margin-bottom:14px;
+  animation:fadeUp .35s ease
+}
+.big-score{font-size:3.4rem;font-weight:900;color:var(--accent2);letter-spacing:-0.04em;line-height:1}
+.big-score-lbl{font-size:0.75rem;color:var(--muted);margin-top:4px;margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em}
+.stat-row{display:flex;justify-content:center;gap:24px}
+.stat{text-align:center}
+.stat-n{font-size:1.35rem;font-weight:700;color:#fff}
+.stat-l{font-size:0.7rem;color:var(--muted);margin-top:2px}
+.new-best{
+  display:inline-block;margin-top:12px;
+  background:#ff6b3520;color:#ff6b35;
+  border-radius:20px;padding:4px 12px;font-size:0.76rem;font-weight:700
+}
+.cont-section{margin-bottom:14px}
+.cont-section h3{font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.cont-row{
+  display:grid;grid-template-columns:120px 1fr 40px;
+  align-items:center;gap:10px;margin-bottom:9px;font-size:0.83rem
+}
+.cont-name{display:flex;align-items:center;gap:5px;overflow:hidden}
+.cont-bar-wrap{background:#1a1a1a;border-radius:3px;height:6px;overflow:hidden;width:100%}
+.cont-fill{height:100%;border-radius:3px;width:0;transition:width .6s ease}
+.cont-pct{font-weight:700;font-size:0.78rem;text-align:right}
+.result-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.btn-secondary{
+  padding:13px;background:var(--card);border:1.5px solid var(--border);
+  color:var(--text);border-radius:12px;font-size:0.88rem;font-weight:600;
+  cursor:pointer;transition:border-color .15s,background .15s
+}
+.btn-secondary:hover{border-color:var(--accent);background:#0d1d38}
+.cross-promo{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;text-align:center;margin-bottom:14px
+}
+.cross-promo p{font-size:0.8rem;color:var(--muted);margin-bottom:10px}
+.cross-link{
+  display:inline-block;font-size:0.82rem;color:var(--accent2);
+  text-decoration:none;padding:6px 14px;
+  border:1px solid var(--accent);border-radius:20px;
+  transition:background .15s
+}
+.cross-link:hover{background:#0d1d38}
+
+/* ── SPONSOR ── */
+.sponsor{
+  background:var(--card);border-top:1px solid var(--border);
+  padding:13px 16px;text-align:center;width:100%;margin-top:auto
+}
+.sponsor p{font-size:0.73rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{
+  font-size:0.76rem;color:var(--muted);text-decoration:none;
+  padding:5px 10px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.06)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── START ── -->
+  <div id="screen-start" class="screen">
+    <div class="start-hero">
+      <span class="globe">🏙️</span>
+      <h1>World Capital<br>City Quiz</h1>
+      <p>Can you name the capital of all 195 countries?<br>Test your world geography knowledge!</p>
+    </div>
+    <div class="mode-cards">
+      <div class="mode-card active" data-mode="timed" onclick="pickMode(this)">
+        <span class="mi">⚡</span>
+        <div class="mt">Timed</div>
+        <div class="md">Race the clock — answer as many capitals as you can</div>
+        <span class="mode-badge mb-fire">60 seconds</span>
+      </div>
+      <div class="mode-card" data-mode="relaxed" onclick="pickMode(this)">
+        <span class="mi">🌿</span>
+        <div class="mt">Relaxed</div>
+        <div class="md">Learn at your own pace — no time pressure</div>
+        <span class="mode-badge mb-calm">10 questions</span>
+      </div>
+    </div>
+    <div class="best-row">
+      <div class="best-item">
+        <div class="bi-label">⚡ Best (Timed)</div>
+        <div class="bi-val" id="best-timed">—</div>
+      </div>
+      <div class="best-item">
+        <div class="bi-label">🌿 Best (Relaxed)</div>
+        <div class="bi-val" id="best-relaxed">—</div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startGame()">Start Quiz 🏙️</button>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">← Home</a>
+      <a href="/games/" class="nav-link">All Games</a>
+      <a href="/games/world-flag-quiz/" class="nav-link">🌍 Flag Quiz</a>
+    </nav>
+  </div>
+
+  <!-- ── GAME ── -->
+  <div id="screen-game" class="screen">
+    <div class="game-header">
+      <div class="progress-row">
+        <span id="q-counter">1 / ?</span>
+        <span>Score: <b id="score-disp">0</b></span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="score-row">
+      <div></div>
+      <div id="timer-section" style="display:none;flex:1;margin:0 12px">
+        <div class="timer-top">⏱ <b id="timer-num">60</b>s</div>
+        <div class="timer-track">
+          <div class="timer-fill" id="timer-fill" style="width:100%"></div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+    <div class="country-card">
+      <span class="country-flag" id="country-flag" aria-hidden="true"></span>
+      <div class="country-name" id="country-name"></div>
+      <div class="country-hint">What is the capital city?</div>
+    </div>
+    <div class="streak-badge" id="streak-badge" style="opacity:0" aria-live="polite"></div>
+    <div class="answers-grid" id="answers-grid" role="group" aria-label="Capital city choices"></div>
+  </div>
+
+  <!-- ── RESULT ── -->
+  <div id="screen-result" class="screen">
+    <div class="result-header">
+      <h2 id="result-title">Quiz Complete!</h2>
+      <p id="result-sub"></p>
+    </div>
+    <div class="score-card">
+      <div class="big-score" id="res-score">0</div>
+      <div class="big-score-lbl">Points</div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n" id="res-correct">0</div><div class="stat-l">Correct</div></div>
+        <div class="stat"><div class="stat-n" id="res-total">0</div><div class="stat-l">Answered</div></div>
+        <div class="stat"><div class="stat-n" id="res-acc">0%</div><div class="stat-l">Accuracy</div></div>
+      </div>
+      <div id="res-newbest" class="new-best" style="display:none">🏆 New Personal Best!</div>
+    </div>
+    <div class="cont-section">
+      <h3>Score by Continent</h3>
+      <div id="cont-breakdown"></div>
+    </div>
+    <div class="cross-promo">
+      <p>Also try the companion quiz!</p>
+      <a href="/games/world-flag-quiz/?utm_source=capital-quiz&utm_medium=internal&utm_campaign=cross-promo" class="cross-link" onclick="ga('cross_promo_click',{from:'capital-city-quiz',to:'world-flag-quiz'})">🌍 World Flag Quiz</a>
+    </div>
+    <div class="result-btns">
+      <button class="btn-secondary" id="btn-share" onclick="share()">📤 Share</button>
+      <button class="btn-secondary" onclick="goHome()">🔁 Play Again</button>
+    </div>
+    <button class="btn-primary" onclick="startGame()">Quick Rematch ⚡</button>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">← Home</a>
+      <a href="/games/" class="nav-link">All Games</a>
+    </nav>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── SPONSOR ── -->
+<div class="sponsor">
+  <p>Enjoying the quiz? Support free tools &amp; games ☕</p>
+  <div class="sponsor-links">
+    <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="ga('sponsor_click',{cta_type:'kofi',product:'capital-city-quiz'})">☕ Ko-fi</a>
+    <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener" onclick="ga('sponsor_click',{cta_type:'github_sponsors',product:'capital-city-quiz'})">💖 GitHub Sponsors</a>
+    <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="ga('sponsor_click',{cta_type:'paypal',product:'capital-city-quiz'})">💳 PayPal</a>
+  </div>
+</div>
+
+<script>
+// ── COUNTRY DATA ──
+// Format: [isoCode, countryName, capitalCity, continent]
+// continent: Af=Africa Am=Americas As=Asia Eu=Europe Oc=Oceania
+const C = [
+// Africa (54)
+['DZ','Algeria','Algiers','Af'],['AO','Angola','Luanda','Af'],['BJ','Benin','Porto-Novo','Af'],
+['BW','Botswana','Gaborone','Af'],['BF','Burkina Faso','Ouagadougou','Af'],
+['BI','Burundi','Gitega','Af'],['CM','Cameroon','Yaoundé','Af'],['CV','Cape Verde','Praia','Af'],
+['CF','Central African Rep.','Bangui','Af'],['TD','Chad','N\'Djamena','Af'],
+['KM','Comoros','Moroni','Af'],['CG','Republic of Congo','Brazzaville','Af'],
+['CD','DR Congo','Kinshasa','Af'],['CI','Ivory Coast','Yamoussoukro','Af'],
+['DJ','Djibouti','Djibouti','Af'],['EG','Egypt','Cairo','Af'],
+['GQ','Equatorial Guinea','Malabo','Af'],['ER','Eritrea','Asmara','Af'],
+['ET','Ethiopia','Addis Ababa','Af'],['GA','Gabon','Libreville','Af'],
+['GM','Gambia','Banjul','Af'],['GH','Ghana','Accra','Af'],['GN','Guinea','Conakry','Af'],
+['GW','Guinea-Bissau','Bissau','Af'],['KE','Kenya','Nairobi','Af'],['LS','Lesotho','Maseru','Af'],
+['LR','Liberia','Monrovia','Af'],['LY','Libya','Tripoli','Af'],['MG','Madagascar','Antananarivo','Af'],
+['MW','Malawi','Lilongwe','Af'],['ML','Mali','Bamako','Af'],['MR','Mauritania','Nouakchott','Af'],
+['MU','Mauritius','Port Louis','Af'],['MA','Morocco','Rabat','Af'],['MZ','Mozambique','Maputo','Af'],
+['NA','Namibia','Windhoek','Af'],['NE','Niger','Niamey','Af'],['NG','Nigeria','Abuja','Af'],
+['RW','Rwanda','Kigali','Af'],['ST','São Tomé & Príncipe','São Tomé','Af'],
+['SN','Senegal','Dakar','Af'],['SC','Seychelles','Victoria','Af'],
+['SL','Sierra Leone','Freetown','Af'],['SO','Somalia','Mogadishu','Af'],
+['ZA','South Africa','Pretoria','Af'],['SS','South Sudan','Juba','Af'],
+['SD','Sudan','Khartoum','Af'],['SZ','Eswatini','Mbabane','Af'],
+['TZ','Tanzania','Dodoma','Af'],['TG','Togo','Lomé','Af'],['TN','Tunisia','Tunis','Af'],
+['UG','Uganda','Kampala','Af'],['ZM','Zambia','Lusaka','Af'],['ZW','Zimbabwe','Harare','Af'],
+// Americas (35)
+['AG','Antigua & Barbuda','Saint John\'s','Am'],['AR','Argentina','Buenos Aires','Am'],
+['BS','Bahamas','Nassau','Am'],['BB','Barbados','Bridgetown','Am'],['BZ','Belize','Belmopan','Am'],
+['BO','Bolivia','Sucre','Am'],['BR','Brazil','Brasília','Am'],['CA','Canada','Ottawa','Am'],
+['CL','Chile','Santiago','Am'],['CO','Colombia','Bogotá','Am'],['CR','Costa Rica','San José','Am'],
+['CU','Cuba','Havana','Am'],['DM','Dominica','Roseau','Am'],
+['DO','Dominican Republic','Santo Domingo','Am'],['EC','Ecuador','Quito','Am'],
+['SV','El Salvador','San Salvador','Am'],['GD','Grenada','Saint George\'s','Am'],
+['GT','Guatemala','Guatemala City','Am'],['GY','Guyana','Georgetown','Am'],
+['HT','Haiti','Port-au-Prince','Am'],['HN','Honduras','Tegucigalpa','Am'],
+['JM','Jamaica','Kingston','Am'],['MX','Mexico','Mexico City','Am'],
+['NI','Nicaragua','Managua','Am'],['PA','Panama','Panama City','Am'],
+['PY','Paraguay','Asunción','Am'],['PE','Peru','Lima','Am'],
+['KN','Saint Kitts & Nevis','Basseterre','Am'],['LC','Saint Lucia','Castries','Am'],
+['VC','Saint Vincent','Kingstown','Am'],['SR','Suriname','Paramaribo','Am'],
+['TT','Trinidad & Tobago','Port of Spain','Am'],['US','United States','Washington D.C.','Am'],
+['UY','Uruguay','Montevideo','Am'],['VE','Venezuela','Caracas','Am'],
+// Asia (48)
+['AF','Afghanistan','Kabul','As'],['AM','Armenia','Yerevan','As'],
+['AZ','Azerbaijan','Baku','As'],['BH','Bahrain','Manama','As'],
+['BD','Bangladesh','Dhaka','As'],['BT','Bhutan','Thimphu','As'],
+['BN','Brunei','Bandar Seri Begawan','As'],['KH','Cambodia','Phnom Penh','As'],
+['CN','China','Beijing','As'],['CY','Cyprus','Nicosia','As'],['GE','Georgia','Tbilisi','As'],
+['IN','India','New Delhi','As'],['ID','Indonesia','Jakarta','As'],['IR','Iran','Tehran','As'],
+['IQ','Iraq','Baghdad','As'],['IL','Israel','Jerusalem','As'],['JP','Japan','Tokyo','As'],
+['JO','Jordan','Amman','As'],['KZ','Kazakhstan','Astana','As'],['KW','Kuwait','Kuwait City','As'],
+['KG','Kyrgyzstan','Bishkek','As'],['LA','Laos','Vientiane','As'],['LB','Lebanon','Beirut','As'],
+['MY','Malaysia','Kuala Lumpur','As'],['MV','Maldives','Malé','As'],
+['MN','Mongolia','Ulaanbaatar','As'],['MM','Myanmar','Naypyidaw','As'],
+['NP','Nepal','Kathmandu','As'],['KP','North Korea','Pyongyang','As'],
+['OM','Oman','Muscat','As'],['PK','Pakistan','Islamabad','As'],
+['PH','Philippines','Manila','As'],['QA','Qatar','Doha','As'],
+['SA','Saudi Arabia','Riyadh','As'],['SG','Singapore','Singapore','As'],
+['KR','South Korea','Seoul','As'],['LK','Sri Lanka','Colombo','As'],
+['SY','Syria','Damascus','As'],['TW','Taiwan','Taipei','As'],
+['TJ','Tajikistan','Dushanbe','As'],['TH','Thailand','Bangkok','As'],
+['TL','Timor-Leste','Dili','As'],['TR','Türkiye','Ankara','As'],
+['TM','Turkmenistan','Ashgabat','As'],['AE','UAE','Abu Dhabi','As'],
+['UZ','Uzbekistan','Tashkent','As'],['VN','Vietnam','Hanoi','As'],['YE','Yemen','Sanaa','As'],
+// Europe (44)
+['AL','Albania','Tirana','Eu'],['AD','Andorra','Andorra la Vella','Eu'],
+['AT','Austria','Vienna','Eu'],['BY','Belarus','Minsk','Eu'],['BE','Belgium','Brussels','Eu'],
+['BA','Bosnia & Herzegovina','Sarajevo','Eu'],['BG','Bulgaria','Sofia','Eu'],
+['HR','Croatia','Zagreb','Eu'],['CZ','Czechia','Prague','Eu'],['DK','Denmark','Copenhagen','Eu'],
+['EE','Estonia','Tallinn','Eu'],['FI','Finland','Helsinki','Eu'],['FR','France','Paris','Eu'],
+['DE','Germany','Berlin','Eu'],['GR','Greece','Athens','Eu'],['HU','Hungary','Budapest','Eu'],
+['IS','Iceland','Reykjavik','Eu'],['IE','Ireland','Dublin','Eu'],['IT','Italy','Rome','Eu'],
+['XK','Kosovo','Pristina','Eu'],['LV','Latvia','Riga','Eu'],
+['LI','Liechtenstein','Vaduz','Eu'],['LT','Lithuania','Vilnius','Eu'],
+['LU','Luxembourg','Luxembourg City','Eu'],['MT','Malta','Valletta','Eu'],
+['MD','Moldova','Chișinău','Eu'],['MC','Monaco','Monaco','Eu'],
+['ME','Montenegro','Podgorica','Eu'],['NL','Netherlands','Amsterdam','Eu'],
+['MK','North Macedonia','Skopje','Eu'],['NO','Norway','Oslo','Eu'],['PL','Poland','Warsaw','Eu'],
+['PT','Portugal','Lisbon','Eu'],['RO','Romania','Bucharest','Eu'],['RU','Russia','Moscow','Eu'],
+['SM','San Marino','San Marino','Eu'],['RS','Serbia','Belgrade','Eu'],
+['SK','Slovakia','Bratislava','Eu'],['SI','Slovenia','Ljubljana','Eu'],
+['ES','Spain','Madrid','Eu'],['SE','Sweden','Stockholm','Eu'],
+['CH','Switzerland','Bern','Eu'],['UA','Ukraine','Kyiv','Eu'],
+['GB','United Kingdom','London','Eu'],
+// Oceania (14)
+['AU','Australia','Canberra','Oc'],['FJ','Fiji','Suva','Oc'],['KI','Kiribati','South Tarawa','Oc'],
+['MH','Marshall Islands','Majuro','Oc'],['FM','Micronesia','Palikir','Oc'],
+['NR','Nauru','Yaren','Oc'],['NZ','New Zealand','Wellington','Oc'],
+['PG','Papua New Guinea','Port Moresby','Oc'],['WS','Samoa','Apia','Oc'],
+['SB','Solomon Islands','Honiara','Oc'],['TO','Tonga','Nuku\'alofa','Oc'],
+['TV','Tuvalu','Funafuti','Oc'],['VU','Vanuatu','Port Vila','Oc'],['PW','Palau','Ngerulmud','Oc']
+];
+// Af=54 Am=35 As=48 Eu=44 Oc=14  => 195 total
+
+const CNAMES = {Af:'Africa',Am:'Americas',As:'Asia',Eu:'Europe',Oc:'Oceania'};
+const CEMOJI = {Af:'🌍',Am:'🌎',As:'🌏',Eu:'🏛️',Oc:'🌊'};
+const CCOLS  = {Af:'#f97316',Am:'#a855f7',As:'#3b82f6',Eu:'#22c55e',Oc:'#06b6d4'};
+
+// ISO code → flag emoji
+const toFlag = code => [...code.toUpperCase()].map(c =>
+  String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+
+function shuffle(a){
+  const b=[...a];
+  for(let i=b.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [b[i],b[j]]=[b[j],b[i]];
+  }
+  return b;
+}
+
+let G = {};
+
+function init(){
+  loadBests();
+  showScreen('start');
+}
+
+function loadBests(){
+  const t=localStorage.getItem('ccq_t');
+  const r=localStorage.getItem('ccq_r');
+  document.getElementById('best-timed').textContent   = t ? (+t).toLocaleString() : '—';
+  document.getElementById('best-relaxed').textContent = r ? (+r).toLocaleString() : '—';
+}
+
+function pickMode(el){
+  document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function goHome(){
+  showScreen('start');
+  loadBests();
+}
+
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
+  document.getElementById('screen-'+name).style.display='block';
+}
+
+// ── START GAME ──
+function startGame(){
+  const mode=(document.querySelector('.mode-card.active')||{}).dataset.mode||'timed';
+  G={
+    mode,
+    pool:shuffle(C),
+    idx:0,
+    score:0,
+    streak:0,
+    maxStreak:0,
+    correct:0,
+    total:0,
+    contStats:{},
+    timeLeft:60,
+    timerId:null,
+    answered:false
+  };
+  if(G.timerId) clearInterval(G.timerId);
+  const ts=document.getElementById('timer-section');
+  if(mode==='timed'){
+    ts.style.display='flex';
+    startTimer();
+  } else {
+    ts.style.display='none';
+  }
+  ga('game_start',{mode,product:'capital-city-quiz'});
+  showScreen('game');
+  nextQuestion();
+}
+
+function startTimer(){
+  G.timeLeft=60;
+  updateTimerUI();
+  G.timerId=setInterval(()=>{
+    G.timeLeft--;
+    updateTimerUI();
+    if(G.timeLeft<=0){
+      clearInterval(G.timerId);
+      endGame();
+    }
+  },1000);
+}
+
+function updateTimerUI(){
+  document.getElementById('timer-num').textContent=G.timeLeft;
+  const pct=(G.timeLeft/60)*100;
+  const fill=document.getElementById('timer-fill');
+  fill.style.width=pct+'%';
+  fill.style.background=G.timeLeft>20?'var(--green)':G.timeLeft>10?'var(--yellow)':'var(--red)';
+}
+
+function nextQuestion(){
+  if(G.mode==='relaxed' && G.total>=10){endGame();return;}
+  if(G.idx>=G.pool.length){endGame();return;}
+
+  const entry=G.pool[G.idx];
+  const [code,country,capital,cont]=entry;
+  G.current={code,country,capital,cont};
+  G.answered=false;
+
+  // flag + country display
+  document.getElementById('country-flag').textContent=toFlag(code);
+  document.getElementById('country-name').textContent=country;
+
+  // progress
+  const total=G.mode==='relaxed'?10:G.pool.length;
+  document.getElementById('q-counter').textContent=`${G.idx+1} / ${G.mode==='relaxed'?10:'?'}`;
+  document.getElementById('score-disp').textContent=G.score.toLocaleString();
+  document.getElementById('prog-fill').style.width=
+    G.mode==='relaxed'?(G.idx/10*100)+'%':'0%';
+
+  // generate 4 choices: 1 correct + 3 wrong from same continent (prefer) or any
+  const contPool=C.filter(c=>c[3]===cont && c[2]!==capital);
+  const otherPool=C.filter(c=>c[2]!==capital && c[0]!==code);
+  const distractors=shuffle(contPool.length>=3?contPool:otherPool).slice(0,3).map(c=>c[2]);
+  const choices=shuffle([capital,...distractors]);
+
+  const grid=document.getElementById('answers-grid');
+  grid.innerHTML='';
+  choices.forEach(ch=>{
+    const btn=document.createElement('button');
+    btn.className='answer-btn';
+    btn.textContent=ch;
+    btn.setAttribute('aria-label',ch);
+    btn.onclick=()=>answer(btn,ch,capital);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById('streak-badge').style.opacity='0';
+}
+
+function answer(btn,chosen,correct){
+  if(G.answered) return;
+  G.answered=true;
+  G.total++;
+  G.idx++;
+
+  const cont=G.current.cont;
+  if(!G.contStats[cont]) G.contStats[cont]={correct:0,total:0};
+  G.contStats[cont].total++;
+
+  const isCorrect=chosen===correct;
+  const grid=document.getElementById('answers-grid');
+  grid.querySelectorAll('.answer-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===correct) b.classList.add('correct');
+  });
+
+  if(isCorrect){
+    G.correct++;
+    G.streak++;
+    G.maxStreak=Math.max(G.maxStreak,G.streak);
+    G.contStats[cont].correct++;
+    const pts=G.streak>=3?200:G.streak===2?150:100;
+    G.score+=pts;
+    if(G.streak>1){
+      const sb=document.getElementById('streak-badge');
+      sb.textContent=G.streak===2?'🔥 2 in a row! +150':
+                     G.streak===3?'🔥🔥 3 in a row! +200':
+                     `🔥 ${G.streak} streak! +200`;
+      sb.style.opacity='1';
+    }
+  } else {
+    btn.classList.add('wrong');
+    G.streak=0;
+    grid.querySelectorAll('.answer-btn').forEach(b=>{
+      if(b.textContent===correct) b.classList.add('correct');
+    });
+  }
+
+  setTimeout(()=>{
+    if(G.mode==='timed' && G.timeLeft<=0) return;
+    nextQuestion();
+  },isCorrect?400:700);
+}
+
+// ── END GAME ──
+function endGame(){
+  if(G.timerId) clearInterval(G.timerId);
+
+  const acc=G.total>0?Math.round(G.correct/G.total*100):0;
+  const grade=acc>=90?'Capital Expert 🎓':acc>=70?'Well Travelled ✈️':
+              acc>=50?'Geography Fan 🗺️':'Capital Learner 📚';
+
+  document.getElementById('result-title').textContent=grade;
+  document.getElementById('result-sub').textContent=
+    G.mode==='timed'?`Answered ${G.total} in 60 seconds!`:`${G.total} questions answered`;
+  document.getElementById('res-score').textContent=G.score.toLocaleString();
+  document.getElementById('res-correct').textContent=G.correct;
+  document.getElementById('res-total').textContent=G.total;
+  document.getElementById('res-acc').textContent=acc+'%';
+
+  // best score
+  const key=G.mode==='timed'?'ccq_t':'ccq_r';
+  const prev=+(localStorage.getItem(key)||0);
+  const newBest=G.score>prev;
+  if(newBest) localStorage.setItem(key,G.score);
+  document.getElementById('res-newbest').style.display=newBest?'inline-block':'none';
+
+  // continent breakdown
+  const cb=document.getElementById('cont-breakdown');
+  cb.innerHTML='';
+  ['Af','Am','As','Eu','Oc'].forEach(k=>{
+    const s=G.contStats[k];
+    if(!s||s.total===0) return;
+    const pct=Math.round(s.correct/s.total*100);
+    const col=CCOLS[k];
+    cb.innerHTML+=`
+      <div class="cont-row">
+        <div class="cont-name">${CEMOJI[k]} <span>${CNAMES[k]}</span></div>
+        <div class="cont-bar-wrap"><div class="cont-fill" style="width:${pct}%;background:${col}"></div></div>
+        <div class="cont-pct" style="color:${col}">${pct}%</div>
+      </div>`;
+  });
+
+  ga('game_end',{mode:G.mode,score:G.score,correct:G.correct,total:G.total,accuracy:acc,product:'capital-city-quiz'});
+  showScreen('result');
+}
+
+// ── SHARE ──
+function share(){
+  const acc=G.total>0?Math.round(G.correct/G.total*100):0;
+  const txt=`🏙️ World Capital City Quiz\n${G.score.toLocaleString()} pts | ${G.correct}/${G.total} correct | ${acc}% accuracy\nCan you beat my score? https://pure-flon.com/games/capital-city-quiz/`;
+  if(navigator.share){
+    navigator.share({title:'World Capital City Quiz',text:txt,url:'https://pure-flon.com/games/capital-city-quiz/'})
+      .catch(()=>copyFallback(txt));
+  } else {
+    copyFallback(txt);
+  }
+  ga('share',{product:'capital-city-quiz',score:G.score});
+}
+function copyFallback(txt){
+  navigator.clipboard.writeText(txt).then(()=>{
+    const btn=document.getElementById('btn-share');
+    const orig=btn.textContent;
+    btn.textContent='✅ Copied!';
+    setTimeout(()=>btn.textContent=orig,2000);
+  }).catch(()=>{});
+}
+
+// ── BOOT ──
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
