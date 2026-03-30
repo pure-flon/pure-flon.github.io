@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin DCA Calculator — Dollar Cost Averaging Returns | pure-flon</title>
+<meta name="description" content="Free Bitcoin DCA calculator. See how much you would have made dollar cost averaging into Bitcoin or any crypto over any period. Compare lump sum vs DCA strategy instantly.">
+<meta name="keywords" content="bitcoin DCA calculator, dollar cost averaging calculator crypto, bitcoin DCA returns, crypto DCA calculator, BTC DCA calculator, dollar cost average bitcoin, DCA vs lump sum crypto">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/dca-calculator/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bitcoin DCA Calculator — Dollar Cost Averaging Returns">
+<meta property="og:description" content="Calculate your DCA returns for Bitcoin and crypto. Compare weekly vs monthly investing. See total invested, average cost, and portfolio value.">
+<meta property="og:url" content="https://pure-flon.com/tools/dca-calculator/">
+<meta property="og:site_name" content="pure-flon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bitcoin DCA Calculator">
+<meta name="twitter:description" content="Calculate Bitcoin DCA returns. Compare lump sum vs dollar cost averaging strategy with instant results.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Bitcoin DCA Calculator",
+  "description": "Free dollar cost averaging calculator for Bitcoin and cryptocurrency. Calculate DCA returns, average cost basis, and compare against lump sum investing.",
+  "url": "https://pure-flon.com/tools/dca-calculator/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Dollar Cost Averaging (DCA) in crypto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DCA means investing a fixed amount at regular intervals (weekly, monthly) regardless of price. Instead of trying to time the market, you buy more coins when prices are low and fewer when prices are high. Over time this averages out your cost basis and reduces the impact of volatility."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is DCA better than lump sum investing for Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a rising market, lump sum investing outperforms DCA because all capital is deployed immediately. In a volatile or declining market, DCA wins by lowering average cost. For Bitcoin specifically, historical data shows lump sum wins about 65% of the time over long periods — but DCA significantly reduces psychological stress and timing risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should you DCA into Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weekly DCA outperforms monthly DCA in highly volatile assets like Bitcoin because you get more price averaging opportunities. Daily DCA has minimal additional benefit over weekly and increases transaction fees. Most practitioners use weekly or bi-weekly intervals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good DCA amount for Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The amount matters less than consistency. Even $10–$50 per week compounded over years becomes significant. The most important factor is choosing an amount you can sustain without selling during drawdowns. Most retail DCA investors use 5–15% of their monthly income."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #111; --surface2: #161616; --border: #222;
+    --text: #e8e8e8; --muted: #888; --accent: #f7931a; --accent2: #7c6aff;
+    --warn: #f5a623; --good: #27d87a; --danger: #e05555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; min-height: 100vh; }
+  header { border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--bg); z-index: 10; }
+  header a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+  nav a:hover { color: var(--text); }
+  main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+  .page-header { text-align: center; margin-bottom: 48px; }
+  .page-tag { display: inline-block; background: var(--surface); border: 1px solid var(--border); color: var(--accent); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 12px; }
+  .subtitle { color: var(--muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+  .calc-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 24px; }
+  .calc-panel h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 20px; }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 560px) { .input-row { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  .input-wrap { position: relative; display: flex; align-items: center; }
+  .input-prefix { position: absolute; left: 12px; color: var(--muted); font-size: 0.9rem; pointer-events: none; }
+  input[type="number"], select { width: 100%; background: #0d0d0d; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1rem; padding: 10px 12px; appearance: none; -webkit-appearance: none; outline: none; transition: border-color 0.15s; }
+  input[type="number"]:focus, select:focus { border-color: var(--accent); }
+  .has-prefix input { padding-left: 28px; }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  @media (max-width: 640px) { .result-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .result-grid { grid-template-columns: 1fr; } }
+  .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .result-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+  .result-value { font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .result-sub { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  .vs-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px; }
+  .vs-card h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 16px; }
+  .vs-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
+  .vs-row:last-child { border-bottom: none; }
+  .vs-label { font-size: 0.9rem; color: var(--muted); }
+  .vs-values { display: flex; gap: 24px; }
+  .vs-dca, .vs-lump { text-align: right; }
+  .vs-col-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 2px; }
+  .vs-col-val { font-weight: 700; font-size: 0.95rem; }
+  .schedule-table { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px; overflow-x: auto; }
+  .schedule-table h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { text-align: left; color: var(--muted); font-size: 0.78rem; font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 10px; border-bottom: 1px solid #1a1a1a; }
+  tr:last-child td { border-bottom: none; }
+  .td-good { color: var(--good); font-weight: 700; }
+  .td-bad { color: var(--danger); font-weight: 700; }
+  .content-section { margin: 40px 0; }
+  .content-section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 14px; }
+  .content-section p { color: #bbb; margin-bottom: 12px; line-height: 1.7; }
+  .content-section ul, .content-section ol { margin: 12px 0 12px 20px; color: #bbb; }
+  .content-section li { margin-bottom: 6px; line-height: 1.6; }
+  .faq { margin: 40px 0; }
+  .faq h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq-q { font-weight: 700; font-size: 0.95rem; }
+  .faq-a { color: var(--muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.7; }
+  .sponsor-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 48px 0; text-align: center; }
+  .sponsor-box p { color: var(--muted); font-size: 0.92rem; margin-bottom: 16px; }
+  .sponsor-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .sponsor-links a { padding: 8px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: opacity 0.15s; }
+  .sponsor-links a:hover { opacity: 0.85; }
+  .btn-kofi { background: #FF5E5B; color: #fff; }
+  .btn-gh { background: #238636; color: #fff; }
+  .btn-pp { background: #003087; color: #fff; }
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.85rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/">pure-flon</a>
+  <nav>
+    <a href="/tools/">Tools</a>
+    <a href="/blog/">Blog</a>
+    <a href="/games/">Games</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-tag">Free Tool</div>
+    <h1>Bitcoin DCA Calculator</h1>
+    <p class="subtitle">See your dollar cost averaging returns for Bitcoin or any crypto. Compare DCA vs lump sum, adjust price range, and find your average cost basis instantly.</p>
+  </div>
+
+  <!-- Inputs -->
+  <div class="calc-panel">
+    <h2>DCA Settings</h2>
+    <div class="input-row">
+      <div class="field">
+        <label>Amount per Purchase (USD)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="dcaAmount" value="100" min="1" step="any" oninput="calculate()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Purchase Frequency</label>
+        <select id="frequency" onchange="calculate()">
+          <option value="7">Weekly</option>
+          <option value="14">Bi-weekly</option>
+          <option value="30" selected>Monthly</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Number of Purchases</label>
+        <input type="number" id="numPurchases" value="24" min="1" max="600" step="1" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Starting Price (USD)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="startPrice" value="30000" min="1" step="any" oninput="calculate()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Ending Price (USD)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="endPrice" value="90000" min="1" step="any" oninput="calculate()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Current Price (USD)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="currentPrice" value="90000" min="1" step="any" oninput="calculate()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="result-grid">
+    <div class="result-card">
+      <div class="result-label">Total Invested</div>
+      <div class="result-value" id="totalInvested" style="color:var(--text)">$0</div>
+      <div class="result-sub" id="totalInvestedSub">over all purchases</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Total Coins Bought</div>
+      <div class="result-value" id="totalCoins" style="color:var(--text)">0.000000</div>
+      <div class="result-sub">BTC accumulated</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Average Cost Basis</div>
+      <div class="result-value" id="avgCost" style="color:var(--accent)">$0</div>
+      <div class="result-sub">per coin</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Portfolio Value</div>
+      <div class="result-value" id="portfolioValue" style="color:var(--good)">$0</div>
+      <div class="result-sub">at current price</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Net Profit</div>
+      <div class="result-value" id="netProfit" style="color:var(--good)">$0</div>
+      <div class="result-sub">DCA gains</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">ROI</div>
+      <div class="result-value" id="roiPct" style="color:var(--good)">0%</div>
+      <div class="result-sub">on total invested</div>
+    </div>
+  </div>
+
+  <!-- DCA vs Lump Sum -->
+  <div class="vs-card">
+    <h3>DCA vs Lump Sum Comparison</h3>
+    <div class="vs-row">
+      <span class="vs-label"></span>
+      <div class="vs-values">
+        <div class="vs-dca"><div class="vs-col-label">DCA Strategy</div></div>
+        <div class="vs-lump"><div class="vs-col-label">Lump Sum</div></div>
+      </div>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">Total Invested</span>
+      <div class="vs-values">
+        <div class="vs-dca"><div class="vs-col-val" id="vs-dca-invested">—</div></div>
+        <div class="vs-lump"><div class="vs-col-val" id="vs-lump-invested">—</div></div>
+      </div>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">Coins Acquired</span>
+      <div class="vs-values">
+        <div class="vs-dca"><div class="vs-col-val" id="vs-dca-coins">—</div></div>
+        <div class="vs-lump"><div class="vs-col-val" id="vs-lump-coins">—</div></div>
+      </div>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">Portfolio Value</span>
+      <div class="vs-values">
+        <div class="vs-dca"><div class="vs-col-val" id="vs-dca-value">—</div></div>
+        <div class="vs-lump"><div class="vs-col-val" id="vs-lump-value">—</div></div>
+      </div>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">ROI</span>
+      <div class="vs-values">
+        <div class="vs-dca"><div class="vs-col-val" id="vs-dca-roi">—</div></div>
+        <div class="vs-lump"><div class="vs-col-val" id="vs-lump-roi">—</div></div>
+      </div>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">Winner</span>
+      <div class="vs-values">
+        <div style="width:100%; text-align:right;"><span id="vs-winner" style="font-weight:800; font-size:0.95rem;">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedule Table (first 12 entries) -->
+  <div class="schedule-table">
+    <h3>Purchase Schedule (first 12 entries)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Price</th>
+          <th>Coins Bought</th>
+          <th>Cumulative Coins</th>
+          <th>Avg Cost</th>
+          <th>Portfolio Value</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Content -->
+  <div class="content-section">
+    <h2>What is Dollar Cost Averaging (DCA)?</h2>
+    <p>Dollar cost averaging is a systematic investment strategy where you invest a fixed amount at regular intervals regardless of price. Instead of trying to buy the "perfect" bottom, DCA spreads your purchases over time, automatically buying more coins when prices are low and fewer when prices are high.</p>
+    <p>For Bitcoin, DCA has historically been one of the best risk-adjusted strategies for long-term holders. By removing the psychological pressure of timing the market, DCA investors often outperform those who try to buy dips and sell tops.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>DCA vs Lump Sum: Which Wins for Bitcoin?</h2>
+    <p>Studies consistently show that lump sum investing outperforms DCA in bull markets because all capital is deployed immediately. However, Bitcoin's extreme volatility means timing risk is enormous.</p>
+    <ul>
+      <li><strong>Lump sum wins</strong> when you invest at the bottom of a cycle</li>
+      <li><strong>DCA wins</strong> when you invest at the top or in the middle of a bear market</li>
+      <li><strong>DCA reduces max drawdown</strong> — your worst case is always better than worst-case lump sum</li>
+      <li><strong>DCA is psychologically easier</strong> — less regret, less panic selling</li>
+    </ul>
+    <p>For most people, the best strategy is DCA for the bulk of their position, with occasional lump sum additions at major market lows (bear market capitulation events).</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How to DCA Bitcoin Most Effectively</h2>
+    <ol>
+      <li><strong>Set a fixed amount you can sustain</strong> — never invest money you'll need within 2 years</li>
+      <li><strong>Weekly beats monthly</strong> — more purchase intervals = better averaging on volatile assets</li>
+      <li><strong>Automate it</strong> — exchanges like Coinbase, Binance, and River offer recurring buys</li>
+      <li><strong>Don't check daily prices</strong> — the whole point of DCA is to remove emotion</li>
+      <li><strong>Set a target exit plan</strong> — DCA in, DCA out (gradual selling on the way up reduces taxes)</li>
+    </ol>
+  </div>
+
+  <!-- Related tools -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:14px; margin: 32px 0;">
+    <a href="/tools/crypto-profit-calculator/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tool</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Crypto Profit Calculator</div>
+    </a>
+    <a href="/tools/position-size-calculator/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tool</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Position Size Calculator</div>
+    </a>
+    <a href="/tools/compound-interest-calculator/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tool</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Compound Interest Calculator</div>
+    </a>
+  </div>
+
+  <div class="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">What is Dollar Cost Averaging (DCA) in crypto?</div>
+      <div class="faq-a">DCA means investing a fixed amount at regular intervals regardless of price. You buy more coins when prices are low and fewer when prices are high. Over time this averages your cost basis and reduces volatility risk.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is DCA better than lump sum for Bitcoin?</div>
+      <div class="faq-a">In a rising market, lump sum wins because all capital is deployed immediately. In a volatile or declining market, DCA wins by lowering average cost. For most investors, DCA removes timing risk and emotional stress.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How often should you DCA into Bitcoin?</div>
+      <div class="faq-a">Weekly DCA tends to outperform monthly for volatile assets like Bitcoin because you get more price averaging opportunities. Daily DCA adds minimal benefit over weekly while increasing transaction fees. Most practitioners use weekly or bi-weekly.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is a cost basis in crypto?</div>
+      <div class="faq-a">Cost basis is the average price you paid for your coins, including fees. If you buy 0.1 BTC at $40,000 and 0.1 BTC at $60,000, your average cost basis is $50,000. This number determines your taxable profit when you sell.</div>
+    </div>
+  </div>
+
+  <div class="sponsor-box">
+    <p>This tool is free. If it helped your investment decisions, consider supporting the project:</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" class="btn-kofi" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'kofi'})">☕ Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" class="btn-gh" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'github_sponsors'})">★ GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" class="btn-pp" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'paypal'})">PayPal</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 pure-flon · <a href="/">Home</a> <a href="/tools/">Tools</a> <a href="/blog/">Blog</a> <a href="/games/">Games</a></p>
+</footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WE091T20M0');
+</script>
+
+<script>
+function fmt(n, d = 0) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+function fmtCoin(n) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  if (n < 0.00001) return n.toFixed(8);
+  if (n < 0.001) return n.toFixed(6);
+  return n.toFixed(6);
+}
+
+function calculate() {
+  const dcaAmount = parseFloat(document.getElementById('dcaAmount').value) || 0;
+  const numPurchases = parseInt(document.getElementById('numPurchases').value) || 1;
+  const startPrice = parseFloat(document.getElementById('startPrice').value) || 1;
+  const endPrice = parseFloat(document.getElementById('endPrice').value) || 1;
+  const currentPrice = parseFloat(document.getElementById('currentPrice').value) || endPrice;
+
+  if (!dcaAmount || !numPurchases || !startPrice) return;
+
+  // Build purchase schedule with linear price interpolation
+  let totalCoins = 0;
+  let totalInvested = 0;
+  const purchases = [];
+
+  for (let i = 0; i < numPurchases; i++) {
+    const t = numPurchases > 1 ? i / (numPurchases - 1) : 0;
+    // Add some volatility simulation: sine wave on top of trend
+    const trend = startPrice + (endPrice - startPrice) * t;
+    // Light oscillation for realism (±15% of trend)
+    const osc = trend * 0.15 * Math.sin(i * 1.5);
+    const price = Math.max(trend + osc, 1);
+    const coins = dcaAmount / price;
+    totalCoins += coins;
+    totalInvested += dcaAmount;
+    purchases.push({ i: i + 1, price, coins, cumCoins: totalCoins, avgCost: totalInvested / totalCoins, portValue: totalCoins * currentPrice });
+  }
+
+  const avgCost = totalInvested / totalCoins;
+  const portfolioValue = totalCoins * currentPrice;
+  const netProfit = portfolioValue - totalInvested;
+  const roi = totalInvested > 0 ? (netProfit / totalInvested) * 100 : 0;
+
+  // Update results
+  document.getElementById('totalInvested').textContent = '$' + fmt(totalInvested);
+  document.getElementById('totalInvestedSub').textContent = fmt(numPurchases) + ' purchases × $' + fmt(dcaAmount);
+  document.getElementById('totalCoins').textContent = fmtCoin(totalCoins);
+  document.getElementById('avgCost').textContent = '$' + fmt(avgCost);
+
+  const portEl = document.getElementById('portfolioValue');
+  portEl.textContent = '$' + fmt(portfolioValue);
+  portEl.style.color = portfolioValue >= totalInvested ? 'var(--good)' : 'var(--danger)';
+
+  const profitEl = document.getElementById('netProfit');
+  profitEl.textContent = (netProfit >= 0 ? '+' : '') + '$' + fmt(netProfit);
+  profitEl.style.color = netProfit >= 0 ? 'var(--good)' : 'var(--danger)';
+
+  const roiEl = document.getElementById('roiPct');
+  roiEl.textContent = (roi >= 0 ? '+' : '') + fmt(roi, 1) + '%';
+  roiEl.style.color = roi >= 0 ? 'var(--good)' : 'var(--danger)';
+
+  // Lump sum comparison
+  const lumpCoins = totalInvested / startPrice;
+  const lumpValue = lumpCoins * currentPrice;
+  const lumpProfit = lumpValue - totalInvested;
+  const lumpRoi = totalInvested > 0 ? (lumpProfit / totalInvested) * 100 : 0;
+
+  document.getElementById('vs-dca-invested').textContent = '$' + fmt(totalInvested);
+  document.getElementById('vs-lump-invested').textContent = '$' + fmt(totalInvested);
+  document.getElementById('vs-dca-coins').textContent = fmtCoin(totalCoins);
+  document.getElementById('vs-lump-coins').textContent = fmtCoin(lumpCoins);
+
+  const vdv = document.getElementById('vs-dca-value');
+  vdv.textContent = '$' + fmt(portfolioValue);
+  vdv.style.color = portfolioValue >= lumpValue ? 'var(--good)' : 'var(--muted)';
+
+  const vlv = document.getElementById('vs-lump-value');
+  vlv.textContent = '$' + fmt(lumpValue);
+  vlv.style.color = lumpValue > portfolioValue ? 'var(--good)' : 'var(--muted)';
+
+  document.getElementById('vs-dca-roi').textContent = (roi >= 0 ? '+' : '') + fmt(roi, 1) + '%';
+  document.getElementById('vs-lump-roi').textContent = (lumpRoi >= 0 ? '+' : '') + fmt(lumpRoi, 1) + '%';
+
+  const winner = document.getElementById('vs-winner');
+  if (portfolioValue > lumpValue) {
+    winner.textContent = 'DCA wins by $' + fmt(portfolioValue - lumpValue);
+    winner.style.color = 'var(--good)';
+  } else if (lumpValue > portfolioValue) {
+    winner.textContent = 'Lump Sum wins by $' + fmt(lumpValue - portfolioValue);
+    winner.style.color = 'var(--accent)';
+  } else {
+    winner.textContent = 'Tie';
+    winner.style.color = 'var(--muted)';
+  }
+
+  // Schedule table (first 12)
+  const display = purchases.slice(0, 12);
+  let rows = '';
+  display.forEach(p => {
+    const profit = p.portValue - (p.i * dcaAmount);
+    const cls = profit >= 0 ? 'td-good' : 'td-bad';
+    rows += `<tr>
+      <td>${p.i}</td>
+      <td>$${fmt(p.price)}</td>
+      <td>${fmtCoin(p.coins)}</td>
+      <td>${fmtCoin(p.cumCoins)}</td>
+      <td>$${fmt(p.avgCost)}</td>
+      <td class="${cls}">$${fmt(p.portValue)}</td>
+    </tr>`;
+  });
+  document.getElementById('scheduleBody').innerHTML = rows;
+}
+
+calculate();
+</script>
+</body>
+</html>

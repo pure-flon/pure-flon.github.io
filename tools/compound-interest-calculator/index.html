@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compound Interest Calculator — See Your Money Grow | pure-flon</title>
+<meta name="description" content="Free compound interest calculator. Enter principal, annual interest rate, compounding frequency, and years to see your investment grow. Includes yearly breakdown table and inflation adjustment.">
+<meta name="keywords" content="compound interest calculator, compound interest formula, investment calculator, savings calculator, compound interest daily monthly annually, interest rate calculator">
+<meta name="author" content="pure-flon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pure-flon.com/tools/compound-interest-calculator/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compound Interest Calculator — See Your Money Grow">
+<meta property="og:description" content="Calculate compound interest for any investment. Yearly breakdown, inflation adjustment, and comparison of compounding frequencies.">
+<meta property="og:url" content="https://pure-flon.com/tools/compound-interest-calculator/">
+<meta property="og:site_name" content="pure-flon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compound Interest Calculator">
+<meta name="twitter:description" content="Free compound interest calculator with yearly breakdown. Adjust for inflation, compare daily vs monthly vs annual compounding.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Compound Interest Calculator",
+  "description": "Free compound interest calculator. Calculate investment growth with any principal, interest rate, compounding frequency, and time period. Includes yearly breakdown and inflation adjustment.",
+  "url": "https://pure-flon.com/tools/compound-interest-calculator/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest is interest calculated on both your original principal AND previously earned interest. Unlike simple interest (calculated only on principal), compound interest grows exponentially because your earnings generate their own earnings. Einstein reportedly called it 'the eighth wonder of the world.'"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the compound interest formula?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A = P(1 + r/n)^(nt) where: A = final amount, P = principal, r = annual interest rate (decimal), n = compounding periods per year, t = years. Example: $10,000 at 7% annual, compounded monthly for 10 years: A = 10000(1 + 0.07/12)^(12×10) = $20,097."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does $10,000 grow with compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$10,000 at 7% annual interest (S&P 500 historical average): after 10 years = $19,672; after 20 years = $38,697; after 30 years = $76,123. With monthly contributions of $100, those 30-year numbers more than double. Time is the most powerful variable in compound interest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Rule of 72 in compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Rule of 72 is a shortcut: divide 72 by your annual interest rate to estimate how many years it takes to double your money. At 6% interest: 72 ÷ 6 = 12 years to double. At 10%: 72 ÷ 10 = 7.2 years. At 3% (inflation): 72 ÷ 3 = 24 years for prices to double."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #111; --border: #222;
+    --text: #e8e8e8; --muted: #888; --accent: #7c6aff;
+    --warn: #f5a623; --good: #27d87a; --danger: #e05555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; min-height: 100vh; }
+  header { border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--bg); z-index: 10; }
+  header a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+  nav a:hover { color: var(--text); }
+  main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+  .page-header { text-align: center; margin-bottom: 48px; }
+  .page-tag { display: inline-block; background: var(--surface); border: 1px solid var(--border); color: var(--accent); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 12px; }
+  .subtitle { color: var(--muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+  .calc-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 24px; }
+  .calc-panel h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 20px; }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 560px) { .input-row { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  .input-wrap { position: relative; display: flex; align-items: center; }
+  .input-prefix, .input-suffix { position: absolute; color: var(--muted); font-size: 0.9rem; pointer-events: none; }
+  .input-prefix { left: 12px; }
+  .input-suffix { right: 12px; }
+  input[type="number"], input[type="range"], select { width: 100%; background: #0d0d0d; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1rem; padding: 10px 12px; appearance: none; -webkit-appearance: none; outline: none; transition: border-color 0.15s; }
+  input[type="number"]:focus, select:focus { border-color: var(--accent); }
+  .has-prefix input { padding-left: 28px; }
+  .has-suffix input { padding-right: 28px; }
+  .highlight-result { background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 28px; margin-bottom: 24px; text-align: center; }
+  .highlight-result .big-number { font-size: clamp(2rem, 6vw, 3rem); font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
+  .highlight-result .big-label { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  @media (max-width: 640px) { .result-grid { grid-template-columns: 1fr 1fr; } }
+  .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .result-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+  .result-value { font-size: 1.3rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .result-sub { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  .breakdown-table { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px; overflow-x: auto; }
+  .breakdown-table h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { text-align: left; color: var(--muted); font-size: 0.78rem; font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 10px; border-bottom: 1px solid #1a1a1a; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .content-section { margin: 40px 0; }
+  .content-section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 14px; }
+  .content-section p { color: #bbb; margin-bottom: 12px; line-height: 1.7; }
+  .content-section ul, .content-section ol { margin: 12px 0 12px 20px; color: #bbb; }
+  .content-section li { margin-bottom: 6px; line-height: 1.6; }
+  code { background: #1a1a1a; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: var(--accent); }
+  .faq { margin: 40px 0; }
+  .faq h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq-q { font-weight: 700; font-size: 0.95rem; }
+  .faq-a { color: var(--muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.7; }
+  .sponsor-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 48px 0; text-align: center; }
+  .sponsor-box p { color: var(--muted); font-size: 0.92rem; margin-bottom: 16px; }
+  .sponsor-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .sponsor-links a { padding: 8px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: opacity 0.15s; }
+  .sponsor-links a:hover { opacity: 0.85; }
+  .btn-kofi { background: #FF5E5B; color: #fff; }
+  .btn-gh { background: #238636; color: #fff; }
+  .btn-pp { background: #003087; color: #fff; }
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.85rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/">pure-flon</a>
+  <nav>
+    <a href="/tools/">Tools</a>
+    <a href="/blog/">Blog</a>
+    <a href="/games/">Games</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-tag">Free Tool</div>
+    <h1>Compound Interest Calculator</h1>
+    <p class="subtitle">Calculate exactly how your money grows over time. Adjust principal, rate, frequency, and contributions — see a full yearly breakdown.</p>
+  </div>
+
+  <!-- Inputs -->
+  <div class="calc-panel">
+    <h2>Investment Details</h2>
+    <div class="input-row">
+      <div class="field">
+        <label>Starting Principal</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="principal" value="10000" min="0" step="any" oninput="calculate()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Annual Interest Rate</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="rate" value="7" min="0" max="100" step="0.1" oninput="calculate()">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Time Period (Years)</label>
+        <input type="number" id="years" value="20" min="1" max="100" step="1" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>Compounding Frequency</label>
+        <select id="compFreq" onchange="calculate()">
+          <option value="365">Daily</option>
+          <option value="52">Weekly</option>
+          <option value="12" selected>Monthly</option>
+          <option value="4">Quarterly</option>
+          <option value="2">Semi-annually</option>
+          <option value="1">Annually</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Monthly Contribution</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="monthlyContrib" value="200" min="0" step="any" oninput="calculate()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Inflation Rate</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="inflation" value="3" min="0" max="20" step="0.1" oninput="calculate()">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main result -->
+  <div class="highlight-result">
+    <div class="big-label">Final Balance after <span id="yearsLabel">20</span> years</div>
+    <div class="big-number" id="finalBalance">$0</div>
+    <div class="big-label" style="margin-top:8px;">Real value (inflation-adjusted): <strong id="realValue" style="color:var(--warn)">$0</strong></div>
+  </div>
+
+  <!-- Result breakdown -->
+  <div class="result-grid">
+    <div class="result-card">
+      <div class="result-label">Total Invested</div>
+      <div class="result-value" id="totalInvested" style="color:var(--text)">$0</div>
+      <div class="result-sub">principal + contributions</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Total Interest Earned</div>
+      <div class="result-value" id="totalInterest" style="color:var(--good)">$0</div>
+      <div class="result-sub">compound gains</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Effective Annual Rate</div>
+      <div class="result-value" id="effectiveRate" style="color:var(--accent)">0%</div>
+      <div class="result-sub">APY (accounts for freq)</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Doubling Time</div>
+      <div class="result-value" id="doublingTime" style="color:var(--accent)">— yrs</div>
+      <div class="result-sub">Rule of 72</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">ROI</div>
+      <div class="result-value" id="roi" style="color:var(--good)">0%</div>
+      <div class="result-sub">total return</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">Interest % of Total</div>
+      <div class="result-value" id="interestShare" style="color:var(--good)">0%</div>
+      <div class="result-sub">compound magic share</div>
+    </div>
+  </div>
+
+  <!-- Yearly breakdown -->
+  <div class="breakdown-table">
+    <h3>Year-by-Year Growth Breakdown</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Starting Balance</th>
+          <th>Contributions</th>
+          <th>Interest Earned</th>
+          <th>Ending Balance</th>
+          <th>Real Value</th>
+        </tr>
+      </thead>
+      <tbody id="breakdownBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Content -->
+  <div class="content-section">
+    <h2>The Compound Interest Formula</h2>
+    <p>The standard compound interest formula is: <code>A = P(1 + r/n)^(nt)</code></p>
+    <ul>
+      <li><strong>A</strong> = Final amount</li>
+      <li><strong>P</strong> = Principal (starting amount)</li>
+      <li><strong>r</strong> = Annual interest rate (as decimal — 7% = 0.07)</li>
+      <li><strong>n</strong> = Compounding frequency per year (12 = monthly, 365 = daily)</li>
+      <li><strong>t</strong> = Time in years</li>
+    </ul>
+    <p>With regular contributions, you add: <code>PMT × [((1 + r/n)^(nt) − 1) / (r/n)]</code> where PMT is the periodic payment amount.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How Compounding Frequency Affects Your Returns</h2>
+    <p>Compounding more frequently produces slightly higher returns because you earn interest on interest sooner. For $10,000 at 7% over 10 years:</p>
+    <ul>
+      <li><strong>Annually:</strong> $19,672 (+96.7%)</li>
+      <li><strong>Monthly:</strong> $20,097 (+101.0%)</li>
+      <li><strong>Daily:</strong> $20,136 (+101.4%)</li>
+    </ul>
+    <p>The difference between monthly and daily is small (0.4%), but the difference between annually and monthly compounds significantly over 30+ years. Most savings accounts, bonds, and ETFs compound monthly or daily.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>The Rule of 72</h2>
+    <p>Divide 72 by your annual interest rate to estimate how long it takes to double your money:</p>
+    <ul>
+      <li>At <strong>3%</strong> (savings account): 72 ÷ 3 = <strong>24 years</strong></li>
+      <li>At <strong>7%</strong> (S&amp;P 500 avg): 72 ÷ 7 = <strong>10.3 years</strong></li>
+      <li>At <strong>10%</strong> (S&amp;P 500 nominal): 72 ÷ 10 = <strong>7.2 years</strong></li>
+      <li>At <strong>20%</strong> (ambitious): 72 ÷ 20 = <strong>3.6 years</strong></li>
+      <li>At <strong>3%</strong> (inflation): your purchasing power halves in 24 years</li>
+    </ul>
+    <p>This rule is why inflation is so dangerous for cash savers and why any rate above inflation matters enormously over decades.</p>
+  </div>
+
+  <!-- Related tools -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:14px; margin: 32px 0;">
+    <a href="/tools/dca-calculator/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tool</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Bitcoin DCA Calculator</div>
+    </a>
+    <a href="/tools/crypto-profit-calculator/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tool</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Crypto Profit Calculator</div>
+    </a>
+    <a href="/tools/position-size-calculator/" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; display:block;">
+      <div style="font-size:0.75rem; color:var(--accent); margin-bottom:6px;">Tool</div>
+      <div style="font-weight:700; color:var(--text); font-size:0.92rem;">Position Size Calculator</div>
+    </a>
+  </div>
+
+  <div class="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">What is compound interest?</div>
+      <div class="faq-a">Compound interest is interest calculated on both your principal AND previously earned interest. Unlike simple interest, compound interest grows exponentially — your earnings generate their own earnings. Over decades, this creates dramatic wealth accumulation.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the compound interest formula?</div>
+      <div class="faq-a">A = P(1 + r/n)^(nt) where P = principal, r = annual rate, n = compounding periods per year, t = years. For example: $10,000 at 7% compounded monthly for 10 years: A = 10000(1 + 0.07/12)^(120) = $20,097.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How much will $10,000 grow to in 20 years?</div>
+      <div class="faq-a">At 7% annually compounded monthly: $10,000 becomes $40,064 in 20 years. At 10%: $73,281. These assume no additional contributions. Adding $200/month at 7% grows to $107,836 — nearly triple the no-contribution result.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the Rule of 72?</div>
+      <div class="faq-a">Divide 72 by your annual interest rate to get the approximate years to double your money. At 7%: 72 ÷ 7 = 10.3 years. At 3% inflation: your purchasing power halves in 24 years. It's a quick mental math shortcut for estimating compound growth.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is monthly compounding better than annual?</div>
+      <div class="faq-a">Yes, but the difference is smaller than most people expect. On $10,000 at 7% for 10 years: annually = $19,672, monthly = $20,097, daily = $20,136. The gap widens over longer periods. For most people, choosing a higher-rate investment matters far more than compounding frequency.</div>
+    </div>
+  </div>
+
+  <div class="sponsor-box">
+    <p>This tool is free to use. If it helped you plan your finances, consider supporting the project:</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" class="btn-kofi" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'kofi'})">☕ Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" class="btn-gh" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'github_sponsors'})">★ GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" class="btn-pp" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{link_type:'paypal'})">PayPal</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 pure-flon · <a href="/">Home</a> <a href="/tools/">Tools</a> <a href="/blog/">Blog</a> <a href="/games/">Games</a></p>
+</footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WE091T20M0');
+</script>
+
+<script>
+function fmt(n, d = 0) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+
+function calculate() {
+  const P = parseFloat(document.getElementById('principal').value) || 0;
+  const r = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+  const t = parseInt(document.getElementById('years').value) || 1;
+  const n = parseInt(document.getElementById('compFreq').value) || 12;
+  const monthly = parseFloat(document.getElementById('monthlyContrib').value) || 0;
+  const inf = (parseFloat(document.getElementById('inflation').value) || 0) / 100;
+
+  document.getElementById('yearsLabel').textContent = t;
+
+  // Final balance with contributions
+  // Compound formula: A = P(1+r/n)^(nt) + PMT * [((1+r/n)^(nt)-1)/(r/n)]
+  let A;
+  if (r === 0) {
+    A = P + monthly * 12 * t;
+  } else {
+    const compFactor = Math.pow(1 + r / n, n * t);
+    // contributions added monthly → convert to n compounding periods
+    const contribPerPeriod = monthly * 12 / n;
+    const contribFV = contribPerPeriod * ((compFactor - 1) / (r / n));
+    A = P * compFactor + contribFV;
+  }
+
+  const totalContrib = P + monthly * 12 * t;
+  const totalInterest = A - totalContrib;
+  const roi = totalContrib > 0 ? (A - totalContrib) / totalContrib * 100 : 0;
+  const interestShare = A > 0 ? totalInterest / A * 100 : 0;
+
+  // Effective annual rate (APY)
+  const apy = n > 0 ? (Math.pow(1 + r / n, n) - 1) * 100 : r * 100;
+
+  // Doubling time (Rule of 72)
+  const doublingTime = r > 0 ? 72 / (r * 100) : Infinity;
+
+  // Real value (inflation-adjusted)
+  const realValue = A / Math.pow(1 + inf, t);
+
+  // Update DOM
+  document.getElementById('finalBalance').textContent = '$' + fmt(A);
+  document.getElementById('realValue').textContent = '$' + fmt(realValue);
+  document.getElementById('totalInvested').textContent = '$' + fmt(totalContrib);
+  document.getElementById('totalInterest').textContent = '+$' + fmt(totalInterest);
+  document.getElementById('effectiveRate').textContent = fmt(apy, 2) + '%';
+  document.getElementById('doublingTime').textContent = isFinite(doublingTime) ? fmt(doublingTime, 1) + ' yrs' : '∞';
+  document.getElementById('roi').textContent = '+' + fmt(roi, 1) + '%';
+  document.getElementById('interestShare').textContent = fmt(interestShare, 1) + '%';
+
+  // Yearly breakdown
+  let rows = '';
+  let balance = P;
+  for (let y = 1; y <= t; y++) {
+    const startBalance = balance;
+    const yearContrib = monthly * 12;
+    let endBalance;
+    if (r === 0) {
+      endBalance = balance + yearContrib;
+    } else {
+      const yFactor = Math.pow(1 + r / n, n);
+      const cPerPeriod = monthly * 12 / n;
+      endBalance = balance * yFactor + cPerPeriod * ((yFactor - 1) / (r / n));
+    }
+    const interest = endBalance - startBalance - yearContrib;
+    const realVal = endBalance / Math.pow(1 + inf, y);
+    rows += `<tr>
+      <td><strong>${y}</strong></td>
+      <td>$${fmt(startBalance)}</td>
+      <td style="color:var(--muted)">+$${fmt(yearContrib)}</td>
+      <td style="color:var(--good)">+$${fmt(interest)}</td>
+      <td style="font-weight:700">$${fmt(endBalance)}</td>
+      <td style="color:var(--warn)">$${fmt(realVal)}</td>
+    </tr>`;
+    balance = endBalance;
+  }
+  document.getElementById('breakdownBody').innerHTML = rows;
+}
+
+calculate();
+</script>
+</body>
+</html>
