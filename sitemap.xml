@@ -1,282 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Pure-Flon PTFE 튜브 웹사이트 사이트맵 -->
-<!-- 파일 업데이트: 2025-07-31 v3.1.0 -->
-<!-- 개선사항: 구조화된 URL 패턴, 우선순위 최적화, 다국어 지원 강화 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- 메인 홈페이지 (다국어) -->
+    <!-- Homepage -->
     <url>
         <loc>https://pure-flon.com/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/ko/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/en/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/ja/"/>
-        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://pure-flon.com/zh-tw/"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://pure-flon.com/"/>
-    </url>
-
-    <!-- 한국어 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/ko/</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <url>
-        <loc>https://pure-flon.com/products/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
+    <!-- Products (legacy PTFE pages still on disk) -->
     <url>
         <loc>https://pure-flon.com/products/medical.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-03-25</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.5</priority>
     </url>
-
     <url>
         <loc>https://pure-flon.com/products/semiconductor.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-03-25</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.5</priority>
     </url>
-
     <url>
         <loc>https://pure-flon.com/products/chemical.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/products/food-grade.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- 중요 비즈니스 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/quote-request.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/about.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/contact.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- 기술 지원 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/technical-specs.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/cad-downloads.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/certifications.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/installation-guide.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-03-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
 
-    <!-- 고객 지원 페이지들 -->
+    <!-- Games Hub -->
     <url>
-        <loc>https://pure-flon.com/faq.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/testimonials.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/case-studies.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- 영어 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/en/</loc>
-        <lastmod>2025-01-22</lastmod>
+        <loc>https://pure-flon.com/games/</loc>
+        <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <url>
-        <loc>https://pure-flon.com/en/products/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/en/quote-request.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/en/about.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/en/contact.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- 일본어 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/ja/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/ja/products/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/ja/quote-request.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- 중국어(번체) 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/zh-tw/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/zh-tw/products/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- 법적 페이지들 -->
-    <url>
-        <loc>https://pure-flon.com/privacy-policy.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/terms-of-service.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/cookie-policy.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <!-- Games Section -->
+    <!-- Games -->
     <url>
         <loc>https://pure-flon.com/games/twenty-questions/</loc>
-        <lastmod>2026-03-25</lastmod>
+        <lastmod>2026-03-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/games/twenty-questions/"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/games/twenty-questions/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/games/twenty-questions/"/>
     </url>
-
-    <!-- 블로그/뉴스 섹션 (향후 추가) -->
     <url>
-        <loc>https://pure-flon.com/news/</loc>
-        <lastmod>2025-01-22</lastmod>
+        <loc>https://pure-flon.com/games/k-meme-quiz/</loc>
+        <lastmod>2026-03-28</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-    </url>
-
-    <!-- 다운로드 섹션 -->
-    <url>
-        <loc>https://pure-flon.com/downloads/</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.4</priority>
-    </url>
-
-    <url>
-        <loc>https://pure-flon.com/blog/</loc>
-        <lastmod>2026-03-26</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://pure-flon.com/blog/how-ai-guesses-in-4-questions/</loc>
-        <lastmod>2026-03-26</lastmod>
-        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://pure-flon.com/games/world-flag-quiz/</loc>
+        <lastmod>2026-03-29</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Tools Hub -->
     <url>
         <loc>https://pure-flon.com/tools/</loc>
-        <lastmod>2026-03-26</lastmod>
+        <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+
+    <!-- Tools -->
     <url>
         <loc>https://pure-flon.com/tools/json-formatter/</loc>
         <lastmod>2026-03-26</lastmod>
@@ -290,44 +79,44 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://pure-flon.com/blog/top-10-korean-foods-foreigners-love/</loc>
-        <lastmod>2026-03-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <!-- Games — K-Meme Quiz (G-002, 2026-03-28) -->
-    <url>
-        <loc>https://pure-flon.com/games/k-meme-quiz/</loc>
-        <lastmod>2026-03-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <!-- Tools — Color Palette Generator (T-001, 2026-03-28) -->
-    <url>
         <loc>https://pure-flon.com/tools/color-palette/</loc>
         <lastmod>2026-03-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    <!-- Games — World Flag Quiz (G-003, 2026-03-29) -->
-    <url>
-        <loc>https://pure-flon.com/games/world-flag-quiz/</loc>
-        <lastmod>2026-03-29</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <!-- Tools — QR Code Generator (T-002, 2026-03-29) -->
     <url>
         <loc>https://pure-flon.com/tools/qr-generator/</loc>
         <lastmod>2026-03-29</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    <!-- Blog — Korean Honorifics Guide (B-001, 2026-03-30) -->
+
+    <!-- Blog Hub -->
+    <url>
+        <loc>https://pure-flon.com/blog/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Blog Posts -->
+    <url>
+        <loc>https://pure-flon.com/blog/how-ai-guesses-in-4-questions/</loc>
+        <lastmod>2026-03-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://pure-flon.com/blog/top-10-korean-foods-foreigners-love/</loc>
+        <lastmod>2026-03-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
     <url>
         <loc>https://pure-flon.com/blog/korean-honorifics-guide/</loc>
         <lastmod>2026-03-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+
 </urlset>
