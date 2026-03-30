@@ -441,6 +441,9 @@ class CustomerPortal {
             'draft': '초안',
             'pending': '검토 중',
             'approved': '승인됨',
+            'paid': '결제 완료',
+            'payment_review': '결제 검토 중',
+            'refunded': '환불됨',
             'rejected': '거절됨',
             'expired': '만료됨'
         };

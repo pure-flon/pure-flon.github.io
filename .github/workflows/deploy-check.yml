@@ -1,0 +1,165 @@
+name: Deploy Check
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # --- Check 1: Sitemap URL integrity ---
+      - name: Validate sitemap URLs
+        run: |
+          echo "=== Sitemap URL Validation ==="
+          ERRORS=0
+          if [ ! -f sitemap.xml ]; then
+            echo "WARN: sitemap.xml not found — skipping"
+            exit 0
+          fi
+          # Extract all <loc> URLs and verify each maps to a real file
+          grep -oP '<loc>\K[^<]+' sitemap.xml | while read -r url; do
+            # Convert URL to local path: https://pure-flon.com/games/foo/ -> games/foo/index.html
+            path=$(echo "$url" | sed 's|https://pure-flon.com/||' | sed 's|/$||')
+            if [ -z "$path" ]; then
+              # Root URL
+              if [ ! -f "index.html" ]; then
+                echo "FAIL: $url -> index.html missing"
+                ERRORS=$((ERRORS + 1))
+              fi
+            elif [ -f "$path/index.html" ]; then
+              echo "  OK: $url"
+            elif [ -f "$path" ]; then
+              echo "  OK: $url (direct file)"
+            else
+              echo "  FAIL: $url -> $path/index.html not found (ghost URL)"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          if [ $ERRORS -gt 0 ]; then
+            echo "FAIL: $ERRORS ghost URLs found in sitemap"
+            exit 1
+          fi
+          echo "All sitemap URLs validated."
+
+      # --- Check 2: HTML validity ---
+      - name: Check HTML structure
+        run: |
+          echo "=== HTML Structure Check ==="
+          ERRORS=0
+          for dir in games tools blog; do
+            if [ ! -d "$dir" ]; then continue; fi
+            for html in "$dir"/*/index.html; do
+              [ -f "$html" ] || continue
+              slug=$(dirname "$html")
+              # DOCTYPE
+              if ! head -5 "$html" | grep -qi 'DOCTYPE html'; then
+                echo "FAIL [$slug]: Missing DOCTYPE"
+                ERRORS=$((ERRORS + 1))
+              fi
+              # charset
+              if ! grep -qi 'charset.*utf-8' "$html"; then
+                echo "FAIL [$slug]: Missing UTF-8 charset"
+                ERRORS=$((ERRORS + 1))
+              fi
+              # title
+              if ! grep -q '<title>' "$html"; then
+                echo "FAIL [$slug]: Missing <title>"
+                ERRORS=$((ERRORS + 1))
+              fi
+              echo "  OK: $slug"
+            done
+          done
+          if [ $ERRORS -gt 0 ]; then
+            echo "FAIL: $ERRORS HTML structure issues"
+            exit 1
+          fi
+          echo "All HTML files passed structure check."
+
+      # --- Check 3: GA4 presence ---
+      - name: Check GA4 tag presence
+        run: |
+          echo "=== GA4 Tag Check ==="
+          GA4_ID="G-WE091T20M0"
+          MISSING=0
+          for dir in games tools blog; do
+            if [ ! -d "$dir" ]; then continue; fi
+            for html in "$dir"/*/index.html; do
+              [ -f "$html" ] || continue
+              slug=$(dirname "$html")
+              if grep -q "$GA4_ID" "$html"; then
+                echo "  OK: $slug"
+              elif grep -q "G-XXXXXXXXXX" "$html"; then
+                echo "  WARN [$slug]: GA4 placeholder not replaced"
+                MISSING=$((MISSING + 1))
+              else
+                echo "  FAIL [$slug]: No GA4 tag found"
+                MISSING=$((MISSING + 1))
+              fi
+            done
+          done
+          if [ $MISSING -gt 0 ]; then
+            echo "WARN: $MISSING pages missing GA4 — review before promoting"
+            # Non-blocking: warn only
+          fi
+          echo "GA4 check complete."
+
+      # --- Check 4: Sponsor links ---
+      - name: Check sponsor links
+        run: |
+          echo "=== Sponsor Link Check ==="
+          SPONSORS=("ko-fi.com/pureflon" "github.com/sponsors/pure-flon" "paypal.me/pureflon")
+          MISSING=0
+          for dir in games tools blog; do
+            if [ ! -d "$dir" ]; then continue; fi
+            for html in "$dir"/*/index.html; do
+              [ -f "$html" ] || continue
+              slug=$(dirname "$html")
+              for s in "${SPONSORS[@]}"; do
+                if ! grep -q "$s" "$html"; then
+                  echo "  WARN [$slug]: Missing $s"
+                  MISSING=$((MISSING + 1))
+                fi
+              done
+            done
+          done
+          if [ $MISSING -gt 0 ]; then
+            echo "WARN: $MISSING missing sponsor links across all content"
+          fi
+          echo "Sponsor check complete."
+
+      # --- Check 5: No placeholder tokens ---
+      - name: Check for unreplaced placeholders
+        run: |
+          echo "=== Placeholder Check ==="
+          FOUND=0
+          PLACEHOLDERS=("G-XXXXXXXXXX" "YOUR_GA4_ID" "TODO" "FIXME" "PLACEHOLDER" "CHANGE_ME")
+          for dir in games tools blog; do
+            if [ ! -d "$dir" ]; then continue; fi
+            for html in "$dir"/*/index.html; do
+              [ -f "$html" ] || continue
+              slug=$(dirname "$html")
+              for p in "${PLACEHOLDERS[@]}"; do
+                if grep -q "$p" "$html"; then
+                  echo "  WARN [$slug]: Found placeholder '$p'"
+                  FOUND=$((FOUND + 1))
+                fi
+              done
+            done
+          done
+          if [ $FOUND -gt 0 ]; then
+            echo "WARN: $FOUND unreplaced placeholders found"
+          fi
+          echo "Placeholder check complete."
+
+      # --- Summary ---
+      - name: Summary
+        if: always()
+        run: |
+          echo ""
+          echo "=== Deploy Check Complete ==="
+          echo "All critical checks passed if this job is green."
+          echo "Warnings are advisory — review before promoting content."

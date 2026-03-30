@@ -85,7 +85,25 @@
     }
   ],
   "functions": {
-    "quote/api/submit.js": {
+    "api/quotes/submit.js": {
+      "maxDuration": 30
+    },
+    "api/quotes/payment-notice.js": {
+      "maxDuration": 30
+    },
+    "api/quotes/checkout-session.js": {
+      "maxDuration": 30
+    },
+    "api/quotes/payment-webhook.js": {
+      "maxDuration": 30
+    },
+    "api/quotes/payment-confirmed.js": {
+      "maxDuration": 30
+    },
+    "api/quotes/settlement-review.js": {
+      "maxDuration": 30
+    },
+    "api/quotes/settlement-reply-dispatch.js": {
       "maxDuration": 30
     }
   },

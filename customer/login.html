@@ -17,6 +17,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WE091T20M0');
+    </script>
     
     <!-- Preload Critical Resources -->
     <link rel="preload" href="../css/main.css" as="style">
@@ -354,6 +361,7 @@
                         }
 
                         // 로그인 성공
+                        this.trackLoginSuccess();
                         this.showNotification('로그인되었습니다!', 'success');
                         
                         // 로그인 정보 기억하기 처리
@@ -404,6 +412,7 @@
                         sessionId: Math.random().toString(36).substr(2, 9)
                     }));
 
+                    this.trackLoginSuccess();
                     this.showNotification('로그인되었습니다!', 'success');
                     setTimeout(() => this.redirectToDashboard(), 1000);
                 } else {
@@ -503,6 +512,15 @@
 
             isValidEmail(email) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            trackLoginSuccess() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'customer_login_success', {
+                        entrypoint: 'customer_login',
+                        transport_type: 'beacon'
+                    });
+                }
             }
 
             showNotification(message, type) {

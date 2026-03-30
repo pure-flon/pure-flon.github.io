@@ -16,19 +16,22 @@
     "deploy": "npm run build && vercel --prod"
   },
   "dependencies": {
-    "three": "^0.165.0",
+    "@supabase/supabase-js": "^2.100.1",
     "gsap": "^3.12.5",
-    "swiper": "^11.1.5"
+    "resend": "^4.8.0",
+    "stripe": "^21.0.1",
+    "swiper": "^11.1.5",
+    "three": "^0.165.0"
   },
   "devDependencies": {
-    "vite": "^5.3.5",
     "@vitejs/plugin-legacy": "^5.4.1",
-    "eslint": "^9.8.0",
-    "prettier": "^3.3.3",
-    "lighthouse": "^12.1.0",
-    "vitest": "^2.0.5",
     "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.40"
+    "eslint": "^9.8.0",
+    "lighthouse": "^12.1.0",
+    "postcss": "^8.4.40",
+    "prettier": "^3.3.3",
+    "vite": "^5.3.5",
+    "vitest": "^2.0.5"
   },
   "keywords": [
     "PTFE",

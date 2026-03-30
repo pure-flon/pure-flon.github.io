@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입금 통지 | Pure-Flon</title>
+    <meta name="description" content="Pure-Flon 견적 번호 기준 입금 통지 페이지입니다. 송금 후 결제 참조번호를 제출하면 검토 후 결제 확정이 진행됩니다.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WE091T20M0');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css?v=4.5.0">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">메인 콘텐츠로 건너뛰기</a>
+    <header class="header" role="banner">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="../" aria-label="Pure-Flon 홈페이지">
+                    <img src="../images/logo.png" alt="Pure-Flon" width="180" height="40">
+                </a>
+            </div>
+            <nav class="nav" role="navigation">
+                <ul class="nav__menu">
+                    <li class="nav__item"><a href="../" class="nav__link">홈</a></li>
+                    <li class="nav__item"><a href="./request.html" class="nav__link">견적 요청</a></li>
+                    <li class="nav__item"><a href="mailto:contact@pure-flon.com" class="nav__link">문의</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <a href="./request.html" class="btn btn--primary btn--sm">새 견적 요청</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="quote-hero">
+            <div class="container">
+                <div class="quote-hero__content">
+                    <nav class="breadcrumb" aria-label="현재 위치">
+                        <ol>
+                            <li><a href="../">홈</a></li>
+                            <li><a href="./request.html">견적 요청</a></li>
+                            <li aria-current="page">입금 통지</li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="quote-hero__title">
+                        입금 통지 제출
+                        <span class="badge badge--primary">검토 후 확정</span>
+                    </h1>
+
+                    <p class="quote-hero__description">
+                        견적서를 받은 뒤 송금을 완료하셨다면, 견적 번호와 결제 참조번호를 남겨 주세요.
+                        이 페이지는 결제를 즉시 확정하지 않고, 운영팀 검토를 위한 settlement notice 만 접수합니다.
+                    </p>
+
+                    <p class="quote-hero__description" style="margin-top: 0.75rem;">
+                        견적 금액이 이미 확정된 경우에는 같은 견적 번호와 이메일로 카드 결제 세션을 시작할 수도 있습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-form-section">
+            <div class="container">
+                <div class="quote-form-wrapper">
+                    <form id="payment-notice-form" class="quote-form" action="" method="post">
+                        <div class="form-section">
+                            <h2 class="form-section__title">입금 정보</h2>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="quote-number" class="form-label">견적 번호 *</label>
+                                    <input type="text" id="quote-number" name="quote-number" class="form-control" placeholder="예: Q-20260329-1430" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">견적 요청 이메일 *</label>
+                                    <input type="email" id="email" name="email" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="payment-reference" class="form-label">결제 참조번호 *</label>
+                                    <input type="text" id="payment-reference" name="payment-reference" class="form-control" placeholder="입금 영수증 또는 송금 참조번호" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="payment-channel" class="form-label">결제 방식 *</label>
+                                    <select id="payment-channel" name="payment-channel" class="form-control" required>
+                                        <option value="manual_bank_transfer">무통장입금</option>
+                                        <option value="wire_transfer">국제 송금</option>
+                                        <option value="corporate_transfer">법인 계좌이체</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="amount" class="form-label">송금 금액</label>
+                                    <input type="number" id="amount" name="amount" class="form-control" min="1" step="1" placeholder="선택 입력">
+                                </div>
+                                <div class="form-group">
+                                    <label for="currency" class="form-label">통화</label>
+                                    <select id="currency" name="currency" class="form-control">
+                                        <option value="KRW">KRW</option>
+                                        <option value="USD">USD</option>
+                                        <option value="JPY">JPY</option>
+                                        <option value="CNY">CNY</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="note" class="form-label">추가 메모</label>
+                                <textarea id="note" name="note" class="form-control" rows="4" placeholder="입금 시각, 송금자명, 회계팀에 전달할 메모를 남겨 주세요"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn--primary btn--lg">입금 통지 제출</button>
+                            <button type="button" id="card-checkout-button" class="btn btn--outline btn--lg">카드 결제 시작</button>
+                            <a href="./request.html" class="btn btn--outline btn--lg">견적 요청으로 돌아가기</a>
+                        </div>
+                    </form>
+
+                    <div class="quote-info">
+                        <div class="info-card">
+                            <div class="info-card__icon">1</div>
+                            <h3>결제 즉시 확정 아님</h3>
+                            <p>이 페이지는 검토용 결제 통지만 접수합니다. 최종 `paid` 확정은 운영팀이 확인 후 진행합니다.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card__icon">2</div>
+                            <h3>견적 이메일 일치 필요</h3>
+                            <p>견적 요청 시 사용한 이메일과 일치해야 정상 접수됩니다.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card__icon">3</div>
+                            <h3>급한 건 직접 문의</h3>
+                            <p>긴급한 출하 일정이 있으면 <a href="mailto:contact@pure-flon.com">contact@pure-flon.com</a> 으로 함께 알려 주세요.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card__icon">4</div>
+                            <h3>카드 결제 가능 견적만 진행</h3>
+                            <p>운영팀이 금액을 확정한 견적만 Stripe hosted checkout 으로 이동합니다. 미확정 견적은 안내 메시지와 함께 중단됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="../images/logo.png" alt="Pure-Flon" width="160" height="36">
+                    <p>동아시아 시장을 선도하는 프리미엄 PTFE 튜브 제조업체</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">바로가기</h4>
+                    <ul class="footer-links">
+                        <li><a href="./request.html">견적 요청</a></li>
+                        <li><a href="../customer/login.html">고객 로그인</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">연락처</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@pure-flon.com">contact@pure-flon.com</a></li>
+                        <li><span>온라인 상담 전용</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pure-Flon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('payment-notice-form');
+            const submitButton = form?.querySelector('button[type="submit"]');
+            const checkoutButton = document.getElementById('card-checkout-button');
+            if (!form) return;
+
+            const params = new URLSearchParams(window.location.search);
+            const prefilledQuoteNumber = String(params.get('quoteNumber') || '').trim();
+            const prefilledEmail = String(params.get('email') || '').trim();
+            if (prefilledQuoteNumber) {
+                document.getElementById('quote-number').value = prefilledQuoteNumber;
+            }
+            if (prefilledEmail) {
+                document.getElementById('email').value = prefilledEmail;
+            }
+
+            let submitting = false;
+            const statusBox = document.createElement('div');
+            statusBox.setAttribute('role', 'status');
+            statusBox.setAttribute('aria-live', 'polite');
+            statusBox.style.display = 'none';
+            statusBox.style.marginBottom = '1rem';
+            statusBox.style.padding = '1rem 1.25rem';
+            statusBox.style.borderRadius = '12px';
+            statusBox.style.fontWeight = '500';
+            form.prepend(statusBox);
+
+            const setStatus = (type, message) => {
+                statusBox.style.display = 'block';
+                statusBox.textContent = message;
+                if (type === 'success') {
+                    statusBox.style.background = '#ecfdf3';
+                    statusBox.style.color = '#166534';
+                    statusBox.style.border = '1px solid #86efac';
+                } else {
+                    statusBox.style.background = '#fef2f2';
+                    statusBox.style.color = '#991b1b';
+                    statusBox.style.border = '1px solid #fca5a5';
+                }
+            };
+
+            const buildPayload = () => {
+                const formData = new FormData(form);
+                return {
+                    quoteNumber: String(formData.get('quote-number') || '').trim(),
+                    email: String(formData.get('email') || '').trim(),
+                    paymentReference: String(formData.get('payment-reference') || '').trim(),
+                    paymentChannel: String(formData.get('payment-channel') || '').trim(),
+                    amount: String(formData.get('amount') || '').trim(),
+                    currency: String(formData.get('currency') || 'KRW').trim(),
+                    note: String(formData.get('note') || '').trim()
+                };
+            };
+
+            form.addEventListener('submit', async (event) => {
+                if (submitting || event.defaultPrevented || !form.checkValidity()) {
+                    return;
+                }
+
+                event.preventDefault();
+                submitting = true;
+                statusBox.style.display = 'none';
+
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
+                if (checkoutButton) {
+                    checkoutButton.disabled = true;
+                }
+
+                const payload = buildPayload();
+
+                try {
+                    const response = await fetch('/api/quotes/payment-notice', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    let result = null;
+                    try {
+                        result = await response.json();
+                    } catch (parseError) {
+                        result = null;
+                    }
+
+                    if (!response.ok || !result?.success) {
+                        throw new Error(result?.message || '입금 통지 저장에 실패했습니다.');
+                    }
+
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'payment_notice_submitted', {
+                            quote_number: payload.quoteNumber || 'unknown',
+                            payment_channel: payload.paymentChannel || 'unknown',
+                            page_type: 'payment_notice'
+                        });
+                    }
+
+                    form.reset();
+                    if (prefilledQuoteNumber) {
+                        document.getElementById('quote-number').value = prefilledQuoteNumber;
+                    }
+                    setStatus(
+                        'success',
+                        `입금 통지가 접수되었습니다. 견적 번호 ${payload.quoteNumber} 기준으로 검토 후 결제 확정이 진행됩니다.`
+                    );
+                } catch (error) {
+                    console.error('Payment notice submit failed:', error);
+                    setStatus(
+                        'error',
+                        '입금 통지를 저장하지 못했습니다. 견적 번호와 이메일을 다시 확인해 주세요. 문제가 계속되면 contact@pure-flon.com 으로 문의해 주세요.'
+                    );
+                } finally {
+                    submitting = false;
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                    }
+                    if (checkoutButton) {
+                        checkoutButton.disabled = false;
+                    }
+                }
+            });
+
+            checkoutButton?.addEventListener('click', async () => {
+                if (submitting) {
+                    return;
+                }
+
+                const payload = buildPayload();
+                if (!payload.quoteNumber || !payload.email) {
+                    setStatus('error', '카드 결제를 시작하려면 견적 번호와 이메일을 먼저 입력해 주세요.');
+                    return;
+                }
+
+                submitting = true;
+                statusBox.style.display = 'none';
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
+                checkoutButton.disabled = true;
+
+                try {
+                    const response = await fetch('/api/quotes/checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            quoteNumber: payload.quoteNumber,
+                            email: payload.email
+                        })
+                    });
+
+                    let result = null;
+                    try {
+                        result = await response.json();
+                    } catch (parseError) {
+                        result = null;
+                    }
+
+                    if (!response.ok || !result?.success || !result?.data?.url) {
+                        throw new Error(result?.message || '카드 결제 세션 생성에 실패했습니다.');
+                    }
+
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'checkout_session_created', {
+                            quote_number: payload.quoteNumber || 'unknown',
+                            page_type: 'payment_notice'
+                        });
+                    }
+
+                    window.location.href = result.data.url;
+                } catch (error) {
+                    console.error('Checkout session create failed:', error);
+                    setStatus(
+                        'error',
+                        '카드 결제를 시작하지 못했습니다. 아직 금액이 확정되지 않았거나 견적 번호와 이메일이 일치하지 않을 수 있습니다.'
+                    );
+                } finally {
+                    submitting = false;
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                    }
+                    checkoutButton.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

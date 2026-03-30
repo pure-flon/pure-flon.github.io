@@ -249,3 +249,4 @@ my-scripts/
 # - 계약서 및 법적 문서
 
 # End of .gitignore
+.gstack/

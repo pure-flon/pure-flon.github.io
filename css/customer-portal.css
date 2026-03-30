@@ -810,6 +810,21 @@
     color: #059669;
 }
 
+.status-badge--paid {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-badge--payment_review {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.status-badge--refunded {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
 .status-badge--rejected {
     background: #fee2e2;
     color: #dc2626;
