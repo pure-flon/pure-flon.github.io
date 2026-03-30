@@ -5,9 +5,37 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 11:04:02 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 12:19:14 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
+    <item>
+      <title>Strong Password Guide — What Makes a Password Secure? | pure-flon</title>
+      <link>https://pure-flon.com/tools/password-generator/strong-password/</link>
+      <description>Learn what makes a strong password: length, entropy, character sets, and common mistakes to avoid. Generate a strong password instantly with our free tool.</description>
+      <pubDate>Mon, 30 Mar 2026 11:58:30 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/password-generator/strong-password/</guid>
+    </item>
+    <item>
+      <title>Strong Password Generator - Free &amp; Secure | pure-flon</title>
+      <link>https://pure-flon.com/tools/password-generator/</link>
+      <description>Generate strong, random passwords instantly. Customize length, uppercase, lowercase, numbers, and symbols. Runs entirely in your browser — no passwords stored or sent to any server.</description>
+      <pubDate>Mon, 30 Mar 2026 11:57:10 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/password-generator/</guid>
+    </item>
+    <item>
+      <title>Base64 Decode Online — Free Decoder Tool | pure-flon</title>
+      <link>https://pure-flon.com/tools/base64/decode/</link>
+      <description>Decode Base64 strings to plain text instantly. Free, client-side Base64 decoder — no data sent to servers. Supports standard and URL-safe Base64. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 11:55:25 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/base64/decode/</guid>
+    </item>
+    <item>
+      <title>Base64 Encoder &amp; Decoder - Free Online Tool | pure-flon</title>
+      <link>https://pure-flon.com/tools/base64/</link>
+      <description>Free online Base64 encoder and decoder. Encode text or files to Base64, decode Base64 strings instantly. Runs in your browser — no data sent to servers. No sign-up required.</description>
+      <pubDate>Mon, 30 Mar 2026 11:54:09 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/tools/base64/</guid>
+    </item>
     <item>
       <title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
       <link>https://pure-flon.com/games/world-flag-quiz/</link>
