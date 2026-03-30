@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Format API JSON Responses — Quick &amp; Free Guide</title>
+<meta name="description" content="Learn how to pretty print messy API JSON responses instantly. Before/after examples, common pitfalls, and a free online JSON formatter. No signup required.">
+<meta name="keywords" content="format json api response, pretty print json, json formatter, beautify json, json viewer, api response formatter">
+<meta name="robots" content="index, follow">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/tools/json-formatter/api-response/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+<link rel="alternate" hreflang="en" href="https://pure-flon.com/tools/json-formatter/api-response/">
+<link rel="alternate" hreflang="x-default" href="https://pure-flon.com/tools/json-formatter/api-response/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="How to Format API JSON Responses — Quick & Free Guide">
+<meta property="og:description" content="Pretty print messy API JSON responses instantly. Before/after examples, common pitfalls, and a free online formatter that works entirely in your browser.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pure-flon.com/tools/json-formatter/api-response/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Format API JSON Responses — Quick & Free Guide">
+<meta name="twitter:description" content="Pretty print messy API JSON responses instantly. Before/after examples, common pitfalls, and a free online formatter that works entirely in your browser.">
+
+<link rel="icon" href="/favicon.ico">
+
+<!-- Structured Data: FAQ -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why are API responses returned as minified JSON?","acceptedAnswer":{"@type":"Answer","text":"APIs minify JSON to reduce payload size and transfer time. Removing whitespace, newlines, and indentation can shrink a response by 10-30%. This matters at scale — an API serving millions of requests per day saves significant bandwidth by stripping formatting. The JSON is functionally identical whether minified or pretty-printed; formatting is purely for human readability."}},{"@type":"Question","name":"Is there a difference between JSON formatting and JSON validation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Formatting (pretty printing) takes valid JSON and adds indentation and line breaks to make it readable. Validation checks whether a string is valid JSON at all — catching issues like missing commas, unquoted keys, trailing commas, or mismatched brackets. A good JSON formatter does both: it validates first, then formats. If the JSON is invalid, it shows you exactly where the syntax error is."}},{"@type":"Question","name":"Can I format JSON with nested objects that are 10+ levels deep?","acceptedAnswer":{"@type":"Answer","text":"Yes. JSON formatters handle any nesting depth. Deeply nested structures are actually where formatters provide the most value — trying to read a 10-level-deep minified JSON string without formatting is nearly impossible. The Pure-Flon formatter processes everything client-side, so even large deeply-nested payloads format instantly without upload limits."}}]}</script>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pure-flon.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pure-flon.com/tools/"},{"@type":"ListItem","position":3,"name":"JSON Formatter","item":"https://pure-flon.com/tools/json-formatter/"},{"@type":"ListItem","position":4,"name":"API Response Guide","item":"https://pure-flon.com/tools/json-formatter/api-response/"}]}</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#3b82f6;--accent2:#60a5fa;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.6
+}
+.container{max-width:800px;margin:0 auto;padding:24px 16px}
+
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb .sep{color:var(--dim)}
+
+.hero{text-align:center;padding:20px 0 28px}
+.hero .badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff;border-radius:8px;padding:3px 14px;
+  font-size:0.85rem;font-weight:700;margin-bottom:14px
+}
+.hero h1{font-size:1.65rem;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.25;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:620px;margin:0 auto;line-height:1.6}
+
+.section{margin:36px 0}
+.section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:16px;letter-spacing:-0.02em}
+.section>h3{font-size:1rem;font-weight:700;color:#fff;margin:20px 0 10px}
+.section>p{color:var(--text);font-size:0.88rem;line-height:1.7;margin-bottom:14px}
+
+.code-block{
+  background:#0d0d1a;border:1px solid var(--border);border-radius:12px;
+  padding:18px 20px;margin:14px 0;overflow-x:auto;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.8rem;
+  line-height:1.6;white-space:pre
+}
+.code-block .key{color:var(--accent2)}
+.code-block .str{color:var(--green)}
+.code-block .num{color:var(--yellow)}
+.code-block .comment{color:var(--dim);font-style:italic}
+.code-label{
+  font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  margin-bottom:6px;display:block
+}
+.code-label.before{color:var(--red)}
+.code-label.after{color:var(--green)}
+
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:700px){.before-after{grid-template-columns:1fr}}
+
+.step-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:22px 24px;margin-bottom:14px;
+  display:flex;gap:18px;align-items:flex-start
+}
+.step-num{
+  flex-shrink:0;width:36px;height:36px;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.95rem;color:#fff
+}
+.step-content h3{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:6px}
+.step-content p{color:var(--text);font-size:0.86rem;line-height:1.65}
+.step-content code{
+  background:#1a1a2e;padding:2px 7px;border-radius:5px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.82rem;color:var(--green)
+}
+
+.info-card{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:12px
+}
+.info-card h3{font-size:0.92rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.info-card p{color:var(--text);font-size:0.86rem;line-height:1.65}
+.info-card code{
+  background:#1a1a2e;padding:2px 7px;border-radius:5px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.82rem;color:var(--green)
+}
+.info-card.warn{border-left-color:var(--yellow)}
+.info-card.warn h3{color:var(--yellow)}
+
+.info-table{
+  width:100%;border-collapse:collapse;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;font-size:0.85rem;margin:14px 0
+}
+.info-table thead{background:#0d1d38}
+.info-table th{
+  padding:14px 16px;text-align:left;font-weight:700;
+  color:var(--accent2);font-size:0.82rem;
+  text-transform:uppercase;letter-spacing:.04em
+}
+.info-table td{padding:12px 16px;border-top:1px solid var(--border);color:var(--text)}
+.info-table td code{
+  background:#1a1a2e;padding:2px 6px;border-radius:4px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.8rem;color:var(--green)
+}
+.info-table tr:hover{background:#0a0a1a}
+
+.cta-section{text-align:center;margin:32px 0}
+.btn-primary{
+  display:inline-block;padding:16px 48px;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff;border:none;border-radius:13px;
+  font-size:1.05rem;font-weight:700;cursor:pointer;
+  text-decoration:none;transition:transform .15s,opacity .15s
+}
+.btn-primary:hover{transform:translateY(-2px);opacity:.92}
+.cta-sub{color:var(--muted);font-size:0.78rem;margin-top:8px}
+
+.faq-section{margin-top:36px}
+.faq-section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:20px 22px;margin-bottom:12px
+}
+.faq-item h3{font-size:0.92rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.86rem;line-height:1.65}
+.faq-item code{
+  background:#1a1a2e;padding:2px 6px;border-radius:4px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.8rem;color:var(--green)
+}
+
+.related-section{margin-top:36px}
+.related-section>h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-link{
+  display:block;padding:12px 16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:8px;
+  color:var(--text);text-decoration:none;font-size:0.88rem;
+  transition:border-color .15s,background .15s
+}
+.related-link:hover{border-color:var(--accent);background:#0d1d38}
+
+.internal-links{
+  margin-top:36px;padding-top:24px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center
+}
+.internal-links a{
+  font-size:0.82rem;color:var(--muted);text-decoration:none;
+  padding:6px 14px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.internal-links a:hover{color:var(--accent2);border-color:var(--accent)}
+
+.sponsor{
+  background:var(--card);border-top:1px solid var(--border);
+  padding:16px;text-align:center;margin-top:40px;border-radius:14px
+}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{
+  font-size:0.78rem;color:var(--muted);text-decoration:none;
+  padding:5px 12px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent2)}
+
+@media(max-width:600px){
+  .hero h1{font-size:1.35rem}
+  .btn-primary{padding:14px 36px;font-size:0.95rem}
+  .step-card{flex-direction:column;gap:10px}
+  .code-block{font-size:0.72rem;padding:14px 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/json-formatter/">JSON Formatter</a><span class="sep">/</span>
+    <span>API Response Guide</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="badge">Developer Guide</span>
+    <h1>How to Format API JSON Responses &mdash; Quick &amp; Free</h1>
+    <p>You hit an API endpoint. You get back a wall of minified JSON &mdash; thousands of characters on a single line with no whitespace. Now you need to actually read it. Here is how to turn that mess into clean, indented, readable JSON in seconds.</p>
+  </div>
+
+  <!-- The Problem -->
+  <div class="section">
+    <h2>The Problem: Minified API Responses Are Unreadable</h2>
+    <p>APIs return minified JSON to save bandwidth. That is great for machines, but terrible for developers debugging, exploring, or documenting an API. A typical REST API response from a service like Stripe, GitHub, or Shopify might look like this:</p>
+
+    <div>
+      <span class="code-label before">Raw API Response (minified)</span>
+      <div class="code-block" style="color:var(--red)">{"data":{"id":"cus_R8x2kLpNqO","object":"customer","name":"Jane Park","email":"jane@example.com","created":1711843200,"metadata":{"plan":"pro","seats":5,"trial_ends":"2026-04-15"},"subscriptions":{"data":[{"id":"sub_4nX9pKm","plan":{"id":"plan_pro_monthly","amount":4900,"currency":"usd","interval":"month"},"status":"active","current_period_end":1714521600}]},"default_source":"card_1Px9rK"},"has_more":false}</div>
+    </div>
+
+    <p>Good luck finding the <code>trial_ends</code> date or checking the <code>subscription status</code> in that. Now compare with the formatted version:</p>
+
+    <div>
+      <span class="code-label after">Formatted (pretty-printed)</span>
+      <div class="code-block" style="color:var(--text)">{
+  "<span style="color:var(--accent2)">data</span>": {
+    "<span style="color:var(--accent2)">id</span>": "<span style="color:var(--green)">cus_R8x2kLpNqO</span>",
+    "<span style="color:var(--accent2)">object</span>": "<span style="color:var(--green)">customer</span>",
+    "<span style="color:var(--accent2)">name</span>": "<span style="color:var(--green)">Jane Park</span>",
+    "<span style="color:var(--accent2)">email</span>": "<span style="color:var(--green)">jane@example.com</span>",
+    "<span style="color:var(--accent2)">created</span>": <span style="color:var(--yellow)">1711843200</span>,
+    "<span style="color:var(--accent2)">metadata</span>": {
+      "<span style="color:var(--accent2)">plan</span>": "<span style="color:var(--green)">pro</span>",
+      "<span style="color:var(--accent2)">seats</span>": <span style="color:var(--yellow)">5</span>,
+      "<span style="color:var(--accent2)">trial_ends</span>": "<span style="color:var(--green)">2026-04-15</span>"
+    },
+    "<span style="color:var(--accent2)">subscriptions</span>": {
+      "<span style="color:var(--accent2)">data</span>": [
+        {
+          "<span style="color:var(--accent2)">id</span>": "<span style="color:var(--green)">sub_4nX9pKm</span>",
+          "<span style="color:var(--accent2)">plan</span>": {
+            "<span style="color:var(--accent2)">id</span>": "<span style="color:var(--green)">plan_pro_monthly</span>",
+            "<span style="color:var(--accent2)">amount</span>": <span style="color:var(--yellow)">4900</span>,
+            "<span style="color:var(--accent2)">currency</span>": "<span style="color:var(--green)">usd</span>",
+            "<span style="color:var(--accent2)">interval</span>": "<span style="color:var(--green)">month</span>"
+          },
+          "<span style="color:var(--accent2)">status</span>": "<span style="color:var(--green)">active</span>",
+          "<span style="color:var(--accent2)">current_period_end</span>": <span style="color:var(--yellow)">1714521600</span>
+        }
+      ]
+    },
+    "<span style="color:var(--accent2)">default_source</span>": "<span style="color:var(--green)">card_1Px9rK</span>"
+  },
+  "<span style="color:var(--accent2)">has_more</span>": <span style="color:var(--yellow)">false</span>
+}</div>
+    </div>
+
+    <p>Same data. Completely different experience. You can immediately see the structure, find specific fields, verify nesting levels, and spot anomalies.</p>
+  </div>
+
+  <!-- How to Format -->
+  <div class="section">
+    <h2>3 Ways to Format JSON API Responses</h2>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Use an online JSON formatter (fastest)</h3>
+        <p>Paste your JSON into the <a href="/tools/json-formatter/" style="color:var(--accent2)">Pure-Flon JSON Formatter</a>. It validates and formats instantly, entirely in your browser. No data is uploaded to any server. Ideal when you are working with API keys, tokens, or user data that should not leave your machine.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Use the command line</h3>
+        <p>Pipe your API response through <code>jq</code> or Python. Both produce indented, readable output directly in your terminal:</p>
+      </div>
+    </div>
+
+    <div class="code-block" style="color:var(--text)"><span style="color:var(--dim)"># Using jq (install: brew install jq)</span>
+curl -s https://api.example.com/users/1 | <span style="color:var(--green)">jq .</span>
+
+<span style="color:var(--dim)"># Using Python (no install needed)</span>
+curl -s https://api.example.com/users/1 | <span style="color:var(--green)">python3 -m json.tool</span>
+
+<span style="color:var(--dim)"># Save formatted output to file</span>
+curl -s https://api.example.com/users/1 | jq . > <span style="color:var(--green)">response.json</span></div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Use your code editor</h3>
+        <p>In <strong>VS Code</strong>: open a <code>.json</code> file, press <code>Shift+Alt+F</code> (Windows/Linux) or <code>Shift+Option+F</code> (Mac) to auto-format. In <strong>JetBrains IDEs</strong> (WebStorm, IntelliJ): <code>Ctrl+Alt+L</code> / <code>Cmd+Option+L</code>. This reformats the entire file with proper indentation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <a href="/tools/json-formatter/" class="btn-primary"
+       onclick="gtag('event','cta_click',{cta_type:'format_json',page:'json-api-response-guide'})">
+      Format Your JSON Now &mdash; Free
+    </a>
+    <div class="cta-sub">No signup &middot; No data upload &middot; Validates + formats in your browser</div>
+  </div>
+
+  <!-- Common Errors -->
+  <div class="section">
+    <h2>Common JSON Errors in API Responses (And How to Fix Them)</h2>
+    <p>Sometimes the JSON you get from an API is not just minified &mdash; it is broken. Maybe you copied it incorrectly, or the API returned an error wrapped in HTML. Here are the most common JSON syntax errors and how to fix them:</p>
+
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th>Error</th>
+          <th>Example</th>
+          <th>Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Trailing comma</strong></td>
+          <td><code>{"a": 1, "b": 2,}</code></td>
+          <td>Remove the comma after the last item. JSON does not allow trailing commas (unlike JavaScript).</td>
+        </tr>
+        <tr>
+          <td><strong>Single quotes</strong></td>
+          <td><code>{'name': 'Jane'}</code></td>
+          <td>Replace all single quotes with double quotes. JSON requires double quotes for strings and keys.</td>
+        </tr>
+        <tr>
+          <td><strong>Unquoted keys</strong></td>
+          <td><code>{name: "Jane"}</code></td>
+          <td>Wrap all keys in double quotes: <code>{"name": "Jane"}</code>. This is valid JavaScript but not valid JSON.</td>
+        </tr>
+        <tr>
+          <td><strong>Missing comma</strong></td>
+          <td><code>{"a": 1 "b": 2}</code></td>
+          <td>Add a comma between key-value pairs: <code>{"a": 1, "b": 2}</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Comments</strong></td>
+          <td><code>{"a": 1 // count}</code></td>
+          <td>Remove all comments. JSON does not support comments of any kind (use JSONC or JSON5 if you need them).</td>
+        </tr>
+        <tr>
+          <td><strong>HTML wrapping</strong></td>
+          <td><code>&lt;html&gt;...{"error":"..."}</code></td>
+          <td>The API returned an error page instead of JSON. Check the HTTP status code and Content-Type header.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>A good JSON formatter catches all of these and shows you the exact line and character where the error occurs, so you know exactly what to fix.</p>
+  </div>
+
+  <!-- When to Format -->
+  <div class="section">
+    <h2>When You Need to Format JSON</h2>
+
+    <div class="info-card">
+      <h3>Debugging API integrations</h3>
+      <p>When your code gets an unexpected response from a third-party API, the first step is to look at the raw response. Formatting it reveals the structure immediately &mdash; you can see if a field is missing, nested differently than you expected, or returning an unexpected type (string instead of number, array instead of object).</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Exploring new APIs</h3>
+      <p>When evaluating a new API (Stripe, Twilio, OpenAI, GitHub), you hit endpoints in Postman or curl to understand the response structure. Formatting the response lets you map out the data model before writing any code. It is much faster than reading API docs for complex nested objects.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Writing documentation</h3>
+      <p>API documentation needs formatted JSON examples. Copy the raw response, paste into the formatter, and you get clean indented JSON ready for your docs. Consistent 2-space or 4-space indentation makes documentation look professional and is easier to diff when responses change.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Comparing two responses</h3>
+      <p>When you need to compare API responses (before/after a change, staging vs production, v1 vs v2), formatting both consistently makes differences immediately visible. Format both with the same indentation, then use a diff tool. Without formatting, even identical responses with different whitespace will show false differences.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Storing configuration files</h3>
+      <p>Many tools use JSON for config files (<code>package.json</code>, <code>tsconfig.json</code>, <code>.eslintrc.json</code>). When you edit these by hand, proper formatting prevents syntax errors and makes git diffs cleaner. A formatter catches mistakes before your build tool throws a cryptic parse error.</p>
+    </div>
+  </div>
+
+  <!-- jq tips -->
+  <div class="section">
+    <h2>Power User: jq Recipes for API Responses</h2>
+    <p>If you work with APIs daily, <code>jq</code> is essential. Here are the most useful patterns for processing API responses on the command line:</p>
+
+    <div class="code-block" style="color:var(--text)"><span style="color:var(--dim)"># Extract a single field</span>
+curl -s api.example.com/user | jq <span style="color:var(--green)">'.data.email'</span>
+
+<span style="color:var(--dim)"># Get all IDs from an array</span>
+curl -s api.example.com/users | jq <span style="color:var(--green)">'[.data[].id]'</span>
+
+<span style="color:var(--dim)"># Filter array items</span>
+curl -s api.example.com/orders | jq <span style="color:var(--green)">'[.data[] | select(.status == "active")]'</span>
+
+<span style="color:var(--dim)"># Count items</span>
+curl -s api.example.com/products | jq <span style="color:var(--green)">'.data | length'</span>
+
+<span style="color:var(--dim)"># Pretty print with sorted keys</span>
+curl -s api.example.com/config | jq <span style="color:var(--green)">'-S .'</span>
+
+<span style="color:var(--dim)"># Convert to CSV-like output</span>
+curl -s api.example.com/users | jq -r <span style="color:var(--green)">'.data[] | [.id, .name, .email] | @csv'</span></div>
+
+    <p>For quick one-off formatting where you already have the JSON copied, an <a href="/tools/json-formatter/" style="color:var(--accent2)">online formatter</a> is faster than opening a terminal. For repeated API work, <code>jq</code> is unbeatable.</p>
+  </div>
+
+  <!-- Second CTA -->
+  <div class="cta-section">
+    <a href="/tools/json-formatter/" class="btn-primary"
+       onclick="gtag('event','cta_click',{cta_type:'format_json_bottom',page:'json-api-response-guide'})">
+      Try the JSON Formatter
+    </a>
+    <div class="cta-sub">Paste &middot; Format &middot; Copy. That is it.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>Why are API responses returned as minified JSON?</h3>
+      <p>APIs minify JSON to reduce payload size and transfer time. Removing whitespace, newlines, and indentation can shrink a response by 10-30%. This matters at scale &mdash; an API serving millions of requests per day saves significant bandwidth by stripping formatting. The JSON is functionally identical whether minified or pretty-printed; formatting is purely for human readability.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there a difference between JSON formatting and JSON validation?</h3>
+      <p>Yes. Formatting (pretty printing) takes valid JSON and adds indentation and line breaks to make it readable. Validation checks whether a string is valid JSON at all &mdash; catching issues like missing commas, unquoted keys, trailing commas, or mismatched brackets. A good JSON formatter does both: it validates first, then formats. If the JSON is invalid, it shows you exactly where the syntax error is.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I format JSON with nested objects that are 10+ levels deep?</h3>
+      <p>Yes. JSON formatters handle any nesting depth. Deeply nested structures are actually where formatters provide the most value &mdash; trying to read a 10-level-deep minified JSON string without formatting is nearly impossible. The Pure-Flon formatter processes everything client-side, so even large deeply-nested payloads format instantly without upload limits.</p>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="related-section">
+    <h2>Related Tools &amp; Guides</h2>
+    <a href="/tools/json-formatter/vs-jsonlint/" class="related-link">Pure-Flon JSON Formatter vs JSONLint &mdash; Comparison</a>
+    <a href="/tools/json-formatter/" class="related-link">JSON Formatter &mdash; Validate, Format, Minify</a>
+  </div>
+
+  <!-- Internal Links -->
+  <div class="internal-links">
+    <a href="/tools/">All Tools</a>
+    <a href="/tools/json-formatter/">JSON Formatter</a>
+    <a href="/tools/qr-generator/">QR Generator</a>
+    <a href="/tools/color-palette/">Color Palette</a>
+    <a href="/tools/pomodoro/">Pomodoro Timer</a>
+    <a href="/games/">Games</a>
+    <a href="/games/world-flag-quiz/">World Flag Quiz</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">Home</a>
+  </div>
+
+  <!-- Sponsor -->
+  <div class="sponsor">
+    <p>Like free tools with no ads? Support the project</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'kofi',product:'json-api-response-guide'})">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'github_sponsors',product:'json-api-response-guide'})">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'paypal',product:'json-api-response-guide'})">PayPal</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2026 <a href="/">pure-flon.com</a> &mdash; Free developer tools. No ads, no tracking, no signup.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

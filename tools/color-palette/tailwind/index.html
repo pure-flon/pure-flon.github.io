@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Generate Tailwind CSS Color Palettes — Free Tool</title>
+<meta name="description" content="Create custom Tailwind CSS color palettes with the right shade progression. Free generator with HSL manipulation, 50-950 scale output, and copy-paste config.">
+<meta name="keywords" content="tailwind color palette generator, tailwind css colors, custom tailwind palette, tailwind color shades, tailwind css color generator">
+<meta name="robots" content="index, follow">
+<meta name="author" content="pure-flon">
+<link rel="canonical" href="https://pure-flon.com/tools/color-palette/tailwind/">
+<meta name="google-site-verification" content="gSWpPLaxxWsPyqVVYxsdjuUOyIFdaNYJ6sUNwFTMB4s">
+<meta name="naver-site-verification" content="a0b7c200efb2093d6dac3bd13dd759c45cd7a670">
+<link rel="alternate" hreflang="en" href="https://pure-flon.com/tools/color-palette/tailwind/">
+<link rel="alternate" hreflang="x-default" href="https://pure-flon.com/tools/color-palette/tailwind/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="How to Generate Tailwind CSS Color Palettes — Free Tool">
+<meta property="og:description" content="Create custom Tailwind CSS color palettes with proper shade progressions. Free generator with HSL manipulation and copy-paste Tailwind config output.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pure-flon.com/tools/color-palette/tailwind/">
+<meta property="og:site_name" content="pure-flon.com">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Generate Tailwind CSS Color Palettes — Free Tool">
+<meta name="twitter:description" content="Create custom Tailwind CSS color palettes with proper shade progressions. Free generator with HSL manipulation and copy-paste Tailwind config output.">
+
+<link rel="icon" href="/favicon.ico">
+
+<!-- Structured Data: FAQ -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does Tailwind CSS organize its color shades?","acceptedAnswer":{"@type":"Answer","text":"Tailwind uses a numeric scale from 50 to 950: 50 is the lightest tint (nearly white), 500 is the base mid-tone, and 950 is the darkest shade (nearly black). Each step represents a perceptual lightness increment. The default palette has 11 shades per color (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950). When generating custom palettes, maintaining consistent perceptual spacing between these steps is what makes the palette feel cohesive."}},{"@type":"Question","name":"Should I use HSL or hex values for Tailwind colors?","acceptedAnswer":{"@type":"Answer","text":"Tailwind supports both, but HSL has a significant advantage for custom palettes: you can generate an entire shade range by adjusting only the lightness value while keeping hue and saturation constant. This produces perceptually uniform progressions. In your tailwind.config.js, you can use either format. If you want to support Tailwind's opacity modifier (bg-blue-500/50), use the HSL channel syntax: hsl(var(--color-blue)) and define the CSS variable without the hsl() wrapper."}},{"@type":"Question","name":"Can I use my brand color as the base for a Tailwind palette?","acceptedAnswer":{"@type":"Answer","text":"Yes, and this is the most common use case. Start with your brand hex color, convert it to HSL, and use that as your 500 (mid-tone) shade. Then generate lighter shades (50-400) by increasing lightness and slightly decreasing saturation, and darker shades (600-950) by decreasing lightness and slightly adjusting saturation. The Pure-Flon Color Palette Generator does this automatically — enter your brand color and get a full 50-950 scale ready to paste into your Tailwind config."}}]}</script>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pure-flon.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pure-flon.com/tools/"},{"@type":"ListItem","position":3,"name":"Color Palette Generator","item":"https://pure-flon.com/tools/color-palette/"},{"@type":"ListItem","position":4,"name":"Tailwind CSS Guide","item":"https://pure-flon.com/tools/color-palette/tailwind/"}]}</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-WE091T20M0');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#141414;--border:#222;
+  --accent:#3b82f6;--accent2:#60a5fa;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;--purple:#a855f7;
+  --text:#e8e8e8;--muted:#888;--dim:#444
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.6
+}
+.container{max-width:800px;margin:0 auto;padding:24px 16px}
+
+.breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:4px}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb .sep{color:var(--dim)}
+
+.hero{text-align:center;padding:20px 0 28px}
+.hero .badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:#fff;border-radius:8px;padding:3px 14px;
+  font-size:0.85rem;font-weight:700;margin-bottom:14px
+}
+.hero h1{font-size:1.65rem;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1.25;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:0.92rem;max-width:620px;margin:0 auto;line-height:1.6}
+
+.section{margin:36px 0}
+.section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:16px;letter-spacing:-0.02em}
+.section>p{color:var(--text);font-size:0.88rem;line-height:1.7;margin-bottom:14px}
+
+/* Color swatch demo */
+.swatch-row{display:flex;gap:4px;margin:18px 0;border-radius:12px;overflow:hidden}
+.swatch{flex:1;height:52px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-size:0.65rem;font-weight:700}
+.swatch-label{margin-top:4px;display:flex;justify-content:space-between;font-size:0.68rem;color:var(--dim);padding:0 2px}
+
+.step-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:22px 24px;margin-bottom:14px;
+  display:flex;gap:18px;align-items:flex-start
+}
+.step-num{
+  flex-shrink:0;width:36px;height:36px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.95rem;color:#fff
+}
+.step-content h3{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:6px}
+.step-content p{color:var(--text);font-size:0.86rem;line-height:1.65}
+.step-content code{
+  background:#1a1a2e;padding:2px 7px;border-radius:5px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.82rem;color:var(--green)
+}
+
+.code-block{
+  background:#0d0d1a;border:1px solid var(--border);border-radius:12px;
+  padding:18px 20px;margin:14px 0;overflow-x:auto;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.8rem;
+  line-height:1.6;white-space:pre;color:var(--text)
+}
+
+.info-card{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--purple);
+  border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:12px
+}
+.info-card h3{font-size:0.92rem;font-weight:700;color:var(--purple);margin-bottom:8px}
+.info-card p{color:var(--text);font-size:0.86rem;line-height:1.65}
+.info-card code{
+  background:#1a1a2e;padding:2px 7px;border-radius:5px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.82rem;color:var(--green)
+}
+
+.info-table{
+  width:100%;border-collapse:collapse;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;font-size:0.85rem;margin:14px 0
+}
+.info-table thead{background:#1a0d38}
+.info-table th{
+  padding:14px 16px;text-align:left;font-weight:700;
+  color:var(--purple);font-size:0.82rem;
+  text-transform:uppercase;letter-spacing:.04em
+}
+.info-table td{padding:12px 16px;border-top:1px solid var(--border);color:var(--text)}
+.info-table td code{
+  background:#1a1a2e;padding:2px 6px;border-radius:4px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.8rem;color:var(--green)
+}
+.info-table tr:hover{background:#0a0a1a}
+
+.cta-section{text-align:center;margin:32px 0}
+.btn-primary{
+  display:inline-block;padding:16px 48px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:#fff;border:none;border-radius:13px;
+  font-size:1.05rem;font-weight:700;cursor:pointer;
+  text-decoration:none;transition:transform .15s,opacity .15s
+}
+.btn-primary:hover{transform:translateY(-2px);opacity:.92}
+.cta-sub{color:var(--muted);font-size:0.78rem;margin-top:8px}
+
+.faq-section{margin-top:36px}
+.faq-section>h2{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:18px}
+.faq-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:20px 22px;margin-bottom:12px
+}
+.faq-item h3{font-size:0.92rem;font-weight:700;color:var(--purple);margin-bottom:8px}
+.faq-item p{color:var(--text);font-size:0.86rem;line-height:1.65}
+.faq-item code{
+  background:#1a1a2e;padding:2px 6px;border-radius:4px;
+  font-family:'SF Mono',Monaco,Consolas,monospace;font-size:0.8rem;color:var(--green)
+}
+
+.related-section{margin-top:36px}
+.related-section>h2{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px}
+.related-link{
+  display:block;padding:12px 16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:8px;
+  color:var(--text);text-decoration:none;font-size:0.88rem;
+  transition:border-color .15s,background .15s
+}
+.related-link:hover{border-color:var(--purple);background:#1a0d38}
+
+.internal-links{
+  margin-top:36px;padding-top:24px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center
+}
+.internal-links a{
+  font-size:0.82rem;color:var(--muted);text-decoration:none;
+  padding:6px 14px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.internal-links a:hover{color:var(--purple);border-color:var(--purple)}
+
+.sponsor{
+  background:var(--card);border-top:1px solid var(--border);
+  padding:16px;text-align:center;margin-top:40px;border-radius:14px
+}
+.sponsor p{font-size:0.76rem;color:var(--dim);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{
+  font-size:0.78rem;color:var(--muted);text-decoration:none;
+  padding:5px 12px;border:1px solid var(--border);border-radius:20px;
+  transition:color .15s,border-color .15s
+}
+.sponsor-link:hover{color:var(--purple);border-color:var(--purple)}
+
+.footer{text-align:center;padding:20px 0;font-size:0.72rem;color:var(--dim)}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--purple)}
+
+@media(max-width:600px){
+  .hero h1{font-size:1.35rem}
+  .btn-primary{padding:14px 36px;font-size:0.95rem}
+  .step-card{flex-direction:column;gap:10px}
+  .swatch{height:40px;font-size:0.55rem}
+  .code-block{font-size:0.72rem;padding:14px 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/tools/">Tools</a><span class="sep">/</span>
+    <a href="/tools/color-palette/">Color Palette</a><span class="sep">/</span>
+    <span>Tailwind CSS</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="badge">Design Guide</span>
+    <h1>How to Generate Tailwind CSS Color Palettes &mdash; Free Tool</h1>
+    <p>Tailwind CSS ships with a beautiful default palette, but the moment you need to match your brand color, you are on your own. Here is how to generate a full 50-to-950 shade scale from any hex color, understand the HSL math behind it, and get config-ready output you can paste directly into your project.</p>
+  </div>
+
+  <!-- Demo Swatch -->
+  <div class="section">
+    <h2>What a Tailwind Color Scale Looks Like</h2>
+    <p>Every color in Tailwind has 11 shades, numbered from 50 (lightest) to 950 (darkest). Here is Tailwind&rsquo;s blue palette as reference:</p>
+
+    <div class="swatch-row">
+      <div class="swatch" style="background:#eff6ff;color:#1e3a5f">50</div>
+      <div class="swatch" style="background:#dbeafe;color:#1e3a5f">100</div>
+      <div class="swatch" style="background:#bfdbfe;color:#1e3a5f">200</div>
+      <div class="swatch" style="background:#93c5fd;color:#1e3a5f">300</div>
+      <div class="swatch" style="background:#60a5fa;color:#fff">400</div>
+      <div class="swatch" style="background:#3b82f6;color:#fff">500</div>
+      <div class="swatch" style="background:#2563eb;color:#fff">600</div>
+      <div class="swatch" style="background:#1d4ed8;color:#fff">700</div>
+      <div class="swatch" style="background:#1e40af;color:#fff">800</div>
+      <div class="swatch" style="background:#1e3a8a;color:#fff">900</div>
+      <div class="swatch" style="background:#172554;color:#fff">950</div>
+    </div>
+
+    <p>The key insight: this is not random. Each shade follows a deliberate lightness curve. The 500 shade is the "base" color. Shades below 500 get progressively lighter (higher HSL lightness, slightly lower saturation). Shades above 500 get progressively darker (lower lightness, adjusted saturation to avoid muddiness). Understanding this curve is how you generate palettes that feel as polished as Tailwind&rsquo;s built-in ones.</p>
+  </div>
+
+  <!-- Step by step -->
+  <div class="section">
+    <h2>Step-by-Step: Generate Your Custom Tailwind Palette</h2>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Start with your brand color</h3>
+        <p>Pick the hex value of your brand&rsquo;s primary color. This will become your <strong>500 shade</strong> &mdash; the mid-tone anchor of the entire scale. For example, <code>#8b5cf6</code> (Tailwind&rsquo;s violet-500). If you only have an RGB value, convert it to hex first.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Convert to HSL</h3>
+        <p>HSL (Hue, Saturation, Lightness) is the color model that makes palette generation intuitive. <code>#8b5cf6</code> converts to <code>hsl(263, 90%, 66%)</code>. The <strong>hue</strong> (263) stays constant across all shades. The <strong>saturation</strong> and <strong>lightness</strong> change to create tints and shades.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Build the lightness curve</h3>
+        <p>This is the core technique. For Tailwind-compatible palettes, the lightness values typically follow this progression:</p>
+      </div>
+    </div>
+
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th>Shade</th>
+          <th>Lightness Range</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>50</strong></td><td>95-97%</td><td>Page backgrounds, subtle fills</td></tr>
+        <tr><td><strong>100</strong></td><td>90-93%</td><td>Hover backgrounds, secondary fills</td></tr>
+        <tr><td><strong>200</strong></td><td>82-87%</td><td>Borders on light backgrounds</td></tr>
+        <tr><td><strong>300</strong></td><td>72-78%</td><td>Disabled states, placeholder text</td></tr>
+        <tr><td><strong>400</strong></td><td>62-68%</td><td>Icons, secondary buttons</td></tr>
+        <tr><td><strong>500</strong></td><td>50-60%</td><td>Primary buttons, links, brand color</td></tr>
+        <tr><td><strong>600</strong></td><td>42-48%</td><td>Hover states for primary elements</td></tr>
+        <tr><td><strong>700</strong></td><td>34-40%</td><td>Active states, dark accents</td></tr>
+        <tr><td><strong>800</strong></td><td>26-32%</td><td>Headings on light backgrounds</td></tr>
+        <tr><td><strong>900</strong></td><td>18-24%</td><td>Body text on light backgrounds</td></tr>
+        <tr><td><strong>950</strong></td><td>8-14%</td><td>Near-black, dark mode backgrounds</td></tr>
+      </tbody>
+    </table>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Adjust saturation across the range</h3>
+        <p>Pure lightness shifts produce muddy darks and washed-out lights. The fix: slightly <strong>decrease saturation</strong> for very light shades (50-200) and slightly <strong>increase or maintain saturation</strong> for dark shades (700-950). This prevents the "dirty grey" look in dark shades and the "neon pastel" look in light shades.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h3>Generate with a tool or paste into config</h3>
+        <p>Use the <a href="/tools/color-palette/" style="color:var(--purple)">Pure-Flon Color Palette Generator</a> to do steps 2-4 automatically. Enter your hex color, get a full 11-shade palette with the correct lightness curve. Copy the output directly into your <code>tailwind.config.js</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <a href="/tools/color-palette/" class="btn-primary"
+       onclick="gtag('event','cta_click',{cta_type:'generate_palette',page:'tailwind-color-guide'})">
+      Generate Your Tailwind Palette
+    </a>
+    <div class="cta-sub">Enter any hex color &middot; Get 50-950 scale &middot; Copy config output</div>
+  </div>
+
+  <!-- Config example -->
+  <div class="section">
+    <h2>Using Custom Colors in tailwind.config.js</h2>
+    <p>Once you have your palette, add it to your Tailwind config. You can either <strong>extend</strong> the default colors (keep blue, red, etc.) or <strong>replace</strong> them entirely:</p>
+
+    <div class="code-block"><span style="color:var(--dim)">// tailwind.config.js — extending default colors</span>
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        <span style="color:var(--purple)">brand</span>: {
+          <span style="color:var(--accent2)">50</span>:  <span style="color:var(--green)">'#faf5ff'</span>,
+          <span style="color:var(--accent2)">100</span>: <span style="color:var(--green)">'#f3e8ff'</span>,
+          <span style="color:var(--accent2)">200</span>: <span style="color:var(--green)">'#e9d5ff'</span>,
+          <span style="color:var(--accent2)">300</span>: <span style="color:var(--green)">'#d8b4fe'</span>,
+          <span style="color:var(--accent2)">400</span>: <span style="color:var(--green)">'#c084fc'</span>,
+          <span style="color:var(--accent2)">500</span>: <span style="color:var(--green)">'#a855f7'</span>,
+          <span style="color:var(--accent2)">600</span>: <span style="color:var(--green)">'#9333ea'</span>,
+          <span style="color:var(--accent2)">700</span>: <span style="color:var(--green)">'#7e22ce'</span>,
+          <span style="color:var(--accent2)">800</span>: <span style="color:var(--green)">'#6b21a8'</span>,
+          <span style="color:var(--accent2)">900</span>: <span style="color:var(--green)">'#581c87'</span>,
+          <span style="color:var(--accent2)">950</span>: <span style="color:var(--green)">'#3b0764'</span>,
+        },
+      },
+    },
+  },
+}</div>
+
+    <p>After adding this, you can use classes like <code>bg-brand-500</code>, <code>text-brand-900</code>, <code>border-brand-200</code>, and <code>hover:bg-brand-600</code> throughout your templates. The naming convention is <code>{property}-{color}-{shade}</code>.</p>
+  </div>
+
+  <!-- HSL deep dive -->
+  <div class="section">
+    <h2>The HSL Color Model: Why It Matters for Palettes</h2>
+
+    <div class="info-card">
+      <h3>Hue: The Color Angle (0-360)</h3>
+      <p>Hue is the "color" itself, expressed as a degree on the color wheel. Red is 0, yellow is 60, green is 120, cyan is 180, blue is 240, magenta is 300. For a single-color palette, the hue stays constant across all shades. You might shift it by 2-5 degrees in extreme light or dark shades to add warmth (toward yellow) or coolness (toward blue), but this is optional refinement.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Saturation: Color Intensity (0-100%)</h3>
+      <p>Saturation controls how vivid the color is. 100% is fully saturated, 0% is pure grey. For Tailwind palettes, the mid-range shades (400-600) tend to have the highest saturation. Light shades (50-200) should have slightly lower saturation to avoid looking like highlighter ink. Dark shades (800-950) can maintain or slightly reduce saturation to stay rich without looking muddy.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Lightness: From White to Black (0-100%)</h3>
+      <p>Lightness is the primary lever for generating shade scales. 0% is black, 100% is white, and 50% is the "pure" color. Tailwind&rsquo;s 500 shade typically sits around 50-60% lightness. The key to good palettes is non-linear spacing: the steps between 50 and 200 are larger (5-7% each), while steps between 700 and 950 are smaller (4-6% each). This produces perceptually even spacing because human vision is more sensitive to lightness differences in dark ranges.</p>
+    </div>
+  </div>
+
+  <!-- Common Mistakes -->
+  <div class="section">
+    <h2>Common Mistakes When Creating Tailwind Palettes</h2>
+
+    <div class="info-card" style="border-left-color:var(--red)">
+      <h3 style="color:var(--red)">Linear lightness steps</h3>
+      <p>Dividing 0-100% into 11 equal steps (9.1% each) produces a palette that looks wrong. The light end is too dense (three nearly-identical pastels) and the dark end has jarring jumps. Good palettes use a curve, not a line. More spacing at the light end, tighter spacing at the dark end.</p>
+    </div>
+
+    <div class="info-card" style="border-left-color:var(--red)">
+      <h3 style="color:var(--red)">Constant saturation across all shades</h3>
+      <p>Keeping saturation at, say, 90% for every shade from 50 to 950 makes the light shades look like neon candy and the dark shades look muddy or brownish. Reduce saturation by 15-30% for the 50 and 100 shades. The dark shades (800-950) can maintain saturation or reduce slightly to stay clean.</p>
+    </div>
+
+    <div class="info-card" style="border-left-color:var(--red)">
+      <h3 style="color:var(--red)">Ignoring contrast ratios</h3>
+      <p>WCAG accessibility requires a 4.5:1 contrast ratio for normal text and 3:1 for large text. When using your palette shades, verify that text colors against background colors meet these ratios. Typically, use shades 700-950 for text on light backgrounds and 50-300 for text on dark backgrounds. The 400-500 range often fails contrast checks against both white and black backgrounds.</p>
+    </div>
+
+    <div class="info-card" style="border-left-color:var(--red)">
+      <h3 style="color:var(--red)">Using hex-based interpolation</h3>
+      <p>Some tools generate palettes by linearly interpolating between two hex values (e.g., white to your brand color to black). This produces uneven perceptual steps because hex/RGB space is not perceptually uniform. HSL-based generation with manual curve tuning produces significantly better results. Even better: use OKLCH or CIELAB for perceptually uniform spacing, though HSL is good enough for most projects.</p>
+    </div>
+  </div>
+
+  <!-- Tailwind v4 -->
+  <div class="section">
+    <h2>Tailwind CSS v4: CSS-First Colors</h2>
+    <p>Tailwind CSS v4 moves color configuration from JavaScript to CSS using the new <code>@theme</code> directive. Instead of editing <code>tailwind.config.js</code>, you define colors directly in your CSS:</p>
+
+    <div class="code-block"><span style="color:var(--dim)">/* app.css — Tailwind v4 custom colors */</span>
+@theme {
+  --color-brand-50:  <span style="color:var(--green)">#faf5ff</span>;
+  --color-brand-100: <span style="color:var(--green)">#f3e8ff</span>;
+  --color-brand-200: <span style="color:var(--green)">#e9d5ff</span>;
+  --color-brand-300: <span style="color:var(--green)">#d8b4fe</span>;
+  --color-brand-400: <span style="color:var(--green)">#c084fc</span>;
+  --color-brand-500: <span style="color:var(--green)">#a855f7</span>;
+  --color-brand-600: <span style="color:var(--green)">#9333ea</span>;
+  --color-brand-700: <span style="color:var(--green)">#7e22ce</span>;
+  --color-brand-800: <span style="color:var(--green)">#6b21a8</span>;
+  --color-brand-900: <span style="color:var(--green)">#581c87</span>;
+  --color-brand-950: <span style="color:var(--green)">#3b0764</span>;
+}</div>
+
+    <p>The utility classes work the same way: <code>bg-brand-500</code>, <code>text-brand-200</code>, etc. The output from our color palette generator works with both v3 (config.js) and v4 (CSS variables) &mdash; just copy the hex values into whichever format your project uses.</p>
+  </div>
+
+  <!-- Second CTA -->
+  <div class="cta-section">
+    <a href="/tools/color-palette/" class="btn-primary"
+       onclick="gtag('event','cta_click',{cta_type:'generate_palette_bottom',page:'tailwind-color-guide'})">
+      Create Your Palette Now
+    </a>
+    <div class="cta-sub">Free &middot; No signup &middot; Export as config or CSS variables</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>How does Tailwind CSS organize its color shades?</h3>
+      <p>Tailwind uses a numeric scale from 50 to 950: 50 is the lightest tint (nearly white), 500 is the base mid-tone, and 950 is the darkest shade (nearly black). Each step represents a perceptual lightness increment. The default palette has 11 shades per color (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950). When generating custom palettes, maintaining consistent perceptual spacing between these steps is what makes the palette feel cohesive.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Should I use HSL or hex values for Tailwind colors?</h3>
+      <p>Tailwind supports both, but HSL has a significant advantage for custom palettes: you can generate an entire shade range by adjusting only the lightness value while keeping hue and saturation constant. This produces perceptually uniform progressions. In your <code>tailwind.config.js</code>, you can use either format. If you want to support Tailwind&rsquo;s opacity modifier (e.g., <code>bg-blue-500/50</code>), use the HSL channel syntax and define CSS variables without the <code>hsl()</code> wrapper.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use my brand color as the base for a Tailwind palette?</h3>
+      <p>Yes, and this is the most common use case. Start with your brand hex color, convert it to HSL, and use that as your 500 (mid-tone) shade. Then generate lighter shades (50-400) by increasing lightness and slightly decreasing saturation, and darker shades (600-950) by decreasing lightness and slightly adjusting saturation. The <a href="/tools/color-palette/" style="color:var(--purple)">Pure-Flon Color Palette Generator</a> does this automatically &mdash; enter your brand color and get a full 50-950 scale ready to paste into your Tailwind config.</p>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="related-section">
+    <h2>Related Tools &amp; Guides</h2>
+    <a href="/tools/color-palette/vs-coolors/" class="related-link">Pure-Flon Color Palette vs Coolors &mdash; Comparison</a>
+    <a href="/tools/color-palette/" class="related-link">Color Palette Generator &mdash; Create Beautiful Palettes</a>
+  </div>
+
+  <!-- Internal Links -->
+  <div class="internal-links">
+    <a href="/tools/">All Tools</a>
+    <a href="/tools/json-formatter/">JSON Formatter</a>
+    <a href="/tools/qr-generator/">QR Generator</a>
+    <a href="/tools/color-palette/">Color Palette</a>
+    <a href="/tools/pomodoro/">Pomodoro Timer</a>
+    <a href="/games/">Games</a>
+    <a href="/games/world-flag-quiz/">World Flag Quiz</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">Home</a>
+  </div>
+
+  <!-- Sponsor -->
+  <div class="sponsor">
+    <p>Like free tools with no ads? Support the project</p>
+    <div class="sponsor-links">
+      <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'kofi',product:'tailwind-color-guide'})">Ko-fi</a>
+      <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'github_sponsors',product:'tailwind-color-guide'})">GitHub Sponsors</a>
+      <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener"
+         onclick="gtag('event','sponsor_click',{cta_type:'paypal',product:'tailwind-color-guide'})">PayPal</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2026 <a href="/">pure-flon.com</a> &mdash; Free developer tools. No ads, no tracking, no signup.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

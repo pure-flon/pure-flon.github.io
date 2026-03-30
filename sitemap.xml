@@ -177,4 +177,30 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- How-To Landing Pages -->
+    <url>
+        <loc>https://pure-flon.com/tools/qr-generator/wifi/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://pure-flon.com/tools/json-formatter/api-response/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://pure-flon.com/tools/color-palette/tailwind/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://pure-flon.com/games/world-flag-quiz/hardest-flags/</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>
