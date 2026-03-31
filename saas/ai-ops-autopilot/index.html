@@ -377,7 +377,7 @@
           <li class="flex gap-2"><span class="text-muted mt-0.5">–</span>Root-cause AI (Standard)</li>
         </ul>
         <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=starter" id="cta-starter"
-           onclick="gtag('event','cta_click',{'source_surface':'saas','source_page':'ai-ops-autopilot','cta_type':'waitlist',plan:'starter'})"
+           onclick="gtag('event','cta_click',{'source_surface':'saas','source_page':'ai-ops-autopilot','cta_type':'waitlist',plan:'starter'});gtag('event','begin_checkout',{currency:'USD',value:29,items:[{item_id:'saas-starter',item_name:'AI Ops Autopilot Starter',price:29}]})"
            class="btn-secondary text-sm text-center justify-center">
           Join Waitlist
         </a>
@@ -404,7 +404,7 @@
           <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Demand forecasting</li>
         </ul>
         <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=growth" id="cta-growth"
-           onclick="gtag('event','cta_click',{'source_surface':'saas','source_page':'ai-ops-autopilot','cta_type':'waitlist',plan:'growth'})"
+           onclick="gtag('event','cta_click',{'source_surface':'saas','source_page':'ai-ops-autopilot','cta_type':'waitlist',plan:'growth'});gtag('event','begin_checkout',{currency:'USD',value:79,items:[{item_id:'saas-growth',item_name:'AI Ops Autopilot Growth',price:79}]})"
            class="btn-primary text-sm text-center justify-center">
           Join Waitlist
         </a>
@@ -533,5 +533,34 @@
   </footer>
 
 <script src="/js/modules/revenue-cta-runtime.js" defer></script>
+<script>
+// EXP-1011: Pricing view tracking — fires once when pricing section is visible
+(function(){
+  var fired=false;
+  var el=document.querySelector('[data-section="pricing"]')||document.getElementById('pricing');
+  if(!el){
+    // fallback: fire on scroll past 40% of page
+    window.addEventListener('scroll',function h(){
+      if(fired)return;
+      if(window.scrollY>document.body.scrollHeight*0.4){
+        fired=true;
+        gtag('event','view_item_list',{item_list_id:'saas_pricing',item_list_name:'AI Ops Autopilot Pricing',items:[{item_id:'saas-starter',item_name:'AI Ops Autopilot Starter',price:29},{item_id:'saas-growth',item_name:'AI Ops Autopilot Growth',price:79}]});
+        window.removeEventListener('scroll',h);
+      }
+    });
+  } else {
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting&&!fired){
+          fired=true;
+          gtag('event','view_item_list',{item_list_id:'saas_pricing',item_list_name:'AI Ops Autopilot Pricing',items:[{item_id:'saas-starter',item_name:'AI Ops Autopilot Starter',price:29},{item_id:'saas-growth',item_name:'AI Ops Autopilot Growth',price:79}]});
+          obs.disconnect();
+        }
+      });
+    },{threshold:0.3});
+    obs.observe(el);
+  }
+})();
+</script>
 </body>
 </html>

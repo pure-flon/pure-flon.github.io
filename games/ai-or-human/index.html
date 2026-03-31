@@ -130,6 +130,15 @@ h1{font-size:2rem;color:#fff;margin-bottom:6px}
 .nav-link{font-size:0.78rem;color:#777;text-decoration:none;padding:5px 10px;border-radius:6px;transition:background 0.15s,color 0.15s}
 .nav-link:hover{background:#1e1e1e;color:#ddd}
 .nav-active{background:#1a1a2e!important;color:#88f!important}
+/* sponsor */
+.sponsor{background:var(--surface);border-top:1px solid var(--border);padding:13px 16px;text-align:center;width:100%;margin-top:20px;border-radius:12px}
+.sponsor p{font-size:0.73rem;color:var(--muted);margin-bottom:8px}
+.sponsor-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.sponsor-link{font-size:0.76rem;color:var(--muted);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:20px;transition:color .15s,border-color .15s}
+.sponsor-link:hover{color:var(--accent2);border-color:var(--accent)}
+/* best score */
+.best-banner{font-size:0.8rem;color:var(--muted);margin-top:8px}
+.best-banner span{color:var(--accent2);font-weight:600}
 /* more-games footer */
 .more-games-footer{background:#0f0f0f;border-top:1px solid #1a1a1a;padding:22px 20px}
 .mgf-inner{max-width:600px;margin:0 auto}
@@ -203,6 +212,7 @@ h1{font-size:2rem;color:#fff;margin-bottom:6px}
       <div class="big-score" id="final-score"></div>
       <div class="rating" id="rating-text"></div>
       <div class="rating-sub" id="rating-sub"></div>
+      <div class="best-banner" id="best-banner" style="display:none">Personal Best: <span id="best-score-val"></span></div>
       <button class="share-btn" onclick="shareScore()">Share Result</button><br>
       <button class="play-again" onclick="restartGame()">Play Again</button>
     </div>
@@ -563,6 +573,18 @@ function showEnd() {
   document.getElementById('rating-text').textContent = rating;
   document.getElementById('rating-sub').textContent = sub;
 
+  // localStorage best score
+  var prevBest = parseInt(localStorage.getItem('aih_best') || '0', 10);
+  if (score > prevBest) {
+    localStorage.setItem('aih_best', score);
+    prevBest = score;
+  }
+  var bestBanner = document.getElementById('best-banner');
+  if (bestBanner) {
+    document.getElementById('best-score-val').textContent = prevBest + ' / ' + total;
+    bestBanner.style.display = 'block';
+  }
+
   gtag('event', 'game_complete', {
     game: 'ai-or-human',
     score: score,
@@ -588,6 +610,15 @@ function restartGame() {
   document.getElementById('start-screen').style.display = 'block';
 }
 </script>
+<!-- ── SPONSOR ── -->
+<div class="sponsor">
+  <p>Enjoying the quiz? Support free tools &amp; games ☕</p>
+  <div class="sponsor-links">
+    <a href="https://ko-fi.com/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{cta_type:'kofi',product:'ai-or-human'})">☕ Ko-fi</a>
+    <a href="https://github.com/sponsors/pure-flon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{cta_type:'github_sponsors',product:'ai-or-human'})">💖 GitHub Sponsors</a>
+    <a href="https://paypal.me/pureflon" class="sponsor-link" target="_blank" rel="noopener" onclick="gtag('event','sponsor_click',{cta_type:'paypal',product:'ai-or-human'})">💳 PayPal</a>
+  </div>
+</div>
 <div class="more-games-footer">
   <div class="mgf-inner">
     <div class="mgf-label">More Games</div>
