@@ -5,9 +5,51 @@
     <link>https://pure-flon.com</link>
     <description>Free AI-powered games, tools &amp; blog</description>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Mar 2026 03:20:07 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 11:30:23 +0000</lastBuildDate>
     <atom:link href="https://pure-flon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>auto_distribute.py</generator>
+    <item>
+      <title>World Capital City Quiz | Name All 195 Country Capitals — Geography Challenge</title>
+      <link>https://pure-flon.com/games/capital-city-quiz/</link>
+      <description>Test your world geography! Name the capital city of all 195 countries in timed or relaxed mode. Track your score by continent. Free capital quiz — no download needed.</description>
+      <pubDate>Tue, 31 Mar 2026 08:56:07 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/capital-city-quiz/</guid>
+    </item>
+    <item>
+      <title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
+      <link>https://pure-flon.com/games/world-flag-quiz/</link>
+      <description>Test your world geography! Guess all 195 country flags in timed or relaxed mode. Track your score by continent. Free flag quiz game — no download needed.</description>
+      <pubDate>Tue, 31 Mar 2026 08:55:40 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/</guid>
+    </item>
+    <item>
+      <title>AI 20 Questions | Think of something — AI will guess it</title>
+      <link>https://pure-flon.com/games/twenty-questions/</link>
+      <description>Challenge the AI mind reader! Think of anything from K-Food, K-Pop, Animals, Tech, Places, or Memes — AI uses information theory to guess it in 20 questions.</description>
+      <pubDate>Tue, 31 Mar 2026 08:55:13 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/twenty-questions/</guid>
+    </item>
+    <item>
+      <title>K-Meme Quiz | 한국 인터넷 밈 퀴즈 — 당신의 밈력은?</title>
+      <link>https://pure-flon.com/games/k-meme-quiz/</link>
+      <description>한국 인터넷 밈 퀴즈! 뇌절, 갓생, 현타, 찐친... 50개 이상의 K-밈 중 10문제를 풀며 당신의 밈 지수를 확인하세요. 점수 공유 가능!</description>
+      <pubDate>Tue, 31 Mar 2026 08:54:48 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/k-meme-quiz/</guid>
+    </item>
+    <item>
+      <title>India Tech Culture Quiz | Do You Know Indian Developer Slang?</title>
+      <link>https://pure-flon.com/games/india-tech-culture/</link>
+      <description>Test your knowledge of Indian IT culture! From &apos;do the needful&apos; to &apos;jugaad&apos; — 50+ questions about Indian developer slang, IT company culture, and desi tech humor.</description>
+      <pubDate>Tue, 31 Mar 2026 08:54:23 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/india-tech-culture/</guid>
+    </item>
+    <item>
+      <title>AI or Human? — Can You Tell the Difference?</title>
+      <link>https://pure-flon.com/games/ai-or-human/</link>
+      <description>A quiz game: was this text written by AI or a human? Test your instincts across code, emails, blog posts, and Reddit comments. 15 rounds.</description>
+      <pubDate>Tue, 31 Mar 2026 08:52:33 +0000</pubDate>
+      <guid isPermaLink="true">https://pure-flon.com/games/ai-or-human/</guid>
+    </item>
     <item>
       <title>How to Create a WiFi QR Code — Share Your Password Instantly</title>
       <link>https://pure-flon.com/tools/qr-generator/wifi/</link>
@@ -247,34 +289,6 @@
       <guid isPermaLink="true">https://pure-flon.com/tools/position-size-calculator/stocks/</guid>
     </item>
     <item>
-      <title>AI or Human? — Can You Tell the Difference?</title>
-      <link>https://pure-flon.com/games/ai-or-human/</link>
-      <description>A quiz game: was this text written by AI or a human? Test your instincts across code, emails, blog posts, and Reddit comments. 15 rounds.</description>
-      <pubDate>Mon, 30 Mar 2026 13:57:28 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/ai-or-human/</guid>
-    </item>
-    <item>
-      <title>World Capital City Quiz | Name All 195 Country Capitals — Geography Challenge</title>
-      <link>https://pure-flon.com/games/capital-city-quiz/</link>
-      <description>Test your world geography! Name the capital city of all 195 countries in timed or relaxed mode. Track your score by continent. Free capital quiz — no download needed.</description>
-      <pubDate>Mon, 30 Mar 2026 13:49:24 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/capital-city-quiz/</guid>
-    </item>
-    <item>
-      <title>India Tech Culture Quiz | Do You Know Indian Developer Slang?</title>
-      <link>https://pure-flon.com/games/india-tech-culture/</link>
-      <description>Test your knowledge of Indian IT culture! From &apos;do the needful&apos; to &apos;jugaad&apos; — 50+ questions about Indian developer slang, IT company culture, and desi tech humor.</description>
-      <pubDate>Mon, 30 Mar 2026 13:38:51 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/india-tech-culture/</guid>
-    </item>
-    <item>
-      <title>World Flag Quiz | Guess 195 Country Flags — Geography Challenge</title>
-      <link>https://pure-flon.com/games/world-flag-quiz/</link>
-      <description>Test your world geography! Guess all 195 country flags in timed or relaxed mode. Track your score by continent. Free flag quiz game — no download needed.</description>
-      <pubDate>Mon, 30 Mar 2026 09:52:27 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/</guid>
-    </item>
-    <item>
       <title>25 Hardest Country Flags to Identify — Can You Get Them All?</title>
       <link>https://pure-flon.com/games/world-flag-quiz/hardest-flags/</link>
       <description>Can you tell Romania from Chad? Indonesia from Monaco? These are the 25 most commonly confused country flags in the world, with explanations of what makes each pair tricky.</description>
@@ -315,20 +329,6 @@
       <description>Can you identify the flags of Oceania&apos;s 14 Pacific island nations plus Australia and New Zealand? Test your knowledge of the world&apos;s smallest continent. Free quiz.</description>
       <pubDate>Mon, 30 Mar 2026 07:47:37 +0000</pubDate>
       <guid isPermaLink="true">https://pure-flon.com/games/world-flag-quiz/oceania/</guid>
-    </item>
-    <item>
-      <title>K-Meme Quiz | 한국 인터넷 밈 퀴즈 — 당신의 밈력은?</title>
-      <link>https://pure-flon.com/games/k-meme-quiz/</link>
-      <description>한국 인터넷 밈 퀴즈! 뇌절, 갓생, 현타, 찐친... 50개 이상의 K-밈 중 10문제를 풀며 당신의 밈 지수를 확인하세요. 점수 공유 가능!</description>
-      <pubDate>Mon, 30 Mar 2026 07:27:33 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/k-meme-quiz/</guid>
-    </item>
-    <item>
-      <title>AI 20 Questions | Think of something — AI will guess it</title>
-      <link>https://pure-flon.com/games/twenty-questions/</link>
-      <description>Challenge the AI mind reader! Think of anything from K-Food, K-Pop, Animals, Tech, Places, or Memes — AI uses information theory to guess it in 20 questions.</description>
-      <pubDate>Mon, 30 Mar 2026 07:27:29 +0000</pubDate>
-      <guid isPermaLink="true">https://pure-flon.com/games/twenty-questions/</guid>
     </item>
     <item>
       <title>Top 10 Free AI Tools for Crypto Traders in 2026 | pure-flon</title>
