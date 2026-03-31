@@ -343,8 +343,13 @@
       absolute.searchParams.set('source_page', sourcePage);
     }
 
+    var requestType = String(absolute.searchParams.get('type') || '').toLowerCase();
+    var ctaType = requestType === 'sample' ? 'sample_quote' : 'quote';
+
     if (!absolute.searchParams.get('cta_type')) {
-      absolute.searchParams.set('cta_type', 'quote');
+      absolute.searchParams.set('cta_type', ctaType);
+    } else {
+      ctaType = absolute.searchParams.get('cta_type');
     }
 
     if (opts.product && !absolute.searchParams.get('product')) {
@@ -352,7 +357,7 @@
     }
 
     anchor.setAttribute('href', absolute.pathname + absolute.search + absolute.hash);
-    addCtaTracking(anchor, 'quote_cta_click', 'quote', {
+    addCtaTracking(anchor, 'quote_cta_click', ctaType, {
       product: absolute.searchParams.get('product') || ''
     });
   }

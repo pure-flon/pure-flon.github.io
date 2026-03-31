@@ -147,7 +147,7 @@
                 </p>
                 <div class="product-hero__actions">
                     <a href="../../quote/?product=ptfe" class="btn btn--primary btn--large">Request a Quote</a>
-                    <a href="../../quote/?product=ptfe&type=sample" class="btn btn--outline-light">Order a Sample</a>
+                    <a href="../../quote/?product=ptfe&type=sample" class="btn btn--outline-light">Request Sample Quote</a>
                 </div>
                 <div class="badge-row">
                     <span class="cert-pill">🍽️ FDA Compliant</span>
@@ -318,10 +318,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('a[href*="quote"]').forEach(function(btn) {
             btn.addEventListener('click', function() {
+                var ctaType = btn.href.indexOf('type=sample') !== -1 ? 'sample_quote' : 'quote';
                 gtag('event', 'generate_lead', {
                     'source_surface': 'products',
                     'source_page': 'products-ptfe-tube',
-                    'cta_type': 'quote',
+                    'cta_type': ctaType,
                     currency: 'USD',
                     value: 0,
                     items: [{ item_id: 'ptfe-tube', item_name: 'PTFE Tubing' }]
@@ -330,6 +331,6 @@
         });
     });
     </script>
-<script src="/js/modules/revenue-cta-runtime.js" defer></script>
+<script src="/js/modules/revenue-cta-runtime.js?v=20260331" defer></script>
 </body>
 </html>

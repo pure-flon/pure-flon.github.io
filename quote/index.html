@@ -124,8 +124,8 @@
         <div class="container">
             <span class="trust-item" id="trustItemOne">⏱ <strong>1 business day</strong> response</span>
             <span class="trust-item" id="trustItemTwo">📦 <strong>Volume discounts</strong> available</span>
-            <span class="trust-item" id="trustItemThree">🚚 <strong>Global shipping</strong> — EXW/FOB/DHL Express</span>
-            <span class="trust-item" id="trustItemFour">💳 <strong>Stripe</strong> — card or wire transfer</span>
+            <span class="trust-item" id="trustItemThree">🚚 <strong>EXW / FOB / sample freight</strong> reviewed with your quote</span>
+            <span class="trust-item" id="trustItemFour">🧾 <strong>Payment terms</strong> confirmed by email</span>
         </div>
     </div>
 
@@ -385,21 +385,21 @@
                                 <div class="info-step__num">2</div>
                                 <div class="info-step__text">
                                     <strong>Receive Quote</strong>
-                                    <p>Within 1 business day — unit price, lead time, and Stripe payment link.</p>
+                                    <p>Within 1 business day — unit price, lead time, and commercial terms.</p>
                                 </div>
                             </div>
                             <div class="info-step">
                                 <div class="info-step__num">3</div>
                                 <div class="info-step__text">
-                                    <strong>Confirm & Pay</strong>
-                                    <p>Approve the quote and pay via Stripe (card or wire transfer).</p>
+                                    <strong>Confirm Order</strong>
+                                    <p>Approve the quote and confirm the next billing step by email.</p>
                                 </div>
                             </div>
                             <div class="info-step">
                                 <div class="info-step__num">4</div>
                                 <div class="info-step__text">
-                                    <strong>Track Shipment</strong>
-                                    <p>We dispatch and send you a DHL/FedEx tracking number.</p>
+                                    <strong>Dispatch Planning</strong>
+                                    <p>Shipping timing and tracking follow after the order is confirmed.</p>
                                 </div>
                             </div>
                         </div>
@@ -455,10 +455,12 @@
         const sourcePageParam = String(params.get('source_page') || '').trim();
         const ctaTypeParam = String(params.get('cta_type') || '').trim();
         const planParam = String(params.get('plan') || '').trim().toLowerCase();
+        const requestTypeParam = String(params.get('type') || '').trim().toLowerCase();
         const prod = params.get('product');
         const sourcePageAliases = ['ai-ops-autopilot', 'saas-ai-ops-autopilot'];
         const isSaasLead = sourceSurfaceParam === 'saas' || sourcePageAliases.includes(sourcePageParam);
         const isWaitlistLead = isSaasLead && ctaTypeParam === 'waitlist';
+        const isSampleRequest = requestTypeParam === 'sample';
 
         const form = document.getElementById('rfqForm');
         const nextField = form.querySelector('input[name="_next"]');
@@ -612,6 +614,49 @@
             ].join('');
         }
 
+        function applySampleRequestMode() {
+            const intentBanner = document.getElementById('intentBanner');
+            intentBanner.hidden = false;
+            document.getElementById('intentBannerTitle').textContent = 'Sample request routing';
+            document.getElementById('intentBannerCopy').textContent = 'Samples are reviewed through RFQ intake until direct sample checkout and SmartStore links are live.';
+
+            document.title = 'Request a Sample Quote | PURE-FLON';
+            document.getElementById('quotePageTitle').textContent = 'Request a Sample Quote';
+            document.getElementById('quotePageSubtitle').textContent = 'Tell us the product, dimensions, and quantity you want to trial. We will reply with sample availability, lead time, and commercial terms within 1 business day.';
+            document.getElementById('formCardTitle').textContent = 'RFQ — Sample Request';
+            document.getElementById('formCardSubtitle').textContent = 'Use this form for pilot quantities, validation samples, and trial orders.';
+            document.getElementById('trustItemTwo').innerHTML = '🧪 <strong>Pilot quantities</strong> welcome';
+            document.getElementById('trustItemThree').innerHTML = '🚚 <strong>Door-to-door sample freight</strong> reviewed by email';
+            document.getElementById('trustItemFour').innerHTML = '🧾 <strong>No self-serve checkout</strong> while launch links are pending';
+            document.getElementById('submitButton').textContent = 'Submit Sample Request →';
+            document.getElementById('privacyNote').textContent = 'Your information is used only to review your sample request and commercial follow-up.';
+
+            const steps = document.querySelectorAll('#workflowCard .info-step');
+            const stepCopy = [
+                ['Submit sample request', 'Share the product, dimensions, and sample quantity you need.'],
+                ['Fit review', 'We confirm sample availability, lead time, and any application questions within 1 business day.'],
+                ['Receive sample quote', 'You receive the commercial terms and shipping options by email.'],
+                ['Confirm shipment', 'We finalize dispatch after your approval and payment instructions are confirmed.']
+            ];
+
+            steps.forEach((step, index) => {
+                const textBlock = step.querySelector('.info-step__text');
+                if (!textBlock || !stepCopy[index]) return;
+                const [title, body] = stepCopy[index];
+                textBlock.querySelector('strong').textContent = title;
+                textBlock.querySelector('p').textContent = body;
+            });
+
+            document.getElementById('pricingCardTitle').textContent = 'Sample & Pilot Quantities';
+            document.getElementById('pricingCardCopy').textContent = 'Sample requests are routed through manual RFQ review until direct sample checkout goes live.';
+            document.getElementById('pricingCardList').innerHTML = [
+                '<li style="margin-bottom:6px;">Trial and validation quantities supported</li>',
+                '<li style="margin-bottom:6px;">Pilot batches can convert into volume orders</li>',
+                '<li style="margin-bottom:6px;">Shipping options are confirmed after review</li>',
+                '<li>Commercial terms follow by email, not self-serve checkout</li>'
+            ].join('');
+        }
+
         if (isSaasLead) {
             applySaasLeadMode();
         } else {
@@ -620,9 +665,12 @@
             leadTypeField.value = 'b2b_quote';
             sourceSurfaceField.value = sourceSurfaceParam;
             sourcePageField.value = sourcePageParam;
-            ctaTypeField.value = ctaTypeParam || 'quote';
+            ctaTypeField.value = ctaTypeParam || (isSampleRequest ? 'sample_quote' : 'quote');
             planInterestField.value = '';
             updateNextField('b2b_quote', '');
+            if (isSampleRequest) {
+                applySampleRequestMode();
+            }
         }
 
         waitlistPlan.addEventListener('change', () => {
@@ -676,6 +724,6 @@
         });
     </script>
 
-<script src="/js/modules/revenue-cta-runtime.js" defer></script>
+<script src="/js/modules/revenue-cta-runtime.js?v=20260331" defer></script>
 </body>
 </html>
