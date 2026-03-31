@@ -845,7 +845,7 @@ def compute_features(df: pd.DataFrame, as_of: pd.Timestamp) -> pd.Series:
       <h3 class="lang-content" data-lang="ko" style="display:none;">패턴 인식 능력 테스트</h3>
       <p class="lang-content" data-lang="en">Good traders see patterns faster. Train that skill with the World Flag Quiz — 200+ flags from every continent, pattern-matching under time pressure.</p>
       <p class="lang-content" data-lang="ko" style="display:none;">뛰어난 트레이더는 패턴을 더 빠르게 봅니다. 세계 국기 퀴즈로 그 능력을 훈련하세요 — 모든 대륙에서 200개 이상의 국기, 시간 압박 하의 패턴 매칭.</p>
-      <a href="/games/world-flag-quiz/" class="cta-btn" onclick="gtag('event','cta_click',{cta_type:'game_link',source:'blog-ai-trading-system'})">
+      <a href="/games/world-flag-quiz/" class="cta-btn" onclick="gtag('event','cta_click',{'source_surface':'blog','source_page':'blog-ai-trading-system','cta_type':'game_link',source:'blog-ai-trading-system'})">
         <span class="lang-content" data-lang="en">Play World Flag Quiz</span>
         <span class="lang-content" data-lang="ko" style="display:none;">세계 국기 퀴즈 플레이</span>
       </a>
@@ -883,5 +883,6 @@ function setLang(lang) {
 }
 </script>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

@@ -275,7 +275,7 @@ body{
   <!-- CTA -->
   <div class="cta-section">
     <a href="/tools/qr-generator/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'try_tool',page:'qr-generator-vs-qrcode-monkey'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'qr-generator-vs-qrcode-monkey','cta_type':'try_tool',page:'qr-generator-vs-qrcode-monkey'})">
       Try Pure-Flon QR Generator Free
     </a>
     <div class="cta-sub">No signup &middot; No ads &middot; 100% client-side</div>
@@ -310,7 +310,7 @@ body{
   <!-- Second CTA -->
   <div class="cta-section">
     <a href="/tools/qr-generator/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'try_tool_bottom',page:'qr-generator-vs-qrcode-monkey'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'qr-generator-vs-qrcode-monkey','cta_type':'try_tool_bottom',page:'qr-generator-vs-qrcode-monkey'})">
       Try Pure-Flon QR Generator Now
     </a>
     <div class="cta-sub">Free forever &middot; Works offline &middot; Your data stays in your browser</div>
@@ -356,5 +356,6 @@ body{
 
 </div>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

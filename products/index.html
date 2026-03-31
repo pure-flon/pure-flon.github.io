@@ -7,57 +7,869 @@
     <meta name="description" content="Browse PURE-FLON product lines including ESD PFA, PFA, and PTFE tubing for industrial B2B use cases.">
     <link rel="canonical" href="https://pure-flon.com/products/">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
     <link rel="stylesheet" href="../css/main.css?v=4.6.0">
+    <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; background: #f8fafc; color: #0f172a; }
-        .shell { max-width: 980px; margin: 0 auto; padding: 48px 20px 64px; }
-        .topbar { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 28px; }
-        .topbar a { text-decoration: none; color: #1e293b; font-size: 0.9rem; font-weight: 600; padding: 10px 14px; border: 1px solid #dbe3ef; border-radius: 999px; background: #fff; }
-        .topbar a:hover { border-color: #3b82f6; color: #1d4ed8; }
-        .hero { text-align: center; margin-bottom: 32px; }
-        .hero h1 { margin-bottom: 12px; font-size: 2rem; }
-        .hero p { color: #475569; max-width: 720px; margin: 0 auto; line-height: 1.6; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-        .card { background: #fff; border: 1px solid #dbe3ef; border-radius: 14px; padding: 20px; text-decoration: none; color: inherit; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06); }
-        .card:hover { border-color: #3b82f6; box-shadow: 0 8px 24px rgba(59, 130, 246, 0.14); }
-        .card h2 { margin: 0 0 8px; font-size: 1.1rem; }
-        .card p { margin: 0; color: #475569; font-size: 0.92rem; line-height: 1.5; }
-        .cta { margin-top: 28px; text-align: center; }
-        .cta a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
-        .note { margin-top: 18px; text-align: center; color: #475569; font-size: 0.9rem; line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: #0f172a;
+            font-family: "Pretendard Variable", "Pretendard", sans-serif;
+            word-break: keep-all;
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.1), transparent 28%),
+                radial-gradient(circle at 82% 16%, rgba(15, 23, 42, 0.06), transparent 20%),
+                linear-gradient(180deg, #eef4fb 0%, #f8fbff 26%, #f6f8fc 100%);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(15, 23, 42, 0.08) 0.7px, transparent 0.7px);
+            background-size: 18px 18px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        main,
+        .header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            top: 12px;
+            left: 16px;
+            right: 16px;
+            background: transparent;
+            border-bottom: 0;
+            box-shadow: none;
+        }
+
+        .header::before {
+            display: none;
+        }
+
+        .header__container {
+            max-width: 1240px;
+            padding: 14px 22px;
+            border-radius: 999px;
+            background: rgba(8, 15, 31, 0.68);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(24px) saturate(170%);
+            -webkit-backdrop-filter: blur(24px) saturate(170%);
+            box-shadow: 0 24px 60px -30px rgba(2, 6, 23, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.16);
+        }
+
+        .nav__link {
+            color: rgba(226, 232, 240, 0.88);
+            padding: 10px 0;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav__link:hover,
+        .nav__link.active {
+            color: #ffffff;
+        }
+
+        .nav__dropdown {
+            background: rgba(8, 15, 31, 0.96);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 24px 50px -24px rgba(2, 6, 23, 0.85);
+        }
+
+        .nav__dropdown a {
+            color: #dbe7f4;
+        }
+
+        .nav__dropdown a:hover,
+        .nav__dropdown a.active {
+            background: rgba(148, 163, 184, 0.08);
+        }
+
+        .nav-toggle span {
+            background-color: #f8fafc;
+        }
+
+        .header__actions .btn--primary {
+            min-height: 42px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            box-shadow: 0 18px 36px -18px rgba(14, 165, 233, 0.6);
+        }
+
+        .product-hero {
+            position: relative;
+            overflow: clip;
+            padding: 172px 0 84px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #05090f 0%, #09111f 44%, #11243b 100%);
+        }
+
+        .product-hero::before,
+        .product-hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            pointer-events: none;
+            filter: blur(12px);
+        }
+
+        .product-hero::before {
+            top: -60px;
+            left: -80px;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.24), transparent 68%);
+            animation: floatOrb 9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+
+        .product-hero::after {
+            right: -50px;
+            bottom: -90px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 68%);
+            animation: floatOrb 11s cubic-bezier(0.16, 1, 0.3, 1) infinite reverse;
+        }
+
+        .product-hero .container,
+        .specs-section .container,
+        .apps-section .container,
+        .why-section .container,
+        .cta-section .container {
+            max-width: 1180px;
+        }
+
+        .breadcrumb {
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb ol {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .breadcrumb li,
+        .breadcrumb a {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        .breadcrumb li + li::before {
+            content: "/";
+            margin-right: 8px;
+            color: rgba(148, 163, 184, 0.8);
+        }
+
+        .product-hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.24);
+            background: rgba(14, 165, 233, 0.1);
+            color: #7dd3fc;
+            font-size: 0.73rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .product-hero__title,
+        .section-title,
+        .cta-section h2 {
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            text-wrap: balance;
+            letter-spacing: -0.04em;
+        }
+
+        .product-hero__title {
+            max-width: 860px;
+            margin: 0 0 18px;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 0.96;
+        }
+
+        .product-hero__subtitle {
+            max-width: 720px;
+            margin: 0 0 28px;
+            color: #c6d5e6;
+            font-size: 1.08rem;
+            line-height: 1.75;
+        }
+
+        .product-hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .pill-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            min-height: 58px;
+            padding: 8px 8px 8px 24px;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pill-cta:hover {
+            transform: translateY(-2px) scale(1.02);
+            text-decoration: none;
+        }
+
+        .pill-cta:active {
+            transform: scale(0.98);
+        }
+
+        .pill-cta__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            flex-shrink: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pill-cta:hover .pill-cta__icon {
+            transform: translateX(4px);
+        }
+
+        .pill-cta--primary {
+            color: #08101d;
+            background: linear-gradient(180deg, #ffffff, #dff3ff);
+            box-shadow: 0 24px 48px -24px rgba(14, 165, 233, 0.55);
+        }
+
+        .pill-cta--primary .pill-cta__icon {
+            background: rgba(8, 16, 29, 0.08);
+            color: #0f172a;
+        }
+
+        .pill-cta--ghost {
+            color: #eff6ff;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .pill-cta--ghost .pill-cta__icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e0f2fe;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cert-pill {
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.18);
+            background: rgba(255, 255, 255, 0.06);
+            color: #dbeafe;
+            font-size: 0.82rem;
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .specs-section,
+        .apps-section,
+        .why-section,
+        .cta-section {
+            padding: 96px 0;
+        }
+
+        .specs-section {
+            background: transparent;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: #08101d;
+        }
+
+        .section-title--light {
+            color: #ffffff;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 34px;
+        }
+
+        .spec-card,
+        .app-card,
+        .why-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+
+        .spec-card {
+            padding: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.98));
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 28px 80px -42px rgba(15, 23, 42, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .spec-card::before,
+        .app-card::before,
+        .why-card::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border-radius: 22px;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.65);
+        }
+
+        .catalog-card {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-6px);
+            text-decoration: none;
+            box-shadow: 0 32px 80px -46px rgba(14, 165, 233, 0.38);
+        }
+
+        .catalog-card:nth-child(1) {
+            grid-column: span 6;
+            background:
+                radial-gradient(circle at top right, rgba(14, 165, 233, 0.14), transparent 42%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(240, 249, 255, 0.98));
+        }
+
+        .catalog-card:nth-child(2) {
+            grid-column: span 3;
+        }
+
+        .catalog-card:nth-child(3) {
+            grid-column: span 3;
+        }
+
+        .catalog-card__tag {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(14, 165, 233, 0.1);
+            color: #0369a1;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .spec-card h3 {
+            margin: 0 0 14px;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: -0.03em;
+            color: #0f172a;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.92);
+            font-size: 0.92rem;
+            color: #475569;
+        }
+
+        .spec-row:last-child {
+            border-bottom: 0;
+        }
+
+        .spec-row strong {
+            color: #0f172a;
+            text-align: right;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .catalog-card__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .catalog-card__link iconify-icon {
+            color: #0ea5e9;
+        }
+
+        .apps-section {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.92));
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 34px;
+        }
+
+        .app-card {
+            padding: 28px;
+            text-align: left;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.96));
+            border: 1px solid rgba(203, 213, 225, 0.55);
+            box-shadow: 0 24px 60px -44px rgba(15, 23, 42, 0.22);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 28px 70px -40px rgba(14, 165, 233, 0.22);
+        }
+
+        .app-card__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 16px;
+            border-radius: 18px;
+            background: rgba(14, 165, 233, 0.08);
+            color: #0284c7;
+            font-size: 1.8rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+        }
+
+        .app-card h3 {
+            margin: 0 0 10px;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: -0.03em;
+        }
+
+        .app-card p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .why-section {
+            position: relative;
+            overflow: clip;
+            background:
+                radial-gradient(circle at 16% 22%, rgba(56, 189, 248, 0.12), transparent 28%),
+                linear-gradient(135deg, #07111e 0%, #0b1627 48%, #122238 100%);
+            color: #ffffff;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 34px;
+        }
+
+        .why-card {
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 20px 40px -26px rgba(2, 6, 23, 0.75);
+        }
+
+        .why-card__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-bottom: 14px;
+            border-radius: 999px;
+            background: rgba(125, 211, 252, 0.1);
+            color: #7dd3fc;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .why-card h3 {
+            margin: 0 0 10px;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.18rem;
+            letter-spacing: -0.03em;
+            color: #f8fafc;
+        }
+
+        .why-card p {
+            margin: 0;
+            color: #b7c5d8;
+            font-size: 0.95rem;
+            line-height: 1.72;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 28px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            filter: blur(6px);
+            transition:
+                opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        [data-reveal].is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
+        }
+
+        @media (max-width: 1100px) {
+            .catalog-card:nth-child(1),
+            .catalog-card:nth-child(2),
+            .catalog-card:nth-child(3) {
+                grid-column: span 6;
+            }
+
+            .apps-grid,
+            .why-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            body::before {
+                opacity: 0.12;
+            }
+
+            .header {
+                top: 10px;
+                left: 12px;
+                right: 12px;
+            }
+
+            .header__container {
+                padding: 12px 16px;
+            }
+
+            .product-hero {
+                padding: 144px 0 64px;
+            }
+
+            .product-hero__title {
+                font-size: 2.45rem;
+            }
+
+            .product-hero__subtitle {
+                font-size: 1rem;
+            }
+
+            .product-hero__actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .pill-cta {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .specs-section,
+            .apps-section,
+            .why-section,
+            .cta-section {
+                padding: 80px 0;
+            }
+
+            .specs-grid,
+            .apps-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .catalog-card:nth-child(1),
+            .catalog-card:nth-child(2),
+            .catalog-card:nth-child(3) {
+                grid-column: span 1;
+            }
+
+            .spec-card,
+            .app-card,
+            .why-card {
+                border-radius: 24px;
+                padding: 22px;
+            }
+
+            .spec-card::before,
+            .app-card::before,
+            .why-card::before {
+                inset: 8px;
+                border-radius: 18px;
+            }
+        }
     </style>
 </head>
-<body>
-    <main class="shell">
-        <nav class="topbar" aria-label="Product hub navigation">
-            <a href="/">Home</a>
-            <a href="/quote/">Quote</a>
-            <a href="/saas/">SaaS</a>
-            <a href="/tools/">Tools</a>
-            <a href="/blog/">Blog</a>
-        </nav>
-        <section class="hero">
-            <h1>PURE-FLON Product Catalog</h1>
-            <p>Choose the fluoropolymer tubing line that matches your process requirements. For custom diameters, material specs, or batch certifications, send your RFQ through the quote form.</p>
+<body data-product="catalog">
+    <header class="header" role="banner">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="/" aria-label="PURE-FLON Homepage">
+                    <img src="../images/logo.png" alt="PURE-FLON" width="180" height="40">
+                </a>
+            </div>
+            <nav class="nav" role="navigation" aria-label="Primary">
+                <ul class="nav__menu">
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="/products/" class="nav__link active" aria-haspopup="true" aria-current="page">Products</a>
+                        <ul class="nav__dropdown">
+                            <li><a href="./esd-pfa-tube/">ESD PFA Tubing</a></li>
+                            <li><a href="./pfa-tube/">PFA Tubing</a></li>
+                            <li><a href="./ptfe-tube/">PTFE Tubing</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__item"><a href="/saas/" class="nav__link">SaaS</a></li>
+                    <li class="nav__item"><a href="/quote/" class="nav__link">Quote</a></li>
+                    <li class="nav__item"><a href="/tools/" class="nav__link">Tools</a></li>
+                    <li class="nav__item"><a href="/games/" class="nav__link">Games</a></li>
+                    <li class="nav__item"><a href="/blog/" class="nav__link">Blog</a></li>
+                    <li class="nav__item"><a href="/company/about.html" class="nav__link">About</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <a href="/quote/?source_surface=products&source_page=catalog&cta_type=quote" class="btn btn--primary btn--sm">Request Quote</a>
+                <button class="nav-toggle" type="button" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="product-hero">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
+                    <ol>
+                        <li><a href="/">Home</a></li>
+                        <li aria-current="page">Products</li>
+                    </ol>
+                </nav>
+                <div class="product-hero__badge" data-reveal style="--reveal-delay: 60ms;">Pure-Flon Product Hub</div>
+                <h1 class="product-hero__title" data-reveal style="--reveal-delay: 120ms;">Choose the right fluoropolymer tubing family before you request a quote.</h1>
+                <p class="product-hero__subtitle" data-reveal style="--reveal-delay: 180ms;">
+                    This hub now follows the same product-page language as each detail surface. Start with the operating environment, compare the core product families, and drop into the exact specification page without bouncing through older category branches.
+                </p>
+                <div class="product-hero__actions" data-reveal style="--reveal-delay: 240ms;">
+                    <a href="/quote/?source_surface=products&source_page=catalog&cta_type=quote" class="pill-cta pill-cta--primary">
+                        <span>Request a Quote</span>
+                        <span class="pill-cta__icon" aria-hidden="true">
+                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        </span>
+                    </a>
+                    <a href="#product-families" class="pill-cta pill-cta--ghost">
+                        <span>Compare Product Families</span>
+                        <span class="pill-cta__icon" aria-hidden="true">
+                            <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+                        </span>
+                    </a>
+                </div>
+                <div class="badge-row" data-reveal style="--reveal-delay: 300ms;">
+                    <span class="cert-pill">Canonical product entry</span>
+                    <span class="cert-pill">Truthful live quote path</span>
+                    <span class="cert-pill">Semiconductor to general industrial</span>
+                    <span class="cert-pill">Detailed spec pages underneath</span>
+                </div>
+            </div>
         </section>
-        <section class="grid" aria-label="Product categories">
-            <a class="card" href="./esd-pfa-tube/">
-                <h2>ESD PFA Tubing</h2>
-                <p>Antistatic tubing designed for semiconductor and electrostatic-sensitive environments.</p>
-            </a>
-            <a class="card" href="./pfa-tube/">
-                <h2>PFA Tubing</h2>
-                <p>High-purity, chemical-resistant tubing for precision fluid handling and clean processes.</p>
-            </a>
-            <a class="card" href="./ptfe-tube/">
-                <h2>PTFE Tubing</h2>
-                <p>General-purpose fluoropolymer tubing for broad industrial, chemical, and laboratory use.</p>
-            </a>
+
+        <section id="product-families" class="specs-section">
+            <div class="container">
+                <h2 class="section-title" data-reveal>Product Families</h2>
+                <div class="specs-grid" aria-label="Product families">
+                    <a class="catalog-card spec-card" href="./esd-pfa-tube/" data-reveal style="--reveal-delay: 40ms;">
+                        <span class="catalog-card__tag">Semiconductor / ESD</span>
+                        <h3>ESD PFA Tubing</h3>
+                        <div class="spec-row"><span>Best for</span><strong>Wet benches, UPW, ESD control</strong></div>
+                        <div class="spec-row"><span>Key value</span><strong>10^6 to 10^9 dissipative range</strong></div>
+                        <div class="spec-row"><span>Environment</span><strong>Fab-safe, high-purity process</strong></div>
+                        <div class="spec-row"><span>Standout signal</span><strong>SEMI F57-oriented positioning</strong></div>
+                        <span class="catalog-card__link">Open product page <iconify-icon icon="solar:arrow-right-linear" aria-hidden="true"></iconify-icon></span>
+                    </a>
+                    <a class="catalog-card spec-card" href="./pfa-tube/" data-reveal style="--reveal-delay: 120ms;">
+                        <span class="catalog-card__tag">Ultra-pure process</span>
+                        <h3>PFA Tubing</h3>
+                        <div class="spec-row"><span>Best for</span><strong>Semiconductor, pharma, pure chemicals</strong></div>
+                        <div class="spec-row"><span>Key value</span><strong>High clarity with strong resistance</strong></div>
+                        <div class="spec-row"><span>Environment</span><strong>Visibility plus cleanliness</strong></div>
+                        <div class="spec-row"><span>Standout signal</span><strong>FDA and USP Class VI path</strong></div>
+                        <span class="catalog-card__link">Open product page <iconify-icon icon="solar:arrow-right-linear" aria-hidden="true"></iconify-icon></span>
+                    </a>
+                    <a class="catalog-card spec-card" href="./ptfe-tube/" data-reveal style="--reveal-delay: 200ms;">
+                        <span class="catalog-card__tag">General industrial</span>
+                        <h3>PTFE Tubing</h3>
+                        <div class="spec-row"><span>Best for</span><strong>Chemical, lab, broad industrial demand</strong></div>
+                        <div class="spec-row"><span>Key value</span><strong>Lowest friction, broad resistance</strong></div>
+                        <div class="spec-row"><span>Environment</span><strong>High heat and aggressive media</strong></div>
+                        <div class="spec-row"><span>Standout signal</span><strong>Workhorse fluoropolymer line</strong></div>
+                        <span class="catalog-card__link">Open product page <iconify-icon icon="solar:arrow-right-linear" aria-hidden="true"></iconify-icon></span>
+                    </a>
+                </div>
+            </div>
         </section>
-        <section class="cta">
-            <a href="../quote/">Request a B2B Quote →</a>
+
+        <section class="apps-section">
+            <div class="container">
+                <h2 class="section-title" data-reveal>Choose by Operating Environment</h2>
+                <div class="apps-grid">
+                    <div class="app-card" data-reveal style="--reveal-delay: 40ms;">
+                        <div class="app-card__icon" aria-hidden="true">
+                            <iconify-icon icon="solar:flash-circle-linear"></iconify-icon>
+                        </div>
+                        <h3>Electrostatic-sensitive lines</h3>
+                        <p>If static management is part of the process risk, start with ESD PFA before you compare anything else.</p>
+                    </div>
+                    <div class="app-card" data-reveal style="--reveal-delay: 120ms;">
+                        <div class="app-card__icon" aria-hidden="true">
+                            <iconify-icon icon="solar:test-tube-minimalistic-linear"></iconify-icon>
+                        </div>
+                        <h3>Ultra-pure visible flow</h3>
+                        <p>If the buyer needs clean, transparent tubing for high-purity chemical handling, PFA is the default comparison path.</p>
+                    </div>
+                    <div class="app-card" data-reveal style="--reveal-delay: 200ms;">
+                        <div class="app-card__icon" aria-hidden="true">
+                            <iconify-icon icon="solar:buildings-3-linear"></iconify-icon>
+                        </div>
+                        <h3>Broad industrial coverage</h3>
+                        <p>If the process is general-purpose but chemically aggressive, PTFE remains the fastest way into the correct spec page.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <p class="note">Need a legacy medical, semiconductor, or chemical use case? Start with PTFE or tell us your application in the quote form and we will route you to the right spec path.</p>
+
+        <section class="why-section">
+            <div class="container">
+                <h2 class="section-title section-title--light" data-reveal>How this product hub should be used</h2>
+                <div class="why-grid">
+                    <div class="why-card" data-reveal style="--reveal-delay: 40ms;">
+                        <div class="why-card__icon">1</div>
+                        <h3>Start here, not on legacy tabs</h3>
+                        <p>This hub is the canonical route for live product discovery. Older category pages should no longer act as the first buyer touchpoint.</p>
+                    </div>
+                    <div class="why-card" data-reveal style="--reveal-delay: 120ms;">
+                        <div class="why-card__icon">2</div>
+                        <h3>Move into the detail page fast</h3>
+                        <p>The goal of this page is not to replace the spec sheet. It should narrow the decision, then hand off to the product detail with minimal friction.</p>
+                    </div>
+                    <div class="why-card" data-reveal style="--reveal-delay: 200ms;">
+                        <div class="why-card__icon">3</div>
+                        <h3>Keep the next step truthful</h3>
+                        <p>Every live CTA routes to the quote surface that actually works today. No dead automation claim should survive above this line.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2 data-reveal>Need help picking the right line?</h2>
+                <p data-reveal style="--reveal-delay: 80ms;">Send the operating media, temperature range, purity requirement, and target dimensions through the live quote flow. We will route you to the correct product page instead of pushing you through an outdated branch.</p>
+                <div data-reveal style="--reveal-delay: 160ms;">
+                    <a href="/quote/?source_surface=products&source_page=catalog&cta_type=quote" class="pill-cta pill-cta--primary">
+                        <span>Request a B2B Quote</span>
+                        <span class="pill-cta__icon" aria-hidden="true">
+                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
+    <script src="/js/modules/revenue-cta-runtime.js?v=20260331" defer></script>
+    <script>
+        (function () {
+            var revealTargets = document.querySelectorAll("[data-reveal]");
+            if (!revealTargets.length) return;
+
+            if (!("IntersectionObserver" in window)) {
+                revealTargets.forEach(function (node) {
+                    node.classList.add("is-visible");
+                });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries, obs) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("is-visible");
+                    obs.unobserve(entry.target);
+                });
+            }, {
+                threshold: 0.16,
+                rootMargin: "0px 0px -48px 0px"
+            });
+
+            revealTargets.forEach(function (node) {
+                observer.observe(node);
+            });
+        })();
+    </script>
 </body>
 </html>

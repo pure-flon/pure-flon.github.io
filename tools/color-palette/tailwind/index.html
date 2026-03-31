@@ -320,7 +320,7 @@ body{
   <!-- CTA -->
   <div class="cta-section">
     <a href="/tools/color-palette/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'generate_palette',page:'tailwind-color-guide'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'tailwind-color-guide','cta_type':'generate_palette',page:'tailwind-color-guide'})">
       Generate Your Tailwind Palette
     </a>
     <div class="cta-sub">Enter any hex color &middot; Get 50-950 scale &middot; Copy config output</div>
@@ -428,7 +428,7 @@ module.exports = {
   <!-- Second CTA -->
   <div class="cta-section">
     <a href="/tools/color-palette/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'generate_palette_bottom',page:'tailwind-color-guide'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'tailwind-color-guide','cta_type':'generate_palette_bottom',page:'tailwind-color-guide'})">
       Create Your Palette Now
     </a>
     <div class="cta-sub">Free &middot; No signup &middot; Export as config or CSS variables</div>
@@ -491,5 +491,6 @@ module.exports = {
 
 </div>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

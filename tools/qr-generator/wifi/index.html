@@ -290,7 +290,7 @@ body{
   <!-- CTA -->
   <div class="cta-section">
     <a href="/tools/qr-generator/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'create_wifi_qr',page:'wifi-qr-guide'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'wifi-qr-guide','cta_type':'create_wifi_qr',page:'wifi-qr-guide'})">
       Create Your WiFi QR Code Free
     </a>
     <div class="cta-sub">No signup &middot; No ads &middot; Your password never leaves your browser</div>
@@ -433,7 +433,7 @@ body{
   <!-- Second CTA -->
   <div class="cta-section">
     <a href="/tools/qr-generator/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'create_wifi_qr_bottom',page:'wifi-qr-guide'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'wifi-qr-guide','cta_type':'create_wifi_qr_bottom',page:'wifi-qr-guide'})">
       Generate Your WiFi QR Code Now
     </a>
     <div class="cta-sub">Free forever &middot; Works offline &middot; 100% private</div>
@@ -496,5 +496,6 @@ body{
 
 </div>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

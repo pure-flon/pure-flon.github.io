@@ -1023,6 +1023,9 @@ document.querySelectorAll('.try-btn, .cta-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     if (typeof gtag === 'function') {
       gtag('event', 'cta_click', {
+        'source_surface': 'blog',
+        'source_page': 'best-free-dev-tools-2026',
+        'cta_type': 'article-cta',
         event_category: 'engagement',
         event_label: this.textContent.trim(),
         transport_type: 'beacon'
@@ -1055,5 +1058,6 @@ window.addEventListener('scroll', function() {
 });
 </script>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

@@ -45,7 +45,7 @@
     }
     </script>
     <style>
-        .product-hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 80px 0 60px; }
+        .product-hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 144px 0 60px; }
         .product-hero__badge { display: inline-block; background: #10b981; color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
         .product-hero__title { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
         .product-hero__subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 24px; line-height: 1.6; }
@@ -89,7 +89,7 @@
         .grade-card { border: 1px solid #d1fae5; background: #f0fdf4; border-radius: 12px; padding: 20px; }
         .grade-card h3 { color: #065f46; font-size: 1rem; margin-bottom: 8px; }
         .grade-card p { font-size: 0.85rem; color: #374151; line-height: 1.5; }
-        @media (max-width: 768px) { .product-hero__title { font-size: 1.75rem; } .product-hero__actions { flex-direction: column; } }
+        @media (max-width: 768px) { .product-hero { padding: 124px 0 48px; } .product-hero__title { font-size: 1.75rem; } .product-hero__actions { flex-direction: column; } }
     </style>
 </head>
 <body data-product="ptfe">
@@ -104,21 +104,24 @@
             <nav class="nav" role="navigation">
                 <ul class="nav__menu">
                     <li class="nav__item nav__item--dropdown">
-                        <a href="#" class="nav__link" aria-haspopup="true">Products ▼</a>
+                        <a href="/products/" class="nav__link active" aria-haspopup="true" aria-current="page">Products</a>
                         <ul class="nav__dropdown">
                             <li><a href="../esd-pfa-tube/">ESD PFA Tubing</a></li>
                             <li><a href="../pfa-tube/">PFA Tubing</a></li>
                             <li><a href="../ptfe-tube/" class="active">PTFE Tubing</a></li>
                         </ul>
                     </li>
-                    <li class="nav__item"><a href="../../" class="nav__link">Home</a></li>
-                    <li class="nav__item"><a href="../../quote/" class="nav__link">Get Quote</a></li>
-                    <li class="nav__item"><a href="mailto:contact@pure-flon.com" class="nav__link">Contact</a></li>
+                    <li class="nav__item"><a href="../../saas/" class="nav__link">SaaS</a></li>
+                    <li class="nav__item"><a href="../../quote/" class="nav__link">Quote</a></li>
+                    <li class="nav__item"><a href="../../tools/" class="nav__link">Tools</a></li>
+                    <li class="nav__item"><a href="../../games/" class="nav__link">Games</a></li>
+                    <li class="nav__item"><a href="../../blog/" class="nav__link">Blog</a></li>
+                    <li class="nav__item"><a href="../../company/about.html" class="nav__link">About</a></li>
                 </ul>
             </nav>
             <div class="header__actions">
                 <a href="../../quote/" class="btn btn--primary btn--sm">Request Quote</a>
-                <button class="nav-toggle" aria-label="Open menu">
+                <button class="nav-toggle" type="button" aria-label="Open menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -134,7 +137,7 @@
                 <nav class="breadcrumb" aria-label="Breadcrumb">
                     <ol>
                         <li><a href="../../">Home</a></li>
-                        <li><a href="#">Products</a></li>
+                        <li><a href="/products/">Products</a></li>
                         <li aria-current="page">PTFE Tubing</li>
                     </ol>
                 </nav>

@@ -1001,7 +1001,7 @@ footer {
       <h3 class="lang-content" data-lang="ko" style="display:none;">PTFE 또는 PFA 튜브가 필요하신가요?</h3>
       <p class="lang-content" data-lang="en">Pure-Flon manufactures precision PTFE, PFA, and FEP tubing for semiconductor, medical, and industrial applications. Request a quote in 2 minutes.</p>
       <p class="lang-content" data-lang="ko" style="display:none;">Pure-Flon은 반도체, 의료, 산업 응용을 위한 정밀 PTFE, PFA, FEP 튜브를 제조합니다. 2분 안에 견적을 요청하세요.</p>
-      <a href="/quote/request.html" class="cta-btn" onclick="gtag('event','cta_click',{cta_type:'quote_request',source:'blog-ptfe-vs-teflon'})" data-en="Request a Quote" data-ko="견적 요청하기">Request a Quote</a>
+      <a href="/quote/?source_surface=blog&source_page=blog-ptfe-vs-teflon&cta_type=quote_request" class="cta-btn" onclick="gtag('event','cta_click',{'source_surface':'blog','source_page':'blog-ptfe-vs-teflon','cta_type':'quote_request',source:'blog-ptfe-vs-teflon'})" data-en="Request a Quote" data-ko="견적 요청하기">Request a Quote</a>
       <div style="margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-size:0.85rem;">
         <a href="/products/ptfe-tube/" style="color:var(--accent-light);" data-en="→ PTFE Tube specs" data-ko="→ PTFE 튜브 사양">→ PTFE Tube specs</a>
         <a href="/products/pfa-tube/" style="color:var(--accent-light);" data-en="→ PFA Tube specs" data-ko="→ PFA 튜브 사양">→ PFA Tube specs</a>
@@ -1013,12 +1013,12 @@ footer {
     <div class="lang-content" data-lang="en">
       <h2>The Bottom Line</h2>
       <p>PTFE and Teflon are chemically identical. The brand name confusion aside, the real engineering question is which fluoropolymer class — PTFE, FEP, PFA, or ETFE — fits your temperature, purity, and processability requirements. For most industrial applications, PTFE offers the best combination of properties at the lowest cost. For ultra-pure semiconductor and pharma applications, PFA is the standard. For flexible, transparent tubing, FEP is your go-to.</p>
-      <p>Still unsure which material is right for your application? <a href="/quote/request.html">Contact Pure-Flon</a> — we've been specifying fluoropolymer solutions for industrial and high-tech applications since 2010.</p>
+      <p>Still unsure which material is right for your application? <a href="/quote/?source_surface=blog&source_page=blog-ptfe-vs-teflon&cta_type=contact_link">Contact Pure-Flon</a> — we've been specifying fluoropolymer solutions for industrial and high-tech applications since 2010.</p>
     </div>
     <div class="lang-content" data-lang="ko" style="display:none;">
       <h2>결론</h2>
       <p>PTFE와 테프론은 화학적으로 동일합니다. 브랜드명 혼란을 제쳐두고, 진짜 엔지니어링 질문은 어떤 불소수지 — PTFE, FEP, PFA, ETFE — 가 온도, 순도, 가공성 요구사항에 맞는지입니다. 대부분의 산업용 응용에서 PTFE는 최저 비용에 최고의 특성 조합을 제공합니다. 초순수 반도체 및 제약 응용에는 PFA가 표준입니다. 유연하고 투명한 튜브에는 FEP가 최선입니다.</p>
-      <p>어떤 소재가 귀사의 응용에 적합한지 아직 확실하지 않으신가요? <a href="/quote/request.html">Pure-Flon에 문의</a>하세요 — 2010년부터 산업 및 첨단 기술 응용을 위한 불소수지 솔루션을 제공해 왔습니다.</p>
+      <p>어떤 소재가 귀사의 응용에 적합한지 아직 확실하지 않으신가요? <a href="/quote/?source_surface=blog&source_page=blog-ptfe-vs-teflon&cta_type=contact_link">Pure-Flon에 문의</a>하세요 — 2010년부터 산업 및 첨단 기술 응용을 위한 불소수지 솔루션을 제공해 왔습니다.</p>
     </div>
 
   </article>
@@ -1053,5 +1053,6 @@ function setLang(lang) {
 }
 </script>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

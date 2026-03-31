@@ -359,7 +359,7 @@ a:hover{color:var(--accent2)}
     <h3>Start Your First Pomodoro Now</h3>
     <p>Our free browser-based timer runs in any browser — no install, no account. Starts in 10 seconds.</p>
     <a href="/tools/pomodoro/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'try_tool',page:'pomodoro-technique'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'pomodoro-technique','cta_type':'try_tool',page:'pomodoro-technique'})">
       Open Free Pomodoro Timer &rarr;
     </a>
     <div class="cta-sub">Custom intervals &bull; Audio alerts &bull; Session tracking</div>
@@ -432,5 +432,6 @@ a:hover{color:var(--accent2)}
   </div>
 
 </div>
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

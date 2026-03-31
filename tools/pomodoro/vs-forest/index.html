@@ -306,7 +306,7 @@ a:hover{color:var(--accent2)}
   <!-- CTA -->
   <div class="cta-section">
     <a href="/tools/pomodoro/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'try_tool',page:'pomodoro-vs-forest'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'pomodoro-vs-forest','cta_type':'try_tool',page:'pomodoro-vs-forest'})">
       Try pure-flon Pomodoro Timer Free
     </a>
     <div class="cta-sub">No install &bull; No account &bull; Starts in 10 seconds</div>
@@ -372,5 +372,6 @@ a:hover{color:var(--accent2)}
   </div>
 
 </div>
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>

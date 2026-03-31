@@ -328,7 +328,7 @@ curl -s https://api.example.com/users/1 | jq . > <span style="color:var(--green)
   <!-- CTA -->
   <div class="cta-section">
     <a href="/tools/json-formatter/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'format_json',page:'json-api-response-guide'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'json-api-response-guide','cta_type':'format_json',page:'json-api-response-guide'})">
       Format Your JSON Now &mdash; Free
     </a>
     <div class="cta-sub">No signup &middot; No data upload &middot; Validates + formats in your browser</div>
@@ -443,7 +443,7 @@ curl -s api.example.com/users | jq -r <span style="color:var(--green)">'.data[] 
   <!-- Second CTA -->
   <div class="cta-section">
     <a href="/tools/json-formatter/" class="btn-primary"
-       onclick="gtag('event','cta_click',{cta_type:'format_json_bottom',page:'json-api-response-guide'})">
+       onclick="gtag('event','cta_click',{'source_surface':'tools','source_page':'json-api-response-guide','cta_type':'format_json_bottom',page:'json-api-response-guide'})">
       Try the JSON Formatter
     </a>
     <div class="cta-sub">Paste &middot; Format &middot; Copy. That is it.</div>
@@ -506,5 +506,6 @@ curl -s api.example.com/users | jq -r <span style="color:var(--green)">'.data[] 
 
 </div>
 
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>
