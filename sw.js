@@ -850,10 +850,10 @@ async function cleanupOldCaches() {
 // 캐시 워밍업 (예측적 로딩)
 async function warmupCache() {
   const popularUrls = [
-    '/products/medical.html',
-    '/products/semiconductor.html',
-    '/products/chemical.html',
-    '/quote/request.html'
+    '/products/',
+    '/quote/',
+    '/saas/ai-ops-autopilot/',
+    '/tools/'
   ];
   
   console.log('🔥 캐시 워밍업 시작...');

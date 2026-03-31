@@ -4,12 +4,24 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # --- Runtime Truth Gate ---
+      - name: Runtime truth check (dry-run)
+        run: npm run check:runtime:dry
+
+      - name: Runtime truth check
+        run: npm run check:runtime
+
+      - name: Runtime truth live probe
+        if: github.event_name == 'workflow_dispatch'
+        run: npm run check:runtime:live
 
       # --- Check 1: Sitemap URL integrity ---
       - name: Validate sitemap URLs

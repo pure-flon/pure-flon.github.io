@@ -13,7 +13,10 @@
     "format": "prettier --write .",
     "test": "vitest",
     "lighthouse": "lighthouse http://localhost:8000 --output html --output-path ./lighthouse-report.html",
-    "deploy": "npm run build && vercel --prod"
+    "deploy": "npm run build && vercel --prod",
+    "check:runtime": "python3 scripts/check_live_runtime.py --runtime-profile github-pages-static",
+    "check:runtime:dry": "python3 scripts/check_live_runtime.py --runtime-profile github-pages-static --dry-run",
+    "check:runtime:live": "python3 scripts/check_live_runtime.py --runtime-profile github-pages-static --base-url https://pure-flon.com"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.100.1",

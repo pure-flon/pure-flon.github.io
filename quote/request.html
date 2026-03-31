@@ -99,7 +99,7 @@
         <section class="quote-form-section">
             <div class="container">
                 <div class="quote-form-wrapper">
-                    <form id="quote-form" class="quote-form" action="" method="post">
+                    <form id="quote-form" class="quote-form" action="https://formspree.io/f/contact@pure-flon.com" method="post">
                         <div class="form-section">
                             <h2 class="form-section__title">제품 정보</h2>
                             
@@ -366,44 +366,32 @@
                 }
 
                 try {
-                    const response = await fetch('/api/quotes/submit', {
+                    const captureData = new FormData(form);
+                    captureData.append('lead_source', 'quote_request');
+                    captureData.append('structured_payload', JSON.stringify(payload));
+
+                    const response = await fetch(form.action, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json',
                             'Accept': 'application/json'
                         },
-                        body: JSON.stringify(payload)
+                        body: captureData
                     });
 
-                    let result = null;
-                    try {
-                        result = await response.json();
-                    } catch (parseError) {
-                        result = null;
-                    }
-
-                    if (!response.ok || !result?.success) {
-                        throw new Error(result?.message || '견적 요청 저장에 실패했습니다.');
-                    }
-
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'quote_request_persisted', {
-                            product_type: productType,
-                            page_type: 'quote_request',
-                            quote_number: result.quoteNumber || 'unknown'
-                        });
+                    if (!response.ok) {
+                        throw new Error('lead_capture_failed');
                     }
 
                     form.reset();
                     setStatus(
                         'success',
-                        `견적 요청이 접수되었습니다. 접수 번호 ${result.quoteNumber || '미확인'} 기준으로 24시간 내에 답변드리겠습니다.`
+                        '견적 요청이 접수되었습니다. 1영업일 내에 contact@pure-flon.com 기준으로 답변드리겠습니다.'
                     );
                 } catch (error) {
-                    console.error('Quote request submit failed:', error);
+                    console.error('Quote request lead capture failed:', error);
                     setStatus(
                         'error',
-                        '서버에 견적 요청을 저장하지 못했습니다. 잠시 후 다시 시도해 주세요. 문제가 계속되면 contact@pure-flon.com 으로 문의해 주세요.'
+                        '견적 요청을 접수하지 못했습니다. 잠시 후 다시 시도해 주세요. 문제가 계속되면 contact@pure-flon.com 으로 문의해 주세요.'
                     );
                 } finally {
                     submitting = false;

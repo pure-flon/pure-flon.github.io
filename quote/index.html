@@ -101,24 +101,31 @@
                     <li class="nav__item"><a href="mailto:contact@pure-flon.com" class="nav__link">Contact</a></li>
                 </ul>
             </nav>
+            <div class="header__actions">
+                <button class="nav-toggle" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Hero -->
     <section class="page-hero">
         <div class="container">
-            <h1>Request a B2B Quote</h1>
-            <p>Fill in your specifications — receive a detailed quotation within 1 business day</p>
+            <h1 id="quotePageTitle">Request a B2B Quote</h1>
+            <p id="quotePageSubtitle">Fill in your specifications — receive a detailed quotation within 1 business day</p>
         </div>
     </section>
 
     <!-- Trust bar -->
     <div class="trust-bar">
         <div class="container">
-            <span class="trust-item">⏱ <strong>1 business day</strong> response</span>
-            <span class="trust-item">📦 <strong>Volume discounts</strong> available</span>
-            <span class="trust-item">🚚 <strong>Global shipping</strong> — EXW/FOB/DHL Express</span>
-            <span class="trust-item">💳 <strong>Stripe</strong> — card or wire transfer</span>
+            <span class="trust-item" id="trustItemOne">⏱ <strong>1 business day</strong> response</span>
+            <span class="trust-item" id="trustItemTwo">📦 <strong>Volume discounts</strong> available</span>
+            <span class="trust-item" id="trustItemThree">🚚 <strong>Global shipping</strong> — EXW/FOB/DHL Express</span>
+            <span class="trust-item" id="trustItemFour">💳 <strong>Stripe</strong> — card or wire transfer</span>
         </div>
     </div>
 
@@ -128,8 +135,12 @@
                 <div class="layout">
                     <!-- Form -->
                     <div class="form-card">
-                        <h2>RFQ — Request for Quotation</h2>
-                        <p>All fields marked <span style="color:#ef4444">*</span> are required. We'll reply to your email with a detailed quote.</p>
+                        <h2 id="formCardTitle">RFQ — Request for Quotation</h2>
+                        <p id="formCardSubtitle">All fields marked <span style="color:#ef4444">*</span> are required. We'll reply to your email with a detailed quote.</p>
+                        <div class="discount-hint" id="intentBanner" hidden>
+                            <strong id="intentBannerTitle">AI Ops Autopilot intake</strong>
+                            <span id="intentBannerCopy">Share your team context and plan. We will reply with fit, onboarding, and next-step timing.</span>
+                        </div>
 
                         <form id="rfqForm" action="https://formspree.io/f/contact@pure-flon.com" method="POST" novalidate>
 
@@ -181,8 +192,59 @@
                                 </div>
                             </div>
 
+                            <div class="form-section" id="saasWaitlistSection" hidden>
+                                <h3>AI Ops Autopilot Intake</h3>
+                                <div class="discount-hint">
+                                    <strong>Founding cohort intake</strong>
+                                    Share the workflow you want monitored first. We will reply with fit, onboarding, and payment-link timing within 1 business day.
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="waitlistPlan">Interested Plan <span class="req">*</span></label>
+                                        <select id="waitlistPlan" name="waitlistPlan" class="form-control" required>
+                                            <option value="">— Select Plan —</option>
+                                            <option value="starter">Starter — $29/mo</option>
+                                            <option value="growth">Growth — $79/mo</option>
+                                            <option value="enterprise">Enterprise — Custom</option>
+                                            <option value="all">Not sure yet</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="teamSize">Ops Team Size</label>
+                                        <select id="teamSize" name="teamSize" class="form-control">
+                                            <option value="">— Select Team Size —</option>
+                                            <option value="solo">Solo operator</option>
+                                            <option value="2-5">2-5 people</option>
+                                            <option value="6-20">6-20 people</option>
+                                            <option value="21-50">21-50 people</option>
+                                            <option value="50+">50+ people</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="monitoringArea">Primary Workflow to Monitor</label>
+                                        <input type="text" id="monitoringArea" name="monitoringArea" class="form-control" placeholder="e.g. exception triage, inventory mismatches, SLA alerts">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kickoffWindow">Preferred Start Window</label>
+                                        <select id="kickoffWindow" name="kickoffWindow" class="form-control">
+                                            <option value="">— Select Start Window —</option>
+                                            <option value="this_week">This week</option>
+                                            <option value="two_weeks">Within 2 weeks</option>
+                                            <option value="this_month">This month</option>
+                                            <option value="exploring">Just exploring</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="opsPain">Biggest issue you want AI Ops to catch first</label>
+                                    <textarea id="opsPain" name="opsPain" class="form-control" placeholder="Tell us which exception, delay, or reporting gap costs your team the most time."></textarea>
+                                </div>
+                            </div>
+
                             <!-- Product Selection -->
-                            <div class="form-section">
+                            <div class="form-section" id="productSpecSection">
                                 <h3>Product & Specifications</h3>
                                 <div class="form-group">
                                     <label>Product Type <span class="req">*</span></label>
@@ -240,7 +302,7 @@
                             </div>
 
                             <!-- Logistics -->
-                            <div class="form-section">
+                            <div class="form-section" id="deliverySection">
                                 <h3>Delivery & Shipping</h3>
                                 <div class="form-group">
                                     <label>Preferred Incoterm</label>
@@ -266,7 +328,7 @@
                             </div>
 
                             <!-- Additional Info -->
-                            <div class="form-section">
+                            <div class="form-section" id="applicationSection">
                                 <h3>Application & Requirements</h3>
                                 <div class="form-group">
                                     <label for="application">Application / End Use</label>
@@ -290,11 +352,16 @@
 
                             <!-- Hidden fields for tracking -->
                             <input type="hidden" name="_subject" value="[NEW RFQ] PURE-FLON B2B Quote Request">
-                            <input type="hidden" name="_next" value="https://pure-flon.com/quote/thank-you.html">
+                            <input type="hidden" name="_next" value="https://pure-flon.com/quote/thank-you.html?lead_type=b2b_quote">
+                            <input type="hidden" id="leadTypeField" name="leadType" value="b2b_quote">
+                            <input type="hidden" id="sourceSurfaceField" name="sourceSurface" value="">
+                            <input type="hidden" id="sourcePageField" name="sourcePage" value="">
+                            <input type="hidden" id="ctaTypeField" name="ctaType" value="">
+                            <input type="hidden" id="planInterestField" name="planInterest" value="">
                             <input type="text" name="_gotcha" style="display:none">
 
-                            <button type="submit" class="submit-btn">Submit Quote Request →</button>
-                            <p class="privacy-note">Your information is kept confidential and used only to prepare your quotation.</p>
+                            <button type="submit" id="submitButton" class="submit-btn">Submit Quote Request →</button>
+                            <p class="privacy-note" id="privacyNote">Your information is kept confidential and used only to prepare your quotation.</p>
                         </form>
 
                         <div class="success-msg" id="successMsg">
@@ -305,8 +372,8 @@
 
                     <!-- Sidebar -->
                     <aside class="sidebar">
-                        <div class="info-card">
-                            <h3>How It Works</h3>
+                        <div class="info-card" id="workflowCard">
+                            <h3 id="workflowCardTitle">How It Works</h3>
                             <div class="info-step">
                                 <div class="info-step__num">1</div>
                                 <div class="info-step__text">
@@ -337,10 +404,10 @@
                             </div>
                         </div>
 
-                        <div class="info-card">
-                            <h3>Volume Discounts</h3>
-                            <p style="font-size:0.85rem;color:#64748b;line-height:1.6;">The more you order, the lower the unit price. We work with B2B buyers from small sample orders to full container loads.</p>
-                            <ul style="margin-top:12px;padding-left:16px;font-size:0.82rem;color:#374151;">
+                        <div class="info-card" id="pricingCard">
+                            <h3 id="pricingCardTitle">Volume Discounts</h3>
+                            <p id="pricingCardCopy" style="font-size:0.85rem;color:#64748b;line-height:1.6;">The more you order, the lower the unit price. We work with B2B buyers from small sample orders to full container loads.</p>
+                            <ul id="pricingCardList" style="margin-top:12px;padding-left:16px;font-size:0.82rem;color:#374151;">
                                 <li style="margin-bottom:6px;">Sample / trial quantities welcome</li>
                                 <li style="margin-bottom:6px;">Tiered pricing for volume</li>
                                 <li style="margin-bottom:6px;">Annual contract pricing available</li>
@@ -348,8 +415,8 @@
                             </ul>
                         </div>
 
-                        <div class="contact-card">
-                            <h3>Direct Contact</h3>
+                        <div class="contact-card" id="contactCard">
+                            <h3 id="contactCardTitle">Direct Contact</h3>
                             <div class="contact-item">
                                 <strong>Email</strong>
                                 <a href="mailto:contact@pure-flon.com">contact@pure-flon.com</a>
@@ -362,7 +429,7 @@
                                 <strong>Timezone</strong>
                                 KST (UTC+9) — Mon–Fri
                             </div>
-                            <div class="contact-item" style="margin-top:16px;">
+                            <div class="contact-item" id="contactLinkList" style="margin-top:16px;">
                                 <a href="../products/esd-pfa-tube/" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ ESD PFA Tube specs</a>
                                 <a href="../products/pfa-tube/" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ PFA Tube specs</a>
                                 <a href="../products/ptfe-tube/" style="font-size:0.82rem;display:block;">→ PTFE Tube specs</a>
@@ -383,22 +450,205 @@
     </footer>
 
     <script>
-        // Pre-fill product from URL param
         const params = new URLSearchParams(window.location.search);
+        const sourceSurfaceParam = String(params.get('source_surface') || '').trim();
+        const sourcePageParam = String(params.get('source_page') || '').trim();
+        const ctaTypeParam = String(params.get('cta_type') || '').trim();
+        const planParam = String(params.get('plan') || '').trim().toLowerCase();
         const prod = params.get('product');
-        if (prod) {
+        const sourcePageAliases = ['ai-ops-autopilot', 'saas-ai-ops-autopilot'];
+        const isSaasLead = sourceSurfaceParam === 'saas' || sourcePageAliases.includes(sourcePageParam);
+        const isWaitlistLead = isSaasLead && ctaTypeParam === 'waitlist';
+
+        const form = document.getElementById('rfqForm');
+        const nextField = form.querySelector('input[name="_next"]');
+        const subjectField = form.querySelector('input[name="_subject"]');
+        const leadTypeField = document.getElementById('leadTypeField');
+        const sourceSurfaceField = document.getElementById('sourceSurfaceField');
+        const sourcePageField = document.getElementById('sourcePageField');
+        const ctaTypeField = document.getElementById('ctaTypeField');
+        const planInterestField = document.getElementById('planInterestField');
+        const waitlistPlan = document.getElementById('waitlistPlan');
+        const submitButton = document.getElementById('submitButton');
+
+        const productSections = [
+            document.getElementById('productSpecSection'),
+            document.getElementById('deliverySection'),
+            document.getElementById('applicationSection')
+        ];
+        const saasSection = document.getElementById('saasWaitlistSection');
+
+        function captureRequiredFields(section) {
+            if (!section) return;
+            section.querySelectorAll('[required]').forEach((field) => {
+                field.dataset.requiredWhenEnabled = 'true';
+            });
+        }
+
+        function setSectionEnabled(section, enabled) {
+            if (!section) return;
+            section.hidden = !enabled;
+            section.querySelectorAll('input, select, textarea, button').forEach((field) => {
+                if (field.dataset.requiredWhenEnabled === 'true') {
+                    field.required = enabled;
+                }
+                field.disabled = !enabled;
+            });
+        }
+
+        [...productSections, saasSection].forEach(captureRequiredFields);
+
+        // Pre-fill product from URL param
+        if (prod && !isSaasLead) {
             const map = { 'esd-pfa': 'prod_esd', 'pfa': 'prod_pfa', 'ptfe': 'prod_ptfe' };
             const el = document.getElementById(map[prod]);
             if (el) el.checked = true;
         }
 
+        function updateNextField(leadType, selectedPlan) {
+            const nextUrl = new URL('https://pure-flon.com/quote/thank-you.html');
+            nextUrl.searchParams.set('lead_type', leadType);
+            if (sourceSurfaceParam) nextUrl.searchParams.set('source_surface', sourceSurfaceParam);
+            if (sourcePageParam) nextUrl.searchParams.set('source_page', sourcePageParam);
+            if (ctaTypeField.value) nextUrl.searchParams.set('cta_type', ctaTypeField.value);
+            if (selectedPlan) nextUrl.searchParams.set('plan', selectedPlan);
+            nextField.value = nextUrl.toString();
+        }
+
+        function applySaasLeadMode() {
+            const selectedPlan = planParam || 'all';
+            const leadType = isWaitlistLead ? 'saas_waitlist' : 'saas_sales_lead';
+
+            document.title = isWaitlistLead
+                ? 'Join the AI Ops Autopilot Waitlist | Pure-Flon'
+                : 'Talk to Sales About AI Ops Autopilot | Pure-Flon';
+
+            document.getElementById('quotePageTitle').textContent = isWaitlistLead
+                ? 'Join the AI Ops Autopilot Waitlist'
+                : 'Talk to Sales About AI Ops Autopilot';
+            document.getElementById('quotePageSubtitle').textContent = isWaitlistLead
+                ? 'Tell us what workflow you want monitored first. We will confirm fit and payment-link timing within 1 business day.'
+                : 'Share your ops context and preferred plan. We will reply with fit, pilot scope, and next steps within 1 business day.';
+            document.getElementById('formCardTitle').textContent = isWaitlistLead
+                ? 'AI Ops Autopilot Waitlist'
+                : 'AI Ops Autopilot Sales Intake';
+            document.getElementById('formCardSubtitle').textContent = isWaitlistLead
+                ? 'Use this form to reserve a spot in the first launch cohort. We will reply before self-serve checkout goes live.'
+                : 'Use this form to request a fit review and sales reply for AI Ops Autopilot.';
+
+            const intentBanner = document.getElementById('intentBanner');
+            intentBanner.hidden = false;
+            document.getElementById('intentBannerTitle').textContent = isWaitlistLead
+                ? 'Founding cohort waitlist'
+                : 'Sales-assisted AI Ops intake';
+            document.getElementById('intentBannerCopy').textContent = isWaitlistLead
+                ? 'No credit card today. We will hold your spot, confirm fit, and send checkout links once live.'
+                : 'We will review your workflow, recommend a plan, and reply with the fastest path to launch.';
+
+            document.getElementById('trustItemOne').innerHTML = '⏱ <strong>1 business day</strong> reply';
+            document.getElementById('trustItemTwo').innerHTML = '🧾 <strong>Starter $29 / Growth $79</strong> launch pricing';
+            document.getElementById('trustItemThree').innerHTML = isWaitlistLead
+                ? '🚫 <strong>No credit card</strong> required today'
+                : '🧭 <strong>Pilot scoping</strong> included';
+            document.getElementById('trustItemFour').innerHTML = '⚙️ <strong>Guided onboarding</strong> when live';
+
+            productSections.forEach((section) => setSectionEnabled(section, false));
+            setSectionEnabled(saasSection, true);
+
+            waitlistPlan.value = selectedPlan;
+            leadTypeField.value = leadType;
+            sourceSurfaceField.value = sourceSurfaceParam || 'saas';
+            sourcePageField.value = sourcePageParam || 'ai-ops-autopilot';
+            ctaTypeField.value = ctaTypeParam || (isWaitlistLead ? 'waitlist' : 'talk_to_sales');
+            planInterestField.value = selectedPlan;
+            subjectField.value = isWaitlistLead
+                ? '[NEW WAITLIST] AI Ops Autopilot'
+                : '[NEW SAAS LEAD] AI Ops Autopilot';
+            updateNextField(leadType, selectedPlan);
+
+            submitButton.textContent = isWaitlistLead ? 'Join Waitlist →' : 'Request Sales Reply →';
+            document.getElementById('privacyNote').textContent = isWaitlistLead
+                ? 'Your details are used only to qualify your waitlist request and follow up on AI Ops Autopilot.'
+                : 'Your details are used only to prepare your AI Ops Autopilot follow-up.';
+
+            document.getElementById('workflowCardTitle').textContent = 'What Happens Next';
+            const steps = document.querySelectorAll('#workflowCard .info-step');
+            const stepCopy = isWaitlistLead
+                ? [
+                    ['Submit waitlist', 'Tell us which workflow you want monitored first.'],
+                    ['Fit review', 'We review your team context within 1 business day.'],
+                    ['Checkout unlock', 'We send onboarding and payment-link timing as soon as the live links are ready.'],
+                    ['Launch', 'You start with the plan that matches your workflow.']
+                ]
+                : [
+                    ['Request sales reply', 'Share your ops context and preferred plan.'],
+                    ['Fit review', 'We review your workflow and recommend the best launch path.'],
+                    ['Pilot scope', 'You receive next-step guidance, onboarding, and payment-link timing.'],
+                    ['Launch', 'You move into guided setup when ready.']
+                ];
+
+            steps.forEach((step, index) => {
+                const textBlock = step.querySelector('.info-step__text');
+                if (!textBlock || !stepCopy[index]) return;
+                const [title, body] = stepCopy[index];
+                textBlock.querySelector('strong').textContent = title;
+                textBlock.querySelector('p').textContent = body;
+            });
+
+            document.getElementById('pricingCardTitle').textContent = 'Launch Pricing';
+            document.getElementById('pricingCardCopy').textContent = 'Self-serve checkout is not live yet, but the current launch plans and handoff path are fixed.';
+            document.getElementById('pricingCardList').innerHTML = [
+                '<li style="margin-bottom:6px;">Starter: $29/mo for core monitoring + weekly reports</li>',
+                '<li style="margin-bottom:6px;">Growth: $79/mo for advanced root-cause AI + forecasting</li>',
+                '<li style="margin-bottom:6px;">Enterprise: custom workflow + onboarding support</li>',
+                '<li>Founding cohort replies within 1 business day</li>'
+            ].join('');
+
+            document.getElementById('contactCardTitle').textContent = isWaitlistLead ? 'Waitlist Contact' : 'Sales Contact';
+            document.getElementById('contactLinkList').innerHTML = [
+                '<a href="/saas/ai-ops-autopilot/" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ AI Ops Autopilot overview</a>',
+                '<a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=talk_to_sales" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ Request sales reply</a>',
+                '<a href="mailto:contact@pure-flon.com?subject=AI%20Ops%20Autopilot" style="font-size:0.82rem;display:block;">→ Email product questions</a>'
+            ].join('');
+        }
+
+        if (isSaasLead) {
+            applySaasLeadMode();
+        } else {
+            productSections.forEach((section) => setSectionEnabled(section, true));
+            setSectionEnabled(saasSection, false);
+            leadTypeField.value = 'b2b_quote';
+            sourceSurfaceField.value = sourceSurfaceParam;
+            sourcePageField.value = sourcePageParam;
+            ctaTypeField.value = ctaTypeParam || 'quote';
+            planInterestField.value = '';
+            updateNextField('b2b_quote', '');
+        }
+
+        waitlistPlan.addEventListener('change', () => {
+            const selectedPlan = waitlistPlan.value || planParam || 'all';
+            planInterestField.value = selectedPlan;
+            updateNextField(leadTypeField.value, selectedPlan);
+        });
+
         // Form submission
-        const form = document.getElementById('rfqForm');
         form.addEventListener('submit', function(e) {
-            // Basic validation
-            const required = form.querySelectorAll('[required]');
+            const required = Array.from(form.querySelectorAll('[required]:not([disabled])'));
             let valid = true;
+            const checkedGroups = new Set();
+
             required.forEach(el => {
+                if ((el.type === 'radio' || el.type === 'checkbox') && el.name) {
+                    if (checkedGroups.has(el.name)) return;
+                    checkedGroups.add(el.name);
+                    const group = form.querySelectorAll('[name="' + el.name + '"]:not([disabled])');
+                    const isChecked = Array.from(group).some((field) => field.checked);
+                    if (!isChecked) {
+                        valid = false;
+                    }
+                    return;
+                }
+
                 if (!el.value.trim()) {
                     el.style.borderColor = '#ef4444';
                     valid = false;
@@ -408,12 +658,24 @@
             });
             if (!valid) { e.preventDefault(); return; }
 
-            // Show success (Formspree handles actual submission)
-            // For mailto fallback, build subject
+            if (leadTypeField.value !== 'b2b_quote') {
+                const selectedPlan = waitlistPlan.value || planParam || 'all';
+                planInterestField.value = selectedPlan;
+                updateNextField(leadTypeField.value, selectedPlan);
+            }
+
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'generate_lead', {
+                    source_surface: sourceSurfaceField.value || 'quote',
+                    source_page: sourcePageField.value || 'quote',
+                    cta_type: ctaTypeField.value || 'quote',
+                    lead_type: leadTypeField.value,
+                    plan: planInterestField.value || ''
+                });
+            }
         });
     </script>
 
-    <!-- 챗봇 위젯 -->
-    <script src="../js/chat-widget.js" defer></script>
+<script src="/js/modules/revenue-cta-runtime.js" defer></script>
 </body>
 </html>
