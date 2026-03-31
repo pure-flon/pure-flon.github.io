@@ -111,9 +111,37 @@ h1{font-size:2rem;margin-bottom:8px;color:#fff}
 .sponsor-links{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .sponsor-links a{font-size:0.8rem;color:#aab;text-decoration:none;padding:8px 14px;border:1px solid #252540;border-radius:10px;transition:all 0.15s}
 .sponsor-links a:hover{background:#1a1a2e;border-color:#4444aa;color:#fff}
+/* shared nav */
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#111;border-bottom:1px solid #1e1e1e;position:sticky;top:0;z-index:100}
+.nav-logo{font-size:0.85rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:0.03em}
+.nav-links{display:flex;gap:2px}
+.nav-link{font-size:0.78rem;color:#777;text-decoration:none;padding:5px 10px;border-radius:6px;transition:background 0.15s,color 0.15s}
+.nav-link:hover{background:#1e1e1e;color:#ddd}
+.nav-active{background:#1a1a2e!important;color:#88f!important}
+/* cross-promo */
+.cp-title{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:#555;margin:28px 0 10px}
+.tool-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.tool-pill{display:flex;align-items:center;gap:10px;background:#161616;border:1px solid #222;border-radius:12px;padding:12px 16px;text-decoration:none;color:#e0e0e0;transition:all 0.15s;flex:1;min-width:130px}
+.tool-pill:hover{background:#1e1e1e;border-color:#444}
+.tp-em{font-size:1.3rem}
+.tp-name{font-size:0.84rem;font-weight:600;color:#fff}
+.tp-desc{font-size:0.73rem;color:#777;margin-top:1px}
+.blog-card{display:flex;align-items:center;justify-content:space-between;background:#161616;border:1px solid #222;border-radius:12px;padding:14px 18px;text-decoration:none;color:#e0e0e0;transition:all 0.15s;margin-bottom:4px}
+.blog-card:hover{background:#1e1e1e;border-color:#444}
+.bc-title{font-size:0.88rem;font-weight:600;color:#fff}
+.bc-desc{font-size:0.73rem;color:#777;margin-top:2px}
+.bc-arrow{color:#88f;font-size:1.1rem;flex-shrink:0;margin-left:12px}
 </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="Site navigation">
+  <a href="/" class="nav-logo">pure-flon</a>
+  <div class="nav-links">
+    <a href="/games/" class="nav-link nav-active" onclick="gtag('event','nav_click',{to:'games'})">🎮 Games</a>
+    <a href="/tools/" class="nav-link" onclick="gtag('event','nav_click',{to:'tools'})">🔧 Tools</a>
+    <a href="/blog/" class="nav-link" onclick="gtag('event','nav_click',{to:'blog'})">📝 Blog</a>
+  </div>
+</nav>
 <div class="container">
 <span class="ai-tag">100% MADE BY AI</span>
 <h1>AI Games</h1>
@@ -153,6 +181,27 @@ h1{font-size:2rem;margin-bottom:8px;color:#fff}
   <div class="game-emoji">🤖</div>
   <div class="game-title">AI or Human? <span class="badge">NEW</span></div>
   <div class="game-desc">Read a text snippet — code, emails, Reddit comments. Was it written by AI or a real person? 15 rounds.</div>
+</a>
+
+<p class="cp-title">Free Tools</p>
+<div class="tool-row">
+  <a href="/tools/pomodoro/" class="tool-pill" onclick="gtag('event','cross_promo',{from:'games-hub',to:'pomodoro'})">
+    <div class="tp-em">⏱️</div>
+    <div><div class="tp-name">Pomodoro Timer</div><div class="tp-desc">Stay focused, get more done</div></div>
+  </a>
+  <a href="/tools/qr-generator/" class="tool-pill" onclick="gtag('event','cross_promo',{from:'games-hub',to:'qr-generator'})">
+    <div class="tp-em">📱</div>
+    <div><div class="tp-name">QR Generator</div><div class="tp-desc">Free, instant, no login</div></div>
+  </a>
+</div>
+
+<p class="cp-title">From the Blog</p>
+<a href="/blog/how-ai-guesses-in-4-questions/" class="blog-card" onclick="gtag('event','cross_promo',{from:'games-hub',to:'blog-ai-guesses'})">
+  <div>
+    <div class="bc-title">How AI Guesses in 4 Questions</div>
+    <div class="bc-desc">The math behind 20 Questions — information theory explained</div>
+  </div>
+  <div class="bc-arrow">→</div>
 </a>
 
 <div class="banner">

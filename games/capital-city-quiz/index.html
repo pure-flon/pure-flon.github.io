@@ -196,9 +196,34 @@ body{
 @keyframes pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.06)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* site nav */
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#111;border-bottom:1px solid #1e1e1e;position:sticky;top:0;z-index:100}
+.sn-logo{font-size:0.85rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:0.03em}
+.sn-links{display:flex;gap:2px}
+.sn-link{font-size:0.78rem;color:#888;text-decoration:none;padding:5px 10px;border-radius:6px;transition:background 0.15s,color 0.15s}
+.sn-link:hover{background:#1e1e1e;color:#ddd}
+.sn-active{background:#1a1a2e!important;color:#88f!important}
+/* more-games footer */
+.more-games-footer{background:#0f0f0f;border-top:1px solid #1a1a1a;padding:22px 20px}
+.mgf-inner{max-width:600px;margin:0 auto}
+.mgf-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:#555;margin-bottom:10px}
+.mgf-grid{display:flex;flex-wrap:wrap;gap:8px}
+.mgf-card{display:flex;align-items:center;gap:8px;background:#161616;border:1px solid #222;border-radius:9px;padding:9px 13px;text-decoration:none;color:#bbb;font-size:0.8rem;transition:all 0.15s;flex:1;min-width:120px}
+.mgf-card:hover{background:#1e1e1e;border-color:#444;color:#fff}
+.mgf-em{font-size:1rem}
+.mgf-all{display:inline-block;font-size:0.75rem;color:#88f;text-decoration:none;margin-top:8px}
+.mgf-all:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="Site navigation">
+  <a href="/" class="sn-logo">pure-flon</a>
+  <div class="sn-links">
+    <a href="/games/" class="sn-link sn-active" onclick="gtag('event','nav_click',{to:'games'})">🎮 Games</a>
+    <a href="/tools/" class="sn-link" onclick="gtag('event','nav_click',{to:'tools'})">🔧 Tools</a>
+    <a href="/blog/" class="sn-link" onclick="gtag('event','nav_click',{to:'blog'})">📝 Blog</a>
+  </div>
+</nav>
 <div class="container">
 
   <!-- ── START ── -->
@@ -663,5 +688,18 @@ function copyFallback(txt){
 // ── BOOT ──
 document.addEventListener('DOMContentLoaded',init);
 </script>
+<div class="more-games-footer">
+  <div class="mgf-inner">
+    <div class="mgf-label">More Games</div>
+    <div class="mgf-grid">
+      <a href="/games/ai-or-human/" class="mgf-card" onclick="gtag('event','more_games',{from:'capital-city-quiz',to:'ai-or-human'})"><span class="mgf-em">🤖</span>AI or Human?</a>
+      <a href="/games/twenty-questions/" class="mgf-card" onclick="gtag('event','more_games',{from:'capital-city-quiz',to:'twenty-questions'})"><span class="mgf-em">🧠</span>AI 20 Questions</a>
+      <a href="/games/world-flag-quiz/" class="mgf-card" onclick="gtag('event','more_games',{from:'capital-city-quiz',to:'world-flag-quiz'})"><span class="mgf-em">🌍</span>World Flag Quiz</a>
+      <a href="/games/k-meme-quiz/" class="mgf-card" onclick="gtag('event','more_games',{from:'capital-city-quiz',to:'k-meme-quiz'})"><span class="mgf-em">🎯</span>K-Meme Quiz</a>
+      <a href="/games/india-tech-culture/" class="mgf-card" onclick="gtag('event','more_games',{from:'capital-city-quiz',to:'india-tech-culture'})"><span class="mgf-em">🇮🇳</span>India Tech Culture</a>
+    </div>
+    <a href="/games/" class="mgf-all">View all games →</a>
+  </div>
+</div>
 </body>
 </html>
