@@ -87,17 +87,17 @@
   <g transform="translate(100, 320)">
     <rect x="0" y="0" width="120" height="40" rx="8" fill="#1e5cb3" stroke="white" stroke-width="2"/>
     <text x="60" y="18" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
-          fill="white" text-anchor="middle">ISO 9001</text>
+          fill="white" text-anchor="middle">문서 검토</text>
     <text x="60" y="32" font-family="Arial, sans-serif" font-size="9" 
-          fill="rgba(255,255,255,0.9)" text-anchor="middle">품질 인증</text>
+          fill="rgba(255,255,255,0.9)" text-anchor="middle">프로그램별 확인</text>
   </g>
   
   <g transform="translate(240, 320)">
     <rect x="0" y="0" width="120" height="40" rx="8" fill="#10b981" stroke="white" stroke-width="2"/>
     <text x="60" y="18" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
-          fill="white" text-anchor="middle">FDA 승인</text>
+          fill="white" text-anchor="middle">공정 협의</text>
     <text x="60" y="32" font-family="Arial, sans-serif" font-size="9" 
-          fill="rgba(255,255,255,0.9)" text-anchor="middle">생체 적합성</text>
+          fill="rgba(255,255,255,0.9)" text-anchor="middle">적용 조건 검토</text>
   </g>
   
   <g transform="translate(380, 320)">

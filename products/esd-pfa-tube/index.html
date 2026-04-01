@@ -8,13 +8,18 @@
     </title>
     <meta
       name="description"
-      content="PURE-FLON ESD PFA tubing for semiconductor wet process, chemical delivery, and ESD-sensitive lines. SEMI F57 positioning, custom sizes, and global B2B supply."
+      content="PURE-FLON ESD PFA tubing for semiconductor wet process, chemical delivery, and ESD-sensitive lines with qualification reviewed case by case."
     />
     <meta
       name="keywords"
-      content="ESD PFA tubing, antistatic PFA tube, semiconductor tubing, ESD safe fluoropolymer, high purity PFA tube, SEMI F57"
+      content="ESD PFA tubing, antistatic PFA tube, semiconductor tubing, ESD safe fluoropolymer, high purity PFA tube"
     />
     <link rel="canonical" href="https://pure-flon.com/products/esd-pfa-tube/" />
+    <link rel="alternate" hreflang="en" href="https://pure-flon.com/products/esd-pfa-tube/" />
+    <link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/esd-pfa-tube/?lang=ko" />
+    <link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/esd-pfa-tube/?lang=ja" />
+    <link rel="alternate" hreflang="zh" href="https://pure-flon.com/products/esd-pfa-tube/?lang=zh" />
+    <link rel="alternate" hreflang="x-default" href="https://pure-flon.com/products/esd-pfa-tube/" />
     <meta
       property="og:title"
       content="ESD PFA Tubing | Antistatic | PURE-FLON"
@@ -30,7 +35,7 @@
     <meta property="og:type" content="product" />
     <meta
       property="og:image"
-      content="https://pure-flon.com/images/brand/logo-wide.jpg"
+      content="https://pure-flon.com/images/brand/logo-wide.png"
     />
     <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -254,6 +259,20 @@
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .header__brand-image {
+        display: block;
+        width: clamp(136px, 12vw, 176px);
+        height: auto;
+        filter: drop-shadow(0 16px 24px rgba(15, 23, 42, 0.28));
+      }
+
+      .footer__brand-image {
+        display: block;
+        width: min(214px, 74%);
+        height: auto;
+        filter: drop-shadow(0 18px 26px rgba(8, 15, 31, 0.26));
       }
 
       .header__brand-lockup {
@@ -1433,6 +1452,9 @@
         .header__actions .btn--primary {
           display: none;
         }
+        .nav {
+          position: static;
+        }
         .nav-toggle {
           min-width: 46px;
           min-height: 46px;
@@ -1529,17 +1551,54 @@
           padding: 18px 4px 0;
         }
       }
+
+      @media (max-width: 390px) {
+        .header__container {
+          padding: 0 12px;
+          gap: 6px;
+          min-width: 0;
+        }
+        .nav__menu {
+          left: 12px;
+          right: 12px;
+          max-width: calc(100vw - 24px);
+          width: auto;
+          padding: 10px;
+        }
+        .breadcrumb ol {
+          row-gap: 6px;
+        }
+        .breadcrumb li,
+        .breadcrumb a {
+          max-width: 100%;
+          overflow-wrap: anywhere;
+          white-space: normal;
+        }
+        .hero-actions {
+          width: 100%;
+        }
+        .pill-cta {
+          width: 100%;
+        }
+        .footer__bottom-links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 14px;
+        }
+      }
     </style>
-  </head>
+      <script src="/js/site-i18n.js"></script>
+</head>
   <body data-product="esd-pfa">
     <header class="header" role="banner">
       <div class="header__container">
         <div class="header__logo">
           <a href="../../" aria-label="PURE-FLON Homepage">
-            <span class="header__brand-lockup">
-              <span class="header__brand-name">PURE-FLON</span>
-              <span class="header__brand-meta">Fluoropolymer</span>
-            </span>
+            <img
+              src="/images/logo.png"
+              alt="PURE-FLON"
+              class="header__brand-image"
+            />
           </a>
         </div>
         <nav class="nav" role="navigation" aria-label="Primary">
@@ -1564,7 +1623,7 @@
               <a href="../../saas/" class="nav__link">SaaS</a>
             </li>
             <li class="nav__item">
-              <a href="../../quote/" class="nav__link">Quote</a>
+              <a href="/quote/" class="nav__link">Quote</a>
             </li>
             <li class="nav__item">
               <a href="../../tools/" class="nav__link">Tools</a>
@@ -1582,7 +1641,7 @@
         </nav>
         <div class="header__actions">
           <a
-            href="../../quote/?product=esd-pfa"
+            href="/quote/?product=esd-pfa&source_surface=products&source_page=products-esd-pfa-tube&cta_type=quote"
             class="btn btn--primary btn--sm"
             >Request Quote</a
           >
@@ -1632,16 +1691,16 @@
             </p>
             <div class="hero-actions" data-reveal style="--reveal-delay: 240ms">
               <a
-                href="../../quote/?product=esd-pfa"
+                href="/quote/?product=esd-pfa&source_surface=products&source_page=products-esd-pfa-tube&cta_type=quote"
                 class="pill-cta pill-cta--primary"
               >
-                <span>Request a Quote</span>
+                <span>Request Quote</span>
                 <span class="pill-cta__icon" aria-hidden="true"
                   ><iconify-icon icon="solar:arrow-right-linear"></iconify-icon
                 ></span>
               </a>
               <a
-                href="../../quote/?product=esd-pfa&type=sample"
+                href="/quote/?product=esd-pfa&type=sample&source_surface=products&source_page=products-esd-pfa-tube&cta_type=sample_quote"
                 class="pill-cta pill-cta--ghost"
               >
                 <span>Request Sample Quote</span>
@@ -1651,7 +1710,7 @@
               </a>
             </div>
             <div class="badge-row" data-reveal style="--reveal-delay: 300ms">
-              <span class="cert-pill">SEMI F57 positioning</span>
+              <span class="cert-pill">Fab qualification support</span>
               <span class="cert-pill">10^6 to 10^9 dissipative range</span>
               <span class="cert-pill">High-purity process routing</span>
               <span class="cert-pill">Global B2B supply</span>
@@ -1789,16 +1848,16 @@
               <h3>Compliance</h3>
               <div class="spec-row">
                 <span>Semiconductor lane</span
-                ><strong>SEMI F57 position</strong>
+                ><strong>qualification reviewed on request</strong>
               </div>
               <div class="spec-row">
-                <span>Environmental</span><strong>RoHS compliant</strong>
+                <span>Environmental</span><strong>statement on request</strong>
               </div>
               <div class="spec-row">
-                <span>Quality system</span><strong>ISO 9001</strong>
+                <span>Quality paperwork</span><strong>coordinate with RFQ team</strong>
               </div>
               <div class="spec-row">
-                <span>ESD standard</span><strong>ANSI ESD S20.20</strong>
+                <span>ESD documentation</span><strong>confirm per fab requirement</strong>
               </div>
             </article>
           </div>
@@ -1820,7 +1879,7 @@
                 If the buyer is worried about static buildup in a high-purity
                 environment, this is the safest first path to discuss.
               </p>
-              <a href="../../quote/?product=esd-pfa"
+              <a href="/quote/?product=esd-pfa&source_surface=products&source_page=products-esd-pfa-tube&cta_type=quote"
                 >Start an ESD PFA quote
                 <iconify-icon
                   icon="solar:arrow-right-linear"
@@ -2018,10 +2077,10 @@
             style="justify-content: center; --reveal-delay: 160ms"
           >
             <a
-              href="../../quote/?product=esd-pfa"
+              href="/quote/?product=esd-pfa&source_surface=products&source_page=products-esd-pfa-tube&cta_type=quote"
               class="pill-cta pill-cta--primary"
             >
-              <span>Request a Quote</span>
+              <span>Request Quote</span>
               <span class="pill-cta__icon" aria-hidden="true"
                 ><iconify-icon icon="solar:arrow-right-linear"></iconify-icon
               ></span>
@@ -2048,8 +2107,11 @@
             aria-label="PURE-FLON contact"
           >
             <div class="footer__brand-lockup" aria-hidden="true">
-              <span class="footer__brand-name">PURE-FLON</span>
-              <span class="footer__brand-meta">Fluoropolymer systems</span>
+              <img
+                src="/images/logo.png"
+                alt="PURE-FLON"
+                class="footer__brand-image"
+              />
             </div>
             <span class="footer__eyebrow">ESD PFA / Contact</span>
             <h2>Need qualification help before you place the inquiry?</h2>
@@ -2073,7 +2135,7 @@
             <h3>Explore</h3>
             <ul class="footer__list">
               <li><a href="/products/">Products</a></li>
-              <li><a href="/quote/?product=esd-pfa">Request Quote</a></li>
+              <li><a href="/quote/?product=esd-pfa&source_surface=products&source_page=products-esd-pfa-tube&cta_type=quote">Request Quote</a></li>
               <li><a href="/tools/">Tools</a></li>
               <li><a href="/company/about.html">About</a></li>
             </ul>
@@ -2111,7 +2173,7 @@
           </p>
           <div class="footer__bottom-links">
             <a href="/products/">Products</a>
-            <a href="/quote/?product=esd-pfa">Quote</a>
+            <a href="/quote/?product=esd-pfa&source_surface=products&source_page=products-esd-pfa-tube&cta_type=quote">Quote</a>
             <a href="/company/about.html">About</a>
             <a
               href="mailto:contact@pure-flon.com?subject=ESD%20PFA%20Tubing%20Inquiry"

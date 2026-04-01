@@ -90,7 +90,7 @@
     {
       "name": "의료용 제품",
       "short_name": "의료용",
-      "description": "FDA 승인 의료용 PTFE 튜브 카탈로그",
+      "description": "문서 검토 중심 의료용 PTFE 튜브 카탈로그",
       "url": "/products/medical.html?utm_source=pwa_shortcut",
       "icons": [
         {
@@ -128,7 +128,7 @@
     },
     {
       "name": "고객 포털",
-      "short_name": "포털", 
+      "short_name": "포털",
       "description": "주문 현황 및 기술 지원 포털",
       "url": "/customer/dashboard.html?utm_source=pwa_shortcut",
       "icons": [

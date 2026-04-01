@@ -507,8 +507,8 @@ class QuoteSystem {
             medical: {
                 name: '의료용 PTFE 튜브',
                 basePrice: this.pricingConfig.basePrices.medical,
-                badge: 'FDA 승인',
-                features: ['생체 적합성', '방사선 멸균 가능', '화학적 불활성', '투명/반투명 옵션']
+                badge: '문서 검토',
+                features: ['프로그램별 검토', '멸균 공정 협의', '화학적 안정성 검토', '투명/반투명 옵션']
             },
             semiconductor: {
                 name: '반도체용 PTFE 튜브',
@@ -525,8 +525,8 @@ class QuoteSystem {
             food: {
                 name: '식품용 PTFE 튜브',
                 basePrice: this.pricingConfig.basePrices.food,
-                badge: 'FDA 승인',
-                features: ['식품 접촉 안전', '세척 용이', '무독성', '내열성']
+                badge: '접촉 검토',
+                features: ['식품 접촉 조건 검토', '세척 용이', '공정별 문서 협의', '내열성']
             },
             custom: {
                 name: '맞춤형 PTFE 튜브',

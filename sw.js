@@ -15,7 +15,7 @@ const CRITICAL_RESOURCES = [
   '/offline.html',
   '/favicon.ico',
   '/apple-touch-icon.png',
-  '/images/logo.svg',
+  '/images/logo.png',
   '/site.webmanifest'
 ];
 

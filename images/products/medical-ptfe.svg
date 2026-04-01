@@ -34,12 +34,12 @@
   <circle cx="320" cy="80" r="20" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
   <path d="M315 80 L325 80 M320 75 L320 85" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
   
-  <!-- FDA approval badge -->
+  <!-- Documentation review badge -->
   <rect x="20" y="230" width="60" height="30" rx="5" fill="#1e5cb3" stroke="white" stroke-width="2"/>
   <text x="50" y="248" font-family="Arial, sans-serif" font-size="10" font-weight="bold" 
-        fill="white" text-anchor="middle">FDA</text>
+        fill="white" text-anchor="middle">DOC</text>
   <text x="50" y="258" font-family="Arial, sans-serif" font-size="6" 
-        fill="rgba(255,255,255,0.9)" text-anchor="middle">APPROVED</text>
+        fill="rgba(255,255,255,0.9)" text-anchor="middle">REVIEW</text>
   
   <!-- Title -->
   <text x="200" y="40" font-family="Arial, sans-serif" font-size="18" font-weight="bold" 

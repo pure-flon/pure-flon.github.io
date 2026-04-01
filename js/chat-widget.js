@@ -9,7 +9,7 @@
 
   const API_ENDPOINT = '/api/chat/message';
   const INITIAL_MESSAGE =
-    "Hi! I'm PURE-FLON's product assistant. I can help with technical specs, certifications, and lead you to a quote request. How can I help?";
+    "Hi! I'm PURE-FLON's product assistant. I can help with technical specs, document reviews, and guide you to a quote request. How can I help?";
 
   let history = [];
   let isOpen = false;
@@ -51,7 +51,7 @@
         <textarea
           class="pf-chat-input"
           id="pf-chat-input"
-          placeholder="Ask about specs, certifications, or quote…"
+          placeholder="Ask about specs, document reviews, or quote…"
           rows="1"
           maxlength="500"
         ></textarea>

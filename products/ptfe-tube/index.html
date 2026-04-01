@@ -15,6 +15,11 @@
       content="PTFE tubing, PTFE tube, Teflon tube, PTFE tube manufacturer, polytetrafluoroethylene tubing, chemical resistant tubing"
     />
     <link rel="canonical" href="https://pure-flon.com/products/ptfe-tube/" />
+    <link rel="alternate" hreflang="en" href="https://pure-flon.com/products/ptfe-tube/" />
+    <link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/ptfe-tube/?lang=ko" />
+    <link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/ptfe-tube/?lang=ja" />
+    <link rel="alternate" hreflang="zh" href="https://pure-flon.com/products/ptfe-tube/?lang=zh" />
+    <link rel="alternate" hreflang="x-default" href="https://pure-flon.com/products/ptfe-tube/" />
     <meta
       property="og:title"
       content="PTFE Tubing | Chemical Resistant | PURE-FLON"
@@ -30,7 +35,7 @@
     <meta property="og:type" content="product" />
     <meta
       property="og:image"
-      content="https://pure-flon.com/images/brand/logo-wide.jpg"
+      content="https://pure-flon.com/images/brand/logo-wide.png"
     />
     <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -252,6 +257,20 @@
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .header__brand-image {
+        display: block;
+        width: clamp(136px, 12vw, 176px);
+        height: auto;
+        filter: drop-shadow(0 16px 24px rgba(15, 23, 42, 0.28));
+      }
+
+      .footer__brand-image {
+        display: block;
+        width: min(214px, 74%);
+        height: auto;
+        filter: drop-shadow(0 18px 26px rgba(8, 15, 31, 0.26));
       }
 
       .header__brand-lockup {
@@ -1419,6 +1438,9 @@
         .header__actions .btn--primary {
           display: none;
         }
+        .nav {
+          position: static;
+        }
         .nav-toggle {
           min-width: 46px;
           min-height: 46px;
@@ -1515,17 +1537,54 @@
           padding: 18px 4px 0;
         }
       }
+
+      @media (max-width: 390px) {
+        .header__container {
+          padding: 0 12px;
+          gap: 6px;
+          min-width: 0;
+        }
+        .nav__menu {
+          left: 12px;
+          right: 12px;
+          max-width: calc(100vw - 24px);
+          width: auto;
+          padding: 10px;
+        }
+        .breadcrumb ol {
+          row-gap: 6px;
+        }
+        .breadcrumb li,
+        .breadcrumb a {
+          max-width: 100%;
+          overflow-wrap: anywhere;
+          white-space: normal;
+        }
+        .hero-actions {
+          width: 100%;
+        }
+        .pill-cta {
+          width: 100%;
+        }
+        .footer__bottom-links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 14px;
+        }
+      }
     </style>
-  </head>
+      <script src="/js/site-i18n.js"></script>
+</head>
   <body data-product="ptfe">
     <header class="header" role="banner">
       <div class="header__container">
         <div class="header__logo">
           <a href="../../" aria-label="PURE-FLON Homepage">
-            <span class="header__brand-lockup">
-              <span class="header__brand-name">PURE-FLON</span>
-              <span class="header__brand-meta">Fluoropolymer</span>
-            </span>
+            <img
+              src="/images/logo.png"
+              alt="PURE-FLON"
+              class="header__brand-image"
+            />
           </a>
         </div>
         <nav class="nav" role="navigation" aria-label="Primary">
@@ -1548,7 +1607,7 @@
               <a href="../../saas/" class="nav__link">SaaS</a>
             </li>
             <li class="nav__item">
-              <a href="../../quote/" class="nav__link">Quote</a>
+              <a href="/quote/" class="nav__link">Quote</a>
             </li>
             <li class="nav__item">
               <a href="../../tools/" class="nav__link">Tools</a>
@@ -1565,7 +1624,7 @@
           </ul>
         </nav>
         <div class="header__actions">
-          <a href="../../quote/?product=ptfe" class="btn btn--primary btn--sm"
+          <a href="/quote/?product=ptfe&source_surface=products&source_page=products-ptfe-tube&cta_type=quote" class="btn btn--primary btn--sm"
             >Request Quote</a
           >
           <button class="nav-toggle" type="button" aria-label="Open menu">
@@ -1614,16 +1673,16 @@
             </p>
             <div class="hero-actions" data-reveal style="--reveal-delay: 240ms">
               <a
-                href="../../quote/?product=ptfe"
+                href="/quote/?product=ptfe&source_surface=products&source_page=products-ptfe-tube&cta_type=quote"
                 class="pill-cta pill-cta--primary"
               >
-                <span>Request a Quote</span>
+                <span>Request Quote</span>
                 <span class="pill-cta__icon" aria-hidden="true"
                   ><iconify-icon icon="solar:arrow-right-linear"></iconify-icon
                 ></span>
               </a>
               <a
-                href="../../quote/?product=ptfe&type=sample"
+                href="/quote/?product=ptfe&type=sample&source_surface=products&source_page=products-ptfe-tube&cta_type=sample_quote"
                 class="pill-cta pill-cta--ghost"
               >
                 <span>Request Sample Quote</span>
@@ -1769,16 +1828,16 @@
             >
               <h3>Compliance</h3>
               <div class="spec-row">
-                <span>Food contact</span><strong>FDA 21 CFR 177.1550</strong>
+                <span>Food contact</span><strong>reference review on request</strong>
               </div>
               <div class="spec-row">
                 <span>Specification lane</span><strong>ASTM D3295</strong>
               </div>
               <div class="spec-row">
-                <span>Environmental</span><strong>RoHS compliant</strong>
+                <span>Environmental</span><strong>statement on request</strong>
               </div>
               <div class="spec-row">
-                <span>Quality system</span><strong>ISO 9001</strong>
+                <span>Quality paperwork</span><strong>confirm with the RFQ team</strong>
               </div>
             </article>
           </div>
@@ -1979,10 +2038,10 @@
             style="justify-content: center; --reveal-delay: 160ms"
           >
             <a
-              href="../../quote/?product=ptfe"
+              href="/quote/?product=ptfe&source_surface=products&source_page=products-ptfe-tube&cta_type=quote"
               class="pill-cta pill-cta--primary"
             >
-              <span>Request a Quote</span>
+              <span>Request Quote</span>
               <span class="pill-cta__icon" aria-hidden="true"
                 ><iconify-icon icon="solar:arrow-right-linear"></iconify-icon
               ></span>
@@ -2009,8 +2068,11 @@
             aria-label="PURE-FLON contact"
           >
             <div class="footer__brand-lockup" aria-hidden="true">
-              <span class="footer__brand-name">PURE-FLON</span>
-              <span class="footer__brand-meta">Fluoropolymer systems</span>
+              <img
+                src="/images/logo.png"
+                alt="PURE-FLON"
+                class="footer__brand-image"
+              />
             </div>
             <span class="footer__eyebrow">PTFE / Contact</span>
             <h2>Need broad industrial fit guidance before quoting?</h2>
@@ -2034,7 +2096,7 @@
             <h3>Explore</h3>
             <ul class="footer__list">
               <li><a href="/products/">Products</a></li>
-              <li><a href="/quote/?product=ptfe">Request Quote</a></li>
+              <li><a href="/quote/?product=ptfe&source_surface=products&source_page=products-ptfe-tube&cta_type=quote">Request Quote</a></li>
               <li><a href="/tools/">Tools</a></li>
               <li><a href="/company/about.html">About</a></li>
             </ul>
@@ -2072,7 +2134,7 @@
           </p>
           <div class="footer__bottom-links">
             <a href="/products/">Products</a>
-            <a href="/quote/?product=ptfe">Quote</a>
+            <a href="/quote/?product=ptfe&source_surface=products&source_page=products-ptfe-tube&cta_type=quote">Quote</a>
             <a href="/company/about.html">About</a>
             <a
               href="mailto:contact@pure-flon.com?subject=PTFE%20Tubing%20Inquiry"

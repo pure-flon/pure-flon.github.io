@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>PTFE 튜브 견적 요청 | 24시간 내 전문가 응답 | Pure-Flon</title>
-    <meta name="description" content="Pure-Flon PTFE 튜브 전문 견적 시스템. 의료용, 반도체용, 화학용 PTFE 튜브의 정확한 견적을 24시간 내에 받아보세요.">
-    <meta name="keywords" content="PTFE 튜브 견적, 테프론 튜브 가격, 산업용 튜브 견적">
+    <title>PTFE Tubing Quote Request | Expert Reply Within 1 Business Day | Pure-Flon</title>
+    <meta name="description" content="Submit your PTFE tubing RFQ for medical, semiconductor, or chemical applications and get a reply within 1 business day.">
+    <meta name="keywords" content="PTFE tubing quote request, fluoropolymer tubing RFQ, semiconductor tubing RFQ, medical tubing quote">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="PTFE 튜브 전문 견적 시스템 - Pure-Flon">
-    <meta property="og:description" content="전문가가 직접 계산하는 정확한 PTFE 튜브 견적을 24시간 내에 받아보세요">
+    <meta property="og:title" content="PTFE Tubing RFQ - Pure-Flon">
+    <meta property="og:description" content="Request a PTFE tubing quote and receive a detailed reply within 1 business day.">
+    <link rel="alternate" hreflang="en" href="https://pure-flon.com/quote/request.html">
+    <link rel="alternate" hreflang="ko" href="https://pure-flon.com/quote/request.html?lang=ko">
+    <link rel="alternate" hreflang="ja" href="https://pure-flon.com/quote/request.html?lang=ja">
+    <link rel="alternate" hreflang="zh" href="https://pure-flon.com/quote/request.html?lang=zh">
+    <link rel="alternate" hreflang="x-default" href="https://pure-flon.com/quote/request.html">
     <meta property="og:image" content="https://pure-flon.com/images/og-image-1200x630.webp">
     <meta property="og:url" content="https://pure-flon.com/quote/request.html">
+    <link rel="canonical" href="https://pure-flon.com/quote/request.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
@@ -28,10 +34,343 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
     
     <!-- CSS -->
     <link rel="stylesheet" href="../css/main.css?v=4.5.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            color: #e2e8f0;
+            font-family: "Pretendard Variable", "Pretendard", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.08), transparent 28%),
+                radial-gradient(circle at 82% 16%, rgba(15, 23, 42, 0.08), transparent 20%),
+                linear-gradient(180deg, #050b17 0%, #081323 34%, #0c1728 100%);
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(148, 163, 184, 0.08) 0.7px, transparent 0.7px);
+            background-size: 18px 18px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        main, .footer { position: relative; z-index: 1; }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 18px 0 28px;
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.9) 0%, rgba(3, 7, 18, 0.64) 46%, rgba(3, 7, 18, 0.18) 78%, rgba(3, 7, 18, 0) 100%);
+            border-bottom: 0;
+            box-shadow: none;
+            transition: padding 0.36s cubic-bezier(0.16, 1, 0.3, 1), background 0.36s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .header.is-condensed {
+            padding: 10px 0 14px;
+            background: linear-gradient(180deg, rgba(4, 9, 18, 0.96) 0%, rgba(4, 9, 18, 0.88) 100%);
+            box-shadow: 0 18px 44px -34px rgba(2, 6, 23, 0.74);
+            backdrop-filter: blur(18px) saturate(145%);
+            -webkit-backdrop-filter: blur(18px) saturate(145%);
+        }
+        .header__container {
+            max-width: 1208px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 18px;
+        }
+        .header__logo a { display: inline-flex; align-items: center; text-decoration: none; }
+        .header__logo img {
+            width: clamp(136px, 12vw, 176px);
+            height: auto !important;
+            filter: drop-shadow(0 16px 24px rgba(15, 23, 42, 0.28));
+        }
+        .nav { display: flex; justify-content: center; min-width: 0; }
+        .nav__menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 0;
+            padding: 5px;
+            list-style: none;
+            border-radius: 24px;
+            background: rgba(8, 15, 31, 0.42);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+        }
+        .nav__link {
+            color: rgba(226, 232, 240, 0.76);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 650;
+            text-decoration: none;
+            transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav__link:hover,
+        .nav__link--active {
+            color: #fff;
+        }
+        .nav__link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        .nav__link--active {
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.74) 0%, rgba(29, 78, 216, 0.8) 100%);
+            box-shadow: 0 16px 30px -24px rgba(37, 99, 235, 0.9), inset 0 0 0 1px rgba(191, 219, 254, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        }
+        .nav__dropdown { display: none; }
+        .header__actions .btn {
+            border-radius: 999px;
+            padding: 12px 20px;
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.96) 0%, rgba(37, 99, 235, 0.92) 100%);
+            color: #fff;
+            box-shadow: 0 22px 36px -28px rgba(59, 130, 246, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+        .quote-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 144px 0 64px;
+            background: transparent;
+        }
+        .quote-hero::before,
+        .quote-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+        }
+        .quote-hero::before {
+            background:
+                linear-gradient(180deg, rgba(5, 11, 23, 0.3) 0%, rgba(5, 11, 23, 0.76) 18%, rgba(5, 11, 23, 0.9) 100%),
+                url("../images/hero/teflon-factory-hero.webp") center/cover no-repeat;
+            transform: translate3d(0, var(--hero-shift, 0px), 0);
+            transition: transform 0.24s linear;
+            z-index: -2;
+        }
+        .quote-hero::after {
+            background: radial-gradient(circle at top left, rgba(14, 165, 233, 0.26), transparent 30%);
+            z-index: -1;
+        }
+        .quote-hero__content {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .breadcrumb a,
+        .breadcrumb li {
+            color: rgba(191, 219, 254, 0.74);
+            text-decoration: none;
+        }
+        .breadcrumb ol {
+            margin: 0 0 22px;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+            list-style: none;
+        }
+        .breadcrumb li + li::before {
+            content: "/";
+            margin-right: 10px;
+            color: rgba(148, 163, 184, 0.46);
+        }
+        .quote-hero__title {
+            color: #f8fbff;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: clamp(2.6rem, 4.8vw, 4.4rem);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            max-width: 12ch;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 14px;
+            min-height: 36px;
+            padding: 0 16px;
+            border-radius: 999px;
+            background: rgba(8, 47, 73, 0.48);
+            border: 1px solid rgba(56, 189, 248, 0.26);
+            color: #bae6fd;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .quote-hero .badge.badge--primary {
+            display: inline-flex;
+            width: auto;
+            min-width: 0;
+            min-height: 36px;
+            margin-top: 14px;
+            padding: 0 16px;
+            border-radius: 999px;
+            background: rgba(8, 47, 73, 0.48);
+            border: 1px solid rgba(56, 189, 248, 0.26);
+            color: #bae6fd;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            line-height: 1;
+            box-shadow: none;
+        }
+        .quote-hero__description {
+            margin-top: 18px;
+            max-width: 680px;
+            color: rgba(226, 232, 240, 0.78);
+            font-size: 1rem;
+            line-height: 1.78;
+        }
+        .quote-form-section { padding: 42px 0 74px; }
+        .quote-form-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            gap: 24px;
+            align-items: start;
+        }
+        .quote-form,
+        .info-card,
+        .footer-section {
+            border-radius: 28px;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            box-shadow: 0 28px 80px -50px rgba(2, 6, 23, 0.9);
+        }
+        .quote-form {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(241, 245, 249, 0.97) 100%);
+            color: #0f172a;
+            padding: 34px;
+        }
+        .form-section__title {
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.24rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 18px;
+            color: #0f172a;
+        }
+        .form-label {
+            color: #0f172a;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+        .form-control {
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.42);
+            background: rgba(255, 255, 255, 0.92);
+            color: #0f172a;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .form-control:focus {
+            border-color: rgba(37, 99, 235, 0.78);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+            background: #fff;
+        }
+        .quote-info {
+            display: grid;
+            gap: 18px;
+        }
+        .info-card {
+            background: linear-gradient(180deg, rgba(10, 18, 33, 0.8) 0%, rgba(8, 15, 28, 0.94) 100%);
+            padding: 24px;
+            color: #e2e8f0;
+        }
+        .info-card h3 {
+            color: #f8fbff;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.18rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+        .info-card p,
+        .footer-links a,
+        .footer-links span {
+            color: rgba(226, 232, 240, 0.74);
+            line-height: 1.7;
+        }
+        .form-actions .btn--primary {
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.96) 0%, rgba(29, 78, 216, 0.92) 100%);
+            box-shadow: 0 22px 36px -28px rgba(37, 99, 235, 0.88);
+        }
+        .form-actions .btn--outline {
+            border-radius: 999px;
+            border-color: rgba(148, 163, 184, 0.4);
+            color: #0f172a;
+        }
+        .footer {
+            padding: 24px 0 46px;
+            background: transparent;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.16fr) repeat(2, minmax(0, 0.8fr));
+            gap: 18px;
+        }
+        .footer-section {
+            padding: 26px 24px;
+            background: linear-gradient(180deg, rgba(10, 18, 33, 0.84) 0%, rgba(8, 15, 28, 0.96) 100%);
+        }
+        .footer-section img {
+            width: min(214px, 74%);
+            height: auto !important;
+            filter: drop-shadow(0 18px 26px rgba(8, 15, 31, 0.26));
+            margin-bottom: 16px;
+        }
+        .footer-subtitle {
+            color: #f8fbff;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.12rem;
+            margin-bottom: 16px;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
+        }
+        .footer-links a {
+            text-decoration: none;
+        }
+        .footer-bottom {
+            margin-top: 18px;
+            color: rgba(226, 232, 240, 0.72);
+        }
+        @media (max-width: 1040px) {
+            .quote-form-wrapper,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 840px) {
+            .header { padding: 14px 0 18px; background: rgba(4, 9, 18, 0.9); }
+            .header__container {
+                grid-template-columns: auto auto;
+                justify-content: space-between;
+            }
+            .nav { display: none; }
+            .header__actions .btn { display: none; }
+            .quote-hero { padding-top: 124px; }
+            .quote-hero__title { max-width: none; }
+        }
+    </style>
+    <script src="/js/site-i18n.js"></script>
 </head>
 
 <body>
@@ -49,23 +388,18 @@
             
             <nav class="nav" role="navigation">
                 <ul class="nav__menu">
-                    <li class="nav__item nav__item--dropdown">
-                        <a href="#" class="nav__link" aria-haspopup="true">
-                            제품 ▼
-                        </a>
-                        <ul class="nav__dropdown">
-                            <li><a href="../products/medical.html">의료용 PTFE 튜브</a></li>
-                            <li><a href="../products/semiconductor.html">반도체용 PTFE 튜브</a></li>
-                            <li><a href="../products/chemical.html">화학용 PTFE 튜브</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav__item"><a href="../" class="nav__link">홈</a></li>
-                    <li class="nav__item"><a href="mailto:contact@pure-flon.com" class="nav__link">문의</a></li>
+                    <li class="nav__item"><a href="/products/" class="nav__link">Products</a></li>
+                    <li class="nav__item"><a href="/saas/" class="nav__link">SaaS</a></li>
+                    <li class="nav__item"><a href="/quote/" class="nav__link nav__link--active">Quote</a></li>
+                    <li class="nav__item"><a href="/tools/" class="nav__link">Tools</a></li>
+                    <li class="nav__item"><a href="/games/" class="nav__link">Games</a></li>
+                    <li class="nav__item"><a href="/blog/" class="nav__link">Blog</a></li>
+                    <li class="nav__item"><a href="/company/about.html" class="nav__link">About</a></li>
                 </ul>
             </nav>
             
             <div class="header__actions">
-                <a href="mailto:contact@pure-flon.com?subject=PTFE 튜브 견적 요청" class="btn btn--primary btn--sm">견적 요청</a>
+                <a href="mailto:contact@pure-flon.com?subject=PTFE%20Tubing%20Quote%20Request" class="btn btn--primary btn--sm">Request Quote</a>
             </div>
         </div>
     </header>
@@ -176,22 +510,22 @@
                             <h2 class="form-section__title">추가 요청사항</h2>
                             
                             <div class="form-group">
-                                <label class="form-label">필요한 인증서</label>
+                                <label class="form-label">필요한 문서 또는 검토</label>
                                 <div class="checkbox-group">
                                     <label class="checkbox-item">
-                                        <input type="checkbox" name="certifications" value="FDA">
+                                        <input type="checkbox" name="certifications" value="food-contact-review">
                                         <span class="checkmark"></span>
-                                        FDA 승인서
+                                        Food-contact or regulatory reference review
                                     </label>
                                     <label class="checkbox-item">
-                                        <input type="checkbox" name="certifications" value="ISO13485">
+                                        <input type="checkbox" name="certifications" value="quality-document-review">
                                         <span class="checkmark"></span>
-                                        ISO 13485 인증서
+                                        Quality or manufacturing document review
                                     </label>
                                     <label class="checkbox-item">
-                                        <input type="checkbox" name="certifications" value="USP-VI">
+                                        <input type="checkbox" name="certifications" value="biocompatibility-review">
                                         <span class="checkmark"></span>
-                                        USP Class VI 시험성적서
+                                        Biocompatibility or test-report review
                                     </label>
                                 </div>
                             </div>
@@ -276,6 +610,33 @@
     <!-- JavaScript -->
     <script src="../js/main.js"></script>
     <script>
+        (function () {
+            const hero = document.querySelector('.quote-hero');
+            const header = document.querySelector('.header');
+            let ticking = false;
+
+            function updateChrome() {
+                if (!hero) return;
+                const rect = hero.getBoundingClientRect();
+                const offset = Math.max(-22, Math.min(22, rect.top * -0.08));
+                hero.style.setProperty('--hero-shift', offset.toFixed(2) + 'px');
+                if (header) {
+                    header.classList.toggle('is-condensed', rect.top < -24);
+                }
+                ticking = false;
+            }
+
+            function requestUpdate() {
+                if (ticking) return;
+                ticking = true;
+                window.requestAnimationFrame(updateChrome);
+            }
+
+            updateChrome();
+            window.addEventListener('scroll', requestUpdate, { passive: true });
+            window.addEventListener('resize', requestUpdate);
+        })();
+
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('quote-form');
             const submitButton = form?.querySelector('button[type="submit"]');

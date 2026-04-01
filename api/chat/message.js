@@ -33,7 +33,7 @@ KNOWLEDGE BASE:
 - Temperature: -200°C to +260°C
 - Chemical resistance: strong acids, alkalis, organic solvents
 - Purity: ultra-high purity (semiconductor wet process grade)
-- Standards: RoHS, SEMI F57, ASTM
+- Qualification references: review requirements during RFQ
 - Color: black (ESD standard)
 
 ### PFA Tubing
@@ -41,14 +41,14 @@ KNOWLEDGE BASE:
 - Temperature: -200°C to +260°C
 - Chemical resistance: all chemicals except fluorine compounds
 - Transparency: high clarity (visible flow)
-- Standards: FDA 21 CFR, USP Class VI, RoHS
+- Documentation: confirm application and regulatory needs during RFQ
 
 ### PTFE Tubing
 - Material: Polytetrafluoroethylene (PTFE)
 - Temperature: -200°C to +260°C continuous, +300°C intermittent
 - Chemical resistance: highest grade
 - Friction coefficient: 0.04 (lowest in industry)
-- Standards: FDA, RoHS, ASTM D3295
+- Documentation: provide material and process references on request
 
 ### Dimensions
 - ID: 1/16" to 2" (custom available)
@@ -59,8 +59,8 @@ KNOWLEDGE BASE:
 ## Industries
 - Semiconductor fab: wet bench, HF/H2SO4/H2O2 lines, UPW, ESD-controlled cleanrooms
 - Chemical/petrochemical: strong acid/alkali transfer, reactor connections
-- Pharmaceutical/biotech: USP Class VI applications, drug transfer, sterilization
-- Food processing: FDA 21 CFR, beverage/dairy lines
+- Pharmaceutical/biotech: documentation-reviewed transfer, sterilization, and process-routing programs
+- Food processing: food-contact review and beverage or dairy transfer lines
 
 ## Purchasing
 - Quote: submit at /quote/ — receive response within 1 business day
@@ -75,17 +75,15 @@ KNOWLEDGE BASE:
 - DDP: delivered with customs (large orders only, by arrangement)
 - DHL Express: small orders/samples, automatic rate quote available
 
-## Certifications
-- RoHS Compliant
-- FDA 21 CFR (PFA/PTFE)
-- USP Class VI (PFA)
-- SEMI F57 (ESD PFA, semiconductor)
-- ISO 9001 (quality management)
+## Documentation and qualification
+- Material and process references are reviewed per application
+- Fab, food-contact, or medical documentation is coordinated during RFQ
+- Do not claim certifications unless the customer asks for confirmed documents
 
 ## Technical Documents
 - TDS (Technical Data Sheet): available at /docs/
 - SDS (Safety Data Sheet): request via email
-- Certificates: request via email — contact@pure-flon.com`;
+- Documentation requests: email contact@pure-flon.com`;
 
 const RATE_LIMIT = new Map(); // IP → { count, resetAt }
 

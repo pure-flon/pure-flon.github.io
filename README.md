@@ -32,7 +32,8 @@ This repo is no longer a single PTFE brochure site. It now serves multiple surfa
 
 - Static-first pages built from folder-based HTML entries (`*/index.html`)
 - Shared assets in `css/`, `js/`, `images/`
-- API handlers in `api/` (quotes, payments, chat, shipping)
+- Runtime truth is currently GitHub Pages static hosting; see `docs/RUNTIME_TRUTH.md`
+- API handler files under `api/` are staged artifacts and not active on the current live runtime
 - SEO/discovery artifacts at root: `sitemap.xml`, `feed.xml`, `robots.txt`
 
 ## Repository Map
@@ -80,6 +81,8 @@ npm run dev
 This repository is the production source for `pure-flon.com`.
 
 ```bash
+npm run check:runtime:dry
+npm run check:runtime
 git add <changed-files>
 git commit -m "content: <what changed>"
 git push origin main
