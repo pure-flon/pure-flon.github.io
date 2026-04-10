@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#0f1f2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="6" fill="url(#accent)"/>
+  <!-- Globe decorations -->
+  <circle cx="920" cy="315" r="200" fill="none" stroke="#0ea5e9" stroke-width="2" opacity="0.15"/>
+  <circle cx="920" cy="315" r="140" fill="none" stroke="#0ea5e9" stroke-width="1" opacity="0.1"/>
+  <circle cx="280" cy="480" r="100" fill="#0ea5e9" opacity="0.05"/>
+  <!-- Flag emojis -->
+  <text x="140" y="250" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🇯🇵</text>
+  <text x="280" y="250" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🇧🇷</text>
+  <text x="420" y="250" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🇩🇪</text>
+  <text x="140" y="390" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🇰🇷</text>
+  <text x="280" y="390" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🇮🇳</text>
+  <text x="420" y="390" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🇬🇧</text>
+  <!-- Title -->
+  <text x="840" y="220" font-size="58" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">World Flag Quiz</text>
+  <text x="840" y="290" font-size="32" fill="#7dd3fc" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">195 Countries · Free</text>
+  <rect x="620" y="345" width="440" height="2" fill="#0ea5e9" opacity="0.4"/>
+  <text x="840" y="395" font-size="27" fill="#d4d4d8" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Guess the flag — timed or relaxed mode</text>
+  <text x="840" y="435" font-size="27" fill="#d4d4d8" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Score by continent. Share your result!</text>
+  <text x="600" y="580" font-size="24" fill="#52525b" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">pure-flon.com/games/world-flag-quiz/</text>
+  <rect y="624" width="1200" height="6" fill="url(#accent)"/>
+</svg>
