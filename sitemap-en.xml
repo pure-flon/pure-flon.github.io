@@ -63,7 +63,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/blog/ptfe-vs-teflon/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
   </url>
   <url>
     <loc>https://pure-flon.com/blog/python-crypto-trading-libraries-2026/</loc>
@@ -75,7 +75,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/company/about.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/company/about.html" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/company/about.html?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/company/about.html?lang=ja" />
@@ -106,6 +106,18 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/games/k-meme-quiz/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://pure-flon.com/games/k-meme-quiz/?lang=zh" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pure-flon.com/games/k-meme-quiz/" />
+  </url>
+  <url>
+    <loc>https://pure-flon.com/games/stack-tower/</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pure-flon.com/games/stack-tower/privacy.html</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://pure-flon.com/games/twenty-questions/</loc>
@@ -150,7 +162,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/chemical.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/chemical.html" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/chemical.html?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/chemical.html?lang=ja" />
@@ -159,7 +171,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/esd-pfa-tube/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/esd-pfa-tube/" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/esd-pfa-tube/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/esd-pfa-tube/?lang=ja" />
@@ -168,7 +180,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/?lang=ja" />
@@ -177,7 +189,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/medical.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/medical.html" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/medical.html?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/medical.html?lang=ja" />
@@ -186,7 +198,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/pfa-tube/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/pfa-tube/" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/pfa-tube/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/pfa-tube/?lang=ja" />
@@ -195,7 +207,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/ptfe-tube/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/ptfe-tube/" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/ptfe-tube/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/ptfe-tube/?lang=ja" />
@@ -204,7 +216,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/products/semiconductor.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/products/semiconductor.html" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/products/semiconductor.html?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/products/semiconductor.html?lang=ja" />
@@ -213,7 +225,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/quote/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/quote/" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/quote/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/quote/?lang=ja" />
@@ -222,7 +234,7 @@
   </url>
   <url>
     <loc>https://pure-flon.com/quote/request.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://pure-flon.com/quote/request.html" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://pure-flon.com/quote/request.html?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://pure-flon.com/quote/request.html?lang=ja" />
