@@ -14,6 +14,16 @@ PURE-FLON sitemap + multilingual rollout adjudication
 - 번역이 준비되지 않은 페이지를 `localized_ready`로 오판하지 않는다.
 - 게임/툴/블로그 bulk content를 hand-wave 하지 않는다.
 
+## Latest Verification
+
+- verified_at_utc: `2026-04-03T15:20:40.523322+00:00`
+- i18n_report_path: `/tmp/pure_flon_i18n_marketing_run_latest.md`
+- i18n_hard_gaps: `none`
+- i18n_verdict: `confirm / close`
+- b2b_hard_gaps_tracked_separately:
+  - `quote_hub_products_hub_link_missing`
+  - `quote_request_products_hub_link_missing`
+
 ## Current Counts
 
 - total_public_html: `76`
