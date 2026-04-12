@@ -76,6 +76,26 @@
       "source": "/about",
       "destination": "/#about",
       "permanent": false
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://ops-self-studio-web.vercel.app/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/games/:path*",
+      "destination": "https://ops-self-studio-web.vercel.app/games/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tools/:path*",
+      "destination": "https://ops-self-studio-web.vercel.app/tools/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/saas/:path*",
+      "destination": "https://ops-self-studio-web.vercel.app/saas/:path*",
+      "permanent": true
     }
   ],
   "rewrites": [
