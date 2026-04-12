@@ -130,7 +130,7 @@
       "maxDuration": 15
     }
   },
-  "regions": ["icn1", "nrt1", "hnd1", "sin1"],
+  "regions": ["icn1", "hnd1", "sin1"],
   "public": true,
   "github": {
     "enabled": true,
