@@ -52,7 +52,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(css|js))",
+      "source": "/:path*.:ext(css|js)",
       "headers": [
         {
           "key": "Cache-Control",
