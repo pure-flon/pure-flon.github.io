@@ -229,45 +229,6 @@
         const sourceSurface = String(params.get('source_surface') || '').trim();
         const sourcePage = String(params.get('source_page') || '').trim();
         const plan = String(params.get('plan') || '').trim();
-        const isSaasLead = leadType === 'saas_waitlist' || leadType === 'saas_sales_lead' || sourceSurface === 'saas' || sourcePage === 'ai-ops-autopilot' || sourcePage === 'saas-ai-ops-autopilot';
-        const isWaitlistLead = leadType === 'saas_waitlist' || ctaType === 'waitlist';
-
-        if (isSaasLead) {
-            document.title = isWaitlistLead
-                ? 'AI Ops Autopilot Waitlist Confirmed | Pure-Flon'
-                : 'AI Ops Autopilot Sales Request Received | Pure-Flon';
-
-            document.getElementById('eyebrow').textContent = isWaitlistLead ? 'Waitlist confirmed' : 'Sales request received';
-            document.getElementById('title').textContent = isWaitlistLead
-                ? 'You are on the AI Ops Autopilot waitlist.'
-                : 'Your AI Ops Autopilot request is in.';
-            document.getElementById('subtitle').textContent = isWaitlistLead
-                ? 'We have your request. We will review fit, confirm your cohort status, and follow up before self-serve checkout goes live.'
-                : 'We have your AI Ops context and will follow up by email with the best next step for rollout.';
-            document.getElementById('stepsTitle').textContent = 'What happens next';
-            document.getElementById('stepsList').innerHTML = isWaitlistLead
-                ? [
-                    '<div class="step"><div class="step-num">1</div><div><strong>Fit review</strong><p>We review your workflow and plan preference within 1 business day.</p></div></div>',
-                    '<div class="step"><div class="step-num">2</div><div><strong>Cohort follow-up</strong><p>You receive a reply with launch timing, onboarding path, and payment-link status.</p></div></div>',
-                    '<div class="step"><div class="step-num">3</div><div><strong>Launch when ready</strong><p>Once checkout is live, you move into guided onboarding with the selected plan.</p></div></div>'
-                ].join('')
-                : [
-                    '<div class="step"><div class="step-num">1</div><div><strong>Sales review</strong><p>We review your ops context and confirm the right plan or rollout path.</p></div></div>',
-                    '<div class="step"><div class="step-num">2</div><div><strong>Direct reply</strong><p>You receive an email with next-step guidance, onboarding details, or payment-link timing.</p></div></div>',
-                    '<div class="step"><div class="step-num">3</div><div><strong>Launch path</strong><p>We move you into the fastest path to trial, onboarding, or checkout.</p></div></div>'
-                ].join('');
-            document.getElementById('metaTitle').textContent = 'Lead summary';
-            document.getElementById('metaList').innerHTML = [
-                '<li><strong>Response SLA:</strong> 1 business day</li>',
-                '<li><strong>Route:</strong> ' + (isWaitlistLead ? 'AI Ops waitlist' : 'AI Ops sales intake') + '</li>',
-                '<li><strong>Plan:</strong> ' + (plan || 'Not specified yet') + '</li>',
-                '<li><strong>Contact:</strong> contact@pure-flon.com</li>'
-            ].join('');
-            document.getElementById('actions').innerHTML = [
-                '<a class="btn btn-primary" href="/saas/ai-ops-autopilot/">Back to AI Ops Autopilot</a>',
-                '<a class="btn btn-secondary" href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=talk_to_sales">Open the form again</a>'
-            ].join('');
-        }
 
         if (typeof window.gtag === 'function') {
             window.gtag('event', 'thank_you_view', {

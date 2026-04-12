@@ -765,11 +765,8 @@
             <nav class="nav" role="navigation" aria-label="Primary">
                 <ul class="nav__menu">
                     <li class="nav__item"><a href="/products/" class="nav__link">Products</a></li>
-                    <li class="nav__item"><a href="/saas/" class="nav__link">SaaS</a></li>
+                    <li class="nav__item"><a href="/products/medical.html" class="nav__link">Industries</a></li>
                     <li class="nav__item"><a href="/quote/" class="nav__link active" aria-current="page">Quote</a></li>
-                    <li class="nav__item"><a href="/tools/" class="nav__link">Tools</a></li>
-                    <li class="nav__item"><a href="/games/" class="nav__link">Games</a></li>
-                    <li class="nav__item"><a href="/blog/" class="nav__link">Blog</a></li>
                     <li class="nav__item"><a href="/company/about.html" class="nav__link">About</a></li>
                 </ul>
             </nav>
@@ -857,8 +854,8 @@
                         <h2 id="formCardTitle">RFQ — Request for Quotation</h2>
                         <p id="formCardSubtitle">All fields marked <span style="color:#ef4444">*</span> are required. We'll reply to your email with a detailed quote.</p>
                         <div class="discount-hint" id="intentBanner" hidden>
-                            <strong id="intentBannerTitle">AI Ops Autopilot intake</strong>
-                            <span id="intentBannerCopy">Share your team context and plan. We will reply with fit, onboarding, and next-step timing.</span>
+                            <strong id="intentBannerTitle">Commercial intake</strong>
+                            <span id="intentBannerCopy">Share your sourcing context and request details. We will reply with fit, lead time, and next-step timing.</span>
                         </div>
 
                         <form id="rfqForm" action="https://formspree.io/f/contact@pure-flon.com" method="POST" novalidate>
@@ -908,57 +905,6 @@
                                         <option>Malaysia</option>
                                         <option>Other</option>
                                     </select>
-                                </div>
-                            </div>
-
-                            <div class="form-section" id="saasWaitlistSection" hidden>
-                                <h3>AI Ops Autopilot Intake</h3>
-                                <div class="discount-hint">
-                                    <strong>Founding cohort intake</strong>
-                                    Share the workflow you want monitored first. We will reply with fit, onboarding, and payment-link timing within 1 business day.
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="waitlistPlan">Interested Plan <span class="req">*</span></label>
-                                        <select id="waitlistPlan" name="waitlistPlan" class="form-control" required>
-                                            <option value="">— Select Plan —</option>
-                                            <option value="starter">Starter — $29/mo</option>
-                                            <option value="growth">Growth — $79/mo</option>
-                                            <option value="enterprise">Enterprise — Custom</option>
-                                            <option value="all">Not sure yet</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="teamSize">Ops Team Size</label>
-                                        <select id="teamSize" name="teamSize" class="form-control">
-                                            <option value="">— Select Team Size —</option>
-                                            <option value="solo">Solo operator</option>
-                                            <option value="2-5">2-5 people</option>
-                                            <option value="6-20">6-20 people</option>
-                                            <option value="21-50">21-50 people</option>
-                                            <option value="50+">50+ people</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="monitoringArea">Primary Workflow to Monitor</label>
-                                        <input type="text" id="monitoringArea" name="monitoringArea" class="form-control" placeholder="e.g. exception triage, inventory mismatches, SLA alerts">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="kickoffWindow">Preferred Start Window</label>
-                                        <select id="kickoffWindow" name="kickoffWindow" class="form-control">
-                                            <option value="">— Select Start Window —</option>
-                                            <option value="this_week">This week</option>
-                                            <option value="two_weeks">Within 2 weeks</option>
-                                            <option value="this_month">This month</option>
-                                            <option value="exploring">Just exploring</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="opsPain">Biggest issue you want AI Ops to catch first</label>
-                                    <textarea id="opsPain" name="opsPain" class="form-control" placeholder="Tell us which exception, delay, or reporting gap costs your team the most time."></textarea>
                                 </div>
                             </div>
 
@@ -1178,7 +1124,7 @@
                     <ul class="footer__list">
                         <li><a href="/products/">Products</a></li>
                         <li><a href="/quote/">Quote</a></li>
-                        <li><a href="/tools/">Tools</a></li>
+                        <li><a href="/products/medical.html">Industries</a></li>
                         <li><a href="/company/about.html">About</a></li>
                     </ul>
                 </section>
@@ -1188,7 +1134,7 @@
                         <li><a href="/products/esd-pfa-tube/">ESD PFA Tubing</a></li>
                         <li><a href="/products/pfa-tube/">PFA Tubing</a></li>
                         <li><a href="/products/ptfe-tube/">PTFE Tubing</a></li>
-                        <li><a href="/quote/request.html">Legacy RFQ Form</a></li>
+                        <li><a href="/quote/?type=sample">Sample Request</a></li>
                     </ul>
                 </section>
                 <section class="footer__panel footer__section" aria-label="Contact">
@@ -1220,9 +1166,6 @@
         const planParam = String(params.get('plan') || '').trim().toLowerCase();
         const requestTypeParam = String(params.get('type') || '').trim().toLowerCase();
         const prod = params.get('product');
-        const sourcePageAliases = ['ai-ops-autopilot', 'saas-ai-ops-autopilot'];
-        const isSaasLead = sourceSurfaceParam === 'saas' || sourcePageAliases.includes(sourcePageParam);
-        const isWaitlistLead = isSaasLead && ctaTypeParam === 'waitlist';
         const isSampleRequest = requestTypeParam === 'sample';
 
         const form = document.getElementById('rfqForm');
@@ -1233,7 +1176,6 @@
         const sourcePageField = document.getElementById('sourcePageField');
         const ctaTypeField = document.getElementById('ctaTypeField');
         const planInterestField = document.getElementById('planInterestField');
-        const waitlistPlan = document.getElementById('waitlistPlan');
         const submitButton = document.getElementById('submitButton');
 
         const productSections = [
@@ -1241,8 +1183,6 @@
             document.getElementById('deliverySection'),
             document.getElementById('applicationSection')
         ];
-        const saasSection = document.getElementById('saasWaitlistSection');
-
         function captureRequiredFields(section) {
             if (!section) return;
             section.querySelectorAll('[required]').forEach((field) => {
@@ -1261,10 +1201,10 @@
             });
         }
 
-        [...productSections, saasSection].forEach(captureRequiredFields);
+        [...productSections].forEach(captureRequiredFields);
 
         // Pre-fill product from URL param
-        if (prod && !isSaasLead) {
+        if (prod) {
             const map = { 'esd-pfa': 'prod_esd', 'pfa': 'prod_pfa', 'ptfe': 'prod_ptfe' };
             const el = document.getElementById(map[prod]);
             if (el) el.checked = true;
@@ -1278,103 +1218,6 @@
             if (ctaTypeField.value) nextUrl.searchParams.set('cta_type', ctaTypeField.value);
             if (selectedPlan) nextUrl.searchParams.set('plan', selectedPlan);
             nextField.value = nextUrl.toString();
-        }
-
-        function applySaasLeadMode() {
-            const selectedPlan = planParam || 'all';
-            const leadType = isWaitlistLead ? 'saas_waitlist' : 'saas_sales_lead';
-
-            document.title = isWaitlistLead
-                ? 'Join the AI Ops Autopilot Waitlist | Pure-Flon'
-                : 'Talk to Sales About AI Ops Autopilot | Pure-Flon';
-
-            document.getElementById('quotePageTitle').textContent = isWaitlistLead
-                ? 'Join the AI Ops Autopilot Waitlist'
-                : 'Talk to Sales About AI Ops Autopilot';
-            document.getElementById('quotePageSubtitle').textContent = isWaitlistLead
-                ? 'Tell us what workflow you want monitored first. We will confirm fit and payment-link timing within 1 business day.'
-                : 'Share your ops context and preferred plan. We will reply with fit, pilot scope, and next steps within 1 business day.';
-            document.getElementById('formCardTitle').textContent = isWaitlistLead
-                ? 'AI Ops Autopilot Waitlist'
-                : 'AI Ops Autopilot Sales Intake';
-            document.getElementById('formCardSubtitle').textContent = isWaitlistLead
-                ? 'Use this form to reserve a spot in the first launch cohort. We will reply before self-serve checkout goes live.'
-                : 'Use this form to request a fit review and sales reply for AI Ops Autopilot.';
-
-            const intentBanner = document.getElementById('intentBanner');
-            intentBanner.hidden = false;
-            document.getElementById('intentBannerTitle').textContent = isWaitlistLead
-                ? 'Founding cohort waitlist'
-                : 'Sales-assisted AI Ops intake';
-            document.getElementById('intentBannerCopy').textContent = isWaitlistLead
-                ? 'No credit card today. We will hold your spot, confirm fit, and send checkout links once live.'
-                : 'We will review your workflow, recommend a plan, and reply with the fastest path to launch.';
-
-            document.getElementById('trustItemOne').innerHTML = '⏱ <strong>1 business day</strong> reply';
-            document.getElementById('trustItemTwo').innerHTML = '🧾 <strong>Starter $29 / Growth $79</strong> launch pricing';
-            document.getElementById('trustItemThree').innerHTML = isWaitlistLead
-                ? '🚫 <strong>No credit card</strong> required today'
-                : '🧭 <strong>Pilot scoping</strong> included';
-            document.getElementById('trustItemFour').innerHTML = '⚙️ <strong>Guided onboarding</strong> when live';
-
-            productSections.forEach((section) => setSectionEnabled(section, false));
-            setSectionEnabled(saasSection, true);
-
-            waitlistPlan.value = selectedPlan;
-            leadTypeField.value = leadType;
-            sourceSurfaceField.value = sourceSurfaceParam || 'saas';
-            sourcePageField.value = sourcePageParam || 'ai-ops-autopilot';
-            ctaTypeField.value = ctaTypeParam || (isWaitlistLead ? 'waitlist' : 'talk_to_sales');
-            planInterestField.value = selectedPlan;
-            subjectField.value = isWaitlistLead
-                ? '[NEW WAITLIST] AI Ops Autopilot'
-                : '[NEW SAAS LEAD] AI Ops Autopilot';
-            updateNextField(leadType, selectedPlan);
-
-            submitButton.textContent = isWaitlistLead ? 'Join Waitlist →' : 'Request Sales Reply →';
-            document.getElementById('privacyNote').textContent = isWaitlistLead
-                ? 'Your details are used only to qualify your waitlist request and follow up on AI Ops Autopilot.'
-                : 'Your details are used only to prepare your AI Ops Autopilot follow-up.';
-
-            document.getElementById('workflowCardTitle').textContent = 'What Happens Next';
-            const steps = document.querySelectorAll('#workflowCard .info-step');
-            const stepCopy = isWaitlistLead
-                ? [
-                    ['Submit waitlist', 'Tell us which workflow you want monitored first.'],
-                    ['Fit review', 'We review your team context within 1 business day.'],
-                    ['Checkout unlock', 'We send onboarding and payment-link timing as soon as the live links are ready.'],
-                    ['Launch', 'You start with the plan that matches your workflow.']
-                ]
-                : [
-                    ['Request sales reply', 'Share your ops context and preferred plan.'],
-                    ['Fit review', 'We review your workflow and recommend the best launch path.'],
-                    ['Pilot scope', 'You receive next-step guidance, onboarding, and payment-link timing.'],
-                    ['Launch', 'You move into guided setup when ready.']
-                ];
-
-            steps.forEach((step, index) => {
-                const textBlock = step.querySelector('.info-step__text');
-                if (!textBlock || !stepCopy[index]) return;
-                const [title, body] = stepCopy[index];
-                textBlock.querySelector('strong').textContent = title;
-                textBlock.querySelector('p').textContent = body;
-            });
-
-            document.getElementById('pricingCardTitle').textContent = 'Launch Pricing';
-            document.getElementById('pricingCardCopy').textContent = 'Self-serve checkout is not live yet, but the current launch plans and handoff path are fixed.';
-            document.getElementById('pricingCardList').innerHTML = [
-                '<li style="margin-bottom:6px;">Starter: $29/mo for core monitoring + weekly reports</li>',
-                '<li style="margin-bottom:6px;">Growth: $79/mo for advanced root-cause AI + forecasting</li>',
-                '<li style="margin-bottom:6px;">Enterprise: custom workflow + onboarding support</li>',
-                '<li>Founding cohort replies within 1 business day</li>'
-            ].join('');
-
-            document.getElementById('contactCardTitle').textContent = isWaitlistLead ? 'Waitlist Contact' : 'Sales Contact';
-            document.getElementById('contactLinkList').innerHTML = [
-                '<a href="/saas/ai-ops-autopilot/" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ AI Ops Autopilot overview</a>',
-                '<a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=talk_to_sales" style="font-size:0.82rem;display:block;margin-bottom:6px;">→ Request sales reply</a>',
-                '<a href="mailto:contact@pure-flon.com?subject=AI%20Ops%20Autopilot" style="font-size:0.82rem;display:block;">→ Email product questions</a>'
-            ].join('');
         }
 
         function applySampleRequestMode() {
@@ -1420,27 +1263,16 @@
             ].join('');
         }
 
-        if (isSaasLead) {
-            applySaasLeadMode();
-        } else {
-            productSections.forEach((section) => setSectionEnabled(section, true));
-            setSectionEnabled(saasSection, false);
-            leadTypeField.value = 'b2b_quote';
-            sourceSurfaceField.value = sourceSurfaceParam;
-            sourcePageField.value = sourcePageParam;
-            ctaTypeField.value = ctaTypeParam || (isSampleRequest ? 'sample_quote' : 'quote');
-            planInterestField.value = '';
-            updateNextField('b2b_quote', '');
-            if (isSampleRequest) {
-                applySampleRequestMode();
-            }
+        productSections.forEach((section) => setSectionEnabled(section, true));
+        leadTypeField.value = 'b2b_quote';
+        sourceSurfaceField.value = sourceSurfaceParam;
+        sourcePageField.value = sourcePageParam;
+        ctaTypeField.value = ctaTypeParam || (isSampleRequest ? 'sample_quote' : 'quote');
+        planInterestField.value = planParam || '';
+        updateNextField('b2b_quote', planInterestField.value);
+        if (isSampleRequest) {
+            applySampleRequestMode();
         }
-
-        waitlistPlan.addEventListener('change', () => {
-            const selectedPlan = waitlistPlan.value || planParam || 'all';
-            planInterestField.value = selectedPlan;
-            updateNextField(leadTypeField.value, selectedPlan);
-        });
 
         // Form submission
         form.addEventListener('submit', function(e) {
@@ -1468,12 +1300,6 @@
                 }
             });
             if (!valid) { e.preventDefault(); return; }
-
-            if (leadTypeField.value !== 'b2b_quote') {
-                const selectedPlan = waitlistPlan.value || planParam || 'all';
-                planInterestField.value = selectedPlan;
-                updateNextField(leadTypeField.value, selectedPlan);
-            }
 
             if (typeof window.gtag === 'function') {
                 window.gtag('event', 'generate_lead', {

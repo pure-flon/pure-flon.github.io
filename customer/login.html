@@ -1,628 +1,340 @@
 <!DOCTYPE html>
-<!-- 
-파일명: customer/login.html
-업데이트: 2025-01-22
-버전: v2.0.0 (완전한 B2B 고객 포털 시스템)
--->
-<html lang="ko" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pure-Flon 고객 포털 로그인 - 견적 내역, 주문 관리, 기술 문서 다운로드 등 전용 서비스를 이용하세요.">
-    <meta name="keywords" content="Pure-Flon 로그인, 고객 포털, B2B 로그인, 견적 관리">
+    <meta name="description" content="PURE-FLON handles quotes, document requests, and follow-up directly by email. No customer login is required.">
     <meta name="robots" content="noindex, nofollow">
-    
-    <title>고객 포털 로그인 | Pure-Flon</title>
-    
-    <!-- Favicon -->
+    <link rel="canonical" href="https://pure-flon.com/customer/login.html">
+    <title>No Login Required | PURE-FLON Coordination</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-WE091T20M0');
-    </script>
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="../css/main.css" as="style">
-    <link rel="preload" href="../css/customer-portal.css" as="style">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/customer-portal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: #dbe6f5;
+            font-family: "Pretendard Variable", "Pretendard", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 28%),
+                linear-gradient(180deg, #050b17 0%, #081323 34%, #0c1728 100%);
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(148, 163, 184, 0.08) 0.7px, transparent 0.7px);
+            background-size: 18px 18px;
+            opacity: 0.2;
+        }
+        .header,
+        main,
+        .footer {
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            background: linear-gradient(180deg, rgba(4, 9, 18, 0.94) 0%, rgba(4, 9, 18, 0.7) 100%);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        }
+        .header__inner,
+        .shell,
+        .footer__inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .header__inner {
+            min-height: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .brand img {
+            width: clamp(148px, 12vw, 180px);
+            height: auto;
+            display: block;
+        }
+        .header__actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        .btn--primary {
+            color: #fff;
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.96) 0%, rgba(37, 99, 235, 0.92) 100%);
+            box-shadow: 0 20px 42px -28px rgba(59, 130, 246, 0.9);
+        }
+        .btn--ghost {
+            color: #dbe6f5;
+            background: rgba(15, 23, 42, 0.48);
+        }
+        .hero {
+            padding: 104px 0 48px;
+        }
+        .hero__grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+            gap: 28px;
+            align-items: end;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            min-height: 36px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 189, 248, 0.24);
+            background: rgba(8, 47, 73, 0.42);
+            color: #bae6fd;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 18px 0 18px;
+            color: #f8fbff;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            max-width: 10ch;
+        }
+        .hero p {
+            max-width: 680px;
+            color: rgba(226, 232, 240, 0.8);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+        .hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .panel,
+        .card,
+        .footer__panel {
+            border-radius: 28px;
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            background: linear-gradient(180deg, rgba(10, 18, 34, 0.92) 0%, rgba(13, 22, 38, 0.96) 100%);
+            box-shadow: 0 28px 80px -48px rgba(2, 6, 23, 0.9);
+        }
+        .panel {
+            padding: 28px;
+        }
+        .panel h2,
+        .section-title {
+            margin: 0 0 12px;
+            color: #f8fbff;
+            font-family: "Outfit", "Pretendard Variable", sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: -0.03em;
+        }
+        .panel p,
+        .card p {
+            margin: 0;
+            color: rgba(226, 232, 240, 0.76);
+            line-height: 1.72;
+        }
+        .panel ul {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .panel li {
+            padding: 12px 0;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            color: #e2e8f0;
+        }
+        .section {
+            padding: 0 0 36px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+        .card {
+            padding: 24px;
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            color: #f8fbff;
+            font-size: 1.08rem;
+            letter-spacing: -0.02em;
+        }
+        .kicker {
+            display: inline-flex;
+            margin-bottom: 12px;
+            color: #7dd3fc;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .footer {
+            padding: 12px 0 56px;
+        }
+        .footer__panel {
+            padding: 28px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.8fr));
+            gap: 18px;
+        }
+        .footer h3,
+        .footer h4 {
+            margin: 0 0 10px;
+            color: #f8fbff;
+        }
+        .footer p,
+        .footer a {
+            color: rgba(226, 232, 240, 0.76);
+            text-decoration: none;
+            line-height: 1.74;
+        }
+        .footer a:hover {
+            color: #fff;
+        }
+        @media (max-width: 980px) {
+            .hero__grid,
+            .footer__panel,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .header__inner {
+                flex-direction: column;
+                justify-content: center;
+                padding: 18px 24px;
+            }
+        }
+        @media (max-width: 640px) {
+            .hero {
+                padding-top: 88px;
+            }
+            h1 {
+                max-width: none;
+                font-size: clamp(2.2rem, 12vw, 3.6rem);
+            }
+            .shell,
+            .footer__inner,
+            .header__inner {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+        }
+    </style>
 </head>
-<body class="login-page">
-    <!-- Skip to main content -->
-    <a href="#main-content" class="skip-link">메인 콘텐츠로 건너뛰기</a>
-    
-    <!-- Header (Simplified for login) -->
-    <header class="header header--minimal" role="banner">
-        <div class="header__container">
-            <div class="header__logo">
-                <a href="../" aria-label="Pure-Flon 홈페이지">
-                    <img src="../images/logo.svg" alt="Pure-Flon" width="180" height="40">
-                </a>
-            </div>
-            
+<body>
+    <header class="header">
+        <div class="header__inner">
+            <a class="brand" href="../" aria-label="PURE-FLON home">
+                <img src="../images/logo.png" alt="PURE-FLON">
+            </a>
             <div class="header__actions">
-                <a href="../" class="btn btn--outline btn--sm">홈으로</a>
+                <a class="btn btn--ghost" href="../products/">Products</a>
+                <a class="btn btn--ghost" href="../quote/">Quote Overview</a>
+                <a class="btn btn--primary" href="../quote/request.html">Request a Quote</a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main id="main-content" role="main" class="login-main">
-        <div class="login-container">
-            <!-- Login Form Section -->
-            <div class="login-form-section">
-                <div class="login-header">
-                    <h1>고객 포털 로그인</h1>
-                    <p>Pure-Flon 전용 고객 서비스에 오신 것을 환영합니다</p>
-                </div>
-
-                <!-- Login Form -->
-                <form id="login-form" class="login-form" novalidate>
-                    <div class="form-group">
-                        <label for="email">이메일 주소</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            required 
-                            autocomplete="email"
-                            placeholder="이메일을 입력하세요"
-                            aria-describedby="email-error"
-                        >
-                        <div id="email-error" class="error-message" role="alert"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">비밀번호</label>
-                        <div class="password-input">
-                            <input 
-                                type="password" 
-                                id="password" 
-                                name="password" 
-                                required 
-                                autocomplete="current-password"
-                                placeholder="비밀번호를 입력하세요"
-                                aria-describedby="password-error"
-                            >
-                            <button type="button" class="password-toggle" aria-label="비밀번호 보기/숨기기">
-                                👁️
-                            </button>
-                        </div>
-                        <div id="password-error" class="error-message" role="alert"></div>
-                    </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="remember-me" name="rememberMe">
-                            <span class="checkmark"></span>
-                            로그인 정보 기억하기
-                        </label>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn--primary btn--full" id="login-button">
-                            <span class="btn-text">로그인</span>
-                            <span class="btn-spinner" style="display: none;">
-                                <span class="spinner"></span>
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="form-links">
-                        <a href="#" class="forgot-password-link" onclick="showForgotPasswordModal()">
-                            비밀번호를 잊으셨나요?
-                        </a>
-                    </div>
-                </form>
-
-                <!-- Social Login (Optional) -->
-                <div class="social-login">
-                    <div class="social-divider">
-                        <span>또는</span>
-                    </div>
-                    
-                    <div class="social-buttons">
-                        <button class="social-btn social-btn--google" onclick="signInWithGoogle()">
-                            <svg class="social-icon" width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                            </svg>
-                            Google 계정으로 로그인
-                        </button>
+    <main>
+        <section class="hero">
+            <div class="shell hero__grid">
+                <div>
+                    <span class="eyebrow">Coordination update</span>
+                    <h1>No customer login required.</h1>
+                    <p>If you reached an older portal or login URL, you are still in the right place. PURE-FLON currently handles RFQs, document requests, sample follow-up, and order coordination directly through the quote flow and email instead of customer account sign-in.</p>
+                    <div class="hero__actions">
+                        <a class="btn btn--primary" href="../quote/request.html">Start RFQ</a>
+                        <a class="btn btn--ghost" href="mailto:contact@pure-flon.com">Email contact@pure-flon.com</a>
                     </div>
                 </div>
+                <aside class="panel">
+                    <h2>Use this lane when you need to:</h2>
+                    <ul>
+                        <li>send drawings, quantities, and tubing specs for review</li>
+                        <li>ask for a sample, datasheet, or compliance document</li>
+                        <li>follow up on a submitted quote or active order</li>
+                        <li>route a technical question to the support lane</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
 
-                <!-- Registration Link -->
-                <div class="registration-prompt">
-                    <p>아직 계정이 없으신가요?</p>
-                    <a href="register.html" class="btn btn--outline">계정 만들기</a>
+        <section class="section">
+            <div class="shell">
+                <h2 class="section-title">What replaced the old login flow</h2>
+                <div class="grid">
+                    <article class="card">
+                        <span class="kicker">RFQ lane</span>
+                        <h3>Submit once, then continue by email</h3>
+                        <p>The quote request form is the main intake lane. Once your RFQ is submitted, follow-up, revisions, and clarifications continue through the same coordination thread.</p>
+                    </article>
+                    <article class="card">
+                        <span class="kicker">Documents</span>
+                        <h3>Specs and compliance handled directly</h3>
+                        <p>Datasheets, sample coordination, and supporting documents are shared by the team without requiring account creation or portal access.</p>
+                    </article>
+                    <article class="card">
+                        <span class="kicker">Support</span>
+                        <h3>Technical help stays reachable</h3>
+                        <p>If your request needs engineering review, the support lane can be reached directly after quote submission or through the contact inbox.</p>
+                    </article>
                 </div>
             </div>
-
-            <!-- Benefits Section -->
-            <div class="login-benefits-section">
-                <div class="benefits-content">
-                    <h2>고객 포털 서비스</h2>
-                    <p>Pure-Flon 고객 포털에서 다음 서비스를 이용하실 수 있습니다</p>
-                    
-                    <div class="benefits-list">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">📊</div>
-                            <div class="benefit-content">
-                                <h3>견적 및 주문 관리</h3>
-                                <p>실시간으로 견적 상태를 확인하고 주문 내역을 관리하세요</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">📚</div>
-                            <div class="benefit-content">
-                                <h3>기술 문서 라이브러리</h3>
-                                <p>제품 데이터시트, 인증서, 설치 가이드를 다운로드하세요</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🎯</div>
-                            <div class="benefit-content">
-                                <h3>맞춤형 가격 정보</h3>
-                                <p>고객 등급에 따른 특별 할인가와 대량 주문 혜택을 확인하세요</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🛠️</div>
-                            <div class="benefit-content">
-                                <h3>전담 기술 지원</h3>
-                                <p>전문 엔지니어와 직접 소통하며 기술적 문제를 해결하세요</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">🚀</div>
-                            <div class="benefit-content">
-                                <h3>우선 납기 서비스</h3>
-                                <p>등급별 우선 생산 및 배송 서비스로 빠른 납기를 보장받으세요</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">📈</div>
-                            <div class="benefit-content">
-                                <h3>구매 분석 리포트</h3>
-                                <p>월별 구매 내역과 비용 분석을 통해 더 나은 구매 결정을 하세요</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <!-- Forgot Password Modal -->
-    <div id="forgot-password-modal" class="modal" style="display: none;">
-        <div class="modal-backdrop">
-            <div class="modal-container">
-                <div class="modal-header">
-                    <h3>비밀번호 재설정</h3>
-                    <button class="modal-close" onclick="closeForgotPasswordModal()">&times;</button>
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__panel">
+                <div>
+                    <h3>PURE-FLON coordination</h3>
+                    <p>Request quotes, send tubing specs, and continue follow-up without a separate portal login. The public B2B flow is now centered on RFQ intake and direct coordination.</p>
                 </div>
-                
-                <div class="modal-body">
-                    <p>등록하신 이메일 주소를 입력하시면 비밀번호 재설정 링크를 발송해드립니다.</p>
-                    
-                    <form id="forgot-password-form">
-                        <div class="form-group">
-                            <label for="reset-email">이메일 주소</label>
-                            <input 
-                                type="email" 
-                                id="reset-email" 
-                                name="resetEmail" 
-                                required 
-                                placeholder="이메일을 입력하세요"
-                            >
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="button" class="btn btn--outline" onclick="closeForgotPasswordModal()">
-                                취소
-                            </button>
-                            <button type="submit" class="btn btn--primary" id="reset-button">
-                                재설정 링크 전송
-                            </button>
-                        </div>
-                    </form>
+                <div>
+                    <h4>Explore</h4>
+                    <p><a href="../products/">Products</a></p>
+                    <p><a href="../quote/">Quote overview</a></p>
+                    <p><a href="../company/about.html">About</a></p>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p><a href="mailto:contact@pure-flon.com">contact@pure-flon.com</a></p>
+                    <p><a href="../quote/request.html">Submit RFQ</a></p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Success Message -->
-    <div id="success-message" class="notification notification--success" style="display: none;">
-        <span class="notification-text"></span>
-        <button class="notification-close">&times;</button>
-    </div>
-
-    <!-- Error Message -->
-    <div id="error-message" class="notification notification--error" style="display: none;">
-        <span class="notification-text"></span>
-        <button class="notification-close">&times;</button>
-    </div>
-
-    <!-- Scripts -->
-    <script src="../js/main.js"></script>
-    <script src="../js/modules/CustomerPortal.js"></script>
-    <script>
-        // 고객 포털 로그인 시스템
-        class LoginSystem {
-            constructor() {
-                this.supabase = window.supabase?.createClient(
-                    window.SUPABASE_URL,
-                    window.SUPABASE_ANON_KEY
-                );
-                this.form = document.getElementById('login-form');
-                this.passwordToggle = document.querySelector('.password-toggle');
-                this.init();
-            }
-
-            init() {
-                this.setupEventListeners();
-                this.checkExistingSession();
-                console.log('🔐 로그인 시스템 초기화 완료');
-            }
-
-            setupEventListeners() {
-                // 로그인 폼 제출
-                this.form.addEventListener('submit', (e) => this.handleLogin(e));
-
-                // 비밀번호 토글
-                this.passwordToggle.addEventListener('click', () => this.togglePassword());
-
-                // Enter 키 처리
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' && document.activeElement.form === this.form) {
-                        e.preventDefault();
-                        this.handleLogin(e);
-                    }
-                });
-
-                // 알림 닫기 버튼
-                document.querySelectorAll('.notification-close').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.target.closest('.notification').style.display = 'none';
-                    });
-                });
-
-                // 비밀번호 재설정 폼
-                document.getElementById('forgot-password-form').addEventListener('submit', (e) => {
-                    this.handlePasswordReset(e);
-                });
-            }
-
-            async checkExistingSession() {
-                if (!this.supabase) return;
-
-                try {
-                    const { data: { session } } = await this.supabase.auth.getSession();
-                    if (session) {
-                        // 이미 로그인된 상태면 대시보드로 리다이렉트
-                        this.redirectToDashboard();
-                    }
-                } catch (error) {
-                    console.error('세션 확인 실패:', error);
-                }
-            }
-
-            async handleLogin(e) {
-                e.preventDefault();
-                
-                const submitButton = document.getElementById('login-button');
-                const btnText = submitButton.querySelector('.btn-text');
-                const btnSpinner = submitButton.querySelector('.btn-spinner');
-                
-                // 버튼 로딩 상태
-                this.setLoadingState(true);
-                
-                try {
-                    // 폼 데이터 수집
-                    const formData = new FormData(this.form);
-                    const email = formData.get('email').trim();
-                    const password = formData.get('password');
-                    const rememberMe = formData.get('rememberMe') === 'on';
-
-                    // 기본 유효성 검사
-                    if (!this.validateForm(email, password)) {
-                        this.setLoadingState(false);
-                        return;
-                    }
-
-                    if (this.supabase) {
-                        // Supabase 로그인
-                        const { data, error } = await this.supabase.auth.signInWithPassword({
-                            email,
-                            password
-                        });
-
-                        if (error) {
-                            throw error;
-                        }
-
-                        // 로그인 성공
-                        this.trackLoginSuccess();
-                        this.showNotification('로그인되었습니다!', 'success');
-                        
-                        // 로그인 정보 기억하기 처리
-                        if (rememberMe) {
-                            localStorage.setItem('rememberEmail', email);
-                        } else {
-                            localStorage.removeItem('rememberEmail');
-                        }
-
-                        // 대시보드로 이동
-                        setTimeout(() => {
-                            this.redirectToDashboard();
-                        }, 1000);
-
-                    } else {
-                        // Supabase 없이도 작동하도록 시뮬레이션
-                        await this.simulateLogin(email, password);
-                    }
-
-                } catch (error) {
-                    console.error('로그인 실패:', error);
-                    this.handleLoginError(error);
-                } finally {
-                    this.setLoadingState(false);
-                }
-            }
-
-            async simulateLogin(email, password) {
-                // 개발/테스트용 시뮬레이션 로그인
-                await new Promise(resolve => setTimeout(resolve, 1500)); // 로딩 시뮬레이션
-
-                // 테스트 계정들
-                const testAccounts = [
-                    { email: 'test@pure-flon.com', password: 'test123' },
-                    { email: 'demo@pure-flon.com', password: 'demo123' },
-                    { email: 'admin@pure-flon.com', password: 'admin123' }
-                ];
-
-                const validAccount = testAccounts.find(
-                    account => account.email === email && account.password === password
-                );
-
-                if (validAccount) {
-                    // 임시 세션 저장
-                    sessionStorage.setItem('customer_session', JSON.stringify({
-                        email: email,
-                        loginTime: new Date().toISOString(),
-                        sessionId: Math.random().toString(36).substr(2, 9)
-                    }));
-
-                    this.trackLoginSuccess();
-                    this.showNotification('로그인되었습니다!', 'success');
-                    setTimeout(() => this.redirectToDashboard(), 1000);
-                } else {
-                    throw new Error('이메일 또는 비밀번호가 올바르지 않습니다.');
-                }
-            }
-
-            validateForm(email, password) {
-                let isValid = true;
-                
-                // 이메일 검증
-                if (!email) {
-                    this.showFieldError('email', '이메일을 입력해주세요');
-                    isValid = false;
-                } else if (!this.isValidEmail(email)) {
-                    this.showFieldError('email', '올바른 이메일 형식이 아닙니다');
-                    isValid = false;
-                } else {
-                    this.clearFieldError('email');
-                }
-
-                // 비밀번호 검증
-                if (!password) {
-                    this.showFieldError('password', '비밀번호를 입력해주세요');
-                    isValid = false;
-                } else if (password.length < 6) {
-                    this.showFieldError('password', '비밀번호는 6자 이상이어야 합니다');
-                    isValid = false;
-                } else {
-                    this.clearFieldError('password');
-                }
-
-                return isValid;
-            }
-
-            showFieldError(fieldName, message) {
-                const field = document.getElementById(fieldName);
-                const errorDiv = document.getElementById(`${fieldName}-error`);
-                
-                field.classList.add('error');
-                errorDiv.textContent = message;
-                errorDiv.style.display = 'block';
-            }
-
-            clearFieldError(fieldName) {
-                const field = document.getElementById(fieldName);
-                const errorDiv = document.getElementById(`${fieldName}-error`);
-                
-                field.classList.remove('error');
-                errorDiv.textContent = '';
-                errorDiv.style.display = 'none';
-            }
-
-            handleLoginError(error) {
-                let message = '로그인 중 오류가 발생했습니다.';
-                
-                if (error.message.includes('Invalid login credentials')) {
-                    message = '이메일 또는 비밀번호가 올바르지 않습니다.';
-                } else if (error.message.includes('Email not confirmed')) {
-                    message = '이메일 인증이 필요합니다. 인증 메일을 확인해주세요.';
-                } else if (error.message.includes('Too many requests')) {
-                    message = '너무 많은 로그인 시도입니다. 잠시 후 다시 시도해주세요.';
-                } else if (error.message.includes('User not found')) {
-                    message = '등록되지 않은 이메일입니다.';
-                } else {
-                    message = error.message;
-                }
-
-                this.showNotification(message, 'error');
-            }
-
-            setLoadingState(loading) {
-                const submitButton = document.getElementById('login-button');
-                const btnText = submitButton.querySelector('.btn-text');
-                const btnSpinner = submitButton.querySelector('.btn-spinner');
-                
-                if (loading) {
-                    submitButton.disabled = true;
-                    btnText.style.display = 'none';
-                    btnSpinner.style.display = 'inline-block';
-                    submitButton.classList.add('loading');
-                } else {
-                    submitButton.disabled = false;
-                    btnText.style.display = 'inline';
-                    btnSpinner.style.display = 'none';
-                    submitButton.classList.remove('loading');
-                }
-            }
-
-            togglePassword() {
-                const passwordInput = document.getElementById('password');
-                const isPassword = passwordInput.type === 'password';
-                
-                passwordInput.type = isPassword ? 'text' : 'password';
-                this.passwordToggle.textContent = isPassword ? '🙈' : '👁️';
-            }
-
-            isValidEmail(email) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-            }
-
-            trackLoginSuccess() {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'customer_login_success', {
-                        entrypoint: 'customer_login',
-                        transport_type: 'beacon'
-                    });
-                }
-            }
-
-            showNotification(message, type) {
-                const notification = document.getElementById(`${type === 'success' ? 'success' : 'error'}-message`);
-                const textElement = notification.querySelector('.notification-text');
-                
-                textElement.textContent = message;
-                notification.style.display = 'block';
-                
-                // 자동으로 3초 후 숨기기
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 3000);
-            }
-
-            redirectToDashboard() {
-                // URL 파라미터에서 리다이렉트 URL 확인
-                const urlParams = new URLSearchParams(window.location.search);
-                const returnUrl = urlParams.get('returnUrl');
-                
-                if (returnUrl && returnUrl.startsWith('/')) {
-                    window.location.href = returnUrl;
-                } else {
-                    window.location.href = 'portal/dashboard.html';
-                }
-            }
-
-            // 비밀번호 재설정
-            async handlePasswordReset(e) {
-                e.preventDefault();
-                
-                const resetButton = document.getElementById('reset-button');
-                const resetEmail = document.getElementById('reset-email').value.trim();
-                
-                if (!this.isValidEmail(resetEmail)) {
-                    alert('올바른 이메일 주소를 입력해주세요.');
-                    return;
-                }
-
-                try {
-                    resetButton.disabled = true;
-                    resetButton.textContent = '전송 중...';
-
-                    if (this.supabase) {
-                        const { error } = await this.supabase.auth.resetPasswordForEmail(resetEmail, {
-                            redirectTo: `${window.location.origin}/customer/reset-password.html`
-                        });
-
-                        if (error) throw error;
-                    } else {
-                        // 시뮬레이션
-                        await new Promise(resolve => setTimeout(resolve, 1000));
-                    }
-
-                    this.showNotification('비밀번호 재설정 링크가 이메일로 전송되었습니다.', 'success');
-                    this.closeForgotPasswordModal();
-
-                } catch (error) {
-                    console.error('비밀번호 재설정 실패:', error);
-                    alert('비밀번호 재설정 중 오류가 발생했습니다.');
-                } finally {
-                    resetButton.disabled = false;
-                    resetButton.textContent = '재설정 링크 전송';
-                }
-            }
-        }
-
-        // 전역 함수들
-        function showForgotPasswordModal() {
-            document.getElementById('forgot-password-modal').style.display = 'block';
-            document.getElementById('reset-email').focus();
-        }
-
-        function closeForgotPasswordModal() {
-            document.getElementById('forgot-password-modal').style.display = 'none';
-            document.getElementById('forgot-password-form').reset();
-        }
-
-        async function signInWithGoogle() {
-            alert('Google 로그인 기능이 곧 추가됩니다!');
-            // TODO: Google OAuth 구현
-        }
-
-        // 페이지 로드 시 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            window.PureFlonLogin = new LoginSystem();
-            
-            // 저장된 이메일 복원
-            const rememberEmail = localStorage.getItem('rememberEmail');
-            if (rememberEmail) {
-                document.getElementById('email').value = rememberEmail;
-                document.getElementById('remember-me').checked = true;
-            }
-        });
-
-        // 모달 외부 클릭 시 닫기
-        window.addEventListener('click', function(e) {
-            const modal = document.getElementById('forgot-password-modal');
-            if (e.target === modal) {
-                closeForgotPasswordModal();
-            }
-        });
-    </script>
+    </footer>
 </body>
 </html>
