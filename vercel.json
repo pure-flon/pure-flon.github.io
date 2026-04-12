@@ -146,9 +146,9 @@
     "SITE_URL": "https://pure-flon.com",
     "API_URL": "https://api.pure-flon.com"
   },
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "buildCommand": "npm run build",
+  "devCommand": "npx serve .",
+  "installCommand": "",
+  "buildCommand": "",
   "outputDirectory": ".",
   "crons": [
     {
