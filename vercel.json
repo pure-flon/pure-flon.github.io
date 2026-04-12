@@ -159,7 +159,7 @@
     },
     {
       "path": "/api/cron/cache-warmup",
-      "schedule": "0 */6 * * *"
+      "schedule": "0 6 * * *"
     }
   ]
 }
