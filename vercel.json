@@ -144,9 +144,7 @@
   },
   "env": {
     "SITE_URL": "https://pure-flon.com",
-    "API_URL": "https://api.pure-flon.com",
-    "GA_MEASUREMENT_ID": "@ga_measurement_id",
-    "SENTRY_DSN": "@sentry_dsn"
+    "API_URL": "https://api.pure-flon.com"
   },
   "devCommand": "npm run dev",
   "installCommand": "npm install",
