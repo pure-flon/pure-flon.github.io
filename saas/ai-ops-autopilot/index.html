@@ -1,567 +1,458 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Ops Autopilot — Waitlist & Guided Onboarding | Pure-Flon</title>
-  <meta name="description" content="Join the AI Ops Autopilot waitlist for B2B teams. Share your workflow and get a rollout follow-up within 1 business day." />
+  <title>AI Ops Autopilot | Pure-Flon</title>
+  <meta name="description" content="AI Ops Autopilot로 운영 자동화를 시작하세요. Starter $29/mo, Growth $79/mo. 결제 링크 준비 시 즉시 Stripe 체크아웃으로 이동합니다." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://pure-flon.com/saas/ai-ops-autopilot/" />
   <link rel="icon" href="/favicon.ico" />
-  <!-- Google tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WE091T20M0');</script>
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="AI Ops Autopilot — Waitlist & Guided Onboarding" />
-  <meta property="og:description" content="Waitlist-first launch for AI Ops Autopilot. Share your ops context and get onboarding guidance within 1 business day." />
+  <meta property="og:title" content="AI Ops Autopilot | Pure-Flon" />
+  <meta property="og:description" content="Starter/Growth 구독으로 운영 자동화를 시작하세요." />
   <meta property="og:url" content="https://pure-flon.com/saas/ai-ops-autopilot/" />
   <meta property="og:site_name" content="Pure-Flon" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Ops Autopilot — Waitlist & Guided Onboarding" />
-  <meta name="twitter:description" content="Waitlist-first AI Ops launch for B2B teams with guided onboarding and fixed launch pricing." />
+  <meta name="twitter:title" content="AI Ops Autopilot | Pure-Flon" />
+  <meta name="twitter:description" content="Starter $29/mo, Growth $79/mo로 AI 운영 자동화 도입." />
 
-  <!-- Schema.org Product -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "AI Ops Autopilot",
-    "description": "Waitlist-first AI Ops launch program for B2B industrial teams with guided onboarding",
-    "brand": { "@type": "Brand", "name": "Pure-Flon" },
-    "offers": {
-      "@type": "Offer",
-      "price": "29",
-      "priceCurrency": "USD",
-      "priceSpecification": { "@type": "RecurringCharge", "billingPeriod": "monthly" },
-      "availability": "https://schema.org/InStock"
-    }
-  }
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE091T20M0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-WE091T20M0");
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            surface: { DEFAULT: '#0a0a0f', card: '#12121a', hover: '#1a1a26', border: '#1e1e2e' },
-            accent: { DEFAULT: '#6366f1', dim: '#4f46e5', glow: 'rgba(99,102,241,0.15)' },
-            emerald: { glow: 'rgba(16,185,129,0.15)' },
-            muted: '#64748b',
-          },
-        },
-      },
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #f7f9f7;
+      --surface: #ffffff;
+      --text: #111a14;
+      --muted: #4c5a53;
+      --line: #d9e3dd;
+      --primary: #1f8f59;
+      --primary-ink: #f3fff8;
+      --secondary: #f1f6f3;
+      --secondary-ink: #133524;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #0a0a0f;
-      color: #e2e8f0;
-      font-family: 'Inter', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      margin: 0;
+      color: var(--text);
+      font-family: "Noto Sans KR", "Space Grotesk", sans-serif;
+      background:
+        radial-gradient(1200px 420px at 90% -10%, #d6f0de 0%, transparent 58%),
+        radial-gradient(800px 360px at 0% 20%, #e9f5ed 0%, transparent 52%),
+        var(--bg);
+      line-height: 1.55;
     }
-    .bg-grid {
-      position: fixed; inset: 0; z-index: 0;
-      background-image:
-        linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
     }
-    .glow-hero {
-      position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
-      width: 900px; height: 600px; z-index: 0;
-      background: radial-gradient(ellipse at center, rgba(99,102,241,0.12) 0%, transparent 70%);
-      pointer-events: none;
+
+    .section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
     }
-    .card {
-      background: #12121a;
-      border: 1px solid #1e1e2e;
-      border-radius: 12px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      line-height: 1.15;
+      font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
     }
-    .card:hover {
-      border-color: rgba(99,102,241,0.4);
-      box-shadow: 0 0 24px rgba(99,102,241,0.08);
+
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
     }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #2d5842;
+    }
+
+    .sticky-cta {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 249, 247, 0.88);
+      backdrop-filter: blur(8px);
+    }
+
+    .sticky-cta-inner {
+      padding: 10px 0;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid #0b5c37;
+      outline-offset: 2px;
+    }
+
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #6366f1; color: #fff; font-weight: 600;
-      padding: 14px 28px; border-radius: 8px; border: none; cursor: pointer;
-      font-size: 16px; transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      text-decoration: none;
+      background: var(--primary);
+      color: var(--primary-ink);
     }
+
     .btn-primary:hover {
-      background: #4f46e5;
-      box-shadow: 0 0 32px rgba(99,102,241,0.4);
       transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(31, 143, 89, 0.22);
     }
+
     .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: #e2e8f0; font-weight: 500;
-      padding: 14px 28px; border-radius: 8px; border: 1px solid #1e1e2e; cursor: pointer;
-      font-size: 16px; transition: border-color 0.2s, background 0.2s;
-      text-decoration: none;
+      background: var(--secondary);
+      color: var(--secondary-ink);
+      border-color: #c7d8ce;
     }
-    .btn-secondary:hover { border-color: #6366f1; background: rgba(99,102,241,0.08); }
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);
-      color: #a5b4fc; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 99px;
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(22, 65, 46, 0.12);
     }
-    .badge-green {
-      background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.3); color: #34d399;
+
+    .is-disabled {
+      opacity: 0.55;
+      pointer-events: none;
     }
-    .stat-value { font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; }
-    .gradient-text {
-      background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #818cf8 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+    .grid {
+      display: grid;
+      gap: 16px;
     }
-    .pulse-dot {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;
-      animation: pulse 2s infinite;
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: var(--surface);
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+
+    .hero-copy {
+      max-width: 640px;
     }
-    .feature-icon {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-      display: flex; align-items: center; justify-content: center; font-size: 22px;
+
+    .hero-lead {
+      font-size: 18px;
+      line-height: 1.6;
     }
-    .pricing-highlight {
-      border-color: rgba(99,102,241,0.5) !important;
-      box-shadow: 0 0 40px rgba(99,102,241,0.12);
+
+    .steps {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
     }
-    .faq-item summary { cursor: pointer; list-style: none; }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-chevron { transition: transform 0.2s; }
-    details[open] .faq-chevron { transform: rotate(180deg); }
-    @media (max-width: 768px) {
-      .stat-value { font-size: 1.8rem; }
+
+    .pricing-card.is-featured {
+      border-color: #16965c;
+      box-shadow: 0 0 0 1px rgba(22, 150, 92, 0.2);
+    }
+
+    .pricing-price {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0e2f21;
+      margin-bottom: 10px;
+    }
+
+    .pricing-copy {
+      min-height: 52px;
+      margin-bottom: 16px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfdfb;
+      padding: 14px 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #21362c;
+    }
+
+    @media (max-width: 375px) {
+      .cta-row {
+        flex-direction: column;
+      }
+
+      .cta-row .btn {
+        width: 100%;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .trust-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .hero-copy {
+        max-width: 720px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
   </style>
-    <script src="/js/site-i18n.js"></script>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="glow-hero"></div>
-
-  <!-- NAV -->
-  <nav class="relative z-50 border-b border-surface-border/50 bg-surface/80 backdrop-blur-sm sticky top-0">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2 text-white font-semibold">
-        <span class="text-accent text-lg">◆</span>
-        <span>Pure-Flon</span>
-      </a>
-      <div class="hidden md:flex items-center gap-6 text-sm text-muted">
-        <a href="#features" class="hover:text-white transition-colors">Features</a>
-        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
-        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
-      </div>
-      <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=all" class="btn-primary text-sm py-2 px-5">Join Waitlist</a>
+  <div class="sticky-cta" aria-label="top-cta">
+    <div class="container sticky-cta-inner cta-row">
+      <a id="cta-top-starter" class="btn btn-primary" data-plan="starter" data-cta-slot="top" href="__STRIPE_STARTER_PAYMENT_LINK__">Starter 시작하기 ($29/mo)</a>
+      <a id="cta-top-growth" class="btn btn-secondary" data-plan="growth" data-cta-slot="top" href="__STRIPE_GROWTH_PAYMENT_LINK__">Growth 시작하기 ($79/mo)</a>
     </div>
-  </nav>
+  </div>
 
-  <!-- HERO -->
-  <section class="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 text-center">
-    <div class="inline-flex items-center gap-2 mb-6">
-      <span class="badge">
-        <span class="pulse-dot"></span>
-        Beta — Early Access Open
-      </span>
-    </div>
-
-    <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-      Your Operations,<br />
-      <span class="gradient-text">Running on Autopilot</span>
-    </h1>
-
-    <p class="text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-      AI Ops Autopilot is currently onboarding through a guided waitlist flow.
-      Share your workflow and we will follow up with fit, rollout scope, and
-      payment-link timing within 1 business day.
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-      <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=all" class="btn-primary text-base">
-        Join Waitlist
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="/quote/" class="btn-secondary text-base">
-        Talk to Sales
-      </a>
-    </div>
-
-    <!-- Launch truth bar -->
-    <div class="flex flex-wrap gap-8 justify-center items-center text-sm text-muted">
-      <span class="flex items-center gap-2">
-        <svg width="16" height="16" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Waitlist intake open
-      </span>
-      <span class="flex items-center gap-2">
-        <svg width="16" height="16" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        1 business day reply
-      </span>
-      <span class="flex items-center gap-2">
-        <svg width="16" height="16" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Guided onboarding path
-      </span>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="relative z-10 max-w-6xl mx-auto px-6 pb-20">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="card p-6 text-center">
-        <div class="stat-value gradient-text">Waitlist</div>
-        <div class="text-muted text-sm mt-2">Current access mode</div>
-      </div>
-      <div class="card p-6 text-center">
-        <div class="stat-value gradient-text">1 day</div>
-        <div class="text-muted text-sm mt-2">Follow-up SLA</div>
-      </div>
-      <div class="card p-6 text-center">
-        <div class="stat-value gradient-text">$29</div>
-        <div class="text-muted text-sm mt-2">Starter launch plan</div>
-      </div>
-      <div class="card p-6 text-center">
-        <div class="stat-value gradient-text">$79</div>
-        <div class="text-muted text-sm mt-2">Growth launch plan</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROBLEM -->
-  <section class="relative z-10 max-w-6xl mx-auto px-6 pb-24">
-    <div class="card p-10 md:p-14 text-center max-w-3xl mx-auto">
-      <div class="text-3xl mb-4">😩</div>
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-        Ops issues that cost you quietly
-      </h2>
-      <p class="text-muted text-lg leading-relaxed">
-        Order delays spotted 3 days late. Inventory mismatches no one noticed.
-        A supplier SLA breach buried in email threads.
-        Your team is firefighting, not building.
-      </p>
-      <div class="mt-8 text-accent font-semibold text-lg">↓ There's a better way.</div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features" class="relative z-10 max-w-6xl mx-auto px-6 pb-24">
-    <div class="text-center mb-14">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        Everything your ops team needs — automated
-      </h2>
-      <p class="text-muted text-lg max-w-2xl mx-auto">
-        AI Ops Autopilot connects to your existing data sources and takes over the repetitive monitoring work.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="card p-7">
-        <div class="feature-icon mb-4">🔍</div>
-        <h3 class="font-semibold text-white text-lg mb-2">Anomaly Detection</h3>
-        <p class="text-muted text-sm leading-relaxed">
-          ML models trained on your historical ops data detect unusual patterns in orders, inventory, logistics, and supplier performance — in real time.
-        </p>
-      </div>
-
-      <div class="card p-7">
-        <div class="feature-icon mb-4">📊</div>
-        <h3 class="font-semibold text-white text-lg mb-2">Auto-Generated Reports</h3>
-        <p class="text-muted text-sm leading-relaxed">
-          Daily and weekly ops summaries delivered to your inbox automatically. Zero manual data gathering. Always up to date.
-        </p>
-      </div>
-
-      <div class="card p-7">
-        <div class="feature-icon mb-4">🔔</div>
-        <h3 class="font-semibold text-white text-lg mb-2">Instant Alerts</h3>
-        <p class="text-muted text-sm leading-relaxed">
-          Slack, email, or webhook alerts the moment something drifts outside your defined thresholds. Alert fatigue? Not here — only signal, no noise.
-        </p>
-      </div>
-
-      <div class="card p-7">
-        <div class="feature-icon mb-4">🔗</div>
-        <h3 class="font-semibold text-white text-lg mb-2">ERP & CRM Integrations</h3>
-        <p class="text-muted text-sm leading-relaxed">
-          Connects to your existing tools — spreadsheets, ERPs, Shopify, HubSpot, custom APIs. No data migration, no new system to learn.
-        </p>
-      </div>
-
-      <div class="card p-7">
-        <div class="feature-icon mb-4">🤖</div>
-        <h3 class="font-semibold text-white text-lg mb-2">AI Root-Cause Analysis</h3>
-        <p class="text-muted text-sm leading-relaxed">
-          When an anomaly fires, get an instant AI explanation of likely root causes and suggested next steps — so your team can act, not investigate.
-        </p>
-      </div>
-
-      <div class="card p-7">
-        <div class="feature-icon mb-4">📈</div>
-        <h3 class="font-semibold text-white text-lg mb-2">Trend Forecasting</h3>
-        <p class="text-muted text-sm leading-relaxed">
-          Predict demand spikes, stock-outs, and delivery bottlenecks before they happen. Plan ahead with confidence.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="relative z-10 max-w-6xl mx-auto px-6 pb-24">
-    <div class="text-center mb-14">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Up and running in 5 minutes</h2>
-      <p class="text-muted text-lg">No engineers. No complex onboarding. Just connect and go.</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 relative">
-      <!-- connector line (desktop) -->
-      <div class="hidden md:block absolute top-10 left-1/6 right-1/6 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
-
-      <div class="card p-8 text-center">
-        <div class="w-12 h-12 rounded-full bg-accent/10 border border-accent/30 text-accent font-bold text-lg flex items-center justify-center mx-auto mb-5">1</div>
-        <h3 class="font-semibold text-white mb-2">Connect your data</h3>
-        <p class="text-muted text-sm">Link your spreadsheet, ERP, or API. We auto-detect your data schema.</p>
-      </div>
-
-      <div class="card p-8 text-center">
-        <div class="w-12 h-12 rounded-full bg-accent/10 border border-accent/30 text-accent font-bold text-lg flex items-center justify-center mx-auto mb-5">2</div>
-        <h3 class="font-semibold text-white mb-2">Set your thresholds</h3>
-        <p class="text-muted text-sm">Define what "normal" looks like — or let the AI learn from your history.</p>
-      </div>
-
-      <div class="card p-8 text-center">
-        <div class="w-12 h-12 rounded-full bg-accent/10 border border-accent/30 text-accent font-bold text-lg flex items-center justify-center mx-auto mb-5">3</div>
-        <h3 class="font-semibold text-white mb-2">Receive alerts & reports</h3>
-        <p class="text-muted text-sm">Get notified when something drifts. Review AI-generated daily ops summaries.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="relative z-10 max-w-6xl mx-auto px-6 pb-24">
-    <div class="text-center mb-14">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Simple, transparent pricing</h2>
-      <p class="text-muted text-lg">Launch pricing with waitlist onboarding. Self-serve checkout opens after payment links are live.</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-
-      <!-- Starter -->
-      <div class="card p-8 flex flex-col">
-        <div class="text-muted text-sm font-medium mb-3 uppercase tracking-wider">Starter</div>
-        <div class="flex items-end gap-1 mb-1">
-          <span class="text-4xl font-extrabold text-white">$29</span>
-          <span class="text-muted mb-1">/mo</span>
+  <main>
+    <section id="hero" class="section">
+      <div class="container hero-copy">
+        <span class="eyebrow">AI Ops Autopilot</span>
+        <h1>운영 자동화를 5분 안에 — 팀 전체가 쉬는 동안</h1>
+        <p class="hero-lead">복잡한 셋업 없이 데이터 소스를 연결하고 AI가 권장하는 자동화 룰을 바로 적용하세요. DevOps 팀이 반복 업무에서 벗어나 핵심 개발에 집중할 수 있습니다.</p>
+        <div class="cta-row">
+          <a id="cta-hero-starter" class="btn btn-primary" data-plan="starter" data-cta-slot="hero" href="__STRIPE_STARTER_PAYMENT_LINK__">Starter 시작하기 ($29/mo)</a>
+          <a id="cta-hero-growth" class="btn btn-secondary" data-plan="growth" data-cta-slot="hero" href="__STRIPE_GROWTH_PAYMENT_LINK__">Growth 시작하기 ($79/mo)</a>
         </div>
-        <div class="text-muted text-xs mb-6">Billed monthly · Cancel anytime</div>
-        <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>3 data source connections</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Monitoring scope finalized during onboarding</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Email + Slack alerts</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Weekly auto-reports</li>
-          <li class="flex gap-2"><span class="text-muted mt-0.5">–</span>Root-cause AI (Standard)</li>
-        </ul>
-        <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=starter" id="cta-starter"
-           onclick="gtag('event','cta_click',{'source_surface':'saas','source_page':'ai-ops-autopilot','cta_type':'waitlist',plan:'starter'});gtag('event','begin_checkout',{currency:'USD',value:29,items:[{item_id:'saas-starter',item_name:'AI Ops Autopilot Starter',price:29}]})"
-           class="btn-secondary text-sm text-center justify-center">
-          Join Waitlist
-        </a>
-        <p class="text-muted text-xs mt-3">Self-serve checkout opens after payment links are live.</p>
       </div>
+    </section>
 
-      <!-- Growth — highlighted -->
-      <div class="card pricing-highlight p-8 flex flex-col relative">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span class="badge text-xs px-3 py-1">Most Popular</span>
+    <section id="trust" class="section">
+      <div class="container">
+        <h2>왜 팀이 선택하는가</h2>
+        <div class="grid trust-grid">
+          <article class="card info-card"><h3>빠른 셋업</h3><p>데이터 소스 연결부터 첫 자동화까지 30분 이내</p></article>
+          <article class="card info-card"><h3>운영 부담 감소</h3><p>반복 알람, 수동 대응 업무를 AI가 처리</p></article>
+          <article class="card info-card"><h3>팀 규모 무관</h3><p>5인 스타트업부터 200인 플랫폼팀까지 동일 경험</p></article>
         </div>
-        <div class="text-accent text-sm font-medium mb-3 uppercase tracking-wider">Growth</div>
-        <div class="flex items-end gap-1 mb-1">
-          <span class="text-4xl font-extrabold text-white">$79</span>
-          <span class="text-muted mb-1">/mo</span>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>핵심 기능</h2>
+        <div class="grid feature-grid">
+          <article class="card info-card"><h3>자동화 룰 추천</h3><p>운영 패턴을 학습하고 최적 자동화 룰을 제안</p></article>
+          <article class="card info-card"><h3>멀티 소스 연결</h3><p>Prometheus, Datadog, PagerDuty 등 주요 툴과 즉시 연동</p></article>
+          <article class="card info-card"><h3>알람 노이즈 감소</h3><p>중복/저우선순위 알람을 자동 필터링</p></article>
+          <article class="card info-card"><h3>감사 로그 자동화</h3><p>모든 운영 액션 추적 및 컴플라이언스 대비</p></article>
         </div>
-        <div class="text-muted text-xs mb-6">Billed monthly · Cancel anytime</div>
-        <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>10 data source connections</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Expanded monitoring scope with guided setup</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Email + Slack + webhook alerts</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Daily auto-reports + trends</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Root-cause AI (Advanced)</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Demand forecasting</li>
-        </ul>
-        <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=growth" id="cta-growth"
-           onclick="gtag('event','cta_click',{'source_surface':'saas','source_page':'ai-ops-autopilot','cta_type':'waitlist',plan:'growth'});gtag('event','begin_checkout',{currency:'USD',value:79,items:[{item_id:'saas-growth',item_name:'AI Ops Autopilot Growth',price:79}]})"
-           class="btn-primary text-sm text-center justify-center">
-          Join Waitlist
-        </a>
-        <p class="text-muted text-xs mt-3">Self-serve checkout opens after payment links are live.</p>
-      </div>
-
-      <!-- Enterprise -->
-      <div class="card p-8 flex flex-col">
-        <div class="text-muted text-sm font-medium mb-3 uppercase tracking-wider">Enterprise</div>
-        <div class="flex items-end gap-1 mb-1">
-          <span class="text-4xl font-extrabold text-white">Custom</span>
+        <div class="cta-row">
+          <a id="cta-features-starter" class="btn btn-primary" data-plan="starter" data-cta-slot="features" href="__STRIPE_STARTER_PAYMENT_LINK__">Starter 시작하기 ($29/mo)</a>
         </div>
-        <div class="text-muted text-xs mb-6">Volume pricing · tailored rollout</div>
-        <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Unlimited connections</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Custom AI model training</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Dedicated support pathway</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>On-premise deployment option</li>
-          <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">✓</span>Custom integrations</li>
-        </ul>
-        <a href="/quote/"
-           onclick="gtag('event','contact',{event_category:'pricing',event_label:'enterprise'})"
-           class="btn-secondary text-sm text-center justify-center">
-          Contact Sales
-        </a>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="relative z-10 max-w-3xl mx-auto px-6 pb-24">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-white mb-4">Frequently asked questions</h2>
-    </div>
-
-    <div class="space-y-3">
-
-      <details class="faq-item card p-5">
-        <summary class="flex items-center justify-between text-white font-medium">
-          What data sources does it support?
-          <svg class="faq-chevron w-5 h-5 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <p class="text-muted text-sm mt-3 leading-relaxed">
-          Google Sheets, Excel, CSV uploads, REST APIs, webhooks, and direct ERP connectors (SAP, NetSuite, Odoo). Shopify and HubSpot integrations are in beta. If you need a custom source, contact us.
-        </p>
-      </details>
-
-      <details class="faq-item card p-5">
-        <summary class="flex items-center justify-between text-white font-medium">
-          How is "anomaly" defined? Can I customize it?
-          <svg class="faq-chevron w-5 h-5 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <p class="text-muted text-sm mt-3 leading-relaxed">
-          Yes. The AI learns a baseline from 30–90 days of your history. You can also set hard thresholds manually (e.g., "alert if order volume drops > 30% vs 7-day MA"). Both modes can run in parallel.
-        </p>
-      </details>
-
-      <details class="faq-item card p-5">
-        <summary class="flex items-center justify-between text-white font-medium">
-          Is my operations data secure?
-          <svg class="faq-chevron w-5 h-5 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <p class="text-muted text-sm mt-3 leading-relaxed">
-          Data is encrypted at rest (AES-256) and in transit (TLS 1.3). We do not share or sell your data. Enterprise plans include single-tenant deployment and custom data residency options.
-        </p>
-      </details>
-
-      <details class="faq-item card p-5">
-        <summary class="flex items-center justify-between text-white font-medium">
-          How long does setup take?
-          <svg class="faq-chevron w-5 h-5 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <p class="text-muted text-sm mt-3 leading-relaxed">
-          Most customers are connected and receiving their first alerts within 5–15 minutes. The AI baseline training completes within 24 hours of connecting your first data source.
-        </p>
-      </details>
-
-      <details class="faq-item card p-5">
-        <summary class="flex items-center justify-between text-white font-medium">
-          Can I cancel at any time?
-          <svg class="faq-chevron w-5 h-5 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <p class="text-muted text-sm mt-3 leading-relaxed">
-          Yes. Monthly plans can be cancelled any time from your dashboard — no penalty, no questions. You keep access until the end of the current billing period.
-        </p>
-      </details>
-
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="relative z-10 max-w-4xl mx-auto px-6 pb-32">
-    <div class="card p-14 text-center" style="background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(12,12,26,0.95) 100%); border-color: rgba(99,102,241,0.3);">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        Stop firefighting. Start shipping.
-      </h2>
-      <p class="text-muted text-lg mb-8 max-w-xl mx-auto">
-        Join the launch cohort and confirm your rollout path with our team.
-        We reply within 1 business day with next steps.
-      </p>
-      <a href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=waitlist&plan=all" class="btn-primary text-base">
-        Join Waitlist
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="relative z-10 border-t border-surface-border/50">
-    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted">
-      <div class="flex items-center gap-2">
-        <span class="text-accent">◆</span>
-        <span>Pure-Flon © 2026</span>
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <h2>3-step 도입 플로우</h2>
+        <ol class="steps">
+          <li>Step 1. 데이터 소스 연결</li>
+          <li>Step 2. 권장 자동화 룰 검토</li>
+          <li>Step 3. 운영 자동화 시작</li>
+        </ol>
+        <div class="cta-row">
+          <a id="cta-how-growth" class="btn btn-secondary" data-plan="growth" data-cta-slot="how_it_works" href="__STRIPE_GROWTH_PAYMENT_LINK__">Growth 시작하기 ($79/mo)</a>
+        </div>
       </div>
-      <div class="flex gap-6">
-        <a href="/" class="hover:text-white transition-colors">Home</a>
-        <a href="/products/pfa-tube/" class="hover:text-white transition-colors">Products</a>
-        <a href="/quote/" class="hover:text-white transition-colors">Contact</a>
-        <a href="/blog/" class="hover:text-white transition-colors">Blog</a>
-      </div>
-      <div class="text-xs">
-        <a href="mailto:contact@pure-flon.com" class="hover:text-white transition-colors">contact@pure-flon.com</a>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-<script src="/js/modules/revenue-cta-runtime.js" defer></script>
-<script>
-// EXP-1011: Pricing view tracking — fires once when pricing section is visible
-(function(){
-  var fired=false;
-  var el=document.querySelector('[data-section="pricing"]')||document.getElementById('pricing');
-  if(!el){
-    // fallback: fire on scroll past 40% of page
-    window.addEventListener('scroll',function h(){
-      if(fired)return;
-      if(window.scrollY>document.body.scrollHeight*0.4){
-        fired=true;
-        gtag('event','view_item_list',{item_list_id:'saas_pricing',item_list_name:'AI Ops Autopilot Pricing',items:[{item_id:'saas-starter',item_name:'AI Ops Autopilot Starter',price:29},{item_id:'saas-growth',item_name:'AI Ops Autopilot Growth',price:79}]});
-        window.removeEventListener('scroll',h);
+    <section id="pricing" class="section" data-section="pricing">
+      <div class="container">
+        <h2>플랜 비교</h2>
+        <div class="grid pricing-grid">
+          <article class="card pricing-card" data-plan="free">
+            <h3>Free</h3>
+            <p class="pricing-price">$0</p>
+            <p class="pricing-copy">핵심 기능 미리보기와 기본 가이드.</p>
+          </article>
+
+          <article class="card pricing-card is-featured" data-plan="starter">
+            <h3>Starter</h3>
+            <p class="pricing-price">$29/mo</p>
+            <p class="pricing-copy">소규모 팀용 기본 자동화 운영 루프.</p>
+            <a id="cta-pricing-starter" class="btn btn-primary" data-plan="starter" data-cta-slot="pricing" href="__STRIPE_STARTER_PAYMENT_LINK__">Starter 시작하기 ($29/mo)</a>
+          </article>
+
+          <article class="card pricing-card" data-plan="growth">
+            <h3>Growth</h3>
+            <p class="pricing-price">$79/mo</p>
+            <p class="pricing-copy">고빈도 운영 팀용 확장형 자동화.</p>
+            <a id="cta-pricing-growth" class="btn btn-secondary" data-plan="growth" data-cta-slot="pricing" href="__STRIPE_GROWTH_PAYMENT_LINK__">Growth 시작하기 ($79/mo)</a>
+          </article>
+
+          <article class="card pricing-card" data-plan="enterprise">
+            <h3>Enterprise</h3>
+            <p class="pricing-price">Custom</p>
+            <p class="pricing-copy">커스텀 컴플라이언스와 전담 온보딩.</p>
+            <a id="cta-pricing-enterprise" class="btn btn-secondary" data-plan="enterprise" data-cta-slot="pricing" href="/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=contact&plan=enterprise">문의하기</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary>셋업에 개발 리소스가 필요한가요?</summary>
+          <p>아니요. 코드 없이 연결 가능한 GUI 기반 설정을 제공합니다.</p>
+        </details>
+        <details>
+          <summary>기존 Datadog/PagerDuty 환경과 함께 사용할 수 있나요?</summary>
+          <p>네. 기존 툴을 대체하지 않고 레이어로 추가됩니다.</p>
+        </details>
+        <details>
+          <summary>무료 플랜과 Starter의 차이는 무엇인가요?</summary>
+          <p>무료는 소스 2개/룰 5개 제한. Starter부터 무제한 + 우선 지원.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="footer-cta" class="section">
+      <div class="container">
+        <h2>이번 주 안에 자동화 시작</h2>
+        <p>Starter로 빠르게 시작하고, 필요 시 Growth로 확장하세요.</p>
+        <div class="cta-row">
+          <a id="cta-footer-starter" class="btn btn-primary" data-plan="starter" data-cta-slot="footer" href="__STRIPE_STARTER_PAYMENT_LINK__">Starter 시작하기 ($29/mo)</a>
+          <a id="cta-footer-growth" class="btn btn-secondary" data-plan="growth" data-cta-slot="footer" href="__STRIPE_GROWTH_PAYMENT_LINK__">Growth 시작하기 ($79/mo)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.__AUTOPILOT_PAYMENT_LINKS__ = {
+      starter: "__STRIPE_STARTER_PAYMENT_LINK__",
+      growth: "__STRIPE_GROWTH_PAYMENT_LINK__"
+    };
+  </script>
+
+  <script>
+    (function () {
+      function track(eventName, params) {
+        if (typeof window.gtag !== "function") return;
+        window.gtag("event", eventName, params || {});
       }
-    });
-  } else {
-    var obs=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting&&!fired){
-          fired=true;
-          gtag('event','view_item_list',{item_list_id:'saas_pricing',item_list_name:'AI Ops Autopilot Pricing',items:[{item_id:'saas-starter',item_name:'AI Ops Autopilot Starter',price:29},{item_id:'saas-growth',item_name:'AI Ops Autopilot Growth',price:79}]});
-          obs.disconnect();
-        }
+
+      var pricingSeen = false;
+      var pricing = document.getElementById("pricing");
+      if (pricing && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (pricingSeen || !entry.isIntersecting) return;
+            pricingSeen = true;
+            track("view_item_list", {
+              item_list_id: "ai_ops_autopilot_pricing"
+            });
+            io.disconnect();
+          });
+        }, { threshold: 0.3 });
+        io.observe(pricing);
+      }
+
+      var selectableCards = document.querySelectorAll('.pricing-card[data-plan="starter"], .pricing-card[data-plan="growth"]');
+      selectableCards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          var plan = card.getAttribute("data-plan") || "unknown";
+          track("select_item", {
+            item_id: "ai_ops_autopilot_" + plan,
+            plan: plan,
+            cta_slot: "pricing_card"
+          });
+        });
       });
-    },{threshold:0.3});
-    obs.observe(el);
-  }
-})();
-</script>
+
+      var paymentMap = window.__AUTOPILOT_PAYMENT_LINKS__ || {};
+      ["starter", "growth"].forEach(function (plan) {
+        var links = document.querySelectorAll('a[data-plan="' + plan + '"]');
+        links.forEach(function (link) {
+          var url = paymentMap[plan] || "";
+          var isPlaceholder = !url || url.indexOf("__STRIPE_") === 0;
+
+          if (isPlaceholder) {
+            link.setAttribute("aria-disabled", "true");
+            link.classList.add("is-disabled");
+            link.textContent = "결제 링크 준비중";
+            link.href = "/quote/?source_surface=saas&source_page=ai-ops-autopilot&cta_type=contact&plan=" + plan;
+            return;
+          }
+
+          link.href = url;
+          link.addEventListener("click", function () {
+            track("begin_checkout", {
+              currency: "USD",
+              value: plan === "starter" ? 29 : 79,
+              plan: plan,
+              cta_slot: link.getAttribute("data-cta-slot") || "unknown"
+            });
+          });
+        });
+      });
+
+      var enterpriseLink = document.getElementById("cta-pricing-enterprise");
+      if (enterpriseLink) {
+        enterpriseLink.addEventListener("click", function () {
+          track("generate_lead", { plan: "enterprise" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
